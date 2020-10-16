@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+
+.mat-list .mat-list-item{
+  height: 30px;
+  font-size: 14px;
+}
+
+
+.mat-list-route-item-cap {
+  font-weight: bold;
+  width: 6em;
+  /* or whatever width you want. */
+  max-width: 6em;
+  /* or whatever width you want. */
+  display: inline-block;
+}
+
+.mat-list-route-item-value {
+  display: inline-block;
+}
+
+div.frameborder {
+  border-style: solid;
+  border-color: whitesmoke;
+
+  border-width: 5px 5px; /* 20px top and bottom, 5px on the sides */
+}

@@ -1,0 +1,11 @@
+<div *ngIf="myOptimizationOutput$ | async as result; else nonExistingResult">
+    <button mat-raised-button color="primary" (click)="openDialog()" cdkFocusInitial>Start optimization</button>
+    <button style="margin-left:15px;" mat-raised-button color="primary" (click)="openOptimizationResultDialog(result)" cdkFocusInitial>Show
+        latest result</button>
+</div>
+
+<ng-template #nonExistingResult>
+    <button mat-raised-button color="primary" (click)="openDialog()" cdkFocusInitial>Start optimization</button>
+    <button style="margin-left:15px;" mat-raised-button [disabled]="true" color="primary" cdkFocusInitial>Show
+        latest result</button>
+</ng-template>

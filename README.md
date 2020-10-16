@@ -25,3 +25,28 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+## TODO
+- Priority of zero leads to serilaization error in core! => FIX CORE
+- Check health of swagger before start => APP
+- Fix progress observable => APP
+- Typos in app
+- Switch cancel start positions
+- Scrolling: Always show "close"
+- Show violations on Route-Level
+- Max working hours: Wrong label
+- TimeZone(?) Bug => Setting openingHours is saved incorrectly
+
+
+
+
+## DOCKER
+Using: https://dev.to/usmslm102/containerizing-angular-application-for-production-using-docker-3mhi
+
+Start locally: docker run -d -v ${PWD}:/usr/src/app -p 3000:80 --name test --rm faja:latest
+
+Open: http://localhost:3000/
+
+TODO: Composing => use https://mherman.org/blog/dockerizing-an-angular-app/

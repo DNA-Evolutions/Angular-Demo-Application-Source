@@ -1,1 +1,198 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '../node_modules/leaflet/dist/leaflet.css';
+
+html,
+body {
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/*
+ * Popup Shared
+ */
+
+.pop .leaflet-popup-content-wrapper {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 10px;
+  text-align: center;
+
+  background: #ffffff;
+  border-style: solid;
+  border-width: 4px;
+
+
+  /*background: #ffffff;
+  border-style: solid;
+  border-width: 4px;
+  border-color: #3f51b1; 
+  border-color: #3086c8;*/
+}
+
+
+.popup-edit-btn {
+
+  /*background: linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+  background-color: #637aad;*/
+
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 17px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+
+
+
+/*
+ * Node popup
+ */
+
+.node-popup .leaflet-popup-content-wrapper {
+  border-color: #3086c8;
+}
+
+.node-popup-edit-btn {
+  background: linear-gradient(to bottom, #3086c8 5%, #3086c8 100%);
+  background-color: #3086c8;
+  border: 1px solid #314179;
+  box-shadow: inset 0px 1px 0px 0px #7a8eb9;
+}
+
+.node-popup-edit-btn:hover {
+  background: linear-gradient(to bottom, #3f51b1 5%, #3f51b1 100%);
+  background-color: #3f51b1;
+}
+
+.node-popup-edit-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+
+
+
+/*
+ * Resource
+ */
+
+.resource-popup .leaflet-popup-content-wrapper {
+  border-color: #da172d;
+}
+
+.resource-popup-edit-btn {
+  background: linear-gradient(to bottom, #da172d 5%, #da172d 100%);
+  background-color: #da172d;
+  border: 1px solid #691616;
+  box-shadow: inset 0px 1px 0px 0px #b97a8f;
+}
+
+.resource-popup-edit-btn:hover {
+  background: linear-gradient(to bottom, #c40000 5%, #c40000 100%);
+  background-color: #c40000;
+}
+
+.resource-popup-edit-btn:active {
+  position: relative;
+  top: 1px;
+}
+
+/*
+ *
+ */
+
+.list-row {
+  background: #f4f4f4;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+.list-left {
+  width: auto;
+  padding: 5px;
+  float: left;
+  border: 1px solid black;
+}
+
+.list-right {
+  padding: 5px;
+  float: right;
+  border: 1px solid black;
+}
+
+.list-title {
+  font-size: 14px;
+  padding: 5px;
+}
+
+.list-filters {
+  padding: 5px;
+}
+
+
+/*
+ *  Info box
+ */
+
+div.boxinfo {
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, .87);
+  font-feature-settings: "kern", "liga";
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-print-color-adjust: exact;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+  position: relative;
+  margin: 1.5625em 0;
+  padding: 0 .6rem;
+  border-left: .2rem solid #448aff;
+  border-radius: .1rem;
+  overflow: auto;
+  border-left-color: #00b8d4;
+  width: 50%;
+}
+
+p.boxinfotitle::after {
+  content: '';
+  background: url("/assets/misc/icon/icon-info.png");
+  background-size: cover;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  left: .3rem;
+  z-index: 0;
+}
+
+p.boxinfotitle {
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, .87);
+  font-feature-settings: "kern", "liga";
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-print-color-adjust: exact;
+  box-sizing: inherit;
+  margin: 0 -.6rem;
+  padding: .4rem .6rem .4rem 2rem;
+  border-bottom: .05rem solid rgba(68, 138, 255, .1);
+  font-weight: 700;
+  border-bottom-color: rgba(0, 184, 212, .1);
+  background-color: rgba(0, 184, 212, .1);
+}
+

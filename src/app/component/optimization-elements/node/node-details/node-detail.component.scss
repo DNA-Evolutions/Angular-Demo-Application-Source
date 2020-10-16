@@ -1,0 +1,22 @@
+.mat-list .mat-list-item {
+  height: 30px;
+  font-size: 14px;
+}
+
+.mat-list-node-item-cap {
+  font-weight: bold;
+  width: 6em;
+  /* or whatever width you want. */
+  max-width: 6em;
+  /* or whatever width you want. */
+  display: inline-block;
+}
+
+.mat-list-node-item-value {
+  display: inline-block;
+}
+
+.mat-expansion-panel-body{
+    padding: 0;
+    margin: 0;
+}

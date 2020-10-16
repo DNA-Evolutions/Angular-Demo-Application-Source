@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Start Optimization</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+
+  <!--<mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field>
+
+  <mat-divider></mat-divider>-->
+
+  <p></p>
+  <mat-label>Optimization Run Settings</mat-label>
+  <p></p>
+
+  <mat-accordion>
+    <div *ngFor="let prop of settingsCopy?.properties">
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{prop.key}} : {{prop.value}}
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-label>Adjust value: </mat-label>
+        <mat-slider style="width: 70%;" [max]="getMaxPropertyValue(prop.key)" [min]="0" [step]="getStepPropertyValue(prop.key)"
+          [(ngModel)]="prop.value">
+        </mat-slider>
+
+        <p></p>
+
+        <p></p>
+      </mat-expansion-panel>
+      <p></p>
+
+
+    </div>
+  </mat-accordion>
+
+
+  <div mat-dialog-actions>
+    <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
+    <button mat-raised-button color="primary" (click)="onSaveClick()" cdkFocusInitial>Save</button>-->
+    <button mat-raised-button color="primary" (click)="onStartClick()" cdkFocusInitial>Start Optimization</button>
+    <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+  </div>
+
+  <p></p>

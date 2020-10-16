@@ -1,0 +1,18 @@
+[
+    {
+        "exampleId": "exampleOne",
+        "desc": "A first draft with the same test example but other id",
+        "optimizationInputPath": "./assets/precoded-data/examples/example-one/optimization-input/optimization-input.json",
+        "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+        "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+        "mapViewPropertiesPath": "./assets/precoded-data/examples/example-one/map-view-properties/map-view-properties.json"
+    },
+    {
+        "exampleId": "exampleTwo",
+        "desc": "A second draft with the same test example but other id",
+        "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
+        "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+        "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+        "mapViewPropertiesPath": "./assets/precoded-data/examples/example-two/map-view-properties/map-view-properties.json"
+    }
+]

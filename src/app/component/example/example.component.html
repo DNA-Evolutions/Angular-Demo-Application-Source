@@ -1,0 +1,212 @@
+<!--<mat-toolbar color="primary">
+    <mat-toolbar-row>
+
+        <span>{{title}}</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+        </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <span>{{description}}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar style="position: relative;background: #c0ca48;
+    color: #fff;">
+    <span><img style="height:55px;" src="./assets/misc/icon/dna-evolutions-logo-white-retina-display.png"
+            alt="map icon"></span>
+    <span style="padding-left:30px;">{{title}}</span>
+</mat-toolbar>-->
+<p></p>
+<mat-expansion-panel style="width:95%;margin:0 auto;" [expanded]="false" matTooltip="Click me to enlarge.">
+    <mat-expansion-panel-header style="background-color:#EBEFBE">
+        <mat-panel-title>
+
+            <div>
+                <img style="padding-left: 10px;height:20px;" src="./assets/misc/icon/icon-example.png" alt="map icon">
+                <div style="display: inline-block;padding-left: 15px;">
+                    Select another example
+                </div>
+            </div>
+
+
+        </mat-panel-title>
+
+        <mat-panel-description></mat-panel-description>
+
+    </mat-expansion-panel-header>
+
+        <div class="boxinfo">
+        <p class="boxinfotitle">Info</p>
+        <p>You can choose from different predefined examples. The position of the nodes and resources is fixed
+            in each example. However, opening hours,  working hours etc. can be modified and tested.
+        </p>
+
+    </div>
+    <mat-divider></mat-divider>
+
+    <div style="padding-top:10px;">
+        <h4>Select another example:</h4>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Select an element...</mat-label>
+            <mat-select [(ngModel)]="curExampleId" (ngModelChange)="setExampelId($event)">
+
+                <mat-option *ngFor="let exampleDef of getExampledDefs()" [value]="exampleDef.exampleId">
+                {{exampleDef.exampleId}}
+                </mat-option>
+                
+
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="curExampleId && activeExampleId!==curExampleId" style="display: inline-block;
+  padding-left: 15px;">
+            <button mat-raised-button matTooltip="Open example" (click)="loadExample(curExampleId)"
+        color="primary" cdkFocusInitial>Open details of {{curExampleId}}</button>
+        </div>
+
+         <div *ngIf="!curExampleId || activeExampleId===curExampleId" style="display: inline-block;
+  padding-left: 15px;">
+            <button mat-raised-button matTooltip="Select another example first"
+            [disabled]="true"
+                color="primary" cdkFocusInitial>Select another example first</button>
+        </div>
+
+    </div>
+
+
+</mat-expansion-panel>
+
+
+
+<p></p>
+
+<!-- MAP -->
+
+<mat-expansion-panel style="width:95%;margin:0 auto;" [expanded]="true" matTooltip="Click me to enlarge.">
+    <mat-expansion-panel-header style="background-color:#EBEFBE">
+        <mat-panel-title>
+
+            <div>
+                <img style="padding-left: 10px;height:20px;" src="./assets/misc/icon/icon-map.png" alt="map icon">
+                <div style="display: inline-block;padding-left: 15px;">
+                    See it on a Map
+                </div>
+            </div>
+
+
+        </mat-panel-title>
+
+        <mat-panel-description></mat-panel-description>
+
+    </mat-expansion-panel-header>
+    <div style="padding-top:10px;">
+        <app-leaflet-map></app-leaflet-map>
+    </div>
+</mat-expansion-panel>
+
+
+
+<!-- MAP END-->
+
+<p>
+</p>
+<!-- ELEMENT SELECTOR -->
+<mat-expansion-panel style="width:95%;margin:0 auto;" [expanded]="false" matTooltip="Click me to enlarge.">
+    <mat-expansion-panel-header style="background-color:#EBEFBE">
+        <mat-panel-title>
+
+            <div>
+                <img style="padding-left: 10px;height:20px;" src="./assets/misc/icon/icon-modify.png" alt="modfiy icon">
+                <div style="display: inline-block;padding-left: 15px;">
+                    Modify Nodes
+                    <img style="padding-left: 2px;height:20px;" src="./assets/maps/marker-icon.png" alt="map icon">
+                    and Resources
+                    <img style="padding-left: 2px;height:20px;" src="./assets/maps/marker-icon-red.png" alt="res icon">
+                </div>
+            </div>
+
+
+        </mat-panel-title>
+
+        <mat-panel-description></mat-panel-description>
+
+    </mat-expansion-panel-header>
+    <!-- <mat-card style="margin-top:10px;">-->
+
+    <div class="boxinfo">
+        <p class="boxinfotitle">Info</p>
+        <p>Modifying elements is an <strong>optional step</strong>. You can start <img
+                style="padding-left: 2px;padding-right: 5px;height:18px;" src="./assets/misc/icon/icon-run.png"
+                alt="run icon"> the optimization right away.
+            Further, on the map
+            <img style="padding-left: 2px;padding-right: 5px;height:20px;" src="./assets/misc/icon/icon-map.png"
+                alt="map icon">
+            you can also click on the elements you want to interact with (modfiying, checking the latest result).
+
+        </p>
+
+    </div>
+    <mat-divider></mat-divider>
+
+    <div style="margin-top:10px;">
+        <h4>Please select a Node or a Resource:</h4>
+        <app-optimization-elements-selector></app-optimization-elements-selector>
+    </div>
+
+    <!-- </mat-card>-->
+</mat-expansion-panel>
+
+
+
+
+
+
+<!-- ELEMENT SELECTOR END -->
+<p></p>
+
+<!-- START OPTIMIZATION -->
+<mat-expansion-panel style="width:95%;margin:0 auto;" [expanded]="true" matTooltip="Click me to enlarge.">
+    <mat-expansion-panel-header style="background-color:#EBEFBE">
+        <mat-panel-title>
+
+            <div>
+                <img style="height:20px;" src="./assets/misc/icon/icon-run.png" alt="run icon">
+                <div style="display: inline-block;padding-left: 15px;"> Start the optimization and see the result </div>
+            </div>
+
+
+
+        </mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+    </mat-expansion-panel-header>
+    <!-- <mat-card style="margin-top:10px;">-->
+    <div style="margin-top:10px;">
+        <app-prepare-run-optimization-view></app-prepare-run-optimization-view>
+    </div>
+    <!-- </mat-card>-->
+</mat-expansion-panel>
+<!-- START OPTIMIZATION END -->
+
+
+
+<!--<nav>
+    <a routerLink="test" class="btn btn-primary active" role="button" routerLinkActive="active">Test</a>
+    <p></p>
+     <a routerLink="nodeDetails" class="btn btn-primary active" role="button" routerLinkActive="active">Add</a>
+   <a routerLink="search" class="btn btn-primary active" role="button" routerLinkActive="active">Search</a>
+  </nav>-->
+
+<router-outlet>
+
+</router-outlet>
+
+<p></p>
+<div style="width:95%;margin:0 auto;text-align: right;">
+    <div style="font-style: italic; color:gray">
+        &copy; 2020 <a href="https://www.dna-evolutions.com" target="_blank">DNA-Evolutions GmbH</a>. All rights
+        reserved.</div>
+</div>
+

@@ -1,0 +1,8 @@
+.scroll-box {
+    background: whitesmoke;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height: 500px; /* maximum height of the box, feel free to change this! */
+    padding: 15px;
+    overflow-y: scroll;
+}

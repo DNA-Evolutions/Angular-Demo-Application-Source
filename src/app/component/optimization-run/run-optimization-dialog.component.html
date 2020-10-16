@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Optimization is running</h1>
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<p></p>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+
+  <p></p>
+  <p></p>
+
+  <!--<app-visual-progress></app-visual-progress>-->
+  <app-progress></app-progress>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="stopOptimizationGracefully()" cdkFocusInitial>Stop
+      Gracefully</button>
+  </div>
+
+  <p></p>

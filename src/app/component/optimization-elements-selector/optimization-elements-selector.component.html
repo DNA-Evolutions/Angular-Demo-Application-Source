@@ -1,0 +1,33 @@
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Select an element...</mat-label>
+        <mat-select [(ngModel)]="selectedId" (ngModelChange)="setSelectedId($event)">
+            <mat-optgroup label="Nodes">
+                <mat-option ngDefaultControl *ngFor="let nodeId of nodeIds" [value]="nodeId">
+                    {{nodeId}}
+                </mat-option>
+            </mat-optgroup>
+            <mat-optgroup label="Resources">
+                <mat-option ngDefaultControl *ngFor="let resId of resourceIds" [value]="resId">
+                    {{resId}}
+                </mat-option>
+            </mat-optgroup>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="selectElement" *ngIf="selectedNodeId">
+        <button mat-raised-button matTooltip="Open details of Node" (click)="openNodeDialog(selectedNodeId)"
+            color="primary" cdkFocusInitial>Open details of {{selectedNodeId}}</button>
+    </div>
+
+    <div class="selectElement" *ngIf="selectedResourceId">
+        <button mat-raised-button matTooltip="Open details of Resource" (click)="openResourceDialog(selectedResourceId)"
+            color="warn" cdkFocusInitial>Open details of
+            {{selectedResourceId}}</button>
+    </div>
+
+    <div class="selectElement" *ngIf="!selectedNodeId && !selectedResourceId">
+        <button mat-raised-button [disabled]="true" matTooltip="Select an element" color="primary"
+            cdkFocusInitial>Select an element first</button>
+    </div>
+</div>

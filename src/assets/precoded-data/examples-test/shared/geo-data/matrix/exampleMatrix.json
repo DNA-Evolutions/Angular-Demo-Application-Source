@@ -1,0 +1,43 @@
+{
+	"id": "my_test_matrix",
+	"targets": [[{
+				"lon": 6.099960,
+				"lat": 50.774658
+			}, {
+				"lon": 6.964430,
+				"lat": 51.432240
+			}
+		]],
+	"sources_to_targets": [[{
+				"distance": 0.000,
+				"time": 0,
+				"to_index": 0,
+				"from_index": 0
+			}, {
+				"distance": 116.049,
+				"time": 4562,
+				"to_index": 1,
+				"from_index": 0
+			}
+		], [{
+				"distance": 114.806,
+				"time": 4544,
+				"to_index": 0,
+				"from_index": 1
+			}, {
+				"distance": 0.000,
+				"time": 0,
+				"to_index": 1,
+				"from_index": 1
+			}
+		]],
+	"sources": [[{
+				"lon": 6.099960,
+				"lat": 50.774658
+			}, {
+				"lon": 6.964430,
+				"lat": 51.432240
+			}
+		]],
+	"units": "kilometers"
+}
