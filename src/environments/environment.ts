@@ -2,9 +2,11 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
+// http://jopttouroptimizer-on8081.westeurope.azurecontainer.io:8081/swagger-ui.html
 export const environment = {
   production: false,
-  host : 'http://localhost',
+  host : 'http://jopttouroptimizer-on8081.westeurope.azurecontainer.io',
   port : '8081',
 
   apiProgress: '/api/optimization/stream/progress',
