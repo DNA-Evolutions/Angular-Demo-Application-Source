@@ -43,6 +43,8 @@ import { EventHandler } from '../remove/map/interfaces/event-handler';
 
 import { MapIconResourceOptions } from './marker-icon/map-icon-resource-options';
 import { MapIconNodeOptions } from './marker-icon/map-icon-node-options';
+import { Observable } from 'rxjs';
+import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
 
 @Component({
     selector: 'app-leaflet-map',
@@ -58,14 +60,18 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
     protected onMouseMoveHandler: EventHandler;
 
+    myOptimizationOutput$: Observable<JOptOptimizationOutput>;
+
     constructor(
         private markerService: LeafletMarkerService,
         private geoService: GeoAndRoutingService,
         private elementRef: ElementRef,
         private polylineService: LeafletPolylineService,
-        private optiService: OptimizationWrapperService) {
+        private optiService: OptimizationWrapperService,
+        public dialog: MatDialog) {
 
         this.onMouseMoveHandler = (evt: any) => this.onMapMouseMove(evt);
+        this.myOptimizationOutput$ = this.optiService.optimizationOutputObservable();
     }
 
     ngAfterViewInit(): void {
@@ -73,7 +79,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
         this.initMapHandlers();
 
         //console.log('LeafletMapComponent ngAfterViewInit called');
-        this.optiService.optimizationOutputObservable().subscribe((result: JOptOptimizationOutput) => {
+        this.myOptimizationOutput$.subscribe((result: JOptOptimizationOutput) => {
             console.log('Drawing result');
             this.refreshMap();
             result.solution.routes.forEach((r, index) => {
@@ -173,13 +179,36 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
         const lat: string = evt.latlng.lat.toFixed(3);
         const long: string = evt.latlng.lng.toFixed(3);
         const zoom: string = this.map.getZoom();
-        this.mcText = `Latitude: ${lat} &nbsp; &nbsp; Longitude: ${long}; &nbsp; Zoom: ${zoom}`;
+        this.mcText = `Latitude: ${lat} &nbsp; &nbsp; Longitude: ${long} &nbsp; Zoom: ${zoom}`;
         //console.log('move' + this.mcText);
     }
 
     public ngOnDestroy(): void {
         this.map.off('mousemove', this.onMouseMoveHandler);
     }
+
+
+    openOptimizationResultDialog(output: JOptOptimizationOutput): void {
+      console.log(output);
+      const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
+          width: '1000px',
+          maxHeight: '80vh',
+          data: { result: output }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+
+
+          //const runDialogRef: MatDialogRef<RunOptimizationDialogComponent> = result;
+
+          //runDialogRef.afterClosed().subscribe(optimizationResult => {
+          //  console.log('Got optimization result: ' + optimizationResult);
+          //});
+
+      });
+
+
+  }
 
 
 

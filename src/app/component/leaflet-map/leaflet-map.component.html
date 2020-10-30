@@ -1,8 +1,34 @@
 <div class="map-container">
-    <!--<div class="map-frame">-->
-        <div id="map"></div>
-    <!--</div>-->
+  <!--<div class="map-frame">-->
+  <div id="map">
+    <div class="map-info">
+      <span [innerHTML]="mcText"></span>
+    </div>
+  </div>
+  <!--</div>-->
+
 </div>
-<div class="mouse-coords">
-    <span [innerHTML]="mcText"></span>
+
+<!-- <div *ngIf="myOptimizationOutput$ | async as result; else nonExistingResult">
+  <button
+    style="margin-left: 15px"
+    mat-raised-button
+    color="primary"
+    (click)="openOptimizationResultDialog(result)"
+    cdkFocusInitial
+  >
+    Show latest result
+  </button>
 </div>
+
+<ng-template #nonExistingResult>
+  <button
+    style="margin-left: 15px"
+    mat-raised-button
+    [disabled]="true"
+    color="primary"
+    cdkFocusInitial
+  >
+    Show latest result
+  </button>
+</ng-template> -->

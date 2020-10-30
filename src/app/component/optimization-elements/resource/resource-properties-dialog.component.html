@@ -1,127 +1,213 @@
-<h1 mat-dialog-title>Properties of Resource {{curRes?.id}}</h1>
+<h1 mat-dialog-title>Properties of Resource {{ curRes?.id }}</h1>
 <mat-divider></mat-divider>
 
-<form name="form" (ngSubmit)="f.form.valid && onSaveClick()" #f="ngForm" [validTimeWindow]="['']" novalidate>
-    <div mat-dialog-content>
-
-        <!--<mat-form-field>
+<form
+  name="form"
+  (ngSubmit)="f.form.valid && onSaveClick()"
+  #f="ngForm"
+  [validTimeWindow]="['']"
+  novalidate
+>
+  <div mat-dialog-content>
+    <!--<mat-form-field>
     <mat-label>Favorite Animal</mat-label>
     <input matInput [(ngModel)]="data.animal">
   </mat-form-field>
 
   <mat-divider></mat-divider>-->
 
-        <mat-tab-group>
+    <mat-tab-group>
+      <mat-tab label="Basic">
+        <p></p>
+        <ul>
+          <li>
+            <mat-label
+              matTooltip="When is a resource allowed to work? Click on cards to modify."
+              >Modify WorkingHours
+            </mat-label>
+          </li>
+        </ul>
+        <p></p>
 
-            <mat-tab label="Basic">
+        <!-- OPENING HOURS -->
+        <mat-accordion>
+          <div
+            *ngFor="let workinghours of workingHoursCopy; let i = index"
+            [attr.data-index]="i"
+          >
+            <mat-expansion-panel
+              style="width: 95%; margin: 0 auto"
+              matTooltip="Click me to modify."
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title> Working hour </mat-panel-title>
+                <mat-panel-description> # {{ i + 1 }} </mat-panel-description>
+              </mat-expansion-panel-header>
 
-                <p></p>
-                <ul>
-                    <li>
-                        <mat-label matTooltip="When is a resource allowed to work? Click on cards to modify.">Modify
-                            WorkingHours
-                        </mat-label>
-                    </li>
-                </ul>
-                <p></p>
+              <p></p>
+              <h4>
+                <mat-label matTooltip="Till when the node should be visited."
+                  >WorkingHours start :
+                </mat-label>
+              </h4>
+              <mat-form-field style="width: 100% !important" appearance="fill">
+                <mat-label>WorkingHours start</mat-label>
+                <input
+                  matInput
+                  name="twstart{{ i }}"
+                  [ngxMatDatetimePicker]="pickerBegin"
+                  placeholder="WorkingHours start"
+                  [(ngModel)]="workinghours.timeWindow.begin"
+                />
+                <mat-datepicker-toggle matSuffix [for]="pickerBegin">
+                </mat-datepicker-toggle>
+                <ngx-mat-datetime-picker
+                  #pickerBegin
+                  [showSpinners]="true"
+                  [showSeconds]="false"
+                  [stepHour]="1"
+                  [stepMinute]="15"
+                  [stepSecond]="60"
+                  [touchUi]="true"
+                >
+                </ngx-mat-datetime-picker>
+              </mat-form-field>
+              <p></p>
+              <h4>
+                <mat-label
+                  matTooltip="Till when the work at the node should be done."
+                >
+                  WorkingHours end :
+                </mat-label>
+              </h4>
 
-                <!-- OPENING HOURS -->
-                <mat-accordion>
-                    <div *ngFor="let workinghours of workingHoursCopy; let i = index" [attr.data-index]="i">
+              <mat-form-field style="width: 100% !important" appearance="fill">
+                <mat-label>WorkingHours end</mat-label>
+                <input
+                  matInput
+                  name="twend{{ i }}"
+                  [ngxMatDatetimePicker]="pickerEnd"
+                  placeholder="WorkingHours end"
+                  [(ngModel)]="workinghours.timeWindow.end"
+                />
+                <mat-datepicker-toggle matSuffix [for]="pickerEnd">
+                </mat-datepicker-toggle>
+                <ngx-mat-datetime-picker
+                  #pickerEnd
+                  [showSpinners]="true"
+                  [showSeconds]="false"
+                  [stepHour]="1"
+                  [stepMinute]="15"
+                  [stepSecond]="60"
+                  [touchUi]="true"
+                >
+                </ngx-mat-datetime-picker>
+              </mat-form-field>
+              <p></p>
+            </mat-expansion-panel>
+            <p></p>
+          </div>
+        </mat-accordion>
+        <!-- OPENING HOURS END -->
+        <mat-divider></mat-divider>
 
-                        <mat-expansion-panel  style="width:95%;margin:0 auto;" matTooltip="Click me to modify.">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    Working hour
-                                </mat-panel-title>
-                                <mat-panel-description>
-                                    # {{i+1}}
-                                </mat-panel-description>
-                            </mat-expansion-panel-header>
+        <!--MAX WORKINGTIME -->
+        <p></p>
+        <ul>
+          <li>
+            <mat-label
+              matTooltip="How long a Resource needs to stay at the node? Click on card to modify."
+            >
+              Modify maximal working time</mat-label
+            >
+          </li>
+        </ul>
+        <p></p>
+        <mat-accordion>
+          <mat-expansion-panel
+            style="width: 95%; margin: 0 auto"
+            matTooltip="Click me to modify."
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title> Max Working time </mat-panel-title>
+              <mat-panel-description>
+                {{ maxTimeHours }} [hr]
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-card>
+              <mat-form-field style="width: 100% !important">
+                <h4>
+                  <mat-label>Max Working time [hr]</mat-label>
+                </h4>
+                <input
+                  matInput
+                  name="maxworkingtime"
+                  #maxWorkingTime
+                  min="1"
+                  max="999"
+                  pattern="\d*"
+                  placeholder="30"
+                  maxLength="3"
+                  [(ngModel)]="maxTimeHours"
+                  type="number"
+                  oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<=0) {this.value = 1;} if (this.value>24) {this.value = 24;}"
+                />
+              </mat-form-field>
+            </mat-card>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!--MAX WORKINGTIME END -->
+        <p></p>
+      </mat-tab>
 
-                            <p></p>
-                            <h4>
-                                <mat-label matTooltip="Till when the node should be visited.">WorkingHours start :
-                                </mat-label>
-                            </h4>
-                            <mat-form-field style="width:100% !important" appearance="fill">
+      <mat-tab label="Advandced">
+        <div class="wide boxteaser">
+          <p class="boxteasertitle">Resources in JOpt</p>
+          <p>
+            <span>
+              In JOpt Tour Optimizer, multiple features are integrated to define
+              a Resource the way you need it. This includes, for example:
+            </span>
+            <li style="margin: 10px 0px 10px 0px">
+              <strong>Skills:</strong> Assign skills to a Resource and make sure
+              the right Node gets visited by the right Resource.
+            </li>
+            <li style="margin: 0 0 10px 0">
+              <strong>Overnight Stay:</strong> Let the Optimizer find the best
+              suitable location for an Overnight-Stay to save time and driving.
+            </li>
+            <li style="margin: 0 0 10px 0">
+              <strong>Flexible start:</strong> Give the Resource the ability to
+              start later or earlier, depending on what is most beneficial to
+              solve an Optimization problem.
+            </li>
+            <li style="margin: 0 0 10px 0">
+              <strong>Pick-up and Delivery:</strong> Use JOpt to solve your PND
+              problem. Even Manufacturing-Planning is possible.   
+            </li>
+            <li style="margin: 0 0 10px 0">and many more...</li>
 
-                                <mat-label>WorkingHours start</mat-label>
-                                <input matInput name="twstart{{i}}" [ngxMatDatetimePicker]="pickerBegin"
-                                    placeholder="WorkingHours start" [(ngModel)]="workinghours.timeWindow.begin">
-                                <mat-datepicker-toggle matSuffix [for]="pickerBegin">
-                                </mat-datepicker-toggle>
-                                <ngx-mat-datetime-picker #pickerBegin [showSpinners]="true" [showSeconds]="false"
-                                    [stepHour]="1" [stepMinute]="15" [stepSecond]="60" [touchUi]="true">
-                                </ngx-mat-datetime-picker>
-                            </mat-form-field>
-                            <p></p>
-                            <h4>
-                                <mat-label matTooltip="Till when the work at the node should be done."> WorkingHours end
-                                    :
-                                </mat-label>
-                            </h4>
+            <mat-divider></mat-divider>
+            <span style="margin-top: 0px;vertical-align: auto;">
 
-                            <mat-form-field style="width:100% !important" appearance="fill">
-                                <mat-label>WorkingHours end</mat-label>
-                                <input matInput name="twend{{i}}" [ngxMatDatetimePicker]="pickerEnd"
-                                    placeholder="WorkingHours end" [(ngModel)]="workinghours.timeWindow.end">
-                                <mat-datepicker-toggle matSuffix [for]="pickerEnd">
-                                </mat-datepicker-toggle>
-                                <ngx-mat-datetime-picker #pickerEnd [showSpinners]="true" [showSeconds]="false"
-                                    [stepHour]="1" [stepMinute]="15" [stepSecond]="60" [touchUi]="true">
-                                </ngx-mat-datetime-picker>
-                            </mat-form-field>
-                            <p></p>
-                        </mat-expansion-panel>
-                        <p></p>
-                    </div>
+              Visit
+              <a
+                href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
+                target="_blank"
+                >Special features</a
+              >
 
-                </mat-accordion>
-                <!-- OPENING HOURS END -->
-                <mat-divider></mat-divider>
-
-                <!--MAX WORKINGTIME -->
-                <p></p>
-                <ul>
-                    <li>
-                        <mat-label matTooltip="How long a Resource needs to stay at the node? Click on card to modify.">
-                            Modify maximal working time</mat-label>
-                    </li>
-                </ul>
-                <p></p>
-                <mat-accordion>
-                    <mat-expansion-panel style="width:95%;margin:0 auto;" matTooltip="Click me to modify.">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                Max Working time
-                            </mat-panel-title>
-                            <mat-panel-description>
-                                {{maxTimeHours}} [hr]
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <mat-card>
-                            <mat-form-field style="width:100% !important">
-                                <h4>
-                                    <mat-label>Visit duration [min]</mat-label>
-                                </h4>
-                                <input matInput name="maxworkingtime" #maxWorkingTime min="1" max="999" pattern="\d*"
-                                    placeholder="30" maxLength="3" [(ngModel)]="maxTimeHours" type="number"
-                                    oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<=0) {this.value = 1;} if (this.value>24) {this.value = 24;}">
-                            </mat-form-field>
-
-                        </mat-card>
-                    </mat-expansion-panel>
-                </mat-accordion>
-                <!--MAX WORKINGTIME END -->
-                <p></p>
-            </mat-tab>
-
-            <mat-tab label="Advandced"></mat-tab>
-
-
-        </mat-tab-group>
-        <!--<mat-label>Current OpeningHours</mat-label>
+              </span>
+            <span>
+            <img style="margin-top: 10px;padding-left:10px;height: 40px;vertical-align:middle;"
+            src="./assets/misc/icon/click-icon.png"
+            alt="click icon"
+          /></span>
+          </p>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <!--<mat-label>Current OpeningHours</mat-label>
   <p></p>
   <div *ngFor="let openinghours of openingHoursCopy">
 
@@ -151,16 +237,36 @@
     <p></p>
 
   </div>-->
+  </div>
+  <p></p>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions class="inline">
+    <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>-->
+    <button
+      mat-raised-button
+      matTooltip="Save all modifications and close this dialog."
+      color="primary"
+      (click)="onSaveClick()"
+      [disabled]="!f.valid"
+      cdkFocusInitial
+    >
+      Save and close
+    </button>
+    <button
+      mat-raised-button
+      matTooltip="Close this dialog and discard all modifications."
+      color="warn"
+      (click)="onNoClick()"
+    >
+      Cancel and close
+    </button>
 
-
-
-    </div>
-    <div mat-dialog-actions>
-        <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>-->
-        <button mat-raised-button matTooltip="Save all modifications and close this dialog." color="primary"
-            (click)="onSaveClick()" [disabled]="!f.valid" cdkFocusInitial>Save all modification and close</button>
-        <button mat-raised-button matTooltip="Close this dialog and discard all modifications." color="warn"
-            (click)="onNoClick()">Cancel and close</button>
-    </div>
-
+    <a
+    href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#resources"
+    target="_blank"
+    matTooltip="Visit our documentation on Resources."
+    class="mat-raised-button infobutton right"
+    >Explain Resources</a
+  >
+  </div>
 </form>

@@ -1,7 +1,8 @@
-<div *ngIf="curResult;then existingResult else nonExistingResult"></div>
+<h1 mat-dialog-title>Optimization Solution</h1>
+<div mat-dialog-content>
+  <div *ngIf="curResult; then existingResult; else nonExistingResult"></div>
 
-
-<!-- cost: number;
+  <!-- cost: number;
     id: JOptSolutionRouteHeaderId;
     idleTime: JOptSolutionRouteHeaderIdleTime;
     prodTime: JOptSolutionRouteHeaderProdTime;
@@ -25,65 +26,81 @@
     alternateDestination?: boolean;
 -->
 
+  <ng-template #existingResult>
+    <mat-expansion-panel
+      class="mat-elevation-z1"
+      (opened)="setStep(-1); panelOpenState = true"
+      (closed)="panelOpenState = false"
+      [expanded]="step === -1"
+      matTooltip="Click me to enlarge."
+    >
+      <mat-expansion-panel-header>
+        <h4>
+          {{
+            panelOpenState ? "Close Result Overview" : "Show Result Overview"
+          }}
+        </h4>
+      </mat-expansion-panel-header>
+      <div style="background-color: whitesmoke">
+        <mat-list dense role="list">
+          <mat-list-item role="listitem">
+            <div class="mat-list-opti-item-cap"># Routes:</div>
+            <div class="mat-list-opti-item-value">
+              {{ curResult.solution.header.numRoutes }}
+            </div>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <div class="mat-list-opti-item-cap"># Scheduled:</div>
+            <div class="mat-list-opti-item-value">
+              {{ curResult.solution.header.numScheduledRoutes }}
+            </div>
+          </mat-list-item>
 
+          <mat-list-item role="listitem">
+            <div class="mat-list-opti-item-cap"># Elements:</div>
+            <div class="mat-list-opti-item-value">
+              {{ curResult.solution.header.totElements }}
+            </div>
+          </mat-list-item>
 
-<ng-template #existingResult>
-    <mat-expansion-panel class="mat-elevation-z0" (opened)="setStep(-1); panelOpenState = true"
-        (closed)="panelOpenState = false" [expanded]="step === -1" matTooltip="Click me to enlarge.">
-        <mat-expansion-panel-header>
-            <h4>
-                {{panelOpenState ? 'Close Result Overview' : 'Show Result Overview'}}
-            </h4>
+          <mat-list-item
+            role="listitem"
+            *ngIf="curResult.solution.header.unassignedElementIds.length > 0"
+          >
+            <div class="mat-list-opti-item-cap">Unassigned:</div>
+            <div class="mat-list-opti-item-value">
+              {{ curResult.solution.header.unassignedElementIds }}
+            </div>
+          </mat-list-item>
 
-        </mat-expansion-panel-header>
-        <div style="background-color: whitesmoke;">
-            <mat-list dense role="list">
-                <mat-list-item role="listitem">
-                    <div class="mat-list-opti-item-cap"># Routes:</div>
-                    <div class="mat-list-opti-item-value">{{curResult.solution.header.numRoutes}}</div>
-                </mat-list-item>
-                <mat-list-item role="listitem">
-                    <div class="mat-list-opti-item-cap"># Scheduled:</div>
-                    <div class="mat-list-opti-item-value">{{curResult.solution.header.numScheduledRoutes}}</div>
-                </mat-list-item>
-
-                <mat-list-item role="listitem">
-                    <div class="mat-list-opti-item-cap"># Elements:</div>
-                    <div class="mat-list-opti-item-value">{{curResult.solution.header.totElements}}</div>
-                </mat-list-item>
-
-                <mat-list-item role="listitem" *ngIf="curResult.solution.header.unassignedElementIds.length>0">
-                    <div class="mat-list-opti-item-cap">Unassigned:</div>
-                    <div class="mat-list-opti-item-value">{{curResult.solution.header.unassignedElementIds}}</div>
-                </mat-list-item>
-
-                <mat-list-item role="listitem">
-                    <div class="mat-list-opti-item-cap">Total Cost:</div>
-                    <div class="mat-list-opti-item-value">{{curResult.solution.header.totCost}}</div>
-                </mat-list-item>
-                <mat-list-item role="listitem">
-                    <div class="mat-list-opti-item-cap">Total Time:</div>
-                    <div class="mat-list-opti-item-value">
-                        {{curResult.solution.header.totTime | durationFormatPipe: 'PT':'auto' }}
-                    </div>
-                </mat-list-item>
-                <mat-list-item role="listitem">
-                    <div class="mat-list-opti-item-cap">Total Distance:</div>
-                    <div class="mat-list-opti-item-value">
-                        {{curResult.solution.header.totDistance | distanceFormatPipe: 'm':'km' }}
-                    </div>
-                </mat-list-item>
-
-
-
-
-
-            </mat-list>
-            <p></p>
-        </div>
-
+          <mat-list-item role="listitem">
+            <div class="mat-list-opti-item-cap">Total Cost:</div>
+            <div class="mat-list-opti-item-value">
+              {{ curResult.solution.header.totCost }}
+            </div>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <div class="mat-list-opti-item-cap">Total Time:</div>
+            <div class="mat-list-opti-item-value">
+              {{
+                curResult.solution.header.totTime
+                  | durationFormatPipe: "PT":"auto"
+              }}
+            </div>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <div class="mat-list-opti-item-cap">Total Distance:</div>
+            <div class="mat-list-opti-item-value">
+              {{
+                curResult.solution.header.totDistance
+                  | distanceFormatPipe: "m":"km"
+              }}
+            </div>
+          </mat-list-item>
+        </mat-list>
+        <p></p>
+      </div>
     </mat-expansion-panel>
-
 
     <mat-divider></mat-divider>
 
@@ -91,71 +108,96 @@
 
     <!-- -->
 
-
     <mat-accordion displayMode="flat" class="mat-table">
+      <section #sort matSort class="mat-elevation-z0 mat-header-row">
+        <span class="mat-header-cell" mat-sort-header="visitorId">Visitor</span>
+        <span class="mat-header-cell" mat-sort-header="id">Id</span>
+      </section>
 
-        <section #sort matSort class="mat-elevation-z0 mat-header-row">
+      <mat-expansion-panel
+        class="mat-elevation-z1"
+        *ngFor="let route of displayedRows$ | async; let i = index"
+        [attr.data-index]="i"
+        [expanded]="step === i"
+        (opened)="setStep(i); isExpanded = true"
+        matTooltip="Click me to enlarge."
+      >
+        <mat-expansion-panel-header class="mat-row">
+          <span class="mat-cell"
+            ><strong>{{ route.visitorId }}</strong></span
+          >
+          <span class="mat-cell"
+            ><strong>(#{{ route.id + 1 }})</strong></span
+          >
 
-            <span class="mat-header-cell" mat-sort-header="visitorId">Visitor</span>
-            <span class="mat-header-cell" mat-sort-header="id">Id</span>
-        </section>
-
-
-
-        <mat-expansion-panel class="mat-elevation-z0" *ngFor="let route of displayedRows$ | async; let i = index"
-            [attr.data-index]="i" [expanded]="step === i" (opened)="setStep(i); isExpanded = true;"
-            matTooltip="Click me to enlarge.">
-
-            <mat-expansion-panel-header class="mat-row">
-
-                <span class="mat-cell"><strong>{{route.visitorId}}</strong></span>
-                <span class="mat-cell"><strong>(#{{route.id+1}})</strong></span>
-
-                <!--   <mat-panel-title>
+          <!--   <mat-panel-title>
 
                      #{{route.id}} of {{route.visitorId}}
                     </mat-panel-title>
                     <mat-panel-description>
                         # {{i+1}}
                     </mat-panel-description>-->
-            </mat-expansion-panel-header>
+        </mat-expansion-panel-header>
 
-            <div style="background-color: whitesmoke;">
-                <mat-list dense role="list">
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">RouteId:</div>
-                        <div class="mat-list-route-item-value">{{route.id}}</div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Resource:</div>
-                        <div class="mat-list-route-item-value">{{route.visitorId}}</div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Start:</div>
-                        <div class="mat-list-route-item-value">{{route.hoursStart | dateFormatPipe}}</div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Time:</div>
-                        <div class="mat-list-route-item-value">{{route.header.time | durationFormatPipe: 'PT':'auto' }}
-                        </div>
-                    </mat-list-item>
+        <div style="background-color: whitesmoke">
+          <mat-list dense role="list">
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">RouteId:</div>
+              <div class="mat-list-route-item-value">{{ route.id }}</div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Resource:</div>
+              <div class="mat-list-route-item-value">{{ route.visitorId }}</div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Start:</div>
+              <div class="mat-list-route-item-value">
+                {{ route.hoursStart | dateFormatPipe }}
+              </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Time:</div>
+              <div class="mat-list-route-item-value">
+                {{ route.header.time | durationFormatPipe: "PT":"auto" }}
+              </div>
+            </mat-list-item>
 
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Distance:</div>
-                        <div class="mat-list-route-item-value">{{route.header.distance | distanceFormatPipe: 'm':'km' }}
-                        </div>
-                    </mat-list-item>
-                    <div style="display: flex; justify-content: flex-end">
-                        <button style="margin:10px;" mat-raised-button matTooltip="Show route details." color="primary"
-                            (click)="openRouteResultDialog(route)">Full details</button>
-                    </div>
-
-                </mat-list>
-            </div>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Distance:</div>
+              <div class="mat-list-route-item-value">
+                {{ route.header.distance | distanceFormatPipe: "m":"km" }}
+              </div>
+            </mat-list-item>
 
 
+          </mat-list>
+          <mat-list-item role="listitem">
+            <mat-list dense role="list">
+              <div *ngFor="let vio of route.header.routeViolations">
+                <mat-list-item role="listitem">
+                  <div class="mat-list-route-item-cap">Violation:</div>
+                  <div class="mat-list-route-item-value violation">
+                    {{ vio.attribute }} - {{ vio.subAttribute }}:
+                    {{ vio.value | durationFormatPipe: "h":"auto" }}
+                  </div>
+                </mat-list-item>
+              </div>
+            </mat-list>
+          </mat-list-item>
+          <div style="display: flex; justify-content: flex-end">
+            <button
+              style="margin: 10px"
+              mat-raised-button
+              matTooltip="Show route details."
+              color="primary"
+              (click)="openRouteResultDialog(route)"
+            >
+              Full details
+            </button>
+          </div>
+        </div>
 
-            <!--<mat-action-row>
+        <!--<mat-action-row>
                     <div *ngIf="step > 0">
                         <button mat-button color="warn" (click)="prevStep()">Previous Route</button>
                     </div>
@@ -163,31 +205,50 @@
                         <button mat-button color="primary" (click)="nextStep()">Next Route</button>
                     </div>
                 </mat-action-row>-->
-        </mat-expansion-panel>
-
-
-
-
-
-
+      </mat-expansion-panel>
     </mat-accordion>
-    <mat-paginator #paginator [length]="totalRows$ | async" [pageIndex]="0" [pageSize]="5"
-        [pageSizeOptions]="[2, 5, 10]"></mat-paginator>
+    <mat-paginator
+      #paginator
+      [length]="totalRows$ | async"
+      [pageIndex]="0"
+      [pageSize]="5"
+      [pageSizeOptions]="[2, 5, 10]"
+    ></mat-paginator>
+  </ng-template>
 
-
-</ng-template>
-
-<ng-template #nonExistingResult>
+  <ng-template #nonExistingResult>
     <p></p>
-    Please start an optimization first or make sure the node did not get unassigned..
+    Please start an optimization first or make sure the node did not get
+    unassigned..
     <p></p>
-</ng-template>
-
-
-<div mat-dialog-actions>
-    <button mat-raised-button matTooltip="Close this dialog." (click)="onCloseClick()" color="primary"
-        cdkFocusInitial>Close</button>
-    <button mat-raised-button matTooltip="View as raw text." (click)="openRawResultDialog()" color="basic"
-        cdkFocusInitial>See as raw result</button>
+  </ng-template>
 </div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="inline">
+  <button
+    mat-raised-button
+    matTooltip="Close this dialog."
+    (click)="onCloseClick()"
+    color="primary"
+    cdkFocusInitial
+  >
+    Close
+  </button>
+  <button
+    mat-raised-button
+    matTooltip="View as raw text."
+    (click)="openRawResultDialog()"
+    color="basic"
+    cdkFocusInitial
+  >
+    See as raw result
+  </button>
 
+  <a
+    href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/first_optimization/first_optimization.html#analyzing-the-result"
+    target="_blank"
+    matTooltip="Visit our documentation on Optimization Result."
+    class="mat-raised-button infobutton right"
+    >Explain this result</a
+  >
+</div>

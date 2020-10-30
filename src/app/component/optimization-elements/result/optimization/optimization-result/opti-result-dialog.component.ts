@@ -77,7 +77,7 @@ export class OptimizationResultDialogComponent implements OnInit, AfterViewInit 
             this.curResult = this.data.result;
 
             if (this.curResult !== undefined) {
-                console.log('Found existing result');
+                //console.log('Found existing result');
             } else {
                 console.log('Found no result');
             }
@@ -99,7 +99,7 @@ export class OptimizationResultDialogComponent implements OnInit, AfterViewInit 
 
         //
         if (this.curResult !== undefined) {
-            console.log(this.sort);
+            //console.log(this.sort);
             const sortEvents$: Observable<Sort> = fromMatSort(this.sort);
             const pageEvents$: Observable<PageEvent> = fromMatPaginator(this.paginator);
 
@@ -133,8 +133,8 @@ export class OptimizationResultDialogComponent implements OnInit, AfterViewInit 
     openRouteResultDialog(curRoute: JOptRoute): void {
 
         const dialogRef = this.dialog.open(RouteResultDialogComponent, {
-            width: '550px',
-            maxHeight: '90vh',
+            width: '80%',
+            maxHeight: '80vh',
             data: { route: curRoute }
         });
 

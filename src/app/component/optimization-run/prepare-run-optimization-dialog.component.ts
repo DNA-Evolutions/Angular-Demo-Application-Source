@@ -40,6 +40,18 @@ export class PrepareRunOptimizationDialogComponent {
 
   }
 
+  public isDisabledSliderValue(key: string): boolean{
+    if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
+      return !true;
+    }
+
+    if (key === 'JOptExitCondition.JOptGenerationCount') {
+      return !true;
+    }
+
+    return false;
+  }
+
   getMaxPropertyValue(key: string): string {
     if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
       return '500000';
@@ -62,6 +74,31 @@ export class PrepareRunOptimizationDialogComponent {
     }
 
     return '1';
+  }
+
+  getStepPropertyInfo(key: string): string {
+
+    if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
+      return 'SA.NumIterations defines the number of iterations for simulated annealing. <strong>Note: This value is not adjustable as part of this demo application.</strong> ';
+    }
+
+    if (key === 'JOptExitCondition.JOptGenerationCount') {
+      return 'After a certain number of generations JOpt terminates the genetic evolution phase. <strong>Note: This value is not adjustable as part of this demo application.</strong>';
+    }
+
+    if (key === 'JOptWeight.TimeWindow') {
+      return 'JOpt weight for the timeWindow during the Optimization. A higher value results in a higher Optimization cost-penalty for violating a time window of a node.';
+    }
+
+    if (key === 'JOptWeight.RouteDistance') {
+      return 'JOpt weight for RouteDistance during the Optimization. A higher value results in a higher Optimization cost-penalty for higher distances.';
+    }
+
+    if (key === 'JOptWeight.RouteTime') {
+      return 'JOpt weight for RouteTime during the Optimization. A higher value results in a higher Optimization cost-penalty for routes that take more time.';
+    }
+
+    return '';
   }
 
   openSnackBar(message: string, action: string): void {

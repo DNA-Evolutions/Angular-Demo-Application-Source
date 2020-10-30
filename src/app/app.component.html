@@ -1,10 +1,25 @@
-<mat-toolbar style="position: relative;background: #c0ca48;
-    color: #fff;">
-    <span><img style="height:55px;" src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
-            alt="map icon"></span>
-    <span style="padding-left:30px;">{{title}}</span>
+<mat-toolbar style="position: relative; background: #c0ca48; color: #fff">
+  <mat-toolbar-row>
+    <div style="width: 100%; text-align: center; font-size: larger">
+      <span>
+        <a href="https://www.dna-evolutions.com" target="_blank">
+          <img
+            style="float: left; height: 55px; padding-top: 5px"
+            src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
+            alt="map icon"
+        /></a>
+      </span>
+      <span>{{ title }}</span>
+      <input
+        type="image"
+        width="40px;"
+        style="float: right; margin: 5px 25px 10px 0"
+        src="./assets/misc/icon/help-icon.png"
+        (click)="openIntroductionDialog()"
+      />
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
-
 
 <!--<mat-form-field appearance="fill">
     <mat-label>Select an element...</mat-label>
@@ -25,9 +40,9 @@
         cdkFocusInitial>Open details of</button>
 </div>-->
 
-    <div>
-        <app-example></app-example>
-    </div>
+<div>
+  <app-example></app-example>
+</div>
 
 <!--<div *ngIf="exampleIdChangesSubject | async as id">
 
@@ -47,4 +62,3 @@
         <app-example [exampleId]="exampleDefaultId"></app-example>
     </div>
 </ng-template>-->
-

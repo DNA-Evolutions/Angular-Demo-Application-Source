@@ -86,6 +86,9 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { OptimizationElementsSelectorComponent } from './component/optimization-elements-selector/optimization-elements-selector.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { OptimizationRawRDialogComponent } from './component/optimization-elements/result/optimization/optimization-raw-result/opti-rawr-dialog.component';
+import { BASE_PATH } from 'build/openapi';
+import { environment } from 'src/environments/environment';
+import { IntroductionComponent } from './component/introduction/introduction.component';
 
 @NgModule({
     declarations: [
@@ -133,7 +136,9 @@ import { OptimizationRawRDialogComponent } from './component/optimization-elemen
         //
         OptimizationElementsSelectorComponent,
         //
-        OptimizationRawRDialogComponent
+        OptimizationRawRDialogComponent,
+        //
+        IntroductionComponent
 
 
 
@@ -184,6 +189,7 @@ import { OptimizationRawRDialogComponent } from './component/optimization-elemen
     ],
     providers: [
         OptimizationServiceControllerService,
+        [{ provide: BASE_PATH, useValue: environment.host+":"+environment.port}],
         OptimizationWrapperService,
         GeoAndRoutingService,
         LoadExampleDataService,
@@ -205,7 +211,8 @@ import { OptimizationRawRDialogComponent } from './component/optimization-elemen
         ResourcePropertiesDialogComponent,
         RouteResultDialogComponent,
         OptimizationResultDialogComponent,
-        OptimizationRawRDialogComponent
+        OptimizationRawRDialogComponent,
+        IntroductionComponent
     ],
     bootstrap: [AppComponent]
 })

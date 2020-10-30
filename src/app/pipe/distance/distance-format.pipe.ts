@@ -9,7 +9,7 @@ export class DistanceFormatPipe implements PipeTransform {
 
         const distance:number = this.extractNumber(distanceOrg);
 
-        console.log(JSON.stringify(distance));
+        //console.log(JSON.stringify(distance));
 
         let distanceMeters;
 

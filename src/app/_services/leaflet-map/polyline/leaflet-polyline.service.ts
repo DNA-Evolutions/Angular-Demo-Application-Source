@@ -25,12 +25,12 @@ export class LeafletPolylineService {
         route.elementDetails.map(d => d.id).forEach(id => ids.push(id));
         ids.push(route.endElementId);
 
-        console.log(ids);
+        //console.log(ids);
         this.drawMutliElementPolyine(ids, route, index, ref, map);
     }
 
     private drawMutliElementPolyine(ids: Array<string>, route: JOptRoute, index: number, ref: ElementRef, map: any): void {
-        // ids descibes the route: 
+        // ids descibes the route:
         // Case 1 - Closed Route :E.g. Jack => Koeln => Duisburg => Jack
         // Case 2 - Open   Route :E.g. Jack => Koeln => Duisburg
 

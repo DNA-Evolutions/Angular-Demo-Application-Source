@@ -1,18 +1,38 @@
 [
-    {
-        "exampleId": "exampleOne",
-        "desc": "A first draft with the same test example but other id",
-        "optimizationInputPath": "./assets/precoded-data/examples/example-one/optimization-input/optimization-input.json",
-        "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
-        "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
-        "mapViewPropertiesPath": "./assets/precoded-data/examples/example-one/map-view-properties/map-view-properties.json"
-    },
-    {
-        "exampleId": "exampleTwo",
-        "desc": "A second draft with the same test example but other id",
-        "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
-        "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
-        "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
-        "mapViewPropertiesPath": "./assets/precoded-data/examples/example-two/map-view-properties/map-view-properties.json"
-    }
+  {
+    "exampleId": "exampleOne",
+    "title": "Basic Example",
+    "desc": "A basic example of two Resources and seven Nodes. It makes sense to solve this Optimization Problem by creating two geographically clustered routes.",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-one/optimization-input/optimization-input.json",
+    "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+    "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-one/map-view-properties/map-view-properties.json"
+  },
+  {
+    "exampleId": "exampleTwo",
+    "title": "Bound Resource Example",
+    "desc": "A second draft with the same test example but other id",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
+    "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+    "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-two/map-view-properties/map-view-properties.json"
+  },
+  {
+    "exampleId": "exampleThree",
+    "title": "Multi Route example",
+    "desc": "A second draft with the same test example but other id",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
+    "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+    "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-two/map-view-properties/map-view-properties.json"
+  },
+  {
+    "exampleId": "exampleFour",
+    "title": "Unassgined node example",
+    "desc": "A second draft with the same test example but other id",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
+    "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+    "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-two/map-view-properties/map-view-properties.json"
+  }
 ]

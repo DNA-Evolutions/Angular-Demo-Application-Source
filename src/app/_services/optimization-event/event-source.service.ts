@@ -10,15 +10,15 @@ import { environment } from './../../../environments/environment';
 export class EventSourceService {
 
   progress<JOptOptimizationProgress>(): Observable<JOptOptimizationProgress> {
-    return this.newObservable(environment.apiUrl + environment.apiProgress, JSON.parse);
+    return this.newObservable(environment.host+":"+environment.port + environment.apiProgress, JSON.parse);
   }
 
   newProgressObservable<R>(): Observable<R> {
-    return this.newObservable(environment.apiUrl + environment.apiProgress, JSON.parse);
+    return this.newObservable(environment.host+":"+environment.port + environment.apiProgress, JSON.parse);
   }
 
   newWarningObservable<R>(): Observable<R> {
-    return this.newObservable(environment.apiUrl + environment.apiWarning, JSON.parse);
+    return this.newObservable(environment.host+":"+environment.port + environment.apiWarning, JSON.parse);
   }
 
   newEventSource(path: string): EventSource {

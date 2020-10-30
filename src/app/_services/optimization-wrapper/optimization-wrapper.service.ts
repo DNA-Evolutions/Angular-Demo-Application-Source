@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { Subject } from 'rxjs';
 
 import * as moment from 'moment';
+
+import { environment } from './../../../environments/environment';
 
 import {
     JOptOptimizationInput,
@@ -17,7 +19,8 @@ import {
     JOptRouteElementDetail,
     JOptRoute,
     JOptGeoNodeVisitDuration,
-    JOptGeoResourceMaxTime
+    JOptGeoResourceMaxTime,
+    Configuration
 } from 'build/openapi';
 
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
@@ -216,6 +219,10 @@ export class OptimizationWrapperService {
         }
     }
 
+    //private isHealthyEndpoint(): boolean{
+    //  this.optiService.
+    //}
+
     // start optimization
     public startOptimization(): Observable<JOptOptimizationOutput> {
 
@@ -236,6 +243,7 @@ export class OptimizationWrapperService {
         },
             (error) => {
                 console.log('error', error);
+                this.$myOptimizationOutputSubject.error(error);
 
             },
             () => {

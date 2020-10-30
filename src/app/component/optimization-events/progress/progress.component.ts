@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, NgZone, OnChanges } from '@angular/core';
 
-import { Subject, Observable } from 'rxjs';
+import {timer, Subject, Observable,interval,of, throwError } from 'rxjs';
 
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil,mergeMap,retry, tap, retryWhen, delayWhen   } from 'rxjs/operators';
 
 import { JOptOptimizationProgress } from 'build/openapi';
 //import { EventSourceService } from '../../eventService/event-source.service';
@@ -23,6 +23,8 @@ export class ProgressComponent implements OnInit, OnDestroy {
   unsubscribe$: Subject<void> = new Subject<void>();
   latestProgress$: Observable<JOptOptimizationProgress>;
 
+  unfilteredLatestProgress$: Observable<JOptOptimizationProgress>;
+
   constructor(
     private readonly eventService: EventSourceService,
     private cd: ChangeDetectorRef
@@ -32,8 +34,60 @@ export class ProgressComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    // Create an observable that waits until a porgress is reported
 
-    this.latestProgress$ = this.eventService.progress();
+    this.unfilteredLatestProgress$ = this.eventService.progress();
+
+/*     this.latestProgress$ = this.unfilteredLatestProgress$.pipe(
+      mergeMap(progress => {
+        //throw error for demonstration
+        if (progress.curProgress < 0) {
+          console.log('No ready: '+progress.curProgress);
+          return throwError('Error!');
+        }
+        return of(progress);
+      }),
+      //retry 2 times on error
+      retry(10)
+    ); */
+
+/*     this.latestProgress$ = this.unfilteredLatestProgress$.pipe(
+      mergeMap(progress => {
+        //throw error for demonstration
+        if (progress.curProgress < 0) {
+          console.log('No ready: '+progress.curProgress);
+          return throwError('Error!');
+        }
+        return of(progress);
+      }),
+      retryWhen(errors =>
+        errors.pipe(
+          //log error message
+          //console.log('Retry after 200ms');
+          //restart in 1 seconds
+          delayWhen(val => timer(200))
+        )
+      )
+    ); */
+
+    this.latestProgress$ = this.unfilteredLatestProgress$.pipe(
+      mergeMap(progress => {
+        //throw error for demonstration
+        if (progress.curProgress < 0) {
+          console.log('No ready: '+progress.curProgress);
+          return throwError('Error!');
+        }
+        return of(progress);
+      }),
+      retryWhen(errors =>
+        errors.pipe(
+          //log error message
+          //console.log('Retry after 200ms');
+          //restart in 1 seconds
+          delayWhen(val => timer(200))
+        )
+      )
+    );
 
     this.latestProgress$.subscribe((progress) => {
       this.cd.detectChanges();

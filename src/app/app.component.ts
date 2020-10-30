@@ -7,6 +7,8 @@ import { JOptOptimizationProgress } from 'build/openapi';
 import { FormControl } from '@angular/forms';
 import { LoadExampleDataService } from './_services/load-example-data/load-example-data.service';
 import { OptimizationWrapperService } from './_services/optimization-wrapper/optimization-wrapper.service';
+import { MatDialog } from '@angular/material/dialog';
+import { IntroductionComponent } from './component/introduction/introduction.component';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class AppComponent implements OnInit {
     //
     exampleIdChangesSubject: BehaviorSubject<string>;
 
-    title = 'JOpt-TourOptimizer Angular-Swagger Example Front-End';
+    title = 'JOpt.TourOptimizer - Demo Application';
     description = 'Optimization framework for Tour Optimization';
 
     public markers: { lat: number, long: number }[];   // Map markers (relevance depends on map center)
@@ -37,6 +39,7 @@ export class AppComponent implements OnInit {
 
     constructor(private loadService: LoadExampleDataService,
         private dataService: OptimizationWrapperService,
+        public dialog: MatDialog
         //private cd: ChangeDetectorRef
         ) {
 
@@ -55,7 +58,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.exampleIdChangesSubject = new BehaviorSubject(this.exampleDefaultId);
-        
+
         this.exampleIdChangesSubject.subscribe(
             (val) => {
                 console.log(val);
@@ -82,6 +85,28 @@ export class AppComponent implements OnInit {
 
 
     }
+
+    openIntroductionDialog(): void {
+      const dialogRef = this.dialog.open(IntroductionComponent, {
+          width: '100%',
+          maxHeight: '100%',
+          disableClose: false,
+          data: { }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+
+          console.log('Introduction dialog closed: ');
+          //const runDialogRef: MatDialogRef<RunOptimizationDialogComponent> = result;
+
+          //runDialogRef.afterClosed().subscribe(optimizationResult => {
+          //  console.log('Got optimization result: ' + optimizationResult);
+          //});
+
+      });
+
+
+  }
 
 }
 

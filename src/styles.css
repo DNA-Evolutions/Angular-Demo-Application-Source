@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-@import '../node_modules/leaflet/dist/leaflet.css';
+@import "../node_modules/leaflet/dist/leaflet.css";
 
 html,
 body {
@@ -14,7 +14,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
 
 /*
  * Popup Shared
@@ -31,17 +30,14 @@ body {
   border-style: solid;
   border-width: 4px;
 
-
   /*background: #ffffff;
   border-style: solid;
   border-width: 4px;
-  border-color: #3f51b1; 
+  border-color: #3f51b1;
   border-color: #3086c8;*/
 }
 
-
 .popup-edit-btn {
-
   /*background: linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
   background-color: #637aad;*/
 
@@ -55,9 +51,6 @@ body {
   text-decoration: none;
   border-radius: 5px;
 }
-
-
-
 
 /*
  * Node popup
@@ -83,9 +76,6 @@ body {
   position: relative;
   top: 1px;
 }
-
-
-
 
 /*
  * Resource
@@ -144,7 +134,6 @@ body {
   padding: 5px;
 }
 
-
 /*
  *  Info box
  */
@@ -152,47 +141,216 @@ body {
 div.boxinfo {
   text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
-  color: rgba(0, 0, 0, .87);
+  color: rgba(0, 0, 0, 0.87);
   font-feature-settings: "kern", "liga";
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.6;
+  line-height: 1.0;
   -webkit-print-color-adjust: exact;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
   position: relative;
   margin: 1.5625em 0;
-  padding: 0 .6rem;
-  border-left: .2rem solid #448aff;
-  border-radius: .1rem;
+  padding: 0 0.6rem;
+  border-left: 0.2rem solid #448aff;
+  border-radius: 0.1rem;
   overflow: auto;
   border-left-color: #00b8d4;
   width: 50%;
 }
 
 p.boxinfotitle::after {
-  content: '';
+  content: "";
   background: url("/assets/misc/icon/icon-info.png");
   background-size: cover;
   height: 22px;
   width: 22px;
   position: absolute;
-  left: .3rem;
+  left: 0.3rem;
   z-index: 0;
 }
 
 p.boxinfotitle {
   text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
-  color: rgba(0, 0, 0, .87);
+  color: rgba(0, 0, 0, 0.87);
   font-feature-settings: "kern", "liga";
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-print-color-adjust: exact;
   box-sizing: inherit;
-  margin: 0 -.6rem;
-  padding: .4rem .6rem .4rem 2rem;
-  border-bottom: .05rem solid rgba(68, 138, 255, .1);
+  margin: 0 -0.6rem;
+  padding: 0.4rem 0.6rem 0.4rem 2rem;
+  border-bottom: 0.05rem solid rgba(68, 138, 255, 0.1);
   font-weight: 700;
-  border-bottom-color: rgba(0, 184, 212, .1);
-  background-color: rgba(0, 184, 212, .1);
+  border-bottom-color: rgba(0, 184, 212, 0.1);
+  background-color: rgba(0, 184, 212, 0.1);
 }
+
+/*
+ *  Teaser box
+ */
+
+div.boxteaser {
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.87);
+  font-feature-settings: "kern", "liga";
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-print-color-adjust: exact;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 1.5625em 0;
+  padding: 0 0.6rem;
+  border-left: 0.2rem solid #c0ca48;
+  border-radius: 0.1rem;
+  overflow: auto;
+  border-left-color: #ebefbe;
+  width: 50%;
+}
+
+div.wide {
+  width: 95%;
+  margin: 10px auto;
+}
+
+.mat-expansion-panel.wide {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.mat-expansion-panel.xwide {
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+/* .mat-expansion-panel-header,
+.mat-expansion-panel-header:hover,
+.mat-expansion-panel-header:focus,
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:focus,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header:not([aria-disabled=true]){
+  background: red !important;
+} */
+
+
+.mat-expansion-panel-header.colored{
+  background-color: #ebefbe !important;
+}
+
+
+div.wideleft {
+  width: 95%;
+}
+
+p.boxteasertitle::after {
+  content: "";
+  background: url("/assets/misc/icon/icon-promo.png");
+  background-size: cover;
+  height: 20px;
+  width: 25px;
+  position: absolute;
+  left: 0.1rem;
+  z-index: 0;
+}
+
+p.boxteasertitle {
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0, 0, 0, 0.87);
+  font-feature-settings: "kern", "liga";
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-print-color-adjust: exact;
+  box-sizing: inherit;
+  margin: 0 -0.6rem;
+  padding: 0.4rem 0.6rem 0.4rem 2rem;
+  border-bottom: 0.05rem solid rgba(235, 239, 190, 0.1);
+  font-weight: 700;
+  border-bottom-color: rgba(235, 239, 190, 0.1);
+  background-color: rgba(235, 239, 190, 0.1);
+}
+
+div.inline {
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 0px;
+  /*overflow: auto;*/
+  /*white-space: nowrap;*/
+  /*margin: 0px auto;
+  border: 1px red solid;*/
+}
+
+div.violation {
+  border: 2px red solid;
+}
+
+/*
+ *  Doc info buttons
+ */
+
+.mat-raised-button.infobutton {
+  background-color: #ebefbe;
+  padding-left: 2rem;
+}
+
+.right {
+  float: right;
+}
+
+.mat-raised-button.infobutton::after {
+  content: "";
+  background: url("/assets/misc/icon/icon-promo.png");
+  background-size: cover;
+  margin-top: 0.5rem;
+  height: 20px;
+  width: 25px;
+  position: absolute;
+  left: 0.2rem;
+  z-index: 0;
+}
+
+/*
+* Node detail and Resource detail button
+*/
+
+.mat-raised-button.nodedetailbutton {
+  background-color: #fefff2;
+  padding-left: 1.5rem;
+}
+
+
+.mat-raised-button.nodedetailbutton::after {
+  content: "";
+  background: url("/assets/maps/marker-icon.png");
+  background-size: cover;
+  margin-top: 0.4rem;
+  height: 22px;
+  width: 13px;
+  position: absolute;
+  left: 0.2rem;
+  z-index: 0;
+}
+
+.mat-raised-button.resourcedetailbutton {
+  background-color: #fefff2;
+  padding-left: 1.5rem;
+}
+
+
+.mat-raised-button.resourcedetailbutton::after {
+  content: "";
+  background: url("/assets/maps/marker-icon-red.png");
+  background-size: cover;
+  margin-top: 0.4rem;
+  height: 22px;
+  width: 13px;
+  position: absolute;
+  left: 0.2rem;
+  z-index: 0;
+}
+
 

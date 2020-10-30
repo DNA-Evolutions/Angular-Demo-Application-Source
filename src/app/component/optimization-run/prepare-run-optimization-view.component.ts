@@ -11,6 +11,7 @@ import { OptimizationResultDialogComponent } from '../optimization-elements/resu
 @Component({
     selector: 'app-prepare-run-optimization-view',
     templateUrl: 'prepare-run-optimization-view.component.html',
+    styleUrls: ['prepare-run-optimization-view.component.scss']
 })
 export class PrepareRunOptimizationViewComponent {
 
@@ -44,10 +45,9 @@ export class PrepareRunOptimizationViewComponent {
     }
 
     openOptimizationResultDialog(output: JOptOptimizationOutput): void {
-        console.log('Prepare dialog closed: ');
         console.log(output);
         const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
-            width: '1650px',
+            width: '1000px',
             maxHeight: '80vh',
             data: { result: output }
         });

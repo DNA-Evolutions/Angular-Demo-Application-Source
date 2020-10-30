@@ -1,7 +1,7 @@
-<div *ngIf="curRoute;then existingRoute else nonExistingRoute"></div>
+<div mat-dialog-content>
+  <div *ngIf="curRoute; then existingRoute; else nonExistingRoute"></div>
 
-
-<!-- cost: number;
+  <!-- cost: number;
     id: JOptSolutionRouteHeaderId;
     idleTime: JOptSolutionRouteHeaderIdleTime;
     prodTime: JOptSolutionRouteHeaderProdTime;
@@ -25,96 +25,121 @@
     alternateDestination?: boolean;
 -->
 
+  <ng-template #existingRoute>
+    <div>
+      <mat-expansion-panel
+        [expanded]="true"
+        class="mat-elevation-z1"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+        matTooltip="Click me to enlarge."
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h4>
+              {{
+                panelOpenState ? "Close Route Overview" : "Show Route Overview"
+              }}
+            </h4>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div style="background-color: whitesmoke">
+          <mat-list dense role="list">
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">RouteId:</div>
+              <div class="mat-list-route-item-value">{{ curRoute.id }}</div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Resource:</div>
+
+              <div class="mat-list-route-item-value">
+                {{ curRoute.visitorId }}
+              </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Start:</div>
+              <div class="mat-list-route-item-value">
+                {{ curRoute.hoursStart | dateFormatPipe }}
+              </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Time:</div>
+              <div class="mat-list-route-item-value">
+                {{ curRoute.header.time | durationFormatPipe: "PT":"auto" }}
+              </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Idle:</div>
+              <div class="mat-list-route-item-value">
+                {{ curRoute.header.idleTime | durationFormatPipe: "PT":"auto" }}
+              </div>
+            </mat-list-item>
+
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Productive:</div>
+              <div class="mat-list-route-item-value">
+                {{ curRoute.header.prodTime | durationFormatPipe: "PT":"auto" }}
+              </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Transit:</div>
+              <div class="mat-list-route-item-value">
+                {{ curRoute.header.tranTime | durationFormatPipe: "PT":"auto" }}
+              </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <div class="mat-list-route-item-cap">Distance:</div>
+              <div class="mat-list-route-item-value">
+                {{ curRoute.header.distance | distanceFormatPipe: "m":"km" }}
+              </div>
+            </mat-list-item>
+          </mat-list>
+          <p></p>
 
 
-<ng-template #existingRoute>
-    <div class="frameborder">
-        <mat-expansion-panel [expanded]="true" class="mat-elevation-z0" (opened)="panelOpenState = true"
-            (closed)="panelOpenState = false" matTooltip="Click me to enlarge.">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <h4>
-                        {{panelOpenState ? 'Close Route Overview' : 'Show Route Overview'}}
-                    </h4>
-
-                </mat-panel-title>
-
-            </mat-expansion-panel-header>
-            <div style="background-color: whitesmoke;">
-                <mat-list dense role="list">
+        <p></p>
+        <mat-list-item role="listitem">
+            <mat-list dense role="list">
+                <div *ngFor="let vio of curRoute.header.routeViolations;">
                     <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">RouteId:</div>
-                        <div class="mat-list-route-item-value">{{curRoute.id}}</div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Resource:</div>
-
-                        <div class="mat-list-route-item-value">{{curRoute.visitorId}}</div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Start:</div>
-                        <div class="mat-list-route-item-value">{{curRoute.hoursStart | dateFormatPipe}}</div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Time:</div>
+                        <div class="mat-list-route-item-cap">Violation:</div>
                         <div class="mat-list-route-item-value">
-                            {{curRoute.header.time | durationFormatPipe: 'PT':'auto' }}
+                            {{vio.attribute}} - {{vio.subAttribute}}: {{ vio.value | durationFormatPipe: "h":"auto" }}
                         </div>
                     </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Idle:</div>
-                        <div class="mat-list-route-item-value">
-                            {{curRoute.header.idleTime | durationFormatPipe: 'PT':'auto' }}
-                        </div>
-                    </mat-list-item>
+                </div>
+            </mat-list>
+        </mat-list-item>
+      </div>
 
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Productive:</div>
-                        <div class="mat-list-route-item-value">
-                            {{curRoute.header.prodTime | durationFormatPipe: 'PT':'auto' }}
-                        </div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Transit:</div>
-                        <div class="mat-list-route-item-value">
-                            {{curRoute.header.tranTime | durationFormatPipe: 'PT':'auto' }}
-                        </div>
-                    </mat-list-item>
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Distance:</div>
-                        <div class="mat-list-route-item-value">
-                            {{curRoute.header.distance | distanceFormatPipe: 'm':'km' }}
-                        </div>
-                    </mat-list-item>
-
-                </mat-list>
-                <p></p>
-            </div>
-        </mat-expansion-panel>
+      </mat-expansion-panel>
     </div>
     <p></p>
     <mat-divider></mat-divider>
-
+    <p></p>
     <!-- -->
 
     <div class="frameborder">
-        <h4 style="margin-left:10px;">Path</h4>
-        <mat-vertical-stepper [linear]="false" [selectedIndex]="0" #stepper>
-            <div *ngFor="let element of curRoute.elementDetails; let i = index" [attr.data-index]="i">
+      <h4 style="margin-left: 10px">Path</h4>
+      <mat-vertical-stepper [linear]="false" [selectedIndex]="0" #stepper>
+        <div
+          *ngFor="let element of curRoute.elementDetails; let i = index"
+          [attr.data-index]="i"
+        >
+          <mat-step
+            completed="false"
+            style="margin: 5px; background-color: whitesmoke"
+            matTooltip="Click me to enlarge."
+          >
+            <ng-template matStepLabel>
+              {{ element.id }}
+            </ng-template>
 
-                <mat-step completed="false" style="margin:5px;background-color: whitesmoke;"
-                    matTooltip="Click me to enlarge.">
+            <div style="background-color: whitesmoke">
+              <app-node-detail [detail]="element"></app-node-detail>
+            </div>
 
-                    <ng-template matStepLabel>
-                        {{element.id}}
-
-                    </ng-template>
-
-                    <div style="background-color: whitesmoke;">
-                        <app-node-detail [detail]="element"></app-node-detail>
-                    </div>
-
-                    <!--<mat-action-row style="background-color: white;">
+            <!--<mat-action-row style="background-color: white;">
                     <div *ngIf="step > 0">
                         <button mat-button color="warn" matStepperPrevious>Previous</button>
                     </div>
@@ -122,12 +147,10 @@
                         <button mat-button  color="primary" matStepperNext>Next</button>
                     </div>
                 </mat-action-row>-->
-                </mat-step>
-
-            </div>
-        </mat-vertical-stepper>
+          </mat-step>
+        </div>
+      </mat-vertical-stepper>
     </div>
-
 
     <!--<div style=" overflow: hidden; display: flex;">
         <div style=" width: 1%; min-width: 5px;
@@ -158,7 +181,7 @@
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <div ><app-node-detail [detail]="element"></app-node-detail></div>
-                        
+
 
                         <p></p>
                         <mat-action-row style="background-color: white;">
@@ -176,16 +199,32 @@
         </div>
     </div>-->
     <p></p>
-</ng-template>
+  </ng-template>
 
-
-<ng-template #nonExistingRoute>
+  <ng-template #nonExistingRoute>
     <p></p>
-    Please start an optimization first or make sure the node did not get unassigned..
+    Please start an optimization first or make sure the node did not get
+    unassigned..
     <p></p>
-</ng-template>
-
-<div mat-dialog-actions>
-    <button mat-raised-button matTooltip="Close this dialog." (click)="onCloseClick()" color="primary" cdkFocusInitial>Close</button>
+  </ng-template>
 </div>
 
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="inline">
+  <button
+    mat-raised-button
+    matTooltip="Close this dialog."
+    (click)="onCloseClick()"
+    color="primary"
+    cdkFocusInitial
+  >
+    Close
+  </button>
+  <a
+    href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/first_optimization/first_optimization.html#analyzing-a-route-result-header"
+    target="_blank"
+    matTooltip="Visit our documentation on Optimization Result."
+    class="mat-raised-button infobutton right"
+    >Explain this result</a
+  >
+</div>

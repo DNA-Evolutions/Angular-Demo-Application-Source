@@ -1,0 +1,13 @@
+.intro-title{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-title > img{
+  //flex-basis: 40%;
+}
+
+.intro-title > h3{
+  padding-left: 5px;
+}

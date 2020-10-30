@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RunOptimizationDialogData } from './run-optimization-data.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -7,6 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { JOptOpeningHours, JOptGeoNode, JOptOptimizationRunOptions, JOptOptimizationOutput } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
+import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-run-optimization-dialog',
@@ -20,6 +22,7 @@ export class RunOptimizationDialogComponent {
     private dataService: OptimizationWrapperService,
     private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<RunOptimizationDialogComponent>,
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: RunOptimizationDialogData) {
 
     if (this.dataService === undefined) {
@@ -27,6 +30,7 @@ export class RunOptimizationDialogComponent {
       this.dialogRef.close();
     }
 
+    console.log('::Starting optimization::');
     this.startOptimization();
 
   }
@@ -41,14 +45,14 @@ export class RunOptimizationDialogComponent {
   stopOptimizationGracefully(): void {
     console.log('Stoping optimization gracefully');
     this.openSnackBar('Stoping optimization gracefully', 'ok');
-    this.dataService.stopOptimization().subscribe((watcherEvent: boolean) => {
+    this.dataService.stopOptimization().pipe(take(1)).subscribe((watcherEvent: boolean) => {
 
-      console.log('watcherEvent', watcherEvent);
+      //console.log('watcherEvent', watcherEvent);
       this.openSnackBar('Optimization stoped', 'Ok');
     },
       (error) => {
         console.log('error', error);
-        this.openSnackBar('Error', 'Error');
+        this.openSnackBar('Error', error);
       },
       () => {
         console.log('Completed')
@@ -59,13 +63,20 @@ export class RunOptimizationDialogComponent {
 
   private startOptimization(): void {
 
-    this.dataService.startOptimization().subscribe(
+    console.log('::STARTING OPTIMIZATION::');
+
+    this.dataService.startOptimization().pipe(take(1)).subscribe(
       (optimizationResult: JOptOptimizationOutput) => {
 
-        //console.log('Got optimization result');
+
         //console.log(optimizationResult);
-        this.openSnackBar('Optimization done', 'ok');
-      this.dialogRef.close();
+        //this.openSnackBar('Optimization done', 'ok');
+        this.dialogRef.close();
+
+        // Open Result dialog
+        console.log('Open Result dialog');
+        this.openOptimizationResultDialog(optimizationResult);
+
       },
       (error) => {
         console.log('error', error);
@@ -78,6 +89,28 @@ export class RunOptimizationDialogComponent {
       }
     )
   }
+
+  openOptimizationResultDialog(output: JOptOptimizationOutput): void {
+    //console.log(output);
+    const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
+        width: '1000px',
+        maxHeight: '80vh',
+        data: { result: output }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+
+        //const runDialogRef: MatDialogRef<RunOptimizationDialogComponent> = result;
+
+        //runDialogRef.afterClosed().subscribe(optimizationResult => {
+        //  console.log('Got optimization result: ' + optimizationResult);
+        //});
+
+    });
+
+
+}
 
 
 }

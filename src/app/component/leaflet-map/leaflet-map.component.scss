@@ -14,19 +14,37 @@
 }
 
 #map {
-  height: 45vh;
+  height: 35vh;
   width: 100%;
 }
 
-.mouse-coords {
+/* .mouse-coords {
   //color: gray;
   //font-family: Arial;
   font-size: 14px;
   font-weight: bold;
   //position: fixed;
-  margin-top: 5px;
+  //margin-top: 5px;
   margin-left: 0px;
   z-index: 1000;
   //background-color: rgba(255, 255, 255, 0.7);
+} */
+
+.map-info {
+  font-size: 13px;
+  font-weight: bold;
+  //width: 15%;
+  //height: 5%;
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
+  //background-color: blue;
+  z-index: 1000;
+
+  //border: 1px solid;
+  //padding: 10px;
+  //box-shadow: 3px 3px rgba(58, 57, 57, 0.7);
+  background-color:rgba(255, 255, 255, 0.7);
+
 }
 

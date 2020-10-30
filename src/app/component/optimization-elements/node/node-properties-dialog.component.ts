@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { JOptOpeningHours, JOptGeoNode, JOptConstraint, JOptBindingResourceConstraint, JOptExcludingResourceConstraint } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
+
 import { NodePropertiesData } from './interface/node-properties-data.interface';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { EmptyConstraint, EmptyBindingResourceConstraint, EmptyExcludingResourceConstraint, DummyConstraintResource } from './data/dummy-constraint';
@@ -88,9 +89,9 @@ export class NodePropertiesDialogComponent implements OnInit {
                 this.setEmptyBindingResource(this.constraintCopy);
             }
 
-            if (this.constraintCopy.bindingResources[0].resources.length === 1) {
-                this.addEmptyBindingConstraintResource(this.constraintCopy.bindingResources);
-            }
+            //if (this.constraintCopy.bindingResources[0].resources.length === 1) {
+            //    this.addEmptyBindingConstraintResource(this.constraintCopy.bindingResources);
+            //}
 
             // Excluding
 
@@ -102,9 +103,9 @@ export class NodePropertiesDialogComponent implements OnInit {
                 this.setEmptyExcludingResource(this.constraintCopy);
             }
 
-            if (this.constraintCopy.excludingResources[0].resources.length === 1) {
-                this.addEmptyExcludingConstraintResource(this.constraintCopy.excludingResources);
-            }
+            //if (this.constraintCopy.excludingResources[0].resources.length === 1) {
+            //    this.addEmptyExcludingConstraintResource(this.constraintCopy.excludingResources);
+            //}
 
 
         } else {
@@ -134,13 +135,13 @@ export class NodePropertiesDialogComponent implements OnInit {
     private setEmptyBindingResource(con: JOptConstraint): void {
         con.bindingResources[0] = JSON.parse(JSON.stringify(EmptyBindingResourceConstraint));
         con.bindingResources[0].resources[0] = JSON.parse(JSON.stringify(DummyConstraintResource));
-        con.bindingResources[0].resources[1] = JSON.parse(JSON.stringify(DummyConstraintResource));
+        //con.bindingResources[0].resources[1] = JSON.parse(JSON.stringify(DummyConstraintResource));
     }
 
     private setEmptyExcludingResource(con: JOptConstraint): void {
         con.excludingResources[0] = JSON.parse(JSON.stringify(EmptyExcludingResourceConstraint));
         con.excludingResources[0].resources[0] = JSON.parse(JSON.stringify(DummyConstraintResource));
-        con.excludingResources[0].resources[1] = JSON.parse(JSON.stringify(DummyConstraintResource));
+        //con.excludingResources[0].resources[1] = JSON.parse(JSON.stringify(DummyConstraintResource));
     }
 
 
@@ -175,32 +176,33 @@ export class NodePropertiesDialogComponent implements OnInit {
         //console.log('============== Filtering');
         //console.log(JSON.stringify(con));
 
-        if (con.bindingResources[0].resources[0].id === '--' && con.bindingResources[0].resources[1].id === '--') {
-
+        //if (con.bindingResources[0].resources[0].id === '--' && con.bindingResources[0].resources[1].id === '--') {
+        if (con.bindingResources[0].resources[0].id === '--') {
             con.bindingResources = [];
 
         } else {
-            if (con.bindingResources[0].resources[1].id === '--') {
-                con.bindingResources[0].resources.splice(1, 1);
-            }
+            //if (con.bindingResources[0].resources[1].id === '--') {
+            //    con.bindingResources[0].resources.splice(1, 1);
+            //}
 
-            if (con.bindingResources[0].resources[0].id === '--') {
-                con.bindingResources[0].resources.splice(0, 1);
-            }
+            //if (con.bindingResources[0].resources[0].id === '--') {
+            //    con.bindingResources[0].resources.splice(0, 1);
+            //}
 
         }
 
-        if (con.excludingResources[0].resources[0].id === '--' && con.excludingResources[0].resources[1].id === '--') {
+        //if (con.excludingResources[0].resources[0].id === '--' && con.excludingResources[0].resources[1].id === '--') {
+        if (con.excludingResources[0].resources[0].id === '--') {
             con.excludingResources = [];
         } else {
 
-            if (con.excludingResources[0].resources[1].id === '--') {
-                con.excludingResources[0].resources.splice(1, 1);
-            }
+            //if (con.excludingResources[0].resources[1].id === '--') {
+            //    con.excludingResources[0].resources.splice(1, 1);
+            //}
 
-            if (con.excludingResources[0].resources[0].id === '--') {
-                con.excludingResources[0].resources.splice(0, 1);
-            }
+            //if (con.excludingResources[0].resources[0].id === '--') {
+            //    con.excludingResources[0].resources.splice(0, 1);
+            //}
         }
 
         //console.log('============== After modification');

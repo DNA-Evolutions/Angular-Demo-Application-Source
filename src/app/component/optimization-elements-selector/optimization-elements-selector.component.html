@@ -16,13 +16,13 @@
     </mat-form-field>
 
     <div class="selectElement" *ngIf="selectedNodeId">
-        <button mat-raised-button matTooltip="Open details of Node" (click)="openNodeDialog(selectedNodeId)"
-            color="primary" cdkFocusInitial>Open details of {{selectedNodeId}}</button>
+        <button mat-raised-button class="nodedetailbutton" matTooltip="Open details of Node" (click)="openNodeDialog(selectedNodeId)"
+             cdkFocusInitial>Open details of {{selectedNodeId}}</button>
     </div>
 
     <div class="selectElement" *ngIf="selectedResourceId">
-        <button mat-raised-button matTooltip="Open details of Resource" (click)="openResourceDialog(selectedResourceId)"
-            color="warn" cdkFocusInitial>Open details of
+        <button mat-raised-button class="resourcedetailbutton" matTooltip="Open details of Resource" (click)="openResourceDialog(selectedResourceId)"
+            cdkFocusInitial>Open details of
             {{selectedResourceId}}</button>
     </div>
 

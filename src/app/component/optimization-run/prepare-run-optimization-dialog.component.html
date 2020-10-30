@@ -1,7 +1,6 @@
-<h1 mat-dialog-title>Start Optimization</h1>
+<h1 mat-dialog-title>Optimization Run Settings</h1>
 <mat-divider></mat-divider>
 <div mat-dialog-content>
-
   <!--<mat-form-field>
     <mat-label>Favorite Animal</mat-label>
     <input matInput [(ngModel)]="data.animal">
@@ -10,23 +9,32 @@
   <mat-divider></mat-divider>-->
 
   <p></p>
-  <mat-label>Optimization Run Settings</mat-label>
-  <p></p>
-
   <mat-accordion>
     <div *ngFor="let prop of settingsCopy?.properties">
-
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel
+        [disabled]="false"
+        style="width: 95%; margin: 0 auto"
+        matTooltip="Click me to modify."
+      >
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{prop.key}} : {{prop.value}}
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
+          <mat-panel-title> {{ prop.key }} : {{ prop.value }} </mat-panel-title>
+          <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-label>Adjust value: </mat-label>
-        <mat-slider style="width: 70%;" [max]="getMaxPropertyValue(prop.key)" [min]="0" [step]="getStepPropertyValue(prop.key)"
-          [(ngModel)]="prop.value">
+        <div class="boxinfo wide">
+          <p class="boxinfotitle">Info</p>
+          <p>
+            <span [innerHTML]="getStepPropertyInfo(prop.key)"></span>
+          </p>
+        </div>
+        <mat-label><strong>Adjust value: </strong></mat-label>
+        <mat-slider
+          style="width: 70%"
+          [disabled]="isDisabledSliderValue(prop.key)"
+          [max]="getMaxPropertyValue(prop.key)"
+          [min]="0"
+          [step]="getStepPropertyValue(prop.key)"
+          [(ngModel)]="prop.value"
+        >
         </mat-slider>
 
         <p></p>
@@ -34,17 +42,28 @@
         <p></p>
       </mat-expansion-panel>
       <p></p>
-
-
     </div>
   </mat-accordion>
-
-
-  <div mat-dialog-actions>
-    <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="inline">
+  <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
     <button mat-raised-button color="primary" (click)="onSaveClick()" cdkFocusInitial>Save</button>-->
-    <button mat-raised-button color="primary" (click)="onStartClick()" cdkFocusInitial>Start Optimization</button>
-    <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
-  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onStartClick()"
+    cdkFocusInitial
+  >
+    Start Optimization
+  </button>
+  <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
 
-  <p></p>
+  <a
+  href="https://docs.dna-evolutions.com/overview_docs/optimizationproperties/Optimization_Properties.html"
+  target="_blank"
+  matTooltip="Visit our documentation on Optimization Properties."
+  class="mat-raised-button infobutton right"
+  >Explain these Properties</a
+>
+</div>

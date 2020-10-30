@@ -19,7 +19,7 @@ export class ExampleComponent implements OnInit {
 
     //@Input() exampleId: string;
 
-    curExampleId: string;
+    curExampleId = 'exampleOne';
 
     activeExampleId = 'exampleOne';
 
@@ -43,6 +43,24 @@ export class ExampleComponent implements OnInit {
         return promise;
     }
 
+    public getExampleDesc(exampleId: string): string{
+      const examples = this.loadService.getExampledDefs().filter(def=> def.exampleId===exampleId);
+      if(examples !== undefined && examples.length>0){
+        return examples[0].desc;
+      }else{
+        return "Example Desciption not available."
+      }
+    }
+
+    public getExampleTitle(exampleId: string): string{
+      const examples = this.loadService.getExampledDefs().filter(def=> def.exampleId===exampleId);
+      if(examples !== undefined && examples.length>0){
+        return examples[0].title;
+      }else{
+        return "Example Title not available."
+      }
+    }
+
     public setExampelId(id: string): void {
         console.log('Setting id ' + id);
         this.curExampleId = id;
@@ -58,7 +76,7 @@ export class ExampleComponent implements OnInit {
 
 
     ngOnInit(): void {
-        
+
 
     }
 }

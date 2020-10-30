@@ -120,13 +120,13 @@ export class PopUpService {
 
 
         //     polyline.on('mouseover', function (evt) {
-        //         //evt.target is the marker that is being moused over 
+        //         //evt.target is the marker that is being moused over
         //         //bindPopup() does not need to be called here if it was already called
         //         //somewhere else for this marker.
         //         this.openPopup();
         //     });
         //     polyline.on('mouseout', function (evt) {
-        //         //evt.target is the marker that is being moused over 
+        //         //evt.target is the marker that is being moused over
         //         //bindPopup() does not need to be called here if it was already called
         //         //somewhere else for this marker.
         //         this.closePopup();
@@ -220,8 +220,8 @@ export class PopUpService {
 
         console.log(curRouteId);
         const dialogRef = this.dialog.open(RouteResultDialogComponent, {
-            width: '550px',
-            maxHeight: '90vh',
+            width: '80%',
+            maxHeight: '80vh',
             data: { routeId: curRouteId }
         });
 
