@@ -6,7 +6,7 @@
 // http://jopttouroptimizer-on8081.westeurope.azurecontainer.io:8081/swagger-ui.html
 export const environment = {
   production: false,
-  host : 'http://jopttouroptimizer-on8081.westeurope.azurecontainer.io',
+  host : 'http://localhost',
   port : '8081',
 
   apiProgress: '/api/optimization/stream/progress',

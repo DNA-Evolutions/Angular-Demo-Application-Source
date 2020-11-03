@@ -1,12 +1,53 @@
-<div class="map-container">
-  <!--<div class="map-frame">-->
-  <div id="map">
-    <div class="map-info">
+<div id="mapContainer" class="map-container">
+  <div id="map" [ngClass]="isFullScreen() ? 'fullscreenmap' : 'boundmap'">
+    <div class="map-position-info">
       <span [innerHTML]="mcText"></span>
     </div>
-  </div>
-  <!--</div>-->
 
+    <div class="map-interact">
+      <a href="#map">
+        <img
+          *ngIf="isFullScreen()"
+          style="float: left; height: 30px; padding-top: 15px"
+          src="./assets/misc/icon/icon-reduce.png"
+          (click)="toggleFullScreenMap()"
+          alt="decrease icon"
+          matTooltip="Reduce map size"
+          class="dezoomicon iconopacity"
+        />
+
+        <img
+          *ngIf="!isFullScreen()"
+          style="float: left; height: 30px; padding-top: 15px"
+          src="./assets/misc/icon/icon-enlarge.png"
+          (click)="toggleFullScreenMap()"
+          alt="decrease icon"
+          matTooltip="Enlarge map size"
+          class="zoomicon iconopacity"
+        />
+        <p></p>
+      </a>
+
+        <img
+          style="float: left; height: 30px; padding-top: 25px"
+          src="./assets/misc/icon/icon-reset-view.png"
+          (click)="refreshMapCenter()"
+          alt="reset view icon"
+          matTooltip="Reset zoom and position"
+          class="zoomicon iconopacity"
+        />
+        <p></p>
+
+        <app-prepare-run-optimization-view asIcon="true"></app-prepare-run-optimization-view>
+
+    </div>
+
+    <div class="map-controll">
+      <div style="margin-top: 10px">
+
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- <div *ngIf="myOptimizationOutput$ | async as result; else nonExistingResult">

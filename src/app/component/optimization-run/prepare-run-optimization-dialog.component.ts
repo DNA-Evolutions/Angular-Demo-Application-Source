@@ -1,12 +1,21 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, Input } from '@angular/core';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { PrepareRunOptimizationDialogData } from './prepare-run-optimization-data.interface';
 import { RunOptimizationDialogComponent } from './run-optimization-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 //import { InputOptimizationDataService } from '../../inputDataService/input-optimization-data.service';
 
-import { JOptOpeningHours, JOptGeoNode, JOptOptimizationRunOptions, JOptOptimizationOutput } from 'build/openapi';
+import {
+  JOptOpeningHours,
+  JOptGeoNode,
+  JOptOptimizationRunOptions,
+  JOptOptimizationOutput,
+} from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 @Component({
@@ -14,6 +23,7 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
   templateUrl: 'prepare-run-optimization-dialog.component.html',
 })
 export class PrepareRunOptimizationDialogComponent {
+
 
   curSettings: JOptOptimizationRunOptions;
 
@@ -23,13 +33,20 @@ export class PrepareRunOptimizationDialogComponent {
   constructor(
     private dataService: OptimizationWrapperService,
     private snackBar: MatSnackBar,
-    public prepareDialogRef: MatDialogRef<PrepareRunOptimizationDialogComponent>,
+    public prepareDialogRef: MatDialogRef<
+      PrepareRunOptimizationDialogComponent
+    >,
     public runDialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: PrepareRunOptimizationDialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: PrepareRunOptimizationDialogData
+  ) {
+
+    console.log('PrepareRunOptimizationDialogComponent');
+
 
     this.curSettings = this.dataService.optimizerSettings();
 
     if (this.curSettings === undefined) {
+      console.log('Input is not valid');
       this.openSnackBar('Input is not valid', 'Invalid');
       this.prepareDialogRef.close();
     }
@@ -37,16 +54,15 @@ export class PrepareRunOptimizationDialogComponent {
     // Create a deep copy of settings, so that user changes do not
     // directly reflect in the object without saving
     this.settingsCopy = JSON.parse(JSON.stringify(this.curSettings));
-
   }
 
-  public isDisabledSliderValue(key: string): boolean{
+  public isDisabledSliderValue(key: string): boolean {
     if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
-      return !true;
+      return true;
     }
 
     if (key === 'JOptExitCondition.JOptGenerationCount') {
-      return !true;
+      return true;
     }
 
     return false;
@@ -77,7 +93,6 @@ export class PrepareRunOptimizationDialogComponent {
   }
 
   getStepPropertyInfo(key: string): string {
-
     if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
       return 'SA.NumIterations defines the number of iterations for simulated annealing. <strong>Note: This value is not adjustable as part of this demo application.</strong> ';
     }
@@ -111,7 +126,7 @@ export class PrepareRunOptimizationDialogComponent {
     const dialogRef = this.runDialog.open(RunOptimizationDialogComponent, {
       width: '450px',
       disableClose: true,
-      data: {  }
+      data: {},
     });
 
     // dialogRef.afterClosed().subscribe(result => {
@@ -121,7 +136,6 @@ export class PrepareRunOptimizationDialogComponent {
     // });
 
     return dialogRef;
-
   }
 
   onStartClick(): void {
@@ -129,7 +143,6 @@ export class PrepareRunOptimizationDialogComponent {
     this.openRunDialog();
     this.prepareDialogRef.close();
   }
-
 
   // onStartClickOld(): void {
   //   console.log('RunOptimizationDialogComponent starting optimization.');
@@ -155,11 +168,9 @@ export class PrepareRunOptimizationDialogComponent {
   //   )
   // }
 
-
   onNoClick(): void {
     console.log('RunOptimizationDialogComponent closing without saving.');
     this.openSnackBar('Cancelling', 'Ok');
     this.prepareDialogRef.close();
   }
-
 }

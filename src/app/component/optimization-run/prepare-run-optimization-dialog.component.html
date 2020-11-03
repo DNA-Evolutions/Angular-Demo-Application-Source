@@ -17,26 +17,31 @@
         matTooltip="Click me to modify."
       >
         <mat-expansion-panel-header>
-          <mat-panel-title> {{ prop.key }} : {{ prop.value }} </mat-panel-title>
+          <mat-panel-title> <strong>Setting:&nbsp;</strong>{{ prop.key }} &nbsp;<strong>Value:	&nbsp;</strong>{{ prop.value }} </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
-        <div class="boxinfo wide">
-          <p class="boxinfotitle">Info</p>
-          <p>
-            <span [innerHTML]="getStepPropertyInfo(prop.key)"></span>
-          </p>
-        </div>
-        <mat-label><strong>Adjust value: </strong></mat-label>
+
+        <div style="width: 60%;">
+        <!-- <mat-label>Adjust value:</mat-label>-->
         <mat-slider
-          style="width: 70%"
+          style="width: 100%;"
           [disabled]="isDisabledSliderValue(prop.key)"
           [max]="getMaxPropertyValue(prop.key)"
           [min]="0"
           [step]="getStepPropertyValue(prop.key)"
           [(ngModel)]="prop.value"
+          matTooltip="{{ prop.key }}  -  Move slider to adjust the current value of {{ prop.value }}."
         >
         </mat-slider>
+      </div>
+        <mat-divider></mat-divider>
 
+        <div class="boxinfo wideleft">
+          <p class="boxinfotitle">Info</p>
+          <p>
+            <span [innerHTML]="getStepPropertyInfo(prop.key)"></span>
+          </p>
+        </div>
         <p></p>
 
         <p></p>

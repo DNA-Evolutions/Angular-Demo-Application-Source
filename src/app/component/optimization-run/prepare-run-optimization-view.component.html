@@ -1,11 +1,78 @@
-<div *ngIf="myOptimizationOutput$ | async as result; else nonExistingResult">
-    <button mat-raised-button color="primary" (click)="openDialog()" cdkFocusInitial>Start Optimization</button>
-    <button style="margin-left:15px;" mat-raised-button color="primary" (click)="openOptimizationResultDialog(result)" cdkFocusInitial>Show
-        latest result</button>
+<div *ngIf="!showAsIcon">
+  <div *ngIf="myOptimizationOutput$ | async as result; else nonExistingResult">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openDialog()"
+      cdkFocusInitial
+    >
+      Start Optimization
+    </button>
+    <button
+      style="margin-left: 15px"
+      mat-raised-button
+      color="primary"
+      (click)="openOptimizationResultDialog(result)"
+      cdkFocusInitial
+    >
+      Show latest result
+    </button>
+  </div>
+
+  <ng-template #nonExistingResult>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openDialog()"
+      cdkFocusInitial
+    >
+      Start Optimization
+    </button>
+    <button
+      style="margin-left: 15px"
+      mat-raised-button
+      [disabled]="true"
+      color="primary"
+      cdkFocusInitial
+    >
+      Show latest result
+    </button>
+  </ng-template>
 </div>
 
-<ng-template #nonExistingResult>
-    <button mat-raised-button color="primary" (click)="openDialog()" cdkFocusInitial>Start Optimization</button>
-    <button style="margin-left:15px;" mat-raised-button [disabled]="true" color="primary" cdkFocusInitial>Show
-        latest result</button>
-</ng-template>
+<!-- ICON -->
+
+<div *ngIf="showAsIcon">
+  <div
+    *ngIf="myOptimizationOutput$ | async as result; else nonExistingIconResult"
+  >
+    <img
+      style="float: left; height: 30px; padding-top: 25px"
+      src="./assets/misc/icon/icon-run2.png"
+      (click)="openDialog()"
+      alt="start icon"
+      matTooltip="Start optimization"
+      class="zoomicon iconopacity"
+    />
+    <p></p>
+    <img
+      style="float: left; height: 30px; padding-top: 25px"
+      src="./assets/misc/icon/icon-last-result.png"
+      (click)="openOptimizationResultDialog(result)"
+      alt="show latest result icon"
+      matTooltip="Show latest result"
+      class="zoomicon iconopacity"
+    />
+  </div>
+
+  <ng-template #nonExistingIconResult>
+    <img
+    style="float: left; height: 30px; padding-top: 25px;"
+    src="./assets/misc/icon/icon-run2.png"
+    (click)="openDialog()"
+    alt="start icon"
+    matTooltip="Start optimization"
+    class="zoomicon iconopacity"/>
+
+  </ng-template>
+</div>

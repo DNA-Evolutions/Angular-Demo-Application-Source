@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PrepareRunOptimizationDialogComponent } from './prepare-run-optimization-dialog.component';
 import { JOptOpeningHours, JOptGeoNode, JOptOptimizationRunOptions, JOptOptimizationOutput } from 'build/openapi';
@@ -13,13 +13,24 @@ import { OptimizationResultDialogComponent } from '../optimization-elements/resu
     templateUrl: 'prepare-run-optimization-view.component.html',
     styleUrls: ['prepare-run-optimization-view.component.scss']
 })
-export class PrepareRunOptimizationViewComponent {
+export class PrepareRunOptimizationViewComponent implements OnInit {
+
+  @Input() asIcon: boolean;
+  public showAsIcon: boolean;
 
     nodeId: string;
     myOptimizationOutput$: Observable<JOptOptimizationOutput>;
 
     constructor(public dialog: MatDialog, private dataService: OptimizationWrapperService) {
         this.myOptimizationOutput$ = this.dataService.optimizationOutputObservable();
+    }
+
+    public ngOnInit(): void{
+      if (this.asIcon !== undefined) {
+        this.showAsIcon = this.asIcon;
+      } else {
+        this.showAsIcon = false;
+      }
     }
 
     openDialog(): void {

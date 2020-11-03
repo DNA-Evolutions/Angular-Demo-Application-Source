@@ -354,3 +354,33 @@ div.violation {
 }
 
 
+/*
+* ICONS
+*/
+
+.iconopacity{
+  opacity: 0.7;
+}
+
+.zoomicon{
+  transition: transform .2s ease;
+}
+
+.zoomicon:hover {
+  transform: scale(1.1);
+}
+
+.dezoomicon{
+  transition: transform .2s ease;
+}
+
+.dezoomicon:hover {
+  transform: scale(0.9);
+}
+
+/*
+* END ICON
+*/
+
+
+

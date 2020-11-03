@@ -254,18 +254,18 @@
         }
     ],
     "keySetting": {
-        "license": "{\"version\":\"1.0\",\"identifier\":\"PUBLIC-\",\"description\":\"Key provided to for evaluation purpose from DNA evolutions GmbH.\",\"contact\":\"Everybody\",\"modules\":[{\"Module:\":\"Elements\",\"max\":10},{\"Module:\":\"Date\",\"creation\":\"2020-05-20\",\"due\":\"2021-05-20\"}],\"key\":\"PUBLIC-80177853aa529753ad6644b210eb62472d52e4aa0b93709a51\"}",
+        "license": "{\"version\":\"9.0\",\"identifier\":\"PUBLIC-\",\"description\":\"Key provided to everybody for evaluation purpose from DNA evolutions GmbH.\",\"contact\":\"info@dna-evolutions.com\",\"modules\":[{\"Module:\":\"Elements\",\"max\":20},{\"Module:\":\"Date\",\"creation\":\"2020-11-03\",\"due\":\"2022-11-03\"}],\"key\":\"PUBLIC-5a8d9466d51f4adccefb7319a12884505cc675fe520fe26bd3\"}",
         "timeOut": "PT10M"
     },
     "runSettings": {
         "properties": [
             {
                 "key": "JOpt.Algorithm.PreOptimization.SA.NumIterations",
-                "value": "0"
+                "value": "100000"
             },
             {
                 "key": "JOptExitCondition.JOptGenerationCount",
-                "value": "0"
+                "value": "5000"
             },
             {
                 "key": "JOptWeight.TimeWindow",

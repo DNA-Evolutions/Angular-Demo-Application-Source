@@ -7,13 +7,21 @@
   //margin: 30px;
 }
 
+.nofullscreencontainer{}
+
 .map-frame {
   //border: 2px solid black;
   //height: 50vh;
   width: 100vh;
 }
 
-#map {
+//#map {
+//  height: 35vh;
+ // width: 100%;
+ // //resize: vertical;
+//}
+
+.boundmap {
   height: 35vh;
   width: 100%;
 }
@@ -30,7 +38,7 @@
   //background-color: rgba(255, 255, 255, 0.7);
 } */
 
-.map-info {
+.map-position-info {
   font-size: 13px;
   font-weight: bold;
   //width: 15%;
@@ -38,6 +46,12 @@
   position: absolute;
   bottom: 1%;
   left: 1%;
+  //margin-left: auto;
+  //margin-right: auto;
+  //left: 0;
+  //right: 0;
+  text-align: center;
+  //left: 8%;
   //background-color: blue;
   z-index: 1000;
 
@@ -46,5 +60,104 @@
   //box-shadow: 3px 3px rgba(58, 57, 57, 0.7);
   background-color:rgba(255, 255, 255, 0.7);
 
+}
+
+.map-interact {
+  font-size: 13px;
+  font-weight: bold;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  z-index: 1000;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  background-color:rgba(255, 255, 255, 0.7);
+  border: 2px solid black;
+
+}
+
+.map-controll {
+  font-size: 13px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
+  z-index: 1000;
+
+  //background-color:rgba(255, 255, 255, 0.7);
+}
+
+
+.nofullscreen{
+  height: 35vh;
+  width: 100%;
+  //resize: vertical;
+}
+
+.fullscreenmap {
+  width: 100%;
+    overflow: hidden;
+    height: 80vh;
+    position:fixed;
+}
+
+#map.fullscreenasd2 {
+  height: 100vh;
+  width: 0;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.fullscreen-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.fullscreen a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.fullscreen a:hover, .fullscreen a:focus {
+  color: #f1f1f1;
+}
+
+.fullscreen .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+/* @media screen and (max-height: 900px) {
+  .fullscreen a {font-size: 20px}
+  .fullscreen .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+} */
+
+@media screen and (max-height: 900px) {
+
+  .fullscreen .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
 }
 
