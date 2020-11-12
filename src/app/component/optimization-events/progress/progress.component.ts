@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, NgZone, OnChanges } from '@angular/core';
 
-import {timer, Subject, Observable,interval,of, throwError } from 'rxjs';
+import {timer, Subject, Observable,interval,of, throwError, iif } from 'rxjs';
 
-import { takeUntil,mergeMap,retry, tap, retryWhen, delayWhen   } from 'rxjs/operators';
+import { takeUntil,mergeMap,retry, tap, retryWhen, delayWhen, concatMap, delay   } from 'rxjs/operators';
 
 import { JOptOptimizationProgress } from 'build/openapi';
 //import { EventSourceService } from '../../eventService/event-source.service';
@@ -74,18 +74,32 @@ export class ProgressComponent implements OnInit, OnDestroy {
       mergeMap(progress => {
         //throw error for demonstration
         if (progress.curProgress < 0) {
-          console.log('No ready: '+progress.curProgress);
+          console.log('No ready: ' + progress.curProgress);
           return throwError('Error!');
         }
         return of(progress);
       }),
       retryWhen(errors =>
+
         errors.pipe(
-          //log error message
-          //console.log('Retry after 200ms');
-          //restart in 1 seconds
-          delayWhen(val => timer(200))
+          // Use concat map to keep the errors in order and make sure they
+          // aren't executed in parallel
+          concatMap((e, i) =>
+            // Executes a conditional Observable depending on the result
+            // of the first argument
+            iif(
+              () => i > 30,
+              // If the condition is true we throw the error (the last error)
+              throwError(e),
+              // Otherwise we pipe this back into our stream and delay the retry
+              of(e).pipe(delay(200))
+            )
+
+          )
         )
+        //errors.pipe(
+        //  delayWhen(val => timer(200))
+        //)
       )
     );
 

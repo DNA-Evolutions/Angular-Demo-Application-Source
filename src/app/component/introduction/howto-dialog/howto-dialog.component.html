@@ -1,0 +1,33 @@
+<div mat-dialog-title>
+  <div class="intro-title">
+    <img
+      height="35px"
+      src="./assets/misc/icon/icon-howto.png"
+      alt="howto icon"
+    />
+    &nbsp;How to use this application
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<p></p>
+<mat-dialog-content>
+  <div class="videoWrapper">
+    <iframe [src]='safeUrl' frameborder="0" allowfullscreen></iframe>
+  </div>
+</mat-dialog-content>
+
+<p></p>
+<mat-divider></mat-divider>
+
+<div mat-dialog-actions class="inline">
+  <button
+    mat-raised-button
+    matTooltip="Close this dialog."
+    (click)="close()"
+    color="primary"
+    cdkFocusInitial
+  >
+    Close
+  </button>
+</div>

@@ -261,11 +261,11 @@
         "properties": [
             {
                 "key": "JOpt.Algorithm.PreOptimization.SA.NumIterations",
-                "value": "100000"
+                "value": "1000"
             },
             {
                 "key": "JOptExitCondition.JOptGenerationCount",
-                "value": "5000"
+                "value": "200"
             },
             {
                 "key": "JOptWeight.TimeWindow",

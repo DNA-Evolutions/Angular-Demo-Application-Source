@@ -10,8 +10,8 @@
   },
   {
     "exampleId": "exampleTwo",
-    "title": "Bound Resource Example",
-    "desc": "A second draft with the same test example but other id",
+    "title": "Bound-Exlcuding Resource Example",
+    "desc": "In this example, seven Nodes need to be visited by two Resources. Some nodes need a particular visitor, and some nodes do not want to get visited by a certain resource.",
     "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
     "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
     "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",

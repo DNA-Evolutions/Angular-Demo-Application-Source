@@ -89,6 +89,7 @@ import { OptimizationRawRDialogComponent } from './component/optimization-elemen
 import { BASE_PATH } from 'build/openapi';
 import { environment } from 'src/environments/environment';
 import { IntroductionComponent } from './component/introduction/introduction.component';
+import { HowtoDialogComponent } from './component/introduction/howto-dialog/howto-dialog.component';
 
 @NgModule({
     declarations: [
@@ -138,7 +139,9 @@ import { IntroductionComponent } from './component/introduction/introduction.com
         //
         OptimizationRawRDialogComponent,
         //
-        IntroductionComponent
+        IntroductionComponent,
+        //
+        HowtoDialogComponent
 
 
 
@@ -212,7 +215,8 @@ import { IntroductionComponent } from './component/introduction/introduction.com
         RouteResultDialogComponent,
         OptimizationResultDialogComponent,
         OptimizationRawRDialogComponent,
-        IntroductionComponent
+        IntroductionComponent,
+        HowtoDialogComponent
     ],
     bootstrap: [AppComponent]
 })

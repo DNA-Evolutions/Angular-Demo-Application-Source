@@ -1,12 +1,109 @@
 <h1 mat-dialog-title>
-  <strong>Introduction to JOpt-Tour-Optimizer Demo Application</strong>
+  <strong
+    >Help and Information for <u>JOpt.</u>TourOptimizer Demo Application</strong
+  >
 </h1>
 
 <mat-divider></mat-divider>
 <p></p>
 
-<!--   Goal -->
 <div mat-dialog-content>
+  <!--   What we do  -->
+  <h4>About us:</h4>
+  <mat-expansion-panel
+    class="xwide"
+    [expanded]="false"
+    matTooltip="Click me to enlarge."
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div class="intro-title">
+          <img
+            height="35px"
+            src="./assets/misc/icon/icon-dna-medium.png"
+            alt="dna work icon"
+          />
+          <h3>Why JOpt?</h3>
+        </div>
+      </mat-panel-title>
+
+      <mat-panel-description></mat-panel-description
+    ></mat-expansion-panel-header>
+    <div style="font-size: 16px">
+      <p></p>
+      <strong>JOpt</strong> by DNA Evolutiuons has been designed as an
+      <strong>integrable</strong> module for existing applications and suites in
+      the context of <strong>logistics</strong>-planning purposes for
+      <strong>ERP</strong> systems. If your product requires manual user input
+      for dispatching tasks such as manually...
+      <p></p>
+      <li>
+        determine arrival times at tour stops or making sure that given fixed
+        appointments are met,
+      </li>
+      <li>
+        make sure that all drivers’ and resources’ working times are kept,
+      </li>
+      <li>
+        allocate a huge number of tasks to any mobile resources or large-scale
+        vehicle fleets
+      </li>
+      <p></p>
+      ...you can utilize the JOpt.TourOptimizer engine to assist and even do the
+      planning job and let it find the optimized tours for each of your trucks
+      and resources.
+      <p></p>
+      JOpt.TourOptimizer will find the tours from all the
+      <strong>shipments (PND)</strong> and tasks of the day while at the same
+      time the costs in terms of time- and travel-distances are minimized,
+      additionally ensuring, as much as possible, that your constraints are not
+      violated. For example, these constraints are
+      <strong
+        >working- and travel-time regulations, drivers’ skills,  transportation
+        rules, personal preferences of both resources and customers, already
+        negotiated and assured appointment times, hard constraints, and many
+        more.</strong
+      >
+      <p></p>
+      <u><strong>Principle:</strong></u>
+      JOpt is using a mixture of greedy, deterministic, and
+      nondeterministic algorithms. For example, state-of-the-art evolutionary,
+      clustering and many other algorithms, combined
+      with a highly modular architecture are used to ensure solving your <strong
+        >routing-problem (VRP, VRPTW, TSP, etc.)</strong
+      > with the highest quality.
+      <p></p>
+      <u><strong>Integration:</strong></u>
+      The integration can be done either directly via our Java library
+      (available via Maven, etc.) or as dockerized Spring-Boot-Application.
+      <p></p>
+      <u><strong>Further reading:</strong></u> Have a look at our documenation
+      site and at our company website.
+      <p></p>
+      <li>
+        Special features - What makes us unique
+        <a
+          href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
+          target="_blank"
+          >Overview of special features</a
+        >
+      </li>
+      <li>
+        Our company website -
+        <a href="https://www.dna-evolutions.com" target="_blank"
+          >www.dna-evolutions.com</a
+        >
+      </li>
+      <p></p>
+    </div>
+  </mat-expansion-panel>
+  <p></p>
+  <p></p>
+  <mat-divider></mat-divider>
+  <p></p>
+
+  <!--   Goal -->
+  <h4>Demo Application:</h4>
   <mat-expansion-panel
     class="xwide"
     [expanded]="false"
@@ -29,7 +126,8 @@
     <div style="font-size: 16px">
       <p></p>
       This demo-application has the goal to familiarize you with
-      JOpt-Tour-Optimizer. It shows a small part of the functional range.
+      JOpt-Tour-Optimizer. It shows a
+      <strong>small part of the functional range.</strong>
       However, please visit our full Introduction on the JOpt optimization
       engine if you want to learn more about JOpt. Don't worry, for using this
       application it is not required.
@@ -70,7 +168,21 @@
     ></mat-expansion-panel-header>
     <div style="font-size: 16px">
       <p></p>
-      You can press <strong>Start Optimization</strong> right away...
+      <i>"A picture is worth a thousand words."</i>
+      <p></p>
+      <p></p>
+      Therefore, please watch our Howto-Video (approx. 7 min). Simply click on the preview of the video, to open it:
+      <p></p>
+
+      <input
+        type="image"
+        width="400px;"
+        style="border: 2px solid rgb(102, 102, 102);"
+        src="./assets/misc/icon/how-to-video-prev.gif"
+        (click)="openHowtoDialog()"
+        alt="Preview of howto-video. Click to open video in a dialog window."
+        matTooltip="Preview of Howto-video. Click, to open video in a dialog window."
+      />
     </div>
   </mat-expansion-panel>
   <p></p>
@@ -99,15 +211,16 @@
     ></mat-expansion-panel-header>
     <div style="font-size: 16px">
       <p></p>
-      The application itself is implemented as an dockerized Angular
-      Application. In the back it mainly uses Java, Spring Boot, and Swagger to
-      perform the actual optimization. The front-end application is available as
-      an open source project on GitHub
+      The application itself is implemented as a dockerized Angular Application.
+      In the back, it mainly uses Java, Spring Boot, and Swagger to perform the
+      actual optimization. The front-end application is available as an
+      open-source project on GitHub
       <img
         style="padding-right: 5px; padding-left: 2px; height: 20px"
         src="./assets/misc/icon/icon-github.png"
         alt="map icon"
-      />.
+      />
+      (coming soon).
       <p></p>
       <li>
         <a
@@ -177,6 +290,12 @@
           >public.javadoc.dna-evolutions.com</a
         >
       </li>
+      <li>
+        Our Youtube Channel -
+        <a href="https://www.youtube.com/channel/UCzfZjJLp5Rrk7U2UKsOf8Fw" target="_blank"
+          >DNA Tutorials</a
+        >
+      </li>
     </div>
   </mat-expansion-panel>
   <p></p>
@@ -205,7 +324,8 @@
     ></mat-expansion-panel-header>
     <div style="font-size: 16px">
       <p></p>
-      You like what you see? You want to get in contact with us? Please visit:
+      Do you like what you see? Do you want to get in contact with us? Please
+      visit:
       <a href="https://dna-evolutions.com/contact/" target="_blank"> Contact</a>
     </div>
   </mat-expansion-panel>
@@ -235,7 +355,7 @@
     ></mat-expansion-panel-header>
     <div style="font-size: 16px">
       <p></p>
-      Some icons and graphics that are used are orginating from
+      Some icons and graphics that are used are originating from
       <a href="https://www.flaticon.com/" target="_blank" title="Flaticon"
         >www.flaticon.com</a
       >
@@ -256,12 +376,11 @@
   >
     Close
   </button>
-  <a href="https://www.dna-evolutions.com"
-  target="_blank">
-  <img
-    class="right"
-    height="50px"
-    src="./assets/misc/icon/dna-evolutions-logo-xl-sw.png"
-    alt="dna icon"
+  <a href="https://www.dna-evolutions.com" target="_blank">
+    <img
+      class="right"
+      height="50px"
+      src="./assets/misc/icon/dna-evolutions-logo-xl-sw.png"
+      alt="dna icon"
   /></a>
 </div>
