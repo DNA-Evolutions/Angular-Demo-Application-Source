@@ -47,7 +47,7 @@ export function ValidTimeWindow(controlName: string) {
             const curStartMillis = new Date(curStart).getTime();
             const curEndMillis = new Date(curEnd).getTime();
 
-            
+
             if (curStartMillis > 0 && curEndMillis > 0){
 
                 //console.log(curStartMillis);
@@ -55,16 +55,16 @@ export function ValidTimeWindow(controlName: string) {
 
                 if ( curEndMillis <= curStartMillis) {
                     // Error
-                    console.log('END BEFORE START');
-                    console.log(curStart);
-                    console.log(curEnd);
+                    //console.log('END BEFORE START');
+                    //console.log(curStart);
+                    //console.log(curEnd);
                     curEndControl.setErrors({ endBeforeStart: true });
                 }
             }
 
             if (lastEndMillis !== undefined){
                 if (curStartMillis < lastEndMillis){
-                    console.log('Hours overlapping');
+                    //console.log('Hours overlapping');
                     curStartControl.setErrors({ overlapping: true });
                     curEndControl.setErrors({ overlapping: true });
                     lastEndControl.setErrors({ overlapping: true });

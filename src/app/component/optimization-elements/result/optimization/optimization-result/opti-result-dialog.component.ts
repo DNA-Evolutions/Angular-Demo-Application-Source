@@ -79,7 +79,7 @@ export class OptimizationResultDialogComponent implements OnInit, AfterViewInit 
             if (this.curResult !== undefined) {
                 //console.log('Found existing result');
             } else {
-                console.log('Found no result');
+               // console.log('Found no result');
             }
 
         }
@@ -133,8 +133,8 @@ export class OptimizationResultDialogComponent implements OnInit, AfterViewInit 
     openRouteResultDialog(curRoute: JOptRoute): void {
 
         const dialogRef = this.dialog.open(RouteResultDialogComponent, {
-            width: '80%',
-            maxHeight: '80vh',
+          width: '90%',
+          maxHeight: '95vh',
             data: { route: curRoute }
         });
 
@@ -147,8 +147,8 @@ export class OptimizationResultDialogComponent implements OnInit, AfterViewInit 
     openRawResultDialog(): void {
 
         const dialogRef = this.dialog.open(OptimizationRawRDialogComponent, {
-            width: '80%',
-            maxHeight: '90vh',
+          width: '90%',
+          maxHeight: '95vh',
             data: { result: this.curResult }
         });
 

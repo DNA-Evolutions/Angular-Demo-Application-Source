@@ -1,0 +1,864 @@
+{
+  "geoNodes": [
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Koeln",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 50.9333,
+          "longitude": 6.95,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Gelsenkirchen",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 51.54398,
+          "longitude": 7.10001,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Essen",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 51.45,
+          "longitude": 7.01667,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Dueren",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 50.8,
+          "longitude": 6.48333,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Wuppertal",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 51.2667,
+          "longitude": 7.18333,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Duesseldorf",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 51.22201,
+          "longitude": 6.78677,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Bielefeld",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 52.02113,
+          "longitude": 8.5294,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Aachen",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 50.775346,
+          "longitude": 6.083887,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT2H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Hamm",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 51.68386,
+          "longitude": 7.81882,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT1H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Stuttgart",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 48.7667,
+          "longitude": 9.18333,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT1H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Darmstadt",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 49.87387,
+          "longitude": 8.6497,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT1H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Frankfurt (Main)",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 50.10774,
+          "longitude": 8.67461,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    },
+    {
+      "openingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "visitDuration": "PT1H",
+      "constraints": { "bindingResources": [], "excludingResources": [] },
+      "id": "Nuernberg",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 49.4478,
+          "longitude": 11.0683,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      },
+      "stayNode": false,
+      "workNode": true
+    }
+  ],
+  "eventNodes": [],
+  "pillarGeoNodes": [],
+  "pillarEventNodes": [],
+  "geoResources": [
+    {
+      "id": "Olivia from Duisburg",
+      "workingHours": [
+        {
+          "timeWindow": {
+            "begin": "2025-05-06T08:00:00",
+            "end": "2025-05-06T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-07T08:00:00",
+            "end": "2025-05-07T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-08T08:00:00",
+            "end": "2025-05-08T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-09T08:00:00",
+            "end": "2025-05-09T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-10T08:00:00",
+            "end": "2025-05-10T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        },
+        {
+          "timeWindow": {
+            "begin": "2025-05-11T08:00:00",
+            "end": "2025-05-11T17:00:00",
+            "zoneId": "Europe/Berlin"
+          }
+        }
+      ],
+      "maxDistance": "1200.0 km",
+      "maxTime": "PT11H",
+      "position": {
+        "locationIndex": 0,
+        "geoCoordinate": {
+          "latitude": 51.43468,
+          "longitude": 6.76507,
+          "boundaryRadius": 1.0,
+          "size": 1
+        }
+      }
+    }
+  ],
+  "keySetting": {
+    "license": "{\"version\":\"9.0\",\"identifier\":\"PUBLIC-\",\"description\":\"Key provided to everybody for evaluation purpose from DNA evolutions GmbH.\",\"contact\":\"info@dna-evolutions.com\",\"modules\":[{\"Module:\":\"Elements\",\"max\":20},{\"Module:\":\"Date\",\"creation\":\"2020-11-03\",\"due\":\"2022-11-03\"}],\"key\":\"PUBLIC-5a8d9466d51f4adccefb7319a12884505cc675fe520fe26bd3\"}",
+    "timeOut": 300.0
+  },
+  "runSettings": {
+    "properties": [
+      {
+        "key": "JOpt.Algorithm.PreOptimization.SA.NumIterations",
+        "value": "1000"
+      },
+      { "key": "JOptWeight.RouteTime", "value": "1.0" },
+      { "key": "JOptWeight.RouteDistance", "value": "1.0" },
+      { "key": "JOptWeight.TimeWindow", "value": "1.0" },
+      { "key": "JOptExitCondition.JOptGenerationCount", "value": "200" }
+    ],
+    "timeOut": 300.0
+  }
+}

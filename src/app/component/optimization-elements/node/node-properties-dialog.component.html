@@ -187,15 +187,13 @@
         <p></p>
         <mat-divider></mat-divider>
         <div class="wide boxteaser">
-          <p class="boxteasertitle">Nodes in JOpt</p>
+          <p class="boxteasertitle dontbreakout">Nodes in JOpt</p>
           <p>
             <span>
-              Get to know more features, including <strong
-                >guaranteed time windows,  pick-up and delivery, zone-codes,
-                hard-constraints</strong
-              >, and more...
+              Get to know more features, including 
+                <strong>time windows, </strong><strong>pick-up and delivery, </strong><strong>zone-codes, </strong> 
+                <strong>hard-constraints, </strong> and more...
             </span>
-
             <span style="margin-top: 0px; vertical-align: auto">
               Visit
               <a
@@ -470,7 +468,7 @@
   </div>
   <p></p>
   <mat-divider></mat-divider>
-  <div mat-dialog-actions class="inline">
+  <div mat-dialog-actions class="inline buttongroup">
     <button
       mat-raised-button
       matTooltip="Save all modifications and close this dialog."
@@ -478,7 +476,7 @@
       [disabled]="!f.valid"
       cdkFocusInitial
     >
-      Save and close
+      Save
     </button>
     <button
       mat-raised-button
@@ -486,15 +484,15 @@
       color="warn"
       (click)="onNoClick()"
     >
-      Cancel and close
+      Cancel
     </button>
 
     <a
     href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#nodes"
     target="_blank"
     matTooltip="Visit our documentation on Nodes."
-    class="mat-raised-button infobutton right"
-    >Explain Nodes</a
+    class="mat-raised-button infobutton"
+    >Nodes</a
   >
   </div>
 </form>

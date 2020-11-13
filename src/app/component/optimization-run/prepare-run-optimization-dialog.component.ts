@@ -21,6 +21,7 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 @Component({
   selector: 'app-prepare-run-optimization-dialog',
   templateUrl: 'prepare-run-optimization-dialog.component.html',
+  styleUrls: ['prepare-run-optimization-view.component.scss']
 })
 export class PrepareRunOptimizationDialogComponent {
 
@@ -40,13 +41,13 @@ export class PrepareRunOptimizationDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: PrepareRunOptimizationDialogData
   ) {
 
-    console.log('PrepareRunOptimizationDialogComponent');
+    //('PrepareRunOptimizationDialogComponent');
 
 
     this.curSettings = this.dataService.optimizerSettings();
 
     if (this.curSettings === undefined) {
-      console.log('Input is not valid');
+      //console.log('Input is not valid');
       this.openSnackBar('Input is not valid', 'Invalid');
       this.prepareDialogRef.close();
     }
@@ -90,6 +91,30 @@ export class PrepareRunOptimizationDialogComponent {
     }
 
     return '1';
+  }
+
+  getPropertyAbbr(key: string): string{
+    if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
+      return 'SA.NumIterations';
+    }
+
+    if (key === 'JOptExitCondition.JOptGenerationCount') {
+      return 'GenerationCount';
+    }
+
+    if (key === 'JOptWeight.TimeWindow') {
+      return 'JOptWeight.TimeWindow';
+    }
+
+    if (key === 'JOptWeight.RouteDistance') {
+      return 'JOptWeight.RouteDistance';
+    }
+
+    if (key === 'JOptWeight.RouteTime') {
+      return 'JOptWeight.RouteTime';
+    }
+
+    return key;
   }
 
   getStepPropertyInfo(key: string): string {

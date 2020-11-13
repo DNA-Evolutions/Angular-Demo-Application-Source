@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -11,73 +19,71 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 import { LeafletMapComponent } from '../leaflet-map/leaflet-map.component';
 
 @Component({
-    selector: 'app-example',
-    templateUrl: './example.component.html',
-    styleUrls: ['./example.component.scss']
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.scss'],
 })
 export class ExampleComponent implements OnInit {
 
-    //@Input() exampleId: string;
+  @ViewChild('elselectoranchor', { static: false }) elSelectorRef: ElementRef;
 
-    curExampleId = 'exampleOne';
 
-    activeExampleId = 'exampleOne';
+  curExampleId = 'exampleOne';
 
-    //exampleDefaultId = 'exampleOne';
+  activeExampleId = 'exampleOne';
 
-    //desiredNodeId = new FormControl('');
 
-    constructor(
-        private loadService: LoadExampleDataService,
-        private dataService: OptimizationWrapperService
-        ) {
-        //this.loadExample(this.exampleDefaultId).then(() => console.log('Task completed'));
+  constructor(
+    private loadService: LoadExampleDataService,
+    private dataService: OptimizationWrapperService,
+    private ref: ChangeDetectorRef
+  ) {
+    //this.loadExample(this.exampleDefaultId).then(() => console.log('Task completed'));
+  }
+
+  public focusElementSelectorPanel(): void {
+    this.elSelectorRef.nativeElement.scrollIntoView();
+  }
+
+  async loadExample(exampleId: string): Promise<unknown> {
+    //console.log('LOADING DATA ' + exampleId);
+    const promise = await this.loadService.loadExample(exampleId);
+    this.dataService.init();
+    //this.exampleIdChangesSubject.next(exampleId);
+    this.activeExampleId = exampleId;
+    return promise;
+  }
+
+  public getExampleDesc(exampleId: string): string {
+    const examples = this.loadService
+      .getExampledDefs()
+      .filter((def) => def.exampleId === exampleId);
+    if (examples !== undefined && examples.length > 0) {
+      return examples[0].desc;
+    } else {
+      return 'Example Desciption not available.';
     }
+  }
 
-    async loadExample(exampleId: string): Promise<unknown> {
-        console.log('LOADING DATA ' + exampleId);
-        const promise = await this.loadService.loadExample(exampleId);
-        this.dataService.init();
-        //this.exampleIdChangesSubject.next(exampleId);
-        this.activeExampleId = exampleId;
-        return promise;
+  public getExampleTitle(exampleId: string): string {
+    const examples = this.loadService
+      .getExampledDefs()
+      .filter((def) => def.exampleId === exampleId);
+    if (examples !== undefined && examples.length > 0) {
+      return examples[0].title;
+    } else {
+      return 'Example Title not available.';
     }
+  }
 
-    public getExampleDesc(exampleId: string): string{
-      const examples = this.loadService.getExampledDefs().filter(def=> def.exampleId===exampleId);
-      if(examples !== undefined && examples.length>0){
-        return examples[0].desc;
-      }else{
-        return "Example Desciption not available."
-      }
-    }
+  public setExampelId(id: string): void {
+    //console.log('Setting id ' + id);
+    this.curExampleId = id;
+  }
 
-    public getExampleTitle(exampleId: string): string{
-      const examples = this.loadService.getExampledDefs().filter(def=> def.exampleId===exampleId);
-      if(examples !== undefined && examples.length>0){
-        return examples[0].title;
-      }else{
-        return "Example Title not available."
-      }
-    }
+  public getExampledDefs(): JOptExampleDefinition[] {
+    return this.loadService.getExampledDefs();
+  }
 
-    public setExampelId(id: string): void {
-        console.log('Setting id ' + id);
-        this.curExampleId = id;
-
-
-    }
-
-    public getExampledDefs(): JOptExampleDefinition[] {
-        return this.loadService.getExampledDefs();
-
-    }
-
-
-
-    ngOnInit(): void {
-
-
-    }
+  ngOnInit(): void {}
 }
-

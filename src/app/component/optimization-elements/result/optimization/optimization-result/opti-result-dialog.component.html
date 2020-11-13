@@ -1,8 +1,10 @@
 <h1 mat-dialog-title>Optimization Solution</h1>
-<div mat-dialog-content>
-  <div *ngIf="curResult; then existingResult; else nonExistingResult"></div>
 
-  <!-- cost: number;
+<div mat-dialog-content>
+
+<div *ngIf="curResult; then existingResult; else nonExistingResult"></div>
+
+<!-- cost: number;
     id: JOptSolutionRouteHeaderId;
     idleTime: JOptSolutionRouteHeaderIdleTime;
     prodTime: JOptSolutionRouteHeaderProdTime;
@@ -24,9 +26,10 @@
     routeViolations: Array<JOptViolation>;
     closed?: boolean;
     alternateDestination?: boolean;
--->
+  -->
 
-  <ng-template #existingResult>
+<ng-template #existingResult>
+  <div mat-dialog-content>
     <mat-expansion-panel
       class="mat-elevation-z1"
       (opened)="setStep(-1); panelOpenState = true"
@@ -103,7 +106,8 @@
     </mat-expansion-panel>
 
     <mat-divider></mat-divider>
-
+  </div>
+  <div mat-dialog-content>
     <h4>Routes</h4>
 
     <!-- -->
@@ -168,8 +172,6 @@
                 {{ route.header.distance | distanceFormatPipe: "m":"km" }}
               </div>
             </mat-list-item>
-
-
           </mat-list>
           <mat-list-item role="listitem">
             <mat-list dense role="list">
@@ -211,20 +213,23 @@
       #paginator
       [length]="totalRows$ | async"
       [pageIndex]="0"
-      [pageSize]="5"
+      [pageSize]="10"
       [pageSizeOptions]="[2, 5, 10]"
     ></mat-paginator>
-  </ng-template>
+  </div>
+</ng-template>
 
-  <ng-template #nonExistingResult>
+<ng-template #nonExistingResult>
+  <div mat-dialog-content>
     <p></p>
     Please start an optimization first or make sure the node did not get
     unassigned..
     <p></p>
-  </ng-template>
+  </div>
+</ng-template>
 </div>
 <mat-divider></mat-divider>
-<div mat-dialog-actions class="inline">
+<div mat-dialog-actions class="inline buttongroup">
   <button
     mat-raised-button
     matTooltip="Close this dialog."
@@ -248,7 +253,7 @@
     href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/first_optimization/first_optimization.html#analyzing-the-result"
     target="_blank"
     matTooltip="Visit our documentation on Optimization Result."
-    class="mat-raised-button infobutton right"
-    >Explain this result</a
+    class="mat-raised-button infobutton"
+    >Result</a
   >
 </div>

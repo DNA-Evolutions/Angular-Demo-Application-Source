@@ -103,7 +103,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
     this.optiService.getRefreshObservable().subscribe((result: boolean) => {
       if (result) {
-        console.log('Refresh Map');
+        //console.log('Refresh Map');
         this.refreshMapCenter();
         this.refreshMap();
         // Set map to new position
@@ -132,7 +132,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   public refreshMapCenter(): void {
     const mapViewDef = this.geoService.mapViewDef();
 
-    console.log(mapViewDef);
+    //console.log(mapViewDef);
     this.map.setView(mapViewDef.center, mapViewDef.zoom, { animation: true });
     //this.map.setZoom(mapViewDef.zoom, {animationEnd: true});
   }
@@ -202,8 +202,9 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   openOptimizationResultDialog(output: JOptOptimizationOutput): void {
     console.log(output);
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
-      width: '1000px',
-      maxHeight: '80vh',
+      minWidth: '40%',
+      maxWidth: '95%',
+          maxHeight: '90%',
       data: { result: output },
     });
 

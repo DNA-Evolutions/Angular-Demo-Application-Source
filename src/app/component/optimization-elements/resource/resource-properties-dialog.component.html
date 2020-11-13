@@ -161,8 +161,9 @@
       </mat-tab>
 
       <mat-tab label="Advandced">
+        <!--<div mat-dialog-content>-->
         <div class="wide boxteaser">
-          <p class="boxteasertitle">Resources in JOpt</p>
+          <p class="boxteasertitle dontbreakout">Resources in JOpt</p>
           <p>
             <span>
               In JOpt Tour Optimizer, multiple features are integrated to define
@@ -185,7 +186,7 @@
               <strong>Pick-up and Delivery:</strong> Use JOpt to solve your PND
               problem. Even Manufacturing-Planning is possible.   
             </li>
-            <li style="margin: 0 0 10px 0">and many more...</li>
+            <li style="margin: 0 0 10px 0">and more...</li>
 
             <mat-divider></mat-divider>
             <span style="margin-top: 0px;vertical-align: auto;">
@@ -205,6 +206,7 @@
           /></span>
           </p>
         </div>
+      <!--</div>-->
       </mat-tab>
     </mat-tab-group>
     <!--<mat-label>Current OpeningHours</mat-label>
@@ -240,7 +242,7 @@
   </div>
   <p></p>
   <mat-divider></mat-divider>
-  <div mat-dialog-actions class="inline">
+  <div mat-dialog-actions class="inline buttongroup">
     <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>-->
     <button
       mat-raised-button
@@ -250,7 +252,7 @@
       [disabled]="!f.valid"
       cdkFocusInitial
     >
-      Save and close
+      Save
     </button>
     <button
       mat-raised-button
@@ -258,15 +260,15 @@
       color="warn"
       (click)="onNoClick()"
     >
-      Cancel and close
+      Cancel
     </button>
 
     <a
     href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#resources"
     target="_blank"
     matTooltip="Visit our documentation on Resources."
-    class="mat-raised-button infobutton right"
-    >Explain Resources</a
+    class="mat-raised-button infobutton"
+    >Resources</a
   >
   </div>
 </form>

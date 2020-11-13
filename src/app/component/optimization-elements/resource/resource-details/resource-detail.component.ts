@@ -27,7 +27,7 @@ export class ResourceDetailComponent implements OnInit {
 
 
         } else {
-            console.log('Found no result');
+            //console.log('Found no result');
         }
 
     }

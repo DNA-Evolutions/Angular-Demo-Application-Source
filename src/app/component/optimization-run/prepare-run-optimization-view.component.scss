@@ -1,3 +1,49 @@
+div.propcontainer {
+  display: inline-block;
+}
+
+div.propsettings {
+  padding-left: 10px;
+  display: inline-block;
+
+}
+
+div.propkey {
+  padding-left: 10px;
+  display: inline-block;
+
+}
+
+div.propvalue {
+  padding-left: 10px;
+  display: inline-block;
+
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  div.propcontainer {
+   display: block;
+   padding-top: 5px;
+   padding-bottom: 5px;
+  }
+
+  div.propsettings {
+    display: none;
+  }
+
+  div.propkey {
+    width: 100%;
+  }
+
+
+  div.propvalue {
+    width: 100%;
+  }
+}
+
+
 .pulsingButton {
   //width: 220px;
   //text-align: center;

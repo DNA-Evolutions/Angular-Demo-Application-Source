@@ -85,7 +85,7 @@ export class LoadExampleDataService {
 
     // TODO use generics
     loadExampleHelper(path: string): Promise<JOptExampleDefinition[]> {
-        console.log('Trigger call');
+        //console.log('Trigger call');
         return new Promise<JOptExampleDefinition[]>((resolve, reject) => {
             this.http.get(path)
                 .subscribe((data: JOptExampleDefinition[]) => {
@@ -98,7 +98,7 @@ export class LoadExampleDataService {
 
 
     loadGeoConnections(path: string): Promise<JOptEdgeConnection[]> {
-        console.log('Trigger call');
+        //console.log('Trigger call');
         return new Promise((resolve, reject) => {
             this.http.get(path)
                 .subscribe((data: any) => {
@@ -110,7 +110,7 @@ export class LoadExampleDataService {
 
     // TODO add interface
     loadGeoRoutes(path: string): Promise<any> {
-        console.log('Trigger call');
+        //console.log('Trigger call');
         return new Promise((resolve, reject) => {
             this.http.get(path)
                 .subscribe((data: any) => {
@@ -122,11 +122,11 @@ export class LoadExampleDataService {
     }
 
     loadMapViewDefintion(path: string): Promise<MapViewDefinition> {
-        console.log('Trigger call');
+        //console.log('Trigger call');
         return new Promise((resolve, reject) => {
             this.http.get(path)
                 .subscribe((data: any) => {
-                    console.log(data);
+                    //console.log(data);
                     this.mapViewDefintion = data;
                     resolve(data);
                 });
@@ -134,10 +134,10 @@ export class LoadExampleDataService {
     }
 
     loadOptimizationInput(path: string): Promise<JOptOptimizationInput> {
-        console.log('Exttracting optimization input from: ', path);
+        //console.log('Exttracting optimization input from: ', path);
         return new Promise((resolve, reject) => {
 
-            console.log('Trigger call');
+            //console.log('Trigger call');
             this.http.get(path)
                 .subscribe((data: JOptOptimizationInput) => {
                     //console.log(data);

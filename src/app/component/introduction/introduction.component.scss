@@ -11,3 +11,15 @@
 .intro-title > h3{
   padding-left: 5px;
 }
+
+input.preview{
+  width:90%;
+  max-width: 400px;
+  border: 2px solid rgb(102, 102, 102);
+}
+
+@media only screen and (max-width: 600px) {
+  li{
+    margin: 20px 0;
+  }
+}

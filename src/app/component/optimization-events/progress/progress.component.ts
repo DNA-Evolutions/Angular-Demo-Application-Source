@@ -74,7 +74,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
       mergeMap(progress => {
         //throw error for demonstration
         if (progress.curProgress < 0) {
-          console.log('No ready: ' + progress.curProgress);
+          //console.log('No ready: ' + progress.curProgress);
           return throwError('Error!');
         }
         return of(progress);

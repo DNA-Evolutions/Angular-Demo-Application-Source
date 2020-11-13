@@ -59,7 +59,7 @@ export class NodeDetailDialogComponent {
 
 
   onSaveClick(): void {
-    console.log('NodeDetailDialogComponent closing with saving.');
+    //console.log('NodeDetailDialogComponent closing with saving.');
 
     this.dataService.setNodeOpeningHour(this.data.nodeId, this.openingHoursCopy);
 
@@ -72,7 +72,7 @@ export class NodeDetailDialogComponent {
 
 
   onNoClick(): void {
-    console.log('NodeDetailDialogComponent closing without saving.');
+    //console.log('NodeDetailDialogComponent closing without saving.');
     this.openSnackBar('Cancelling', 'Ok');
     this.dialogRef.close();
   }

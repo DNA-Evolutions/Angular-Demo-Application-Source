@@ -46,7 +46,7 @@ export class OptimizationWrapperService {
     public static nodeResult(nodeId: string, out: JOptOptimizationOutput): JOptRouteElementDetail {
         const detailsAspirants = out.solution.routes.map(r => this.getDetailInRoute(nodeId, r)).filter(d => d !== undefined);
 
-        console.log(detailsAspirants);
+        //console.log(detailsAspirants);
 
         if (detailsAspirants.length !== 0) {
             return detailsAspirants[0];
@@ -76,7 +76,7 @@ export class OptimizationWrapperService {
         private readonly optiService: OptimizationServiceControllerService,
         private exampleLoaderService: LoadExampleDataService
     ) {
-        console.log('OptimizationWrapperService constructor called');
+        //console.log('OptimizationWrapperService constructor called');
         this.$refresh = new ReplaySubject(1);
         this.$myOptimizationOutputSubject = new Subject();
         this.init();
@@ -87,7 +87,7 @@ export class OptimizationWrapperService {
 
 
 
-        console.log('OptimizationWrapperService init called');
+        //console.log('OptimizationWrapperService init called');
         this.myOptimizationInput = this.exampleLoaderService.optimizationInput();
 
         this.curNodes = this.myOptimizationInput.geoNodes;
@@ -120,7 +120,7 @@ export class OptimizationWrapperService {
 
     public durationMinutesByNode(curNode: JOptGeoNode): number {
 
-        console.log(curNode.visitDuration);
+        //console.log(curNode.visitDuration);
         if (curNode !== undefined) {
             return moment.duration(curNode.visitDuration).asMinutes();
         }
@@ -236,18 +236,18 @@ export class OptimizationWrapperService {
 
         this.$myInternalOptimizationOutput.subscribe((watcherEvent: JOptOptimizationOutput) => {
 
-            console.log('watcherEvent', watcherEvent);
+            //console.log('watcherEvent', watcherEvent);
             this.$myOptimizationOutputSubject.next(watcherEvent);
             this.curOptimizationOutput = watcherEvent;
 
         },
             (error) => {
-                console.log('error', error);
+                //console.log('error', error);
                 this.$myOptimizationOutputSubject.error(error);
 
             },
             () => {
-                console.log('Completed');
+                //console.log('Completed');
             });
 
         return this.$myOptimizationOutputSubject;

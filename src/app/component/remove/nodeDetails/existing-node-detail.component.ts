@@ -18,22 +18,22 @@ export class ExistingNodeDetailComponent implements OnInit {
     private dataService: InputOptimizationDataService) { }
 
   ngOnInit(): void {
-    console.log('ExistingNodeDetailComponent');
+    //console.log('ExistingNodeDetailComponent');
 
     const curResult = this.dataService.optimizationOutput();
 
-    console.log('Searching detail for ' + this.nodeId);
+    //console.log('Searching detail for ' + this.nodeId);
 
     if (curResult !== undefined) {
-      console.log('Found existing result');
-      
-      console.log(curResult);
+      //console.log('Found existing result');
+
+      //console.log(curResult);
       this.curDetail = InputOptimizationDataService.nodeResult(this.nodeId, curResult);
 
-      console.log(this.curDetail);
+      //console.log(this.curDetail);
 
     } else {
-      console.log('Found no result');
+      //console.log('Found no result');
     }
 
   }

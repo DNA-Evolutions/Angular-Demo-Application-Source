@@ -30,7 +30,7 @@ export class RunOptimizationDialogComponent {
       this.dialogRef.close();
     }
 
-    console.log('::Starting optimization::');
+    //console.log('::Starting optimization::');
     this.startOptimization();
 
   }
@@ -43,7 +43,7 @@ export class RunOptimizationDialogComponent {
   }
 
   stopOptimizationGracefully(): void {
-    console.log('Stoping optimization gracefully');
+    //console.log('Stoping optimization gracefully');
     this.openSnackBar('Stoping optimization gracefully', 'ok');
     this.dataService.stopOptimization().pipe(take(1)).subscribe((watcherEvent: boolean) => {
 
@@ -55,7 +55,7 @@ export class RunOptimizationDialogComponent {
         this.openSnackBar('Error', error);
       },
       () => {
-        console.log('Completed')
+        //console.log('Completed')
         this.openSnackBar('Optimization stoped', 'Ok');
       })
   }
@@ -74,7 +74,7 @@ export class RunOptimizationDialogComponent {
         this.dialogRef.close();
 
         // Open Result dialog
-        console.log('Open Result dialog');
+        //console.log('Open Result dialog');
         this.openOptimizationResultDialog(optimizationResult);
 
       },
@@ -84,7 +84,7 @@ export class RunOptimizationDialogComponent {
         this.dialogRef.close();
       },
       () => {
-        console.log('Completed')
+        //console.log('Completed')
         this.dialogRef.close();
       }
     )
@@ -93,8 +93,9 @@ export class RunOptimizationDialogComponent {
   openOptimizationResultDialog(output: JOptOptimizationOutput): void {
     //console.log(output);
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
-        width: '1000px',
-        maxHeight: '80vh',
+      minWidth: '40%',
+      maxWidth: '95%',
+      maxHeight: '90%',
         data: { result: output }
     });
 

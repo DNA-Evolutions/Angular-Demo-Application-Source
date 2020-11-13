@@ -117,7 +117,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       trackResize: true,
       boxZoom: true,
 	}).setView([this._initCoords.lat, this._initCoords.long], 10);
-	
+
 
     this.baseLayer = esri.basemapLayer('Streets');
     this.map.addLayer(this.baseLayer);
@@ -160,7 +160,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         else
         {
           // implement your own error handling
-          console.log('MARKER ERROR, Marker number: ', (i+1), 'x: ', x, ' y: ', y);
+          //console.log('MARKER ERROR, Marker number: ', (i+1), 'x: ', x, ' y: ', y);
         }
       }
     }
@@ -182,7 +182,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     // update width/height settings as you see fit
     this.currentWidth  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth-200;
 	this.currentHeight = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) - 400;
-	
+
 	//this.currentWidth  = 600;
     //this.currentHeight = 400;
   }
@@ -203,7 +203,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const target: any = evt.originalEvent.target;
 
-    console.log('Map click on: ', target);
+    //console.log('Map click on: ', target);
   }
 
   /**

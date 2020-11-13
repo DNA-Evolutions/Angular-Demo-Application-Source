@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
 
         this.exampleIdChangesSubject.subscribe(
             (val) => {
-                console.log(val);
+                //console.log(val);
                 //this.cd.detectChanges();
             }
         );
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
     }
 
     async loadExample(exampleId: string): Promise<unknown> {
-        console.log('LOADING DATA ' + exampleId);
+        //console.log('LOADING DATA ' + exampleId);
         const promise = await this.loadService.loadExample(exampleId);
         this.dataService.init();
         this.exampleIdChangesSubject.next(exampleId);
@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
     }
 
     public setExampelId(id: string): void {
-        console.log('Setting id ' + id);
+        //console.log('Setting id ' + id);
         this.curExampleId = id;
 
 
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
 
-          console.log('Introduction dialog closed: ');
+          //console.log('Introduction dialog closed: ');
           //const runDialogRef: MatDialogRef<RunOptimizationDialogComponent> = result;
 
           //runDialogRef.afterClosed().subscribe(optimizationResult => {

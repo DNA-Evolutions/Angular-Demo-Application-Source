@@ -35,15 +35,15 @@ export class PrepareRunOptimizationViewComponent implements OnInit {
 
     openDialog(): void {
         const dialogRef = this.dialog.open(PrepareRunOptimizationDialogComponent, {
-            width: '1650px',
-            maxHeight: '80vh',
+          width: '90%',
+          maxHeight: '95vh',
             disableClose: true,
             data: { nodeId: this.nodeId }
         });
 
         dialogRef.afterClosed().subscribe(result => {
 
-            console.log('Prepare dialog closed: ');
+            //console.log('Prepare dialog closed: ');
             //const runDialogRef: MatDialogRef<RunOptimizationDialogComponent> = result;
 
             //runDialogRef.afterClosed().subscribe(optimizationResult => {
@@ -56,10 +56,11 @@ export class PrepareRunOptimizationViewComponent implements OnInit {
     }
 
     openOptimizationResultDialog(output: JOptOptimizationOutput): void {
-        console.log(output);
+        //console.log(output);
         const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
-            width: '1000px',
-            maxHeight: '80vh',
+          minWidth: '40%',
+          maxWidth: '95%',
+          maxHeight: '90%',
             data: { result: output }
         });
 

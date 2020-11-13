@@ -1,29 +1,29 @@
-<mat-toolbar style="position: relative; background: #c0ca48; color: #fff">
+<mat-toolbar class="colored">
   <mat-toolbar-row>
-    <div style="width: 100%; text-align: center; font-size: larger">
+    <div class="toolbar">
 
-      <span>
+
         <a href="https://www.dna-evolutions.com" target="_blank">
           <img
-            style="float: left; height: 55px; padding-top: 5px"
+            class="leftitem"
             src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
             alt="map icon"
         /></a>
-      </span>
 
-      <span style="margin: 10px 10px 0 0;display: inline-block;text-align: center;">
 
+      <div class="centeritem">
         <strong><u>JOpt.</u>TourOptimizer - Demo</strong>
+      </div>
 
-      </span>
-
+      <div class="rightitem">
       <input
         type="image"
         width="40px;"
-        style="float: right; margin: 5px 25px 10px 0"
+        matTooltip="Watch our Howto-Video and get further information."
         src="./assets/misc/icon/help-icon.png"
         (click)="openIntroductionDialog()"
       />
+    </div>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

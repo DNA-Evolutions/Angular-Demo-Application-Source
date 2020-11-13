@@ -1,0 +1,51 @@
+div.toolbar{
+  width: 100%;
+  text-align: center;
+  font-size: larger;
+}
+
+.leftitem{
+  float: left;
+  height: 55px;
+  padding-top: 5px;
+}
+
+.centeritem{
+  margin: 10px 10px 0 0;
+  display: inline-block;
+  text-align: center;
+}
+
+.rightitem{
+  float: right;
+  margin: 5px 25px 10px 0;
+}
+
+.mat-toolbar.colored{
+  background: #c0ca48;
+   color: #fff;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .leftitem{
+    display: none;
+    height: 55px;
+  }
+
+  .centeritem{
+    //width: 100%;
+    padding-top: 5px;
+    //margin: 10px 10px 0 0;
+  }
+
+  .rightitem{
+    //width: 100%;
+    //margin: 10px 10px 0 0;
+    //text-align: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+
+
+}

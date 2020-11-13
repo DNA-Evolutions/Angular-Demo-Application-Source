@@ -25,7 +25,7 @@ export class NodeDetailComponent implements OnInit {
         private dataService: OptimizationWrapperService) { }
 
     ngOnInit(): void {
-        console.log('app-node-detail');
+        //console.log('app-node-detail');
 
         if (this.detail !== undefined) {
 
@@ -34,18 +34,18 @@ export class NodeDetailComponent implements OnInit {
         } else {
             const curResult = this.dataService.optimizationOutput();
 
-            console.log('Searching detail for ' + this.nodeId);
+            //console.log('Searching detail for ' + this.nodeId);
 
             if (curResult !== undefined) {
-                console.log('Found existing result');
+               //console.log('Found existing result');
 
-                console.log(curResult);
+                //console.log(curResult);
                 this.curDetail = OptimizationWrapperService.nodeResult(this.nodeId, curResult);
 
-                console.log(this.curDetail);
+                //console.log(this.curDetail);
 
             } else {
-                console.log('Found no result');
+               // console.log('Found no result');
             }
         }
 

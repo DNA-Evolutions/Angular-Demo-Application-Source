@@ -1,5 +1,6 @@
 <h1 mat-dialog-title>Optimization Result (RAW)</h1>
 <mat-divider></mat-divider>
+<div mat-dialog-content>
 <p></p>
 <div *ngIf="curResult;else nonExistingResult">
     <div class="scroll-box"><pre>{{curResult?.result}}</pre></div>
@@ -13,16 +14,21 @@
     <p></p>
 </ng-template>
 <p></p>
+</div>
+<p></p>
 <mat-divider></mat-divider>
-<div mat-dialog-actions class="inline">
+<div mat-dialog-actions class="inline buttongroup">
+
     <button mat-raised-button matTooltip="Close this dialog." (click)="onCloseClick()" color="primary"
         cdkFocusInitial>Close</button>
+
         <a
         href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/first_optimization/first_optimization.html#analyzing-the-result"
         target="_blank"
         matTooltip="Visit our documentation on Optimization Result."
-        class="mat-raised-button infobutton right"
-        >Explain this result</a
+        class="mat-raised-button infobutton"
+        >RAW Result</a
       >
+
 </div>
 

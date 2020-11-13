@@ -44,7 +44,7 @@ export class OptimizationRawRDialogComponent implements OnInit, AfterViewInit {
             if (this.curResult !== undefined) {
                 //console.log('Found existing result');
             } else {
-                console.log('Found no result');
+                //console.log('Found no result');
             }
 
         }

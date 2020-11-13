@@ -41,7 +41,7 @@ export class OptimizationProgressComponent implements OnInit {
     private dataService: InputOptimizationDataService,
     private readonly eventService: EventSourceService,
     private ngZone: NgZone) {
-    console.log('OptimizationProgressComponent constructor called');
+    //console.log('OptimizationProgressComponent constructor called');
   }
 
   // time$ = new Observable<string>(observer => {
@@ -57,7 +57,7 @@ export class OptimizationProgressComponent implements OnInit {
     this.eventService.progress().pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (watcherEvent: JOptOptimizationProgress) => {
-          console.log('success');
+          //console.log('success');
 
           this.ngZone.run(() => {
             //this.latestProgressValue = watcherEvent;
@@ -66,7 +66,7 @@ export class OptimizationProgressComponent implements OnInit {
         },
         (error) => console.log('error', error),
         () => {
-          console.log('Completed')
+          //console.log('Completed')
         }
       );
   }
@@ -74,7 +74,7 @@ export class OptimizationProgressComponent implements OnInit {
   testMofidyNode() {
 
     const myNode = this.dataService.node('Koeln');
-    console.log(myNode);
+    //console.log(myNode);
 
     let testNewOpeningHours: string =
       '[{"timeWindow": {"begin": "2025-03-20T08:00:00","end": "2025-03-20T18:00:00","zoneId": "Europe/Berlin"}}, {"timeWindow": {"begin": "2025-03-21T08:00:00","end": "2025-03-21T18:00:00","zoneId": "Europe/Berlin"}}]';
@@ -86,7 +86,7 @@ export class OptimizationProgressComponent implements OnInit {
 
     const myNode2 = this.dataService.node('Koeln');
 
-   console.log(myNode2);
+   //console.log(myNode2);
 
   }
 
@@ -94,8 +94,8 @@ export class OptimizationProgressComponent implements OnInit {
     this.dataService.startOptimization().subscribe(
       (watcherEvent: JOptOptimizationOutput) => {
 
-        console.log('success');
-        console.log(watcherEvent);
+        //console.log('success');
+        //console.log(watcherEvent);
 
         //this.ngZone.run(() => {
         //  //this.latestProgressValue = watcherEvent;
@@ -104,7 +104,7 @@ export class OptimizationProgressComponent implements OnInit {
       },
       (error) => console.log('error', error),
       () => {
-        console.log('Completed')
+        //console.log('Completed')
       }
     )
   }
@@ -271,7 +271,7 @@ export class OptimizationProgressComponent implements OnInit {
 
     //numbers.subscribe(value => console.log("Subscriber: " + value));
 
-    //this.subscription = 
+    //this.subscription =
     // this.optiService.events('events')
     //   .subscribe(item => {
     //      //this.item = item;
@@ -358,6 +358,6 @@ export class OptimizationProgressComponent implements OnInit {
   // }
 
   //reloadData() {
-  //  
+  //
   //}
 }

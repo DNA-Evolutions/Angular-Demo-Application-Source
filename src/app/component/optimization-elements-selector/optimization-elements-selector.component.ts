@@ -48,7 +48,7 @@ export class OptimizationElementsSelectorComponent implements OnInit {
 
         this.optiService.getRefreshObservable().subscribe((result: boolean) => {
             if (result) {
-                console.log('Refresh');
+               // console.log('Refresh');
                 this.readElements();
             }
 
@@ -63,29 +63,31 @@ export class OptimizationElementsSelectorComponent implements OnInit {
 
     public openNodeDialog(curNnodeId: string): void {
 
-        console.log("curNnodeId: " + curNnodeId);
+        //console.log("curNnodeId: " + curNnodeId);
 
         const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
-            width: '550px',
+          maxWidth: '700px',
+          width:'90%',
             data: { nodeId: curNnodeId }
         });
 
         dialogRef.afterClosed().subscribe(result => {
 
-            console.log('NodeDetailMarkerViewComponent was closed: ' + result);
+            //console.log('NodeDetailMarkerViewComponent was closed: ' + result);
 
         });
     }
 
     public openResourceDialog(curResId: string): void {
         const dialogRef = this.dialog.open(ResourcePropertiesDialogComponent, {
-            width: '550px',
+          maxWidth: '700px',
+          width:'90%',
             data: { resId: curResId }
         });
 
         dialogRef.afterClosed().subscribe(result => {
 
-            console.log('NodeDetailMarkerViewComponent was closed: ' + result);
+            //console.log('NodeDetailMarkerViewComponent was closed: ' + result);
 
         });
     }

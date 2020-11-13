@@ -190,8 +190,8 @@ export class PopUpService {
 
     openNodeDialog(cNodeId: string): void {
         const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
-            width: '550px',
-            maxHeight: '90vh',
+          maxWidth: '700px',
+          width:'90%',
             data: { nodeId: cNodeId }
         });
 
@@ -205,8 +205,8 @@ export class PopUpService {
 
     openResourceDialog(cResourceId: string): void {
         const dialogRef = this.dialog.open(ResourcePropertiesDialogComponent, {
-            width: '550px',
-            maxHeight: '90vh',
+          maxWidth: '700px',
+          width:'90%',
             data: { resId: cResourceId }
         });
 

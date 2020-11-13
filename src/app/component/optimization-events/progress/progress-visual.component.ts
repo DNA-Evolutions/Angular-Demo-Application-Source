@@ -70,7 +70,7 @@ export class VisualProgressComponent implements OnInit, OnDestroy {
 
       if (this.latestCost !== undefined) {
         const addCost = '1000';
-        console.log('add 2 chart: ' + addCost);
+        //console.log('add 2 chart: ' + addCost);
         this.add2Chart(addCost);
         this.cd.markForCheck();
       }

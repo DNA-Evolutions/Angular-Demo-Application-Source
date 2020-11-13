@@ -1,0 +1,26 @@
+div.panelcaption {
+  // Nothing to do
+}
+
+div.paneltitle {
+  padding-left: 10px;
+  display: inline-block;
+}
+
+div.panelicon {
+  display: inline-block;
+}
+
+div.exampledesc {
+  padding-bottom: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+  border: 3px solid whitesmoke;
+  background-color: whitesmoke;
+}
+
+@media only screen and (max-width: 600px) {
+  div.paneltitle {
+    display: block;
+  }
+}

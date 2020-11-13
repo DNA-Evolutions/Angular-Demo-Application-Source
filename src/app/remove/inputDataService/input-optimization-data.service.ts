@@ -42,7 +42,7 @@ export class InputOptimizationDataService {
   public static nodeResult(nodeId: string, out: JOptOptimizationOutput): JOptRouteElementDetail {
     const detailsAspirants = out.solution.routes.map(r => this.getDetailInRoute(nodeId, r)).filter(d => d !== undefined);
 
-    console.log(detailsAspirants);
+    //console.log(detailsAspirants);
 
     if (detailsAspirants.length !== 0) {
       return detailsAspirants[0];
@@ -61,13 +61,13 @@ export class InputOptimizationDataService {
     private readonly optiService: OptimizationServiceControllerService,
     private loadDefaultInputOptimizationDataService: LoadDefaultInputOptimizationDataService
   ) {
-    console.log('InputOptimizationDataService constructor called');
+    //console.log('InputOptimizationDataService constructor called');
     this.init();
 
   }
 
   init(): void {
-    console.log('Init from  InputOptimizationDataService constructor called');
+    //console.log('Init from  InputOptimizationDataService constructor called');
 
     this.myOptimizationInput = this.loadDefaultInputOptimizationDataService.input();
 
@@ -159,7 +159,7 @@ export class InputOptimizationDataService {
 
     this.$myInternalOptimizationOutput.subscribe((watcherEvent: JOptOptimizationOutput) => {
 
-      console.log('watcherEvent', watcherEvent);
+      //console.log('watcherEvent', watcherEvent);
       this.$myOptimizationOutputSubject.next(watcherEvent);
       this.curOptimizationOutput = watcherEvent;
 
@@ -169,7 +169,7 @@ export class InputOptimizationDataService {
 
       },
       () => {
-        console.log('Completed');
+        //console.log('Completed');
       });
 
     return this.$myOptimizationOutputSubject;

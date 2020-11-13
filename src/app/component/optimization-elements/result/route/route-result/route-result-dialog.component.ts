@@ -49,9 +49,9 @@ export class RouteResultDialogComponent implements OnInit {
             const curResult = this.dataService.optimizationOutput();
 
             if (curResult !== undefined) {
-                console.log('Found existing result');
+                //console.log('Found existing result');
 
-                console.log(curResult);
+                //console.log(curResult);
                 this.curRoute = OptimizationWrapperService.routeResult(this.data.routeId, curResult);
             }
 

@@ -18,7 +18,8 @@ export class NodePropertiesComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
-      width: '550px',
+      maxWidth: '700px',
+          width:'90%',
       data: { nodeId: this.nodeId }
     });
 

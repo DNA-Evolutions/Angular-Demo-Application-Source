@@ -11,7 +11,7 @@
   {
     "exampleId": "exampleTwo",
     "title": "Bound-Exlcuding Resource Example",
-    "desc": "In this example, seven Nodes need to be visited by two Resources. Some nodes need a particular visitor, and some nodes do not want to get visited by a certain resource.",
+    "desc": "In this example, eight Nodes need to be visited by two Resources. Some nodes need a particular visitor, and some nodes do not want to get visited by a certain resource.",
     "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
     "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
     "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
@@ -20,19 +20,19 @@
   {
     "exampleId": "exampleThree",
     "title": "Multi Route example",
-    "desc": "A second draft with the same test example but other id",
-    "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
+    "desc": "A single resource with multiple working days. Each node to be visited also has also multiple opening hours.",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-three/optimization-input/optimization-input.json",
     "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
     "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
-    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-two/map-view-properties/map-view-properties.json"
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-three/map-view-properties/map-view-properties.json"
   },
   {
     "exampleId": "exampleFour",
     "title": "Unassgined node example",
-    "desc": "A second draft with the same test example but other id",
-    "optimizationInputPath": "./assets/precoded-data/examples/example-two/optimization-input/optimization-input.json",
+    "desc": "In this example, we add conflicting hard-constraints to some nodes. As a violation of hard-constraint is not allowed, the Optimizer will unassign the conflicting nodes.",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-four/optimization-input/optimization-input.json",
     "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
     "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
-    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-two/map-view-properties/map-view-properties.json"
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-four/map-view-properties/map-view-properties.json"
   }
 ]

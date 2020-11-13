@@ -15,7 +15,7 @@ export class LoadDefaultInputOptimizationDataService {
   private defaultInput: JOptOptimizationInput = null;
 
   constructor(private http: HttpClient, geo: GeoAndRoutingService) {
-    console.log('LoadDefaultInputOptimizationDataService constructor called');
+    //console.log('LoadDefaultInputOptimizationDataService constructor called');
     //geo.load();
     // this.getJSON().subscribe(data => {
     //  console.log('Read-In-default data');

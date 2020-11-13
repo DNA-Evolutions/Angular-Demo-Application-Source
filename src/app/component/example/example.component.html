@@ -8,14 +8,17 @@
 >
   <mat-expansion-panel-header class="colored">
     <mat-panel-title>
-      <div>
-        <img
-          style="padding-left: 10px; height: 20px"
-          src="./assets/misc/icon/icon-example.png"
-          alt="map icon"
-        />
-        <div style="display: inline-block; padding-left: 15px">
-          Select an example <strong>(Active: {{ getExampleTitle(activeExampleId) }})</strong>
+      <div class="panelcaption">
+        <div class="panelicon">
+          <img
+            style="padding-left: 10px; height: 20px"
+            src="./assets/misc/icon/icon-example.png"
+            alt="map icon"
+          /></div>
+          <div class="paneltitle">
+            Select an example
+            <strong>(Active: {{ getExampleTitle(activeExampleId) }})</strong>
+
         </div>
       </div>
     </mat-panel-title>
@@ -28,9 +31,10 @@
     <p>
       You can choose from different predefined examples. The position of the
       nodes and resources are fixed in each example. However, opening hours,
-      working hours, etc. can be modified and tested. After selecting an example you
-      can read its <strong>Example Description</strong>. To activate an example
-      simpy click <strong>Load</strong>. After loading the example you can start
+      working hours, etc. can be modified and tested. After selecting an example
+      you can read its <strong>Example Description</strong>. To activate an
+      example simpy click <strong>Load</strong>. After loading the example you
+      can start
       <img
         style="padding-left: 2px; padding-right: 5px; height: 18px"
         src="./assets/misc/icon/icon-run.png"
@@ -62,15 +66,7 @@
 
     <div *ngIf="curExampleId" style="padding-bottom: 15px">
       <h4>Example Description:</h4>
-      <div
-        style="
-          padding-bottom: 5px;
-          padding-left: 5px;
-          border-radius: 5px;
-          border: 3px solid whitesmoke;
-          background-color: whitesmoke;
-        "
-      >
+      <div class="exampledesc">
         {{ getExampleDesc(curExampleId) }}
       </div>
     </div>
@@ -122,19 +118,21 @@
 
 <!-- START OPTIMIZATION -->
 <mat-expansion-panel
-  style="width: 95%; margin: 0 auto"
+  class="wide"
   [expanded]="true"
   matTooltip="Click me to enlarge."
 >
-  <mat-expansion-panel-header style="background-color: #ebefbe">
+  <mat-expansion-panel-header class="colored">
     <mat-panel-title>
-      <div>
+
+      <div class="panelcaption">
+        <div class="panelicon">
         <img
           style="height: 20px"
           src="./assets/misc/icon/icon-run.png"
           alt="run icon"
-        />
-        <div style="display: inline-block; padding-left: 15px">
+        /></div>
+        <div  class="paneltitle">
           Start the optimization and see the result
         </div>
       </div>
@@ -145,13 +143,15 @@
   <div class="boxinfo wideleft">
     <p class="boxinfotitle">Info</p>
     <p>
-      After pressing <strong>Start Optimization</strong> you can optionally set some weights
-      parameters to tune the optimization for different goals
+      After pressing <strong>Start Optimization</strong> you can optionally set
+      some weights parameters to tune the optimization for different goals
       <strong>OR</strong>
       simply use the predefined values and start it right away.
       <br />
-      After a successful run, the result-dialog will open automatically. Later, you can also click on
-      <strong>Show latest result</strong> to return to the result-dialog. Further, you can click on any item on the
+      After a successful run, the result-dialog will open automatically. Later,
+      you can also click on
+      <strong>Show latest result</strong> to return to the result-dialog.
+      Further, you can click on any item on the
       <strong>map</strong>
       <img
         style="padding-right: 5px; padding-left: 2px; height: 20px"
@@ -191,19 +191,20 @@
 <!-- MAP -->
 
 <mat-expansion-panel
-  style="width: 95%; margin: 0 auto"
+  class="wide"
   [expanded]="true"
   matTooltip="Click me to enlarge."
 >
-  <mat-expansion-panel-header style="background-color: #ebefbe">
+  <mat-expansion-panel-header class="colored">
     <mat-panel-title>
-      <div>
+      <div class="panelcaption">
+        <div class="panelicon">
         <img
           style="padding-left: 10px; height: 20px"
           src="./assets/misc/icon/icon-map.png"
           alt="map icon"
-        />
-        <div style="display: inline-block; padding-left: 15px">
+        /></div>
+        <div class="paneltitle">
           See it on a Map
         </div>
       </div>
@@ -221,19 +222,22 @@
 <p></p>
 <!-- ELEMENT SELECTOR -->
 <mat-expansion-panel
-  style="width: 95%; margin: 0 auto"
+  class="wide"
   [expanded]="false"
   matTooltip="Click me to enlarge."
+  (afterExpand)="focusElementSelectorPanel()"
 >
-  <mat-expansion-panel-header style="background-color: #ebefbe">
+  <mat-expansion-panel-header class="colored">
     <mat-panel-title>
-      <div>
+      <div class="panelcaption">
+        <div class="panelicon">
         <img
           style="padding-left: 10px; height: 20px"
           src="./assets/misc/icon/icon-modify.png"
           alt="modfiy icon"
-        />
-        <div style="display: inline-block; padding-left: 15px">
+        /></div>
+
+        <div class="paneltitle">
           Modify Nodes
           <img
             style="padding-left: 2px; height: 20px"
@@ -254,7 +258,7 @@
   </mat-expansion-panel-header>
   <!-- <mat-card style="margin-top:10px;">-->
 
-  <div class="boxinfo wideleft">
+  <div class="boxinfo wideleft" #elselectoranchor>
     <p class="boxinfotitle">Info</p>
     <p>
       Modifying an element is an <strong>optional step</strong>. You can start
@@ -269,8 +273,8 @@
         src="./assets/misc/icon/icon-map.png"
         alt="map icon"
       />
-      you can also click on the elements you want to interact with (modifying, starting a new run,
-      checking the latest result).
+      you can also click on the elements you want to interact with (modifying,
+      starting a new run, checking the latest result).
     </p>
   </div>
   <mat-divider></mat-divider>

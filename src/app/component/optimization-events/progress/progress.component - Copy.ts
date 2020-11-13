@@ -95,7 +95,7 @@ export class ProgressComponent implements OnInit, OnDestroy, OnChanges {
         },
         (error) => console.log('error', error),
         () => {
-          console.log('Completed')
+          //console.log('Completed')
         }
       );
 
@@ -103,7 +103,7 @@ export class ProgressComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(): void {
-    console.log('Changes detected')
+    //console.log('Changes detected')
   }
 
   generateNewPoint(newCost: string) {
@@ -122,7 +122,7 @@ export class ProgressComponent implements OnInit, OnDestroy, OnChanges {
 
   add2Chart(point: any): void {
 
-    console.log('add 2 chart')
+    //console.log('add 2 chart')
 
     this.multi[0].series.push(point);
     this.count++;
@@ -132,7 +132,7 @@ export class ProgressComponent implements OnInit, OnDestroy, OnChanges {
 
   updateChart(): void {
 
-    console.log('update chart')
+    //console.log('update chart')
 
     const point = {
       'name': new Date(new Date().getTime() + (this.count * 60000)),
