@@ -43,17 +43,6 @@
                 </mat-label>
               </h4>
 
-              <!--<mat-form-field style="width:100% !important" appearance="fill">
-
-                                <mat-label>OpeningHours start</mat-label>
-                                <input matInput name="twstart{{ii}}" [ngxMatDatetimePicker]="pickerBegin"
-                                    placeholder="OpeningHours start" [(ngModel)]="openinghours.timeWindow.begin">
-                                <mat-datepicker-toggle matSuffix [for]="pickerBegin">
-                                </mat-datepicker-toggle>
-                                <ngx-mat-datetime-picker #pickerBegin [showSpinners]="true" [showSeconds]="false"
-                                    [stepHour]="1" [stepMinute]="15" [stepSecond]="60" [touchUi]="true">
-                                </ngx-mat-datetime-picker>
-                            </mat-form-field>-->
               <mat-form-field style="width: 100% !important" appearance="fill">
                 <mat-label>OpeningHours start</mat-label>
                 <input
@@ -86,18 +75,6 @@
                 </mat-label>
               </h4>
 
-              <!--<mat-form-field style="width:100% !important" appearance="fill">
-                                <mat-label>OpeningHours end</mat-label>
-                            <input matInput name="twend{{ii}}" #twend="ngModel" [ngxMatDatetimePicker]="pickerEnd"
-                                    [ngClass]="{ 'is-invalid': f.submitted && twend.invalid }"
-                                    placeholder="OpeningHours end" [(ngModel)]="openinghours.timeWindow.end" required>
-                                <mat-datepicker-toggle matSuffix [for]="pickerEnd">
-                                </mat-datepicker-toggle>
-                                <ngx-mat-datetime-picker #pickerEnd [showSpinners]="true" [showSeconds]="false"
-                                    [stepHour]="1" [stepMinute]="15" [stepSecond]="60" [touchUi]="true">
-                                </ngx-mat-datetime-picker>
-                            </mat-form-field>-->
-
               <mat-form-field style="width: 100% !important" appearance="fill">
                 <mat-label>OpeningHours end</mat-label>
                 <input
@@ -122,14 +99,6 @@
                 </ngx-mat-datetime-picker>
               </mat-form-field>
 
-              <!-- <div *ngIf="f.submitted && twend[i] && !twend[i]?.invalid" class="invalid-feedback"> ERROR
-                                    <div *ngIf="twend[i]?.errors?.endBeforeStart">End is before start</div>
-                                </div>
-
-                            <div *ngIf="f.submitted && twend_0.invalid" class="invalid-feedback">
-                                    Invalid
-                                    <div *ngIf="twend_0.errors.endBeforeStart">End is before start</div>
-                                </div>-->
               <p></p>
             </mat-expansion-panel>
             <p></p>
@@ -191,8 +160,10 @@
           <p>
             <span>
               Get to know more features, including 
-                <strong>time windows, </strong><strong>pick-up and delivery, </strong><strong>zone-codes, </strong> 
-                <strong>hard-constraints, </strong> and more...
+              <strong>time windows, </strong
+              ><strong>pick-up and delivery, </strong
+              ><strong>zone-codes, </strong> 
+              <strong>hard-constraints, </strong> and more...
             </span>
             <span style="margin-top: 0px; vertical-align: auto">
               Visit
@@ -424,8 +395,8 @@
         <div class="boxinfo wide">
           <p class="boxinfotitle">Info</p>
           <p>
-            <strong>Binding Resources</strong> are the preferred visitors of a node
-            (sorted by priority value).
+            <strong>Binding Resources</strong
+            > are the preferred visitors of a node (sorted by priority value).
             In case the constraint is defined as hard,
             the optimizer will have to schedule one of the binding Resources. 
             An <strong>excluding Resource</strong> is the counter-concept.
@@ -488,11 +459,11 @@
     </button>
 
     <a
-    href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#nodes"
-    target="_blank"
-    matTooltip="Visit our documentation on Nodes."
-    class="mat-raised-button infobutton"
-    >Nodes</a
-  >
+      href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#nodes"
+      target="_blank"
+      matTooltip="Visit our documentation on Nodes."
+      class="mat-raised-button infobutton"
+      >Nodes</a
+    >
   </div>
 </form>

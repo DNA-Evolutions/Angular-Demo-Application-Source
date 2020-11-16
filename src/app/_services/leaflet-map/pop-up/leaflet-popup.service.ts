@@ -7,227 +7,106 @@ import * as L from 'leaflet';
 import { RouteResultDialogComponent } from 'src/app/component/optimization-elements/result/route/route-result/route-result-dialog.component';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class PopUpService {
+  constructor(public dialog: MatDialog) {}
 
-    constructor(public dialog: MatDialog) { }
+  // TODO refresh popupinfo after modification
+  // TODO add scss for class nodepopup and prettyfiy
+  bindNodePopUp(marker: any, node: JOptGeoNode, ref: ElementRef): void {
+    const popupOptions = {
+      className: 'node-popup pop',
+    };
 
-    // TODO refresh popupinfo after modification
-    // TODO add scss for class nodepopup and prettyfiy
-    bindNodePopUp(marker: any, node: JOptGeoNode, ref: ElementRef): void {
-        const popupOptions = {
-            className: 'node-popup pop'
-        };
+    const popupContent = '<div>Node: ' + node.id + ' <br></div>';
 
-        const popupContent = '<div>Node: ' + node.id + ' <br></div>';
+    const popUp = L.popup().setContent(popupContent);
 
-        const popUp = L.popup()
-            .setContent(popupContent);
+    marker.bindPopup(popUp, popupOptions);
 
-        // marker.bindPopup(popUp, popupOptions).on('click', () => {
+    marker.on('click', () => {
+      this.openNodeDialog(node.id);
+      marker.closePopup();
+    });
 
-        //     this.openNodeDialog(node.id);
-        //     marker.closePopup();
+    marker.bindTooltip('Node: ' + node.id + ' - Click for details');
+  }
 
-        // });
+  //
+  bindPolyRoutePopUp(polyline: any, route: JOptRoute, ref: ElementRef): void {
+    const popupOptions = {
+      className: 'route-popup pop',
+    };
 
-        marker.bindPopup(popUp, popupOptions);
-
-        marker.on('click', () => {
-
-            this.openNodeDialog(node.id);
-            marker.closePopup();
-
-        });
-
-        marker.bindTooltip('Node: ' + node.id + ' - Click for details');
-
-        // marker.on('mouseover', () => {
-
-        //     marker.openPopup();
-
-        // });
-
-        // marker.on('mouseout', () => {
-
-        //     marker.closePopup();
-
-        // });
-
-
-        // marker.bindPopup(popUp, popupOptions).on('popupopen', () => {
-        //     ref.nativeElement
-        //         .querySelector('.node-popup-edit-btn')
-        //         .addEventListener('click', () => {
-        //             this.openNodeDialog(node.id);
-        //             marker.closePopup();
-        //         });
-        // });
-
-
-        // marker.bindPopup(popupInfoWrapped, popupOptions).on('popupopen', () => {
-        //     ref.nativeElement
-        //         .querySelector('.modify')
-        //         .addEventListener('click', () => {
-        //             this.openNodeDialog(node.id);
-        //             marker.closePopup();
-        //         });
-        // });
-        // .on("popupopen", e => {
-        //   this.elementRef.nativeElement
-        //     .querySelector(".delete")
-        //     .addEventListener("click", e => {
-        //       this.deleteArtwork();
-        //     });
-        // });
-
-    }
-
-    //
-    bindPolyRoutePopUp(polyline: any, route: JOptRoute, ref: ElementRef): void {
-        const popupOptions = {
-            className: 'route-popup pop'
-        };
-
-        const popupInfo = `
+    const popupInfo = `
       <div>Id: ${route.id} <br> <br> <button class="modify">See details or modify</button></div">`;
 
-        // polyline.bindPopup(popupInfo, popupOptions).on('popupopen', () => {
-        //     ref.nativeElement
-        //         .querySelector('.modify')
-        //         .addEventListener('click', () => {
-        //             //this.openResourceDialog(res.id);
-        //             //polyline.closePopup();
-        //         });
-        // });
+    polyline.bindPopup(popupInfo, popupOptions).on('popupopen', () => {
+      this.openRouteResultDialog(route.id);
+      polyline.closePopup();
+    });
 
-        polyline.bindPopup(popupInfo, popupOptions).on('popupopen', () => {
+    polyline.bindTooltip(
+      'RouteId: ' +
+        (route.id + 1) +
+        '; Visitor: ' +
+        route.visitorId +
+        ' - Click for details'
+    );
+  }
 
-            this.openRouteResultDialog(route.id);
-            polyline.closePopup();
+  bindResourcePopUp(marker: any, res: JOptGeoResource, ref: ElementRef): void {
+    const popupOptions = {
+      className: 'resource-popup pop',
+    };
 
-        });
+    const popupContent =
+      '<div>Resource: ' +
+      res.id +
+      ' <br><br>  <button class="resource-popup-edit-btn popup-edit-btn">See details or modify</button></div>';
 
-        polyline.bindTooltip('RouteId: ' + (route.id + 1) + '; Visitor: ' + route.visitorId + ' - Click for details');
+    marker.bindPopup(popupContent, popupOptions).on('popupopen', () => {
+      this.openResourceDialog(res.id);
+      marker.closePopup();
+    });
 
-        //     polyline.bindPopup(popupInfo, popupOptions);
+    marker.bindTooltip('Resource: ' + res.id + ' - Click for details');
+  }
 
+  /*
+   */
 
-        //     const popupInfo2 = `
-        //   <div>Id: ${route.id} <br></div">`;
+  openNodeDialog(cNodeId: string): void {
+    const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
+      maxWidth: '700px',
+      width: '90%',
+      data: { nodeId: cNodeId },
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('NodeDetailMarkerViewComponent was closed: ' + result);
+    });
+  }
 
+  openResourceDialog(cResourceId: string): void {
+    const dialogRef = this.dialog.open(ResourcePropertiesDialogComponent, {
+      maxWidth: '700px',
+      width: '90%',
+      data: { resId: cResourceId },
+    });
 
-        //     polyline.on('mouseover', function (evt) {
-        //         //evt.target is the marker that is being moused over
-        //         //bindPopup() does not need to be called here if it was already called
-        //         //somewhere else for this marker.
-        //         this.openPopup();
-        //     });
-        //     polyline.on('mouseout', function (evt) {
-        //         //evt.target is the marker that is being moused over
-        //         //bindPopup() does not need to be called here if it was already called
-        //         //somewhere else for this marker.
-        //         this.closePopup();
-        //     });
+    dialogRef.afterClosed().subscribe((result) => {});
+  }
 
-        //     polyline.on('popupopen', function (evt) {
-        //         //again, evt.target will contain the marker that was clicked
-        //         this.openRouteResultDialog(route.id);
-        //         polyline.closePopup();
-        //     });
+  openRouteResultDialog(curRouteId: number): void {
+    console.log(curRouteId);
+    const dialogRef = this.dialog.open(RouteResultDialogComponent, {
+      width: '80%',
+      maxHeight: '80vh',
+      data: { routeId: curRouteId },
+    });
 
-
-        // polyline.bindPopup(popupInfo);
-
-        // polyline.on('mouseover', function (e) {
-        //     this.openPopup();
-        // });
-        // polyline.on('mouseout', function (e) {
-        //     this.closePopup();
-        // });
-
-
-
-
-    }
-
-
-    //
-
-    bindResourcePopUp(marker: any, res: JOptGeoResource, ref: ElementRef): void {
-        const popupOptions = {
-            className: 'resource-popup pop'
-        };
-
-        const popupContent = '<div>Resource: ' + res.id + ' <br><br>  <button class="resource-popup-edit-btn popup-edit-btn">See details or modify</button></div>';
-
-
-        // marker.bindPopup(popupContent, popupOptions).on('popupopen', () => {
-        //     ref.nativeElement
-        //         .querySelector('.resource-popup-edit-btn')
-        //         .addEventListener('click', () => {
-        //             this.openResourceDialog(res.id);
-        //             marker.closePopup();
-        //         });
-        // });
-
-        marker.bindPopup(popupContent, popupOptions).on('popupopen', () => {
-
-            this.openResourceDialog(res.id);
-            marker.closePopup();
-
-        });
-
-        marker.bindTooltip('Resource: ' + res.id + ' - Click for details');
-
-    }
-
-    /*
-    */
-
-
-    openNodeDialog(cNodeId: string): void {
-        const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
-          maxWidth: '700px',
-          width:'90%',
-            data: { nodeId: cNodeId }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-
-            console.log('NodeDetailMarkerViewComponent was closed: ' + result);
-
-        });
-    }
-
-
-    openResourceDialog(cResourceId: string): void {
-        const dialogRef = this.dialog.open(ResourcePropertiesDialogComponent, {
-          maxWidth: '700px',
-          width:'90%',
-            data: { resId: cResourceId }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-
-
-        });
-    }
-
-    openRouteResultDialog(curRouteId: number): void {
-
-        console.log(curRouteId);
-        const dialogRef = this.dialog.open(RouteResultDialogComponent, {
-            width: '80%',
-            maxHeight: '80vh',
-            data: { routeId: curRouteId }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-
-
-        });
-    }
+    dialogRef.afterClosed().subscribe((result) => {});
+  }
 }

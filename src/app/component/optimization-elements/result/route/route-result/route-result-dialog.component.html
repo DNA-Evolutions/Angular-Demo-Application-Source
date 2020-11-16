@@ -1,30 +1,6 @@
 <div mat-dialog-content>
   <div *ngIf="curRoute; then existingRoute; else nonExistingRoute"></div>
 
-  <!-- cost: number;
-    id: JOptSolutionRouteHeaderId;
-    idleTime: JOptSolutionRouteHeaderIdleTime;
-    prodTime: JOptSolutionRouteHeaderProdTime;
-    tranTime: JOptSolutionRouteHeaderTranTime;
-    termiTime: JOptSolutionRouteHeaderTermiTime;
-    distance: JOptSolutionRouteHeaderDistance;
-    termiDistance: JOptSolutionRouteHeaderTermiDistance;
-    /**
-     * Is an alternate destination in use?
-     */
-    isAlternateDestination: boolean;
-    /**
-     * Is the route closed?
-     */
-    isClosed: boolean;
-    /**
-     * The route violations, like overtime
-     */
-    routeViolations: Array<JOptViolation>;
-    closed?: boolean;
-    alternateDestination?: boolean;
--->
-
   <ng-template #existingRoute>
     <div>
       <mat-expansion-panel
@@ -96,22 +72,21 @@
           </mat-list>
           <p></p>
 
-
-        <p></p>
-        <mat-list-item role="listitem">
+          <p></p>
+          <mat-list-item role="listitem">
             <mat-list dense role="list">
-                <div *ngFor="let vio of curRoute.header.routeViolations;">
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-route-item-cap">Violation:</div>
-                        <div class="mat-list-route-item-value">
-                            {{vio.attribute}} - {{vio.subAttribute}}: {{ vio.value | durationFormatPipe: "h":"auto" }}
-                        </div>
-                    </mat-list-item>
-                </div>
+              <div *ngFor="let vio of curRoute.header.routeViolations">
+                <mat-list-item role="listitem">
+                  <div class="mat-list-route-item-cap">Violation:</div>
+                  <div class="mat-list-route-item-value">
+                    {{ vio.attribute }} - {{ vio.subAttribute }}:
+                    {{ vio.value | durationFormatPipe: "h":"auto" }}
+                  </div>
+                </mat-list-item>
+              </div>
             </mat-list>
-        </mat-list-item>
-      </div>
-
+          </mat-list-item>
+        </div>
       </mat-expansion-panel>
     </div>
     <p></p>
@@ -138,66 +113,11 @@
             <div style="background-color: whitesmoke">
               <app-node-detail [detail]="element"></app-node-detail>
             </div>
-
-            <!--<mat-action-row style="background-color: white;">
-                    <div *ngIf="step > 0">
-                        <button mat-button color="warn" matStepperPrevious>Previous</button>
-                    </div>
-                    <div *ngIf="curRoute.elementDetails.length-1 > step">
-                        <button mat-button  color="primary" matStepperNext>Next</button>
-                    </div>
-                </mat-action-row>-->
           </mat-step>
         </div>
       </mat-vertical-stepper>
     </div>
 
-    <!--<div style=" overflow: hidden; display: flex;">
-        <div style=" width: 1%; min-width: 5px;
-    float:left;">
-            <div class="vl">
-                <span class="dot"></span>
-            </div>
-        </div>
-        <div style="float:right; width:97%;">
-            <mat-accordion>
-                <div *ngFor="let element of curRoute.elementDetails; let i = index" [attr.data-index]="i">
-
-                    <mat-expansion-panel style="margin:5px;background-color: whitesmoke;" [expanded]="step === i" (opened)="setStep(i)"
-                        matTooltip="Click me to enlarge.">
-                        <mat-expansion-panel-header  style="background-color: white;">
-                            <mat-panel-title>
-                                <div>
-                                    <img style="vertical-align:middle; height:22px;" src="./assets/maps/marker-icon.png"
-                                        alt="node marker">
-                                    #{{i+1}}
-
-                                </div>
-
-
-                            </mat-panel-title>
-                            <mat-panel-description style="background-color: white;">
-                                {{element.id}}
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <div ><app-node-detail [detail]="element"></app-node-detail></div>
-
-
-                        <p></p>
-                        <mat-action-row style="background-color: white;">
-                            <div *ngIf="step > 0">
-                                <button mat-button color="warn" (click)="prevStep()">Previous Node</button>
-                            </div>
-                            <div *ngIf="curRoute.elementDetails.length-1 > step">
-                                <button mat-button color="primary" (click)="nextStep()">Next Node</button>
-                            </div>
-                        </mat-action-row>
-                    </mat-expansion-panel>
-
-                </div>
-            </mat-accordion>
-        </div>
-    </div>-->
     <p></p>
   </ng-template>
 

@@ -28,48 +28,23 @@
         <p></p>
       </a>
 
-        <img
-          style="float: left; height: 30px; padding-top: 25px"
-          src="./assets/misc/icon/icon-reset-view.png"
-          (click)="refreshMapCenter()"
-          alt="reset view icon"
-          matTooltip="Reset zoom and position"
-          class="zoomicon iconopacity"
-        />
-        <p></p>
+      <img
+        style="float: left; height: 30px; padding-top: 25px"
+        src="./assets/misc/icon/icon-reset-view.png"
+        (click)="refreshMapCenter()"
+        alt="reset view icon"
+        matTooltip="Reset zoom and position"
+        class="zoomicon iconopacity"
+      />
+      <p></p>
 
-        <app-prepare-run-optimization-view asIcon="true"></app-prepare-run-optimization-view>
-
+      <app-prepare-run-optimization-view
+        asIcon="true"
+      ></app-prepare-run-optimization-view>
     </div>
 
     <div class="map-controll">
-      <div style="margin-top: 10px">
-
-      </div>
+      <div style="margin-top: 10px"></div>
     </div>
   </div>
 </div>
-
-<!-- <div *ngIf="myOptimizationOutput$ | async as result; else nonExistingResult">
-  <button
-    style="margin-left: 15px"
-    mat-raised-button
-    color="primary"
-    (click)="openOptimizationResultDialog(result)"
-    cdkFocusInitial
-  >
-    Show latest result
-  </button>
-</div>
-
-<ng-template #nonExistingResult>
-  <button
-    style="margin-left: 15px"
-    mat-raised-button
-    [disabled]="true"
-    color="primary"
-    cdkFocusInitial
-  >
-    Show latest result
-  </button>
-</ng-template> -->

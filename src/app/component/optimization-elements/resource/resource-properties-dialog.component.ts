@@ -2,86 +2,88 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
-import { JOptOpeningHours, JOptGeoResource, JOptWorkingHours, JOptGeoResourceMaxDistance, JOptGeoResourceMaxTime } from 'build/openapi';
+import {
+  JOptGeoResource,
+  JOptWorkingHours,
+  JOptGeoResourceMaxDistance,
+  JOptGeoResourceMaxTime,
+} from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { ResourcePropertiesData } from './interface/resource-properties-data.interface';
 
-
 @Component({
-    selector: 'app-resource-properties-dialog',
-    templateUrl: 'resource-properties-dialog.component.html',
+  selector: 'app-resource-properties-dialog',
+  templateUrl: 'resource-properties-dialog.component.html',
 })
 export class ResourcePropertiesDialogComponent {
+  //
+  curRes: JOptGeoResource;
 
-    //
-    curRes: JOptGeoResource;
+  // Copies
+  workingHoursCopy: JOptWorkingHours[];
 
-    // Copies
-    workingHoursCopy: JOptWorkingHours[];
+  maxDistanceCopy: JOptGeoResourceMaxDistance;
 
-    maxDistanceCopy: JOptGeoResourceMaxDistance;
+  maxTimeCopy: JOptGeoResourceMaxTime;
+  maxTimeHours: number;
 
-    maxTimeCopy: JOptGeoResourceMaxTime;
-    maxTimeHours: number;
+  // Result indicator
+  hasResult?: boolean;
 
+  constructor(
+    private dataService: OptimizationWrapperService,
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<ResourcePropertiesDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ResourcePropertiesData
+  ) {
+    this.curRes = this.dataService.resource(data.resId);
 
-    // Result indicator
-    hasResult?: boolean;
+    if (this.curRes === undefined) {
+      this.openSnackBar('Resource not found', 'Invalid');
+      this.dialogRef.close();
+    } else {
+      // Create a deep copy of openingHours, so that user changes do not
+      // directly reflect in the object without saving
+      this.workingHoursCopy = JSON.parse(
+        JSON.stringify(this.curRes.workingHours)
+      );
+      this.maxDistanceCopy = JSON.parse(
+        JSON.stringify(this.curRes.maxDistance)
+      );
 
-    constructor(
-        private dataService: OptimizationWrapperService,
-        private snackBar: MatSnackBar,
-        public dialogRef: MatDialogRef<ResourcePropertiesDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: ResourcePropertiesData) {
+      this.maxTimeCopy = JSON.parse(JSON.stringify(this.curRes.maxTime));
 
-        this.curRes = this.dataService.resource(data.resId);
+      this.maxTimeHours = this.dataService.maxWorkingTimeHoursByResource(
+        this.curRes
+      );
 
-        if (this.curRes === undefined) {
-            this.openSnackBar('Resource not found', 'Invalid');
-            this.dialogRef.close();
-        } else {
-            // Create a deep copy of openingHours, so that user changes do not
-            // directly reflect in the object without saving
-            this.workingHoursCopy = JSON.parse(JSON.stringify(this.curRes.workingHours));
-            this.maxDistanceCopy = JSON.parse(JSON.stringify(this.curRes.maxDistance));
+      const curResult = this.dataService.optimizationOutput();
 
-
-            this.maxTimeCopy = JSON.parse(JSON.stringify(this.curRes.maxTime));
-
-            this.maxTimeHours = this.dataService.maxWorkingTimeHoursByResource(this.curRes);
-
-            const curResult = this.dataService.optimizationOutput();
-
-            this.hasResult = curResult !== undefined;
-
-        }
+      this.hasResult = curResult !== undefined;
     }
+  }
 
-    openSnackBar(message: string, action: string): void {
-        this.snackBar.open(message, action, {
-            duration: 1000,
-        });
-    }
+  openSnackBar(message: string, action: string): void {
+    this.snackBar.open(message, action, {
+      duration: 1000,
+    });
+  }
 
+  onSaveClick(): void {
+    this.dataService.setResourceWorkingHour(
+      this.data.resId,
+      this.workingHoursCopy
+    );
+    //this.curRes.maxTime = <JOptGeoResourceMaxTime>(this.maxTimeHours * 3600);
+    this.dataService.setMaxWokringTimeHours(this.curRes.id, this.maxTimeHours);
 
-    onSaveClick(): void {
+    this.openSnackBar('Saved changes', 'Ok');
 
-        this.dataService.setResourceWorkingHour(this.data.resId, this.workingHoursCopy);
-        //this.curRes.maxTime = <JOptGeoResourceMaxTime>(this.maxTimeHours * 3600);
-        this.dataService.setMaxWokringTimeHours(this.curRes.id, this.maxTimeHours);
+    this.dialogRef.close();
+  }
 
-        this.openSnackBar('Saved changes', 'Ok');
-
-        this.dialogRef.close();
-    }
-
-
-    onNoClick(): void {
-
-        this.openSnackBar('Cancelling', 'Ok');
-        this.dialogRef.close();
-    }
-
-
+  onNoClick(): void {
+    this.openSnackBar('Cancelling', 'Ok');
+    this.dialogRef.close();
+  }
 }

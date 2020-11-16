@@ -1,7 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NodePropertiesDialogComponent } from './node-properties-dialog.component';
-
 
 /**
  * @title Dialog Overview
@@ -11,23 +10,19 @@ import { NodePropertiesDialogComponent } from './node-properties-dialog.componen
   templateUrl: 'node-properties.component.html',
 })
 export class NodePropertiesComponent {
-
   nodeId: string;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
       maxWidth: '700px',
-          width:'90%',
-      data: { nodeId: this.nodeId }
+      width: '90%',
+      data: { nodeId: this.nodeId },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
-    console.log('NodeDetailMarkerViewComponent was closed: ' + result);
-
+    dialogRef.afterClosed().subscribe((result) => {
+      //
     });
   }
-
 }

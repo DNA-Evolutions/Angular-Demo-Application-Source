@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
 
 @Pipe({
@@ -17,9 +16,7 @@ export class DurationFormatPipe implements PipeTransform {
 
     // Bring to seconds
     if (sourceUnit === 'PT') {
-      //console.log(durationOrg);
       durationSeconds = this.asDurationInSeconds(durationOrg);
-      //console.log(durationSeconds);
     } else {
       duration = +durationOrg;
     }

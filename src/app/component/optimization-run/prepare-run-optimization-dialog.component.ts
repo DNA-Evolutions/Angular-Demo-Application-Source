@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   MatDialog,
   MatDialogRef,
@@ -8,24 +8,15 @@ import { PrepareRunOptimizationDialogData } from './prepare-run-optimization-dat
 import { RunOptimizationDialogComponent } from './run-optimization-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-//import { InputOptimizationDataService } from '../../inputDataService/input-optimization-data.service';
-
-import {
-  JOptOpeningHours,
-  JOptGeoNode,
-  JOptOptimizationRunOptions,
-  JOptOptimizationOutput,
-} from 'build/openapi';
+import { JOptOptimizationRunOptions } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 @Component({
   selector: 'app-prepare-run-optimization-dialog',
   templateUrl: 'prepare-run-optimization-dialog.component.html',
-  styleUrls: ['prepare-run-optimization-view.component.scss']
+  styleUrls: ['prepare-run-optimization-view.component.scss'],
 })
 export class PrepareRunOptimizationDialogComponent {
-
-
   curSettings: JOptOptimizationRunOptions;
 
   // Copies
@@ -40,14 +31,9 @@ export class PrepareRunOptimizationDialogComponent {
     public runDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: PrepareRunOptimizationDialogData
   ) {
-
-    //('PrepareRunOptimizationDialogComponent');
-
-
     this.curSettings = this.dataService.optimizerSettings();
 
     if (this.curSettings === undefined) {
-      //console.log('Input is not valid');
       this.openSnackBar('Input is not valid', 'Invalid');
       this.prepareDialogRef.close();
     }
@@ -93,7 +79,7 @@ export class PrepareRunOptimizationDialogComponent {
     return '1';
   }
 
-  getPropertyAbbr(key: string): string{
+  getPropertyAbbr(key: string): string {
     if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
       return 'SA.NumIterations';
     }
@@ -154,12 +140,6 @@ export class PrepareRunOptimizationDialogComponent {
       data: {},
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-
-    // console.log('RunOptimizationViewComponent was closed: ' + result);
-
-    // });
-
     return dialogRef;
   }
 
@@ -168,30 +148,6 @@ export class PrepareRunOptimizationDialogComponent {
     this.openRunDialog();
     this.prepareDialogRef.close();
   }
-
-  // onStartClickOld(): void {
-  //   console.log('RunOptimizationDialogComponent starting optimization.');
-
-  //   this.dataService.setOptimizerSettings(this.settingsCopy);
-
-  //   this.dataService.startOptimization().subscribe(
-  //     (watcherEvent: JOptOptimizationOutput) => {
-
-  //       console.log('success');
-  //       console.log(watcherEvent);
-
-  //       //this.ngZone.run(() => {
-  //       //  //this.latestProgressValue = watcherEvent;
-  //       //  this.latestProgress = watcherEvent;
-  //       //});
-  //     },
-  //     (error) => console.log('error', error),
-  //     () => {
-  //       console.log('Completed')
-  //       this.openSnackBar('Optimization done', 'Ok');
-  //     }
-  //   )
-  // }
 
   onNoClick(): void {
     console.log('RunOptimizationDialogComponent closing without saving.');

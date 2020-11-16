@@ -1,71 +1,30 @@
 <mat-toolbar class="colored">
   <mat-toolbar-row>
     <div class="toolbar">
-
-
-        <a href="https://www.dna-evolutions.com" target="_blank">
-          <img
-            class="leftitem"
-            src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
-            alt="map icon"
-        /></a>
-
+      <a href="https://www.dna-evolutions.com" target="_blank">
+        <img
+          class="leftitem"
+          src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
+          alt="map icon"
+      /></a>
 
       <div class="centeritem">
         <strong><u>JOpt.</u>TourOptimizer - Demo</strong>
       </div>
 
       <div class="rightitem">
-      <input
-        type="image"
-        width="40px;"
-        matTooltip="Watch our Howto-Video and get further information."
-        src="./assets/misc/icon/help-icon.png"
-        (click)="openIntroductionDialog()"
-      />
-    </div>
+        <input
+          type="image"
+          width="40px;"
+          matTooltip="Watch our Howto-Video and get further information."
+          src="./assets/misc/icon/help-icon.png"
+          (click)="openIntroductionDialog()"
+        />
+      </div>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<!--<mat-form-field appearance="fill">
-    <mat-label>Select an element...</mat-label>
-    <mat-select [(ngModel)]="curExampleId" (ngModelChange)="setExampelId($event)">
-
-        <mat-option value="exampleOne">
-            exampleOne
-        </mat-option>
-        <mat-option value="exampleTwo">
-            exampleTwo
-        </mat-option>
-
-    </mat-select>
-</mat-form-field>
-
-<div *ngIf="curExampleId">
-    <button mat-raised-button matTooltip="Open details of Node" (click)="loadExample(curExampleId)" color="primary"
-        cdkFocusInitial>Open details of</button>
-</div>-->
-
 <div>
   <app-example></app-example>
 </div>
-
-<!--<div *ngIf="exampleIdChangesSubject | async as id">
-
-    <div>
-        <app-example [exampleId]="id"></app-example>
-    </div>-->
-<!--</div>-->
-
-<!--<div *ngIf="exampleId; else default">
-    <div>
-        <app-example [exampleId]="exampleId"></app-example>
-    </div>
-</div>
-
-<ng-template #default>
-    <div>
-        <app-example [exampleId]="exampleDefaultId"></app-example>
-    </div>
-</ng-template>-->

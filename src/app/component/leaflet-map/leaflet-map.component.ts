@@ -1,26 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
-import { icon, Marker } from 'leaflet';
 
-import {
-  JOptOptimizationInput,
-  JOptOptimizationOutput,
-  JOptGeoNode,
-  JOptGeoResource,
-  JOptOptimizationRunOptions,
-  JOptOpeningHours,
-  JOptWorkingHours,
-  OptimizationServiceControllerService,
-  JOptRouteElementDetail,
-  JOptRoute,
-  JOptGeoNodeVisitDuration,
-} from 'build/openapi';
+import { JOptOptimizationOutput } from 'build/openapi';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -42,7 +23,6 @@ import { GeoAndRoutingService } from 'src/app/_services/geo-and-routing/geo-and-
 import { LeafletMarkerService } from 'src/app/_services/leaflet-map/marker/leaflet-marker.service';
 import { MapViewDefinition } from 'src/app/_services/leaflet-map/interface/map-view-defintion';
 import { MatDialog } from '@angular/material/dialog';
-import { NodePropertiesDialogComponent } from '../optimization-elements/node/node-properties-dialog.component';
 import { LeafletPolylineService } from 'src/app/_services/leaflet-map/polyline/leaflet-polyline.service';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { EventHandler } from '../remove/map/interfaces/event-handler';
@@ -58,7 +38,6 @@ import { OptimizationResultDialogComponent } from '../optimization-elements/resu
   styleUrls: ['./leaflet-map.component.scss'],
 })
 export class LeafletMapComponent implements AfterViewInit, OnDestroy {
-
   private map: any;
   private mapViewDef: MapViewDefinition;
   private tiles: any;
@@ -86,7 +65,6 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.initMap();
     this.initMapHandlers();
 
-    //console.log('LeafletMapComponent ngAfterViewInit called');
     this.myOptimizationOutput$.subscribe((result: JOptOptimizationOutput) => {
       console.log('Drawing result');
       this.refreshMap();
@@ -103,12 +81,8 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
     this.optiService.getRefreshObservable().subscribe((result: boolean) => {
       if (result) {
-        //console.log('Refresh Map');
         this.refreshMapCenter();
         this.refreshMap();
-        // Set map to new position
-        //asd
-        //asd
       }
     });
   }
@@ -118,23 +92,19 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   public refreshMap(): void {
-    //console.log('Removing layers');
     this.map.eachLayer((curLayer) => {
       if (curLayer !== this.tiles) {
         this.map.removeLayer(curLayer);
       }
     });
 
-    //console.log('Adding markers');
     this.addMarksers();
   }
 
   public refreshMapCenter(): void {
     const mapViewDef = this.geoService.mapViewDef();
 
-    //console.log(mapViewDef);
     this.map.setView(mapViewDef.center, mapViewDef.zoom, { animation: true });
-    //this.map.setZoom(mapViewDef.zoom, {animationEnd: true});
   }
 
   private addMarksers(): void {
@@ -182,17 +152,13 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   protected onMapMouseMove(evt: any): void {
-    const offset: { x: number; y: number } = getCurrentOffset(this.map);
-
     // uncomment to study offset
-    // console.log('offset computation:', offset);
 
     // Lat and Long are embedded in the event object
     const lat: string = evt.latlng.lat.toFixed(3);
     const long: string = evt.latlng.lng.toFixed(3);
     const zoom: string = this.map.getZoom();
     this.mcText = `Latitude: ${lat} &nbsp; &nbsp; Longitude: ${long} &nbsp; Zoom: ${zoom}`;
-    //console.log('move' + this.mcText);
   }
 
   public ngOnDestroy(): void {
@@ -204,15 +170,12 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',
-          maxHeight: '90%',
+      maxHeight: '90%',
       data: { result: output },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      //const runDialogRef: MatDialogRef<RunOptimizationDialogComponent> = result;
-      //runDialogRef.afterClosed().subscribe(optimizationResult => {
-      //  console.log('Got optimization result: ' + optimizationResult);
-      //});
+    dialogRef.afterClosed().subscribe(() => {
+      //
     });
   }
 

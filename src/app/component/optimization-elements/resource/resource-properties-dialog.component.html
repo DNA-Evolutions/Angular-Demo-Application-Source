@@ -9,13 +9,6 @@
   novalidate
 >
   <div mat-dialog-content>
-    <!--<mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-
-  <mat-divider></mat-divider>-->
-
     <mat-tab-group>
       <mat-tab label="Basic">
         <p></p>
@@ -161,7 +154,6 @@
       </mat-tab>
 
       <mat-tab label="Advandced">
-        <!--<div mat-dialog-content>-->
         <div class="wide boxteaser">
           <p class="boxteasertitle dontbreakout">Resources in JOpt</p>
           <p>
@@ -189,61 +181,33 @@
             <li style="margin: 0 0 10px 0">and more...</li>
 
             <mat-divider></mat-divider>
-            <span style="margin-top: 0px;vertical-align: auto;">
-
+            <span style="margin-top: 0px; vertical-align: auto">
               Visit
               <a
                 href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
                 target="_blank"
                 >Special features</a
               >
-
-              </span>
+            </span>
             <span>
-            <img style="margin-top: 10px;padding-left:10px;height: 40px;vertical-align:middle;"
-            src="./assets/misc/icon/click-icon.png"
-            alt="click icon"
-          /></span>
+              <img
+                style="
+                  margin-top: 10px;
+                  padding-left: 10px;
+                  height: 40px;
+                  vertical-align: middle;
+                "
+                src="./assets/misc/icon/click-icon.png"
+                alt="click icon"
+            /></span>
           </p>
         </div>
-      <!--</div>-->
       </mat-tab>
     </mat-tab-group>
-    <!--<mat-label>Current OpeningHours</mat-label>
-  <p></p>
-  <div *ngFor="let openinghours of openingHoursCopy">
-
-
-    <mat-form-field appearance="fill">
-      <mat-label>OpeningHours start</mat-label>
-      <input matInput [ngxMatDatetimePicker]="pickerBegin" placeholder="OpeningHours start"
-        [(ngModel)]="openinghours.timeWindow.begin">
-      <mat-datepicker-toggle matSuffix [for]="pickerBegin">
-      </mat-datepicker-toggle>
-      <ngx-mat-datetime-picker #pickerBegin [showSpinners]="true" [showSeconds]="false" [stepHour]="1" [stepMinute]="15"
-        [stepSecond]="60" [touchUi]="false">
-      </ngx-mat-datetime-picker>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>OpeningHours start</mat-label>
-      <input matInput [ngxMatDatetimePicker]="pickerEnd" placeholder="OpeningHours start"
-        [(ngModel)]="openinghours.timeWindow.end">
-      <mat-datepicker-toggle matSuffix [for]="pickerEnd">
-      </mat-datepicker-toggle>
-      <ngx-mat-datetime-picker #pickerEnd [showSpinners]="true" [showSeconds]="false" [stepHour]="1" [stepMinute]="15"
-        [stepSecond]="60" [touchUi]="false">
-      </ngx-mat-datetime-picker>
-    </mat-form-field>
-
-    <p></p>
-
-  </div>-->
   </div>
   <p></p>
   <mat-divider></mat-divider>
   <div mat-dialog-actions class="inline buttongroup">
-    <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>-->
     <button
       mat-raised-button
       matTooltip="Save all modifications and close this dialog."
@@ -264,11 +228,11 @@
     </button>
 
     <a
-    href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#resources"
-    target="_blank"
-    matTooltip="Visit our documentation on Resources."
-    class="mat-raised-button infobutton"
-    >Resources</a
-  >
+      href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#resources"
+      target="_blank"
+      matTooltip="Visit our documentation on Resources."
+      class="mat-raised-button infobutton"
+      >Resources</a
+    >
   </div>
 </form>

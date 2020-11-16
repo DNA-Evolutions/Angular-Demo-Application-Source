@@ -8,7 +8,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['howto-dialog.component.scss'],
 })
 export class HowtoDialogComponent implements OnInit {
-
   @Input() ytVideoId: string;
   safeUrl: any;
 
@@ -41,6 +40,5 @@ export class HowtoDialogComponent implements OnInit {
       this.curVideoId = this.data.ytVideoId;
       return;
     }
-
   }
 }

@@ -1,13 +1,6 @@
 <h1 mat-dialog-title>Optimization Run Settings</h1>
 <mat-divider></mat-divider>
 <div mat-dialog-content>
-  <!--<mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-
-  <mat-divider></mat-divider>-->
-
   <p></p>
   <mat-accordion>
     <div *ngFor="let prop of settingsCopy?.properties">
@@ -19,14 +12,16 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="propcontainer">
-            <div class="propsettings">
-              <strong>Setting:</strong>
+              <div class="propsettings">
+                <strong>Setting:</strong>
+              </div>
+              <div class="propkey dontbreakout">
+                {{ getPropertyAbbr(prop.key) }}
+              </div>
+              <div class="propvalue">
+                <strong>Value: &nbsp;</strong>{{ prop.value }}
+              </div>
             </div>
-            <div class="propkey dontbreakout">{{ getPropertyAbbr(prop.key) }}</div>
-            <div class="propvalue">
-              <strong>Value: &nbsp;</strong>{{ prop.value }}
-            </div>
-          </div>
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
@@ -64,8 +59,6 @@
 </div>
 <mat-divider></mat-divider>
 <div mat-dialog-actions class="inline buttongroup">
-  <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Save</button>
-    <button mat-raised-button color="primary" (click)="onSaveClick()" cdkFocusInitial>Save</button>-->
   <button
     mat-raised-button
     color="primary"
