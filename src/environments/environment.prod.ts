@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  host: 'http://jopttouroptimizer-on8081.westeurope.azurecontainer.io',
+  host: 'http://jopttouroptimizerlatest.westeurope.azurecontainer.io',
   port: '8081',
   apiProgress: '/api/optimization/stream/progress',
   apiWarning: '/api/optimization/stream/warning',
