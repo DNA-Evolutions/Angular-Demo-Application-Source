@@ -25,12 +25,12 @@ import { MapViewDefinition } from 'src/app/_services/leaflet-map/interface/map-v
 import { MatDialog } from '@angular/material/dialog';
 import { LeafletPolylineService } from 'src/app/_services/leaflet-map/polyline/leaflet-polyline.service';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
-import { EventHandler } from '../remove/map/interfaces/event-handler';
 
 import { MapIconResourceOptions } from './marker-icon/map-icon-resource-options';
 import { MapIconNodeOptions } from './marker-icon/map-icon-node-options';
 import { Observable } from 'rxjs';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
+import { EventHandler } from './interface/event-handler';
 
 @Component({
   selector: 'app-leaflet-map',
