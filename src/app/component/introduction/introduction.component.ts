@@ -6,6 +6,8 @@ import {
 } from '@angular/material/dialog';
 import { HowtoDialogComponent } from './howto-dialog/howto-dialog.component';
 
+import { environment } from './../../../environments/environment';
+
 @Component({
   selector: 'app-introduction',
   templateUrl: 'introduction.component.html',
@@ -19,6 +21,10 @@ export class IntroductionComponent {
 
   onCloseClick(): void {
     this.dialogRef.close();
+  }
+
+  public getCurrentDefinedHost(): string {
+    return environment.host + ':' + environment.port;
   }
 
   openHowtoDialog(): void {

@@ -50,3 +50,18 @@ Start locally: docker run -d -v ${PWD}:/usr/src/app -p 3000:80 --name test --rm 
 Open: http://localhost:3000/
 
 TODO: Composing => use https://mherman.org/blog/dockerizing-an-angular-app/
+
+## Env with docker
+
+Setting the swagger host and the swagger port.
+
+```
+docker run  
+--env JOPT_SWAGGER_HOST="http://jopttouroptimizerlatest.westeurope.azurecontainer.io" 
+--env JOPT_SWAGGER_PORT="8081" 
+-d -v 
+${PWD}:/usr/src/app 
+-p 3000:80 
+--name joptAngularDemoContainer 
+--rm faja:latest
+```
