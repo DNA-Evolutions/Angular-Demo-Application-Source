@@ -9,9 +9,11 @@ pipelines:
         script:
           - npm install
         artifacts:
-          - node_modules/** # Save modules for next steps
+          - node_modules/**
     - step:
         name: Docker build
+        services:
+          - docker
         script:
           - docker version
           - docker build -t dnaevolutions/jopt-demoapplication .
