@@ -1,3 +1,0 @@
-- Priority of zero leads to serilaization error in core!
-- Check health of swagger before start
-- Fix progress observable
