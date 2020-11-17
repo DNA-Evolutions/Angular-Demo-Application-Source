@@ -53,6 +53,8 @@ export class OptimizationResultDialogComponent
 
   expandedElement: JOptRouteElementDetail | null;
 
+  public panelOpenState: boolean;
+
   // During next and prev in nodes
   step = -1;
 
