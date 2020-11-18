@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
   //host: window["env"]["host"] || "http://localhost",
-  host: window["env"]["host"] || "http://jopttouroptimizerlatest.westeurope.azurecontainer.io",
-  port: window["env"]["port"] || "8081",
+  host: window["env"]["host"] || "https://joptswaggerapplication.westeurope.azurecontainer.io",
+  port: window["env"]["port"] || "443",
   apiProgress: '/api/optimization/stream/progress',
   apiWarning: '/api/optimization/stream/warning',
   health: '/actuator/health',
