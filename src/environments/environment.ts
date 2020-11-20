@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: window["env"]["inproduction"] || false,
   host: window["env"]["host"] || "http://localhost",
   port: window["env"]["port"] || "8081",
   apiProgress: '/api/optimization/stream/progress',

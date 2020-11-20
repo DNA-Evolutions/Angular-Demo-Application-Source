@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: window["env"]["inproduction"] || true,
   host: window["env"]["host"] || "https://dna-swagger.azurewebsites.net",
   port: window["env"]["port"] || "443",
   apiProgress: '/api/optimization/stream/progress',

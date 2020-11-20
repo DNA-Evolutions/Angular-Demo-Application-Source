@@ -4,4 +4,5 @@
   // Environment variables
   window["env"]["host"] = "http://localhost";
   window["env"]["port"] = "8081";
+  window["env"]["inproduction"] = false;
 })(this);
