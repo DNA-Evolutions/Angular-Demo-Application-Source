@@ -66,7 +66,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.initMapHandlers();
 
     this.myOptimizationOutput$.subscribe((result: JOptOptimizationOutput) => {
-      console.log('Drawing result');
+      // Drawing result
       this.refreshMap();
       result.solution.routes.forEach((r, index) => {
         //console.log('Draw lines');

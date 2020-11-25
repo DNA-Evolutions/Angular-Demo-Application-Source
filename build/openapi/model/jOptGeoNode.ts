@@ -30,7 +30,7 @@ export interface JOptGeoNode {
      */
     id: string;
     position: JOptGeoPosition;
-    stayNode?: boolean;
     workNode?: boolean;
+    stayNode?: boolean;
 }
 

@@ -110,7 +110,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
   }
 
 
-  extractCost(desc: string): string {
+/*   extractCost(desc: string): string {
 
     // Eg:
     // PC 98.0, RE 1, AL GeneticEvolution, JC 1060.0160654939095, RC 4, EC 8, TC 12, TT[h] 16, TU[%] 24, TD[km] 978.257,
@@ -127,7 +127,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
     const cost = matchArray[0];
 
     return cost;
-  }
+  } */
 
 
   ngOnDestroy(): void {

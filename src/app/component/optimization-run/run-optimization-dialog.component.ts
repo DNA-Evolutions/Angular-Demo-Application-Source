@@ -58,7 +58,7 @@ export class RunOptimizationDialogComponent {
   }
 
   private startOptimization(): void {
-    console.log('::STARTING OPTIMIZATION::');
+    // STARTING OPTIMIZATION;
 
     this.dataService
       .startOptimization()

@@ -24,6 +24,10 @@ export interface JOptOptimizationProgress {
      */
     curProgress: number;
     /**
+     * The current cost of the currently running optimization algorithm
+     */
+    curCost: number;
+    /**
      * The stage of the optimization. The first running algorithm will get the stage 0.
      */
     stage: number;
