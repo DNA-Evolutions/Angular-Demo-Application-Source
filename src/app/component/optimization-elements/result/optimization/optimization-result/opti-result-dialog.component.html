@@ -10,7 +10,6 @@
         (opened)="setStep(-1); panelOpenState = true"
         (closed)="panelOpenState = false"
         [expanded]="step === -1"
-        matTooltip="Click me to enlarge."
       >
         <mat-expansion-panel-header>
           <h4>
@@ -101,7 +100,6 @@
           [attr.data-index]="i"
           [expanded]="step === i"
           (opened)="setStep(i); isExpanded = true"
-          matTooltip="Click me to enlarge."
         >
           <mat-expansion-panel-header class="mat-row">
             <span class="mat-cell"
