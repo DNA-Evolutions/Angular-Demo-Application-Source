@@ -144,7 +144,7 @@ div.boxinfo {
   color: rgba(0, 0, 0, 0.87);
   font-feature-settings: "kern", "liga";
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1.0;
+  line-height: 1;
   -webkit-print-color-adjust: exact;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
@@ -225,7 +225,6 @@ div.wide {
   margin: 0 auto;
 }
 
-
 /* .mat-expansion-panel-header,
 .mat-expansion-panel-header:hover,
 .mat-expansion-panel-header:focus,
@@ -236,11 +235,9 @@ div.wide {
   background: red !important;
 } */
 
-
-.mat-expansion-panel-header.colored{
+.mat-expansion-panel-header.colored {
   background-color: #ebefbe !important;
 }
-
 
 div.wideleft {
   width: 95%;
@@ -322,7 +319,6 @@ div.violation {
   padding-left: 1.5rem;
 }
 
-
 .mat-raised-button.nodedetailbutton::after {
   content: "";
   background: url("/assets/maps/marker-icon.png");
@@ -340,7 +336,6 @@ div.violation {
   padding-left: 1.5rem;
 }
 
-
 .mat-raised-button.resourcedetailbutton::after {
   content: "";
   background: url("/assets/maps/marker-icon-red.png");
@@ -353,25 +348,24 @@ div.violation {
   z-index: 0;
 }
 
-
 /*
 * ICONS
 */
 
-.iconopacity{
+.iconopacity {
   opacity: 0.7;
 }
 
-.zoomicon{
-  transition: transform .2s ease;
+.zoomicon {
+  transition: transform 0.2s ease;
 }
 
 .zoomicon:hover {
   transform: scale(1.1);
 }
 
-.dezoomicon{
-  transition: transform .2s ease;
+.dezoomicon {
+  transition: transform 0.2s ease;
 }
 
 .dezoomicon:hover {
@@ -382,28 +376,25 @@ div.violation {
 * END ICON
 */
 
-
-div.buttongroup{
+div.buttongroup {
   justify-content: space-between;
 }
 
-div.buttongroup>button + button {
+div.buttongroup > button + button {
   margin-left: 10px;
 }
 
-div.buttongroup>button + button + a {
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
-div.buttongroup>button + a {
+div.buttongroup > button + button + a {
   margin-left: 10px;
   margin-top: 10px;
 }
 
+div.buttongroup > button + a {
+  margin-left: 10px;
+  margin-top: 10px;
+}
 
 .dontbreakout {
-
   /* These are technically the same, but use both */
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -419,23 +410,22 @@ div.buttongroup>button + a {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-
 }
 
 @media only screen and (max-width: 600px) {
-  div.buttongroup{
+  div.buttongroup {
     display: flex;
     justify-content: space-between;
     align-items: center; /* centers them vertically */
   }
 
-  div.buttongroup>button + button + a {
+  div.buttongroup > button + button + a {
     margin-left: 0px;
     margin-top: 5px;
     margin-bottom: 10px;
   }
 
-  div.buttongroup>button + a {
+  div.buttongroup > button + a {
     margin-left: 0px;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -447,6 +437,12 @@ div.buttongroup>button + a {
 
     margin: 10px auto;*/
   }
+
+  .mat-expansion-panel-header {
+    height: auto !important;
+  }
+
+  .mat-toolbar-row {
+    height: auto !important;
+  }
 }
-
-

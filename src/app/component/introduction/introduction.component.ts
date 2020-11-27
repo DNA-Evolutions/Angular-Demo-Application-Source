@@ -27,6 +27,7 @@ export class IntroductionComponent {
     return environment.host + ':' + environment.port;
   }
 
+
   openHowtoDialog(): void {
     let takeUpPercentage = 85; // take up to 80% of the screen size
 
@@ -50,8 +51,9 @@ export class IntroductionComponent {
     console.log('relativeWidth: ' + relativeWidth);
     console.log('relativeHeight: ' + relativeHeight);
 
+
     dialogConfig.data = {
-      ytVideoId: '2q7cYYArKm8',
+      ytVideoId: environment.howtoYTIdent,
     };
 
     const dialogRef = this.dialog.open(HowtoDialogComponent, dialogConfig);

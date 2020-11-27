@@ -10,10 +10,7 @@
 <div mat-dialog-content>
   <!--   What we do  -->
   <h4>About us:</h4>
-  <mat-expansion-panel
-    class="xwide"
-    [expanded]="false"
-  >
+  <mat-expansion-panel class="xwide" [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="intro-title">
@@ -103,10 +100,7 @@
 
   <!--   Goal -->
   <h4>Demo Application:</h4>
-  <mat-expansion-panel
-    class="xwide"
-    [expanded]="false"
-  >
+  <mat-expansion-panel class="xwide" [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="intro-title">
@@ -145,10 +139,7 @@
   <p></p>
 
   <!--   How to use this application -->
-  <mat-expansion-panel
-    class="xwide"
-    [expanded]="false"
-  >
+  <mat-expansion-panel class="xwide" [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="intro-title">
@@ -187,10 +178,7 @@
   <p></p>
 
   <!--   Implementation  -->
-  <mat-expansion-panel
-    class="xwide"
-    [expanded]="false"
-  >
+  <mat-expansion-panel class="xwide" [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="intro-title">
@@ -227,16 +215,18 @@
         >
       </li>
       <p></p>
-      <span style="font-size: small; color: lightgray"
-        >Currently defined swagger endpoint:
-
+      By default, we use our swagger endpoint, hosted on Microsoft-Azure, to perform the Optimization. You can open the current swagger endpoint in use
+      directly.
+      <p></p>
+      <li>
         <a
-          style="text-decoration: none;color: inherit; "
           href="{{ getCurrentDefinedHost() }}/swagger-ui.html"
           target="_blank"
-        >{{ getCurrentDefinedHost() }}/swagger-ui.html</a
+          matTooltip="Open currently defined swagger endpoint:"
+          >Swagger-Endpoint: {{ getCurrentDefinedHost() }}/swagger-ui.html</a
         >
-      </span>
+      </li>
+      <p></p>
     </div>
   </mat-expansion-panel>
   <p></p>
@@ -244,10 +234,7 @@
   <p></p>
 
   <!--  Further documetation and links -->
-  <mat-expansion-panel
-    class="xwide"
-    [expanded]="false"
-  >
+  <mat-expansion-panel class="xwide" [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="intro-title">
@@ -311,10 +298,7 @@
   <p></p>
 
   <!--  Contact -->
-  <mat-expansion-panel
-    class="xwide"
-    [expanded]="false"
-  >
+  <mat-expansion-panel class="xwide" [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="intro-title">
@@ -341,10 +325,7 @@
   <p></p>
 
   <!--  Attribution -->
-  <mat-expansion-panel
-    class="xwide"
-    [expanded]="false"
-  >
+  <mat-expansion-panel class="xwide" [expanded]="false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <div class="intro-title">

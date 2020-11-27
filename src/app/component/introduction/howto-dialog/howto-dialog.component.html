@@ -13,8 +13,16 @@
 <p></p>
 <mat-dialog-content>
   <div class="videoWrapper">
-    <iframe [src]='safeUrl' frameborder="0" allowfullscreen></iframe>
+    <iframe [src]="safeUrl" frameborder="0" allowfullscreen></iframe>
   </div>
+  <span style="font-size: small; color: lightgray">
+    <a
+      style="text-decoration: none; color: inherit"
+      href="{{ getYTShortUrl() }}"
+      target="_blank"
+      >YoutTube-Link: {{ getYTShortUrl() }}</a
+    ></span
+  >
 </mat-dialog-content>
 
 <p></p>

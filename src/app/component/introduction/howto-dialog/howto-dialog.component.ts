@@ -13,6 +13,14 @@ export class HowtoDialogComponent implements OnInit {
 
   curVideoId?: string;
 
+  public getYTShortUrl(){
+    return `https://y2u.be/${this.curVideoId}`;
+  }
+
+  public getYTUrl(){
+    return `https://www.youtube.com/embed/${this.curVideoId}`;
+  }
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<HowtoDialogComponent>,
@@ -20,7 +28,7 @@ export class HowtoDialogComponent implements OnInit {
   ) {
     this.extractVideoId();
     this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${this.curVideoId}`
+      this.getYTUrl()
     );
   }
 
