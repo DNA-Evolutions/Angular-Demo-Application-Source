@@ -99,3 +99,26 @@ $mat-row-horizontal-padding: 24px;
 .mat-list-opti-item-value {
   display: inline-block;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .mat-list-opti-item-value {
+    display: block;
+    font-size: 0.8em;
+  }
+
+  .mat-list-route-item-value {
+    display: block;
+    font-size: 0.8em;
+  }
+
+  .mat-list-route-item-cap {
+    display: block;
+    font-size: 0.8em;
+  }
+
+  .mat-list-opti-item-cap {
+    display: block;
+    font-size: 0.8em;
+  }
+}

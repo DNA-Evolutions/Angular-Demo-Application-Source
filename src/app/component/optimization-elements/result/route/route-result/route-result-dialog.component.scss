@@ -27,3 +27,16 @@ div.frameborder {
 
   border-width: 2px 2px;*/
 }
+
+@media only screen and (max-width: 600px) {
+  .mat-list-route-item-value{
+    display: block;
+    font-size: 0.8em;
+  }
+
+  .mat-list-route-item-cap {
+    display: block;
+    font-size: 0.8em;
+  }
+
+}

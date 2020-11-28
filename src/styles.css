@@ -394,6 +394,12 @@ div.buttongroup > button + a {
   margin-top: 10px;
 }
 
+.disappearable{
+}
+
+.disappearablesmall{
+}
+
 .dontbreakout {
   /* These are technically the same, but use both */
   overflow-wrap: break-word;
@@ -412,7 +418,16 @@ div.buttongroup > button + a {
   hyphens: auto;
 }
 
+
 @media only screen and (max-width: 600px) {
+  .mat-raised-button{
+    font-size: 0.8em!important;
+  }
+
+  .disappearable{
+    display: none;
+  }
+
   div.buttongroup {
     display: flex;
     justify-content: space-between;

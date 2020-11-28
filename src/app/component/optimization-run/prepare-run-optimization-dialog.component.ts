@@ -135,7 +135,9 @@ export class PrepareRunOptimizationDialogComponent {
 
   openRunDialog(): MatDialogRef<RunOptimizationDialogComponent> {
     const dialogRef = this.runDialog.open(RunOptimizationDialogComponent, {
-      width: '450px',
+      minWidth: '40%',
+      maxWidth: '95%',
+      maxHeight: '90%',
       disableClose: true,
       data: {},
     });

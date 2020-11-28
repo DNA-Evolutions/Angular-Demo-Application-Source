@@ -59,8 +59,9 @@ export class AppComponent implements OnInit {
 
   openIntroductionDialog(): void {
     const dialogRef = this.dialog.open(IntroductionComponent, {
-      width: '100%',
-      maxHeight: '100%',
+      minWidth: '40%',
+      maxWidth: '95%',
+      maxHeight: '95%',
       disableClose: false,
       data: {},
     });

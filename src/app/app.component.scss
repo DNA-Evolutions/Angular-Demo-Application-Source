@@ -11,10 +11,14 @@ div.toolbar{
 }
 
 .centeritem{
-  margin: 10px 10px 0 0;
+  margin: 10px 0px 0 0;
   display: inline-block;
   text-align: center;
 }
+
+
+
+
 
 .rightitem{
   float: right;
@@ -26,18 +30,20 @@ div.toolbar{
    color: #fff;
 }
 
+@media only screen and (max-width: 300px) {
+  .disappearablesmall{
+    display: none;
+  }
+}
 
 @media only screen and (max-width: 600px) {
-  .leftitem{
-    display: none;
-    height: 55px;
-  }
 
   .centeritem{
     //width: 100%;
     padding-top: 5px;
     //margin: 10px 10px 0 0;
   }
+
 
   .rightitem{
     //width: 100%;

@@ -122,8 +122,9 @@ export class OptimizationResultDialogComponent
 
   openRouteResultDialog(curRoute: JOptRoute): void {
     const dialogRef = this.dialog.open(RouteResultDialogComponent, {
-      width: '90%',
-      maxHeight: '95vh',
+      minWidth: '40%',
+      maxWidth: '95%',
+      maxHeight: '90%',
       data: { route: curRoute },
     });
 
@@ -132,8 +133,9 @@ export class OptimizationResultDialogComponent
 
   openRawResultDialog(): void {
     const dialogRef = this.dialog.open(OptimizationRawRDialogComponent, {
-      width: '90%',
-      maxHeight: '95vh',
+      minWidth: '40%',
+      maxWidth: '95%',
+      maxHeight: '90%',
       data: { result: this.curResult },
     });
 

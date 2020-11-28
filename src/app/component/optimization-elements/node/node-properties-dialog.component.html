@@ -28,7 +28,7 @@
             [attr.data-index]="i"
           >
             <mat-expansion-panel
-              style="width: 95%; margin: 0 auto"
+              style="width: 95%; margin: 0 auto;"
             >
               <mat-expansion-panel-header>
                 <mat-panel-title> Opening hour </mat-panel-title>
@@ -154,8 +154,8 @@
         <p></p>
         <mat-divider></mat-divider>
         <div class="wide boxteaser">
-          <p class="boxteasertitle dontbreakout">Nodes in JOpt</p>
-          <p>
+          <p class="boxteasertitle">Nodes in JOpt</p>
+          <p class="dontbreakout">
             <span>
               Get to know more features, including 
               <strong>time windows, </strong
@@ -390,7 +390,7 @@
         <mat-divider></mat-divider>
         <div class="boxinfo wide">
           <p class="boxinfotitle">Info</p>
-          <p>
+          <p class="dontbreakout">
             <strong>Binding Resources</strong
             > are the preferred visitors of a node (sorted by priority value).
             In case the constraint is defined as hard,
@@ -447,6 +447,7 @@
     </button>
     <button
       mat-raised-button
+      type="button"
       matTooltip="Close this dialog and discard all modifications."
       color="warn"
       (click)="onNoClick()"

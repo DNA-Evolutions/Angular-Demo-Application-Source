@@ -5,16 +5,16 @@
     <mat-list dense role="list">
         <mat-list-item role="listitem">
             <div class="mat-list-node-item-cap">Status:</div>
-            <div class="mat-list-node-item-value">{{curDetail.scheduleStatus}}</div>
+            <div class="mat-list-node-item-value dontbreak">{{curDetail.scheduleStatus}}</div>
         </mat-list-item>
         <mat-list-item role="listitem">
             <div class="mat-list-node-item-cap">Arrival:</div>
-            <div class="mat-list-node-item-value">{{curDetail.arrivalTime | dateFormatPipe}}</div>
+            <div class="mat-list-node-item-value dontbreak">{{curDetail.arrivalTime | dateFormatPipe}}</div>
         </mat-list-item>
     </mat-list>
 
 
-    <mat-expansion-panel class="mat-elevation-z0" style="background-color: whitesmoke;"
+    <!--<mat-expansion-panel class="mat-elevation-z0" style="background-color: whitesmoke; padding:0px;"
         (opened)="moreDetailsState = true" (closed)="moreDetailsState = false">
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -36,23 +36,23 @@
 
             </mat-panel-title>
             <mat-panel-description></mat-panel-description>
-        </mat-expansion-panel-header>
+        </mat-expansion-panel-header>-->
         <mat-list dense role="list">
             <mat-list-item role="listitem">
                 <div class="mat-list-node-item-cap">Departure:</div>
-                <div class="mat-list-node-item-value">{{curDetail.departureTime | dateFormatPipe}}</div>
+                <div class="mat-list-node-item-value dontbreak">{{curDetail.departureTime | dateFormatPipe}}</div>
             </mat-list-item>
             <mat-list-item role="listitem">
                 <div class="mat-list-node-item-cap">Duration:</div>
-                <div class="mat-list-node-item-value">{{curDetail.visitDuration | durationFormatPipe: 's':'auto'}}</div>
+                <div class="mat-list-node-item-value dontbreak">{{curDetail.visitDuration | durationFormatPipe: 's':'auto'}}</div>
             </mat-list-item>
             <mat-list-item role="listitem">
                 <div class="mat-list-node-item-cap">Idle:</div>
-                <div class="mat-list-node-item-value">{{curDetail.idleTime | durationFormatPipe: 's':'auto'}}</div>
+                <div class="mat-list-node-item-value dontbreak">{{curDetail.idleTime | durationFormatPipe: 's':'auto'}}</div>
             </mat-list-item>
             <mat-list-item role="listitem">
                 <div class="mat-list-node-item-cap">Transition:</div>
-                <div class="mat-list-node-item-value">{{curDetail.transitionDistance | distanceFormatPipe: 'm':'km' }}
+                <div class="mat-list-node-item-value dontbreak">{{curDetail.transitionDistance | distanceFormatPipe: 'm':'km' }}
                 </div>
             </mat-list-item>
         </mat-list>
@@ -63,7 +63,7 @@
                 <div *ngIf="isBigger(curDetail.earlyDeviation, 0)">
                     <mat-list-item role="listitem">
                         <div class="mat-list-node-item-cap">Early:</div>
-                        <div class="mat-list-node-item-value violation">
+                        <div class="mat-list-node-item-value violation dontbreak">
                             {{curDetail.earlyDeviation | durationFormatPipe: 's':'auto'}}
                         </div>
                     </mat-list-item>
@@ -71,7 +71,7 @@
                 <div *ngIf="isBigger(curDetail.lateDeviation, 0)">
                     <mat-list-item role="listitem">
                         <div class="mat-list-node-item-cap">Late:</div>
-                        <div class="mat-list-node-item-value violation">
+                        <div class="mat-list-node-item-value violation dontbreak">
                             {{curDetail.lateDeviation | durationFormatPipe: 's':'auto'}}
                         </div>
                     </mat-list-item>
@@ -79,14 +79,14 @@
                 <div *ngFor="let vio of curDetail.nodeViolations;">
                     <mat-list-item role="listitem">
                         <div class="mat-list-node-item-cap">Violation:</div>
-                        <div class="mat-list-node-item-value violation">
+                        <div class="mat-list-node-item-value violation dontbreak">
                             {{vio.attribute}} - {{vio.subAttribute}}
                         </div>
                     </mat-list-item>
                 </div>
             </mat-list>
-        </mat-list-item>
-    </mat-expansion-panel>
+        </mat-list-item><!--
+    </mat-expansion-panel>-->
 </ng-template>
 
 <ng-template #nonExistingDetail>

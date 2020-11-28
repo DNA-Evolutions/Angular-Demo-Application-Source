@@ -22,20 +22,20 @@
           <mat-list dense role="list">
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap"># Routes:</div>
-              <div class="mat-list-opti-item-value">
+              <div class="mat-list-opti-item-value dontbreak">
                 {{ curResult.solution.header.numRoutes }}
               </div>
             </mat-list-item>
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap"># Scheduled:</div>
-              <div class="mat-list-opti-item-value">
+              <div class="mat-list-opti-item-value dontbreak">
                 {{ curResult.solution.header.numScheduledRoutes }}
               </div>
             </mat-list-item>
 
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap"># Elements:</div>
-              <div class="mat-list-opti-item-value">
+              <div class="mat-list-opti-item-value dontbreak">
                 {{ curResult.solution.header.totElements }}
               </div>
             </mat-list-item>
@@ -45,20 +45,20 @@
               *ngIf="curResult.solution.header.unassignedElementIds.length > 0"
             >
               <div class="mat-list-opti-item-cap">Unassigned:</div>
-              <div class="mat-list-opti-item-value">
+              <div class="mat-list-opti-item-value dontbreak">
                 {{ curResult.solution.header.unassignedElementIds }}
               </div>
             </mat-list-item>
 
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap">Total Cost:</div>
-              <div class="mat-list-opti-item-value">
+              <div class="mat-list-opti-item-value dontbreak">
                 {{ curResult.solution.header.totCost }}
               </div>
             </mat-list-item>
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap">Total Time:</div>
-              <div class="mat-list-opti-item-value">
+              <div class="mat-list-opti-item-value dontbreak">
                 {{
                   curResult.solution.header.totTime
                     | durationFormatPipe: "PT":"auto"
@@ -67,7 +67,7 @@
             </mat-list-item>
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap">Total Distance:</div>
-              <div class="mat-list-opti-item-value">
+              <div class="mat-list-opti-item-value dontbreak">
                 {{
                   curResult.solution.header.totDistance
                     | distanceFormatPipe: "m":"km"
@@ -114,30 +114,30 @@
             <mat-list dense role="list">
               <mat-list-item role="listitem">
                 <div class="mat-list-route-item-cap">RouteId:</div>
-                <div class="mat-list-route-item-value">{{ route.id }}</div>
+                <div class="mat-list-route-item-value dontbreak">{{ route.id }}</div>
               </mat-list-item>
               <mat-list-item role="listitem">
                 <div class="mat-list-route-item-cap">Resource:</div>
-                <div class="mat-list-route-item-value">
+                <div class="mat-list-route-item-value dontbreak">
                   {{ route.visitorId }}
                 </div>
               </mat-list-item>
               <mat-list-item role="listitem">
                 <div class="mat-list-route-item-cap">Start:</div>
-                <div class="mat-list-route-item-value">
+                <div class="mat-list-route-item-value dontbreak">
                   {{ route.hoursStart | dateFormatPipe }}
                 </div>
               </mat-list-item>
               <mat-list-item role="listitem">
                 <div class="mat-list-route-item-cap">Time:</div>
-                <div class="mat-list-route-item-value">
+                <div class="mat-list-route-item-value dontbreak">
                   {{ route.header.time | durationFormatPipe: "PT":"auto" }}
                 </div>
               </mat-list-item>
 
               <mat-list-item role="listitem">
                 <div class="mat-list-route-item-cap">Distance:</div>
-                <div class="mat-list-route-item-value">
+                <div class="mat-list-route-item-value dontbreak">
                   {{ route.header.distance | distanceFormatPipe: "m":"km" }}
                 </div>
               </mat-list-item>
@@ -147,7 +147,7 @@
                 <div *ngFor="let vio of route.header.routeViolations">
                   <mat-list-item role="listitem">
                     <div class="mat-list-route-item-cap">Violation:</div>
-                    <div class="mat-list-route-item-value violation">
+                    <div class="mat-list-route-item-value violation dontbreak">
                       {{ vio.attribute }} - {{ vio.subAttribute }}:
                       {{ vio.value | durationFormatPipe: "h":"auto" }}
                     </div>

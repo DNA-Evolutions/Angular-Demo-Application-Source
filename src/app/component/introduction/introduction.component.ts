@@ -47,11 +47,6 @@ export class IntroductionComponent {
 
     dialogConfig.maxHeight = '95%';
 
-    console.log('innerWidth: ' + innerWidth);
-    console.log('relativeWidth: ' + relativeWidth);
-    console.log('relativeHeight: ' + relativeHeight);
-
-
     dialogConfig.data = {
       ytVideoId: environment.howtoYTIdent,
     };

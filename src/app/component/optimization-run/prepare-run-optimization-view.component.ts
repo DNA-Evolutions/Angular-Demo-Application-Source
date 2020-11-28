@@ -35,8 +35,9 @@ export class PrepareRunOptimizationViewComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PrepareRunOptimizationDialogComponent, {
-      width: '90%',
-      maxHeight: '95vh',
+      minWidth: '40%',
+      maxWidth: '95%',
+      maxHeight: '90%',
       disableClose: true,
       data: { nodeId: this.nodeId },
     });
