@@ -20,7 +20,7 @@
   {
     "exampleId": "exampleThree",
     "title": "Multi Route example",
-    "desc": "A single resource with multiple working days. Each node to be visited also has also multiple opening hours.",
+    "desc": "A single resource with multiple working days. Each node to be visited also has multiple opening hours.",
     "optimizationInputPath": "./assets/precoded-data/examples/example-three/optimization-input/optimization-input.json",
     "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
     "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
