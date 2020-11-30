@@ -3,6 +3,12 @@ import * as L from 'leaflet';
 import { OptimizationWrapperService } from '../../optimization-wrapper/optimization-wrapper.service';
 import { PopUpService } from '../pop-up/leaflet-popup.service';
 
+/**
+ * Service that is providing the functionality to add markers to the leaflet map
+ *
+ * @export
+ * @class LeafletMarkerService
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +18,15 @@ export class LeafletMarkerService {
     private popupService: PopUpService
   ) {}
 
+
+  /**
+   * Adding Nodes to the map
+   *
+   * @param {L.map} map
+   * @param {ElementRef} ref
+   * @param {*} icon
+   * @memberof LeafletMarkerService
+   */
   markNodes(map: L.map, ref: ElementRef, icon: any): void {
     // Get nodes
     this.dataService.nodes().forEach((n) => {
@@ -25,6 +40,15 @@ export class LeafletMarkerService {
     });
   }
 
+
+  /**
+   * Adding Resources to the map
+   *
+   * @param {L.map} map
+   * @param {ElementRef} ref
+   * @param {*} icon
+   * @memberof LeafletMarkerService
+   */
   markResources(map: L.map, ref: ElementRef, icon: any): void {
     // Get nodes
     this.dataService.resources().forEach((r) => {

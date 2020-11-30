@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Optimization Result (RAW)</h1>
 <mat-divider></mat-divider>
-<div mat-dialog-content>
-  <p></p>
+<div mat-dialog-content style="max-height: 50vh">
+
   <div *ngIf="curResult; else nonExistingResult">
     <div class="scroll-box">
       <pre>{{ curResult?.result }}</pre>
@@ -14,9 +14,8 @@
     unassigned..
     <p></p>
   </ng-template>
-  <p></p>
+
 </div>
-<p></p>
 <mat-divider></mat-divider>
 <div mat-dialog-actions class="inline buttongroup">
   <button

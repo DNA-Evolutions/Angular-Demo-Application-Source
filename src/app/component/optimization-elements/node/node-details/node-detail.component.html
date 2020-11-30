@@ -1,97 +1,82 @@
-<div *ngIf="curDetail;then existingDetail else nonExistingDetail"></div>
+<div *ngIf="curDetail; then existingDetail; else nonExistingDetail"></div>
 
 <ng-template #existingDetail>
+  <mat-list dense role="list">
+    <mat-list-item role="listitem">
+      <div class="mat-list-node-item-cap">Status:</div>
+      <div class="mat-list-node-item-value dontbreak">
+        {{ curDetail.scheduleStatus }}
+      </div>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <div class="mat-list-node-item-cap">Arrival:</div>
+      <div class="mat-list-node-item-value dontbreak">
+        {{ curDetail.arrivalTime | dateFormatPipe }}
+      </div>
+    </mat-list-item>
+  </mat-list>
 
+  <mat-list dense role="list">
+    <mat-list-item role="listitem">
+      <div class="mat-list-node-item-cap">Departure:</div>
+      <div class="mat-list-node-item-value dontbreak">
+        {{ curDetail.departureTime | dateFormatPipe }}
+      </div>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <div class="mat-list-node-item-cap">Duration:</div>
+      <div class="mat-list-node-item-value dontbreak">
+        {{ curDetail.visitDuration | durationFormatPipe: "s":"auto" }}
+      </div>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <div class="mat-list-node-item-cap">Idle:</div>
+      <div class="mat-list-node-item-value dontbreak">
+        {{ curDetail.idleTime | durationFormatPipe: "s":"auto" }}
+      </div>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <div class="mat-list-node-item-cap">Transition:</div>
+      <div class="mat-list-node-item-value dontbreak">
+        {{ curDetail.transitionDistance | distanceFormatPipe: "m":"km" }}
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <p></p>
+  <mat-list-item role="listitem">
     <mat-list dense role="list">
+      <div *ngIf="isBigger(curDetail.earlyDeviation, 0)">
         <mat-list-item role="listitem">
-            <div class="mat-list-node-item-cap">Status:</div>
-            <div class="mat-list-node-item-value dontbreak">{{curDetail.scheduleStatus}}</div>
+          <div class="mat-list-node-item-cap">Early:</div>
+          <div class="mat-list-node-item-value violation dontbreak">
+            {{ curDetail.earlyDeviation | durationFormatPipe: "s":"auto" }}
+          </div>
         </mat-list-item>
+      </div>
+      <div *ngIf="isBigger(curDetail.lateDeviation, 0)">
         <mat-list-item role="listitem">
-            <div class="mat-list-node-item-cap">Arrival:</div>
-            <div class="mat-list-node-item-value dontbreak">{{curDetail.arrivalTime | dateFormatPipe}}</div>
+          <div class="mat-list-node-item-cap">Late:</div>
+          <div class="mat-list-node-item-value violation dontbreak">
+            {{ curDetail.lateDeviation | durationFormatPipe: "s":"auto" }}
+          </div>
         </mat-list-item>
+      </div>
+      <div *ngFor="let vio of curDetail.nodeViolations">
+        <mat-list-item role="listitem">
+          <div class="mat-list-node-item-cap">Violation:</div>
+          <div class="mat-list-node-item-value violation dontbreak">
+            {{ vio.attribute }} - {{ vio.subAttribute }}
+          </div>
+        </mat-list-item>
+      </div>
     </mat-list>
-
-
-    <!--<mat-expansion-panel class="mat-elevation-z0" style="background-color: whitesmoke; padding:0px;"
-        (opened)="moreDetailsState = true" (closed)="moreDetailsState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                <div>
-
-                    <div *ngIf="!moreDetailsState">
-                        <img style="vertical-align:middle; height:20px;" src="./assets/misc/icon/icon-details.png"
-                            alt="node marker">
-                        more details...
-
-
-                    </div>
-                    <div *ngIf="moreDetailsState">
-                        ...less details
-
-                    </div>
-                </div>
-
-
-            </mat-panel-title>
-            <mat-panel-description></mat-panel-description>
-        </mat-expansion-panel-header>-->
-        <mat-list dense role="list">
-            <mat-list-item role="listitem">
-                <div class="mat-list-node-item-cap">Departure:</div>
-                <div class="mat-list-node-item-value dontbreak">{{curDetail.departureTime | dateFormatPipe}}</div>
-            </mat-list-item>
-            <mat-list-item role="listitem">
-                <div class="mat-list-node-item-cap">Duration:</div>
-                <div class="mat-list-node-item-value dontbreak">{{curDetail.visitDuration | durationFormatPipe: 's':'auto'}}</div>
-            </mat-list-item>
-            <mat-list-item role="listitem">
-                <div class="mat-list-node-item-cap">Idle:</div>
-                <div class="mat-list-node-item-value dontbreak">{{curDetail.idleTime | durationFormatPipe: 's':'auto'}}</div>
-            </mat-list-item>
-            <mat-list-item role="listitem">
-                <div class="mat-list-node-item-cap">Transition:</div>
-                <div class="mat-list-node-item-value dontbreak">{{curDetail.transitionDistance | distanceFormatPipe: 'm':'km' }}
-                </div>
-            </mat-list-item>
-        </mat-list>
-
-        <p></p>
-        <mat-list-item role="listitem">
-            <mat-list dense role="list">
-                <div *ngIf="isBigger(curDetail.earlyDeviation, 0)">
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-node-item-cap">Early:</div>
-                        <div class="mat-list-node-item-value violation dontbreak">
-                            {{curDetail.earlyDeviation | durationFormatPipe: 's':'auto'}}
-                        </div>
-                    </mat-list-item>
-                </div>
-                <div *ngIf="isBigger(curDetail.lateDeviation, 0)">
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-node-item-cap">Late:</div>
-                        <div class="mat-list-node-item-value violation dontbreak">
-                            {{curDetail.lateDeviation | durationFormatPipe: 's':'auto'}}
-                        </div>
-                    </mat-list-item>
-                </div>
-                <div *ngFor="let vio of curDetail.nodeViolations;">
-                    <mat-list-item role="listitem">
-                        <div class="mat-list-node-item-cap">Violation:</div>
-                        <div class="mat-list-node-item-value violation dontbreak">
-                            {{vio.attribute}} - {{vio.subAttribute}}
-                        </div>
-                    </mat-list-item>
-                </div>
-            </mat-list>
-        </mat-list-item><!--
-    </mat-expansion-panel>-->
+  </mat-list-item>
 </ng-template>
 
 <ng-template #nonExistingDetail>
-    <p></p>
-    Please start an optimization first or make sure the node did not get unassigned..
-    <p></p>
+  <p></p>
+  Please start an optimization first or make sure the node did not get
+  unassigned..
+  <p></p>
 </ng-template>
-

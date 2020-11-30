@@ -1,13 +1,10 @@
 <h1 mat-dialog-title>Optimization Run Settings</h1>
 <mat-divider></mat-divider>
-<div mat-dialog-content>
+<div mat-dialog-content style="max-height: 50vh">
   <p></p>
   <mat-accordion>
     <div *ngFor="let prop of settingsCopy?.properties">
-      <mat-expansion-panel
-        [disabled]="false"
-        class="wide"
-      >
+      <mat-expansion-panel [disabled]="false" class="wide">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="propcontainer">
@@ -26,7 +23,6 @@
         </mat-expansion-panel-header>
 
         <div style="width: 60%">
-          <!-- <mat-label>Adjust value:</mat-label>-->
           <mat-slider
             style="width: 100%"
             [disabled]="isDisabledSliderValue(prop.key)"

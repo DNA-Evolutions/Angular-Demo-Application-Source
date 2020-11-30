@@ -137,7 +137,7 @@ export class PrepareRunOptimizationDialogComponent {
     const dialogRef = this.runDialog.open(RunOptimizationDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',
-      maxHeight: '90%',
+      maxHeight: '85vh',
       disableClose: true,
       data: {},
     });

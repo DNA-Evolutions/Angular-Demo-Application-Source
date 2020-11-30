@@ -8,6 +8,12 @@ import { HowtoDialogComponent } from './howto-dialog/howto-dialog.component';
 
 import { environment } from './../../../environments/environment';
 
+/**
+ * The component for the help/introduction dialog of the demo application
+ *
+ * @export
+ * @class IntroductionComponent
+ */
 @Component({
   selector: 'app-introduction',
   templateUrl: 'introduction.component.html',
@@ -19,15 +25,31 @@ export class IntroductionComponent {
     public dialogRef: MatDialogRef<IntroductionComponent>
   ) {}
 
+  /**
+   * Closing the help dialog
+   *
+   * @memberof IntroductionComponent
+   */
   onCloseClick(): void {
     this.dialogRef.close();
   }
 
+  /**
+   *
+   * Gets the currently defined swagger endpoint used for the optimization
+   *
+   * @return {*}  {string}
+   * @memberof IntroductionComponent
+   */
   public getCurrentDefinedHost(): string {
     return environment.host + ':' + environment.port;
   }
 
-
+  /**
+   * Opens the dialog for the HowTo video
+   *
+   * @memberof IntroductionComponent
+   */
   openHowtoDialog(): void {
     let takeUpPercentage = 85; // take up to 80% of the screen size
 
@@ -45,7 +67,7 @@ export class IntroductionComponent {
     const relativeHeight = (relativeWidth * 9) / 16 + 160; // 16:9 to which we add 160 px for the dialog action buttons ("close")
     dialogConfig.width = relativeWidth + 'px';
 
-    dialogConfig.maxHeight = '95%';
+    dialogConfig.maxHeight = '90%';
 
     dialogConfig.data = {
       ytVideoId: environment.howtoYTIdent,

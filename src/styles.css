@@ -29,18 +29,9 @@ body {
   background: #ffffff;
   border-style: solid;
   border-width: 4px;
-
-  /*background: #ffffff;
-  border-style: solid;
-  border-width: 4px;
-  border-color: #3f51b1;
-  border-color: #3086c8;*/
 }
 
 .popup-edit-btn {
-  /*background: linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
-  background-color: #637aad;*/
-
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
@@ -225,16 +216,6 @@ div.wide {
   margin: 0 auto;
 }
 
-/* .mat-expansion-panel-header,
-.mat-expansion-panel-header:hover,
-.mat-expansion-panel-header:focus,
-.mat-expansion-panel-header.mat-expanded,
-.mat-expansion-panel-header.mat-expanded:focus,
-.mat-expansion-panel-header.mat-expanded:hover,
-.mat-expansion-panel-header:not([aria-disabled=true]){
-  background: red !important;
-} */
-
 .mat-expansion-panel-header.colored {
   background-color: #ebefbe !important;
 }
@@ -275,10 +256,6 @@ div.inline {
   width: 100%;
   display: inline-block;
   padding-bottom: 0px;
-  /*overflow: auto;*/
-  /*white-space: nowrap;*/
-  /*margin: 0px auto;
-  border: 1px red solid;*/
 }
 
 div.violation {
@@ -291,6 +268,7 @@ div.violation {
 
 .mat-raised-button.infobutton {
   background-color: #ebefbe;
+  margin-left: 10px;
   padding-left: 2rem;
 }
 
@@ -394,12 +372,6 @@ div.buttongroup > button + a {
   margin-top: 10px;
 }
 
-.disappearable{
-}
-
-.disappearablesmall{
-}
-
 .dontbreakout {
   /* These are technically the same, but use both */
   overflow-wrap: break-word;
@@ -418,13 +390,12 @@ div.buttongroup > button + a {
   hyphens: auto;
 }
 
-
 @media only screen and (max-width: 600px) {
-  .mat-raised-button{
-    font-size: 0.8em!important;
+  .mat-raised-button {
+    font-size: 0.8em !important;
   }
 
-  .disappearable{
+  .disappearable {
     display: none;
   }
 
@@ -436,21 +407,28 @@ div.buttongroup > button + a {
 
   div.buttongroup > button + button + a {
     margin-left: 0px;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
 
   div.buttongroup > button + a {
     margin-left: 0px;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
 
-  div.wide {
-    width: 85%;
-    /*padding:2px;
+  .mat-raised-button.infobutton {
+    margin-left: 0px;
+  }
 
-    margin: 10px auto;*/
+  div.wideleft {
+    /* Go to center */
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  div.wide {
+    width: 90%;
   }
 
   .mat-expansion-panel-header {
@@ -460,4 +438,5 @@ div.buttongroup > button + a {
   .mat-toolbar-row {
     height: auto !important;
   }
+
 }

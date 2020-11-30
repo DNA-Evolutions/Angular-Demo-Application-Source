@@ -6,14 +6,29 @@ import { ResourcePropertiesDialogComponent } from 'src/app/component/optimizatio
 import * as L from 'leaflet';
 import { RouteResultDialogComponent } from 'src/app/component/optimization-elements/result/route/route-result/route-result-dialog.component';
 
+/**
+ *
+ * Service to create popups for markers.
+ *
+ * @export
+ * @class PopUpService
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class PopUpService {
   constructor(public dialog: MatDialog) {}
 
-  // TODO refresh popupinfo after modification
-  // TODO add scss for class nodepopup and prettyfiy
+
+  /**
+   *
+   * Binds a pupop to a node marker
+   *
+   * @param {*} marker
+   * @param {JOptGeoNode} node
+   * @param {ElementRef} ref
+   * @memberof PopUpService
+   */
   bindNodePopUp(marker: any, node: JOptGeoNode, ref: ElementRef): void {
     const popupOptions = {
       className: 'node-popup pop',
@@ -34,6 +49,15 @@ export class PopUpService {
   }
 
   //
+  /**
+   *
+   * Bind a popup to the polyline between two markers
+   *
+   * @param {*} polyline
+   * @param {JOptRoute} route
+   * @param {ElementRef} ref
+   * @memberof PopUpService
+   */
   bindPolyRoutePopUp(polyline: any, route: JOptRoute, ref: ElementRef): void {
     const popupOptions = {
       className: 'route-popup pop',
@@ -56,6 +80,16 @@ export class PopUpService {
     );
   }
 
+
+  /**
+   *
+   * Binds a pupop to a resource marker
+   *
+   * @param {*} marker
+   * @param {JOptGeoResource} res
+   * @param {ElementRef} ref
+   * @memberof PopUpService
+   */
   bindResourcePopUp(marker: any, res: JOptGeoResource, ref: ElementRef): void {
     const popupOptions = {
       className: 'resource-popup pop',
@@ -74,9 +108,14 @@ export class PopUpService {
     marker.bindTooltip('Resource: ' + res.id + ' - Click for details');
   }
 
-  /*
-   */
 
+  /**
+   *
+   * Opens a node dialog from a node popup marker
+   *
+   * @param {string} cNodeId
+   * @memberof PopUpService
+   */
   openNodeDialog(cNodeId: string): void {
     const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
       maxWidth: '700px',
@@ -89,6 +128,12 @@ export class PopUpService {
     });
   }
 
+  /**
+   * Opens a resource dialog from a resource popup marker
+   *
+   * @param {string} cResourceId
+   * @memberof PopUpService
+   */
   openResourceDialog(cResourceId: string): void {
     const dialogRef = this.dialog.open(ResourcePropertiesDialogComponent, {
       maxWidth: '700px',
@@ -99,6 +144,14 @@ export class PopUpService {
     dialogRef.afterClosed().subscribe((result) => {});
   }
 
+
+  /**
+   *
+   * Opens a route result dialog from a route-polyline between two markers
+   *
+   * @param {number} curRouteId
+   * @memberof PopUpService
+   */
   openRouteResultDialog(curRouteId: number): void {
     console.log(curRouteId);
     const dialogRef = this.dialog.open(RouteResultDialogComponent, {

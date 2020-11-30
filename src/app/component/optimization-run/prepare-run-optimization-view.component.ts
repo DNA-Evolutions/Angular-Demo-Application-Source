@@ -37,7 +37,7 @@ export class PrepareRunOptimizationViewComponent implements OnInit {
     const dialogRef = this.dialog.open(PrepareRunOptimizationDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',
-      maxHeight: '90%',
+      maxHeight: '85vh',
       disableClose: true,
       data: { nodeId: this.nodeId },
     });
@@ -50,7 +50,7 @@ export class PrepareRunOptimizationViewComponent implements OnInit {
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',
-      maxHeight: '90%',
+      maxHeight: '85vh',
       data: { result: output },
     });
 

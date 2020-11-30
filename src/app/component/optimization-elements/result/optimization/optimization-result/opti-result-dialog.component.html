@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Optimization Solution</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content style="max-height: 50vh">
   <div *ngIf="curResult; then existingResult; else nonExistingResult"></div>
 
   <ng-template #existingResult>
@@ -169,13 +169,19 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
+      <div *ngIf="(totalRows$ | async)>2">
+
+
+      </div>
       <mat-paginator
-        #paginator
-        [length]="totalRows$ | async"
-        [pageIndex]="0"
-        [pageSize]="10"
-        [pageSizeOptions]="[2, 5, 10]"
-      ></mat-paginator>
+      #paginator
+      [hidePageSize] = "(totalRows$ | async)<3"
+      [length]="totalRows$ | async"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[2, 5, 10]"
+    ></mat-paginator>
+
     </div>
   </ng-template>
 
@@ -206,7 +212,7 @@
     color="basic"
     cdkFocusInitial
   >
-    See as raw result
+    Raw result
   </button>
 
   <a

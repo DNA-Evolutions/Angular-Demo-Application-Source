@@ -4,6 +4,12 @@ import * as L from 'leaflet';
 import { GeoAndRoutingService } from '../../geo-and-routing/geo-and-routing.service';
 import { PopUpService } from '../pop-up/leaflet-popup.service';
 
+/**
+ * Service to draw lines between markers on a leaflet map.
+ *
+ * @export
+ * @class LeafletPolylineService
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +19,18 @@ export class LeafletPolylineService {
     private popupService: PopUpService
   ) {}
 
+
+  /**
+   *
+   * Gets a result route and creates polylines between elements.
+   *
+   * @param {JOptRoute} route
+   * @param {number} index
+   * @param {ElementRef} ref
+   * @param {*} map
+   * @return {*}  {void}
+   * @memberof LeafletPolylineService
+   */
   public drawRouteResultPolyline(
     route: JOptRoute,
     index: number,
@@ -32,6 +50,18 @@ export class LeafletPolylineService {
     this.drawMutliElementPolyine(ids, route, index, ref, map);
   }
 
+  /**
+   *
+   * Draws the actual lines
+   *
+   * @private
+   * @param {Array<string>} ids
+   * @param {JOptRoute} route
+   * @param {number} index
+   * @param {ElementRef} ref
+   * @param {*} map
+   * @memberof LeafletPolylineService
+   */
   private drawMutliElementPolyine(
     ids: Array<string>,
     route: JOptRoute,
@@ -76,6 +106,15 @@ export class LeafletPolylineService {
     }
   }
 
+  /**
+   *
+   * Gets a color for a certain route based on its route id.
+   *
+   * @private
+   * @param {number} ii
+   * @return {*}  {string}
+   * @memberof LeafletPolylineService
+   */
   private getColor(ii: number): string {
     if (ii > 9) {
       ii = ii % 10;

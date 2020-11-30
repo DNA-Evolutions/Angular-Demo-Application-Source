@@ -22,6 +22,13 @@ import {
 
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
 
+/**
+ * Service to collect settings, run the actual optimization and provide results/data
+ * to other components.
+ *
+ * @export
+ * @class OptimizationWrapperService
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -52,6 +59,15 @@ export class OptimizationWrapperService {
     return undefined;
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {number} routeId
+   * @param {JOptOptimizationOutput} out
+   * @return {*}  {JOptRoute}
+   * @memberof OptimizationWrapperService
+   */
   public static routeResult(
     routeId: number,
     out: JOptOptimizationOutput
@@ -64,6 +80,16 @@ export class OptimizationWrapperService {
     return undefined;
   }
 
+  /**
+   *
+   *
+   * @private
+   * @static
+   * @param {string} elementId
+   * @param {JOptRoute} route
+   * @return {*}  {JOptRouteElementDetail}
+   * @memberof OptimizationWrapperService
+   */
   private static getDetailInRoute(
     elementId: string,
     route: JOptRoute
@@ -73,6 +99,12 @@ export class OptimizationWrapperService {
 
   //
 
+  /**
+   * Creates an instance of OptimizationWrapperService.
+   * @param {OptimizationServiceControllerService} optiService
+   * @param {LoadExampleDataService} exampleLoaderService
+   * @memberof OptimizationWrapperService
+   */
   constructor(
     private readonly optiService: OptimizationServiceControllerService,
     private exampleLoaderService: LoadExampleDataService
@@ -82,6 +114,11 @@ export class OptimizationWrapperService {
     this.init();
   }
 
+  /**
+   *
+   *
+   * @memberof OptimizationWrapperService
+   */
   public init(): void {
     this.myOptimizationInput = this.exampleLoaderService.optimizationInput();
 
@@ -92,15 +129,35 @@ export class OptimizationWrapperService {
     this.$refresh.next(true);
   }
 
+  /**
+   *
+   *
+   * @return {*}  {Observable<boolean>}
+   * @memberof OptimizationWrapperService
+   */
   public getRefreshObservable(): Observable<boolean> {
     return this.$refresh;
   }
 
   // Getter
+
+  /**
+   *
+   *
+   * @return {*}  {JOptOptimizationRunOptions}
+   * @memberof OptimizationWrapperService
+   */
   public optimizerSettings(): JOptOptimizationRunOptions {
     return this.curSettings;
   }
 
+  /**
+   *
+   *
+   * @param {JOptGeoResource} curRes
+   * @return {*}  {number}
+   * @memberof OptimizationWrapperService
+   */
   public maxWorkingTimeHoursByResource(curRes: JOptGeoResource): number {
     if (curRes !== undefined) {
       return moment.duration(curRes.maxTime).asHours();
@@ -109,6 +166,13 @@ export class OptimizationWrapperService {
     return -1;
   }
 
+  /**
+   *
+   *
+   * @param {JOptGeoNode} curNode
+   * @return {*}  {number}
+   * @memberof OptimizationWrapperService
+   */
   public durationMinutesByNode(curNode: JOptGeoNode): number {
     if (curNode !== undefined) {
       return moment.duration(curNode.visitDuration).asMinutes();
@@ -117,20 +181,45 @@ export class OptimizationWrapperService {
     return -1;
   }
 
+  /**
+   *
+   *
+   * @param {string} nodeId
+   * @return {*}  {number}
+   * @memberof OptimizationWrapperService
+   */
   public durationMinutesById(nodeId: string): number {
     const curNode = this.node(nodeId);
 
     return this.durationMinutesByNode(curNode);
   }
 
+  /**
+   *
+   *
+   * @return {*}  {string[]}
+   * @memberof OptimizationWrapperService
+   */
   public getAllResourceIds(): string[] {
     return this.resources().map((r) => r.id);
   }
 
+  /**
+   *
+   *
+   * @return {*}  {string[]}
+   * @memberof OptimizationWrapperService
+   */
   public getAllNodeIds(): string[] {
     return this.nodes().map((n) => n.id);
   }
 
+  /**
+   *
+   *
+   * @return {*}  {string[]}
+   * @memberof OptimizationWrapperService
+   */
   public getAllElementIds(): string[] {
     const nodeIds = this.getAllNodeIds();
     const resIds = this.getAllResourceIds();
@@ -140,31 +229,77 @@ export class OptimizationWrapperService {
     return nodeIds;
   }
 
+  /**
+   *
+   *
+   * @return {*}  {JOptGeoNode[]}
+   * @memberof OptimizationWrapperService
+   */
   public nodes(): JOptGeoNode[] {
     return this.curNodes;
   }
 
+  /**
+   *
+   *
+   * @return {*}  {JOptGeoResource[]}
+   * @memberof OptimizationWrapperService
+   */
   public resources(): JOptGeoResource[] {
     return this.curRess;
   }
 
+  /**
+   *
+   *
+   * @param {string} nodeId
+   * @return {*}  {JOptGeoNode}
+   * @memberof OptimizationWrapperService
+   */
   public node(nodeId: string): JOptGeoNode {
     return this.nodes().find((n) => n.id === nodeId);
   }
 
+  /**
+   *
+   *
+   * @param {string} resId
+   * @return {*}  {JOptGeoResource}
+   * @memberof OptimizationWrapperService
+   */
   public resource(resId: string): JOptGeoResource {
     return this.resources().find((r) => r.id === resId);
   }
 
+  /**
+   *
+   *
+   * @return {*}  {Observable<JOptOptimizationOutput>}
+   * @memberof OptimizationWrapperService
+   */
   public optimizationOutputObservable(): Observable<JOptOptimizationOutput> {
     return this.$myOptimizationOutputSubject;
   }
 
+  /**
+   *
+   *
+   * @return {*}  {JOptOptimizationOutput}
+   * @memberof OptimizationWrapperService
+   */
   public optimizationOutput(): JOptOptimizationOutput {
     return this.curOptimizationOutput;
   }
 
   // Setters
+
+  /**
+   *
+   *
+   * @param {string} nodeId
+   * @param {number} minutes
+   * @memberof OptimizationWrapperService
+   */
   public setVisitDurationMinutes(nodeId: string, minutes: number): void {
     const curNode = this.node(nodeId);
 
@@ -175,6 +310,13 @@ export class OptimizationWrapperService {
     }
   }
 
+  /**
+   *
+   *
+   * @param {string} resId
+   * @param {number} hours
+   * @memberof OptimizationWrapperService
+   */
   public setMaxWokringTimeHours(resId: string, hours: number): void {
     const curRes = this.resource(resId);
 
@@ -185,6 +327,13 @@ export class OptimizationWrapperService {
     }
   }
 
+  /**
+   *
+   *
+   * @param {string} nodeId
+   * @param {JOptOpeningHours[]} newHours
+   * @memberof OptimizationWrapperService
+   */
   public setNodeOpeningHour(
     nodeId: string,
     newHours: JOptOpeningHours[]
@@ -196,6 +345,13 @@ export class OptimizationWrapperService {
     }
   }
 
+  /**
+   *
+   *
+   * @param {string} resId
+   * @param {JOptWorkingHours[]} newHours
+   * @memberof OptimizationWrapperService
+   */
   public setResourceWorkingHour(
     resId: string,
     newHours: JOptWorkingHours[]
@@ -207,6 +363,12 @@ export class OptimizationWrapperService {
     }
   }
 
+  /**
+   *
+   *
+   * @param {JOptOptimizationRunOptions} newSettings
+   * @memberof OptimizationWrapperService
+   */
   public setOptimizerSettings(newSettings: JOptOptimizationRunOptions): void {
     if (newSettings !== undefined) {
       this.myOptimizationInput.runSettings = newSettings;
@@ -214,6 +376,13 @@ export class OptimizationWrapperService {
   }
 
   // start optimization
+
+  /**
+   *
+   *
+   * @return {*}  {Observable<JOptOptimizationOutput>}
+   * @memberof OptimizationWrapperService
+   */
   public startOptimization(): Observable<JOptOptimizationOutput> {
     const connections = this.exampleLoaderService.extractEdgeConnections(
       this.getAllElementIds()
@@ -241,6 +410,12 @@ export class OptimizationWrapperService {
     return this.$myOptimizationOutputSubject;
   }
 
+  /**
+   *
+   *
+   * @return {*}  {Observable<boolean>}
+   * @memberof OptimizationWrapperService
+   */
   public stopOptimization(): Observable<boolean> {
     return this.optiService.stopOptimizationRun();
   }

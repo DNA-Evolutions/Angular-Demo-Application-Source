@@ -1,65 +1,25 @@
-.map-container {
-  //position: absolute;
-  //top: 0;
-  //left: 0;
-  //right: 0;
-  //bottom: 0;
-  //margin: 30px;
-}
-
-.nofullscreencontainer{}
-
 .map-frame {
-  //border: 2px solid black;
-  //height: 50vh;
   width: 100vh;
 }
-
-//#map {
-//  height: 35vh;
- // width: 100%;
- // //resize: vertical;
-//}
 
 .boundmap {
   height: 40vh;
   width: 100%;
 }
 
-/* .mouse-coords {
-  //color: gray;
-  //font-family: Arial;
-  font-size: 14px;
-  font-weight: bold;
-  //position: fixed;
-  //margin-top: 5px;
-  margin-left: 0px;
-  z-index: 1000;
-  //background-color: rgba(255, 255, 255, 0.7);
-} */
-
 .map-position-info {
   font-size: 13px;
   font-weight: bold;
-  //width: 15%;
-  //height: 5%;
+
   position: absolute;
   bottom: 1%;
   left: 1%;
-  //margin-left: auto;
-  //margin-right: auto;
-  //left: 0;
-  //right: 0;
+
   text-align: center;
-  //left: 8%;
-  //background-color: blue;
+
   z-index: 1000;
 
-  //border: 1px solid;
-  //padding: 10px;
-  //box-shadow: 3px 3px rgba(58, 57, 57, 0.7);
-  background-color:rgba(255, 255, 255, 0.7);
-
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .map-interact {
@@ -72,9 +32,8 @@
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  background-color:rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   border: 2px solid black;
-
 }
 
 .map-controll {
@@ -84,12 +43,9 @@
   bottom: 1%;
   left: 1%;
   z-index: 1000;
-
-  //background-color:rgba(255, 255, 255, 0.7);
 }
 
-
-.nofullscreen{
+.nofullscreen {
   height: 35vh;
   width: 100%;
   //resize: vertical;
@@ -97,9 +53,9 @@
 
 .fullscreenmap {
   width: 100%;
-    overflow: hidden;
-    height: 80vh;
-    position:fixed;
+  overflow: hidden;
+  height: 80vh;
+  position: fixed;
 }
 
 #map.fullscreenasd2 {
@@ -109,8 +65,8 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0, 0.9);
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
   overflow-x: hidden;
   transition: 0.5s;
 }
@@ -132,7 +88,8 @@
   transition: 0.3s;
 }
 
-.fullscreen a:hover, .fullscreen a:focus {
+.fullscreen a:hover,
+.fullscreen a:focus {
   color: #f1f1f1;
 }
 
@@ -143,21 +100,10 @@
   font-size: 60px;
 }
 
-/* @media screen and (max-height: 900px) {
-  .fullscreen a {font-size: 20px}
-  .fullscreen .closebtn {
-  font-size: 40px;
-  top: 15px;
-  right: 35px;
-  }
-} */
-
 @media screen and (max-height: 900px) {
-
   .fullscreen .closebtn {
-  font-size: 40px;
-  top: 15px;
-  right: 35px;
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
   }
 }
-

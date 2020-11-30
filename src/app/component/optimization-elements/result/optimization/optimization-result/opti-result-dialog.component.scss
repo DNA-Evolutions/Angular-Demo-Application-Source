@@ -2,18 +2,17 @@ table {
   width: 100%;
 }
 
-.mat-list .mat-list-item{
+.mat-list .mat-list-item {
   height: 30px;
   font-size: 14px;
 }
 
-
 .mat-list-route-item-cap {
   font-weight: bold;
   width: 6em;
-  /* or whatever width you want. */
+
   max-width: 6em;
-  /* or whatever width you want. */
+
   display: inline-block;
 }
 
@@ -47,7 +46,8 @@ $mat-row-horizontal-padding: 24px;
   min-height: $mat-row-height;
 }
 
-.mat-row, .mat-header-row {
+.mat-row,
+.mat-header-row {
   display: flex;
   border-bottom-width: 1px;
   border-bottom-style: solid;
@@ -61,45 +61,45 @@ $mat-row-horizontal-padding: 24px;
   &::after {
     display: inline-block;
     min-height: inherit;
-    content: '';
+    content: "";
   }
 }
 
-.mat-cell, .mat-header-cell {
+.mat-cell,
+.mat-header-cell {
   flex: 1;
   overflow: hidden;
   word-wrap: break-word;
 }
 
 .frameborder {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
   border-style: solid;
   border-color: whitesmoke;
 
-  border-width: 3px 3px; /* 20px top and bottom, 5px on the sides */
+  border-width: 3px 3px;
 }
 
 .frameborderselected {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
   border-style: solid;
   border-color: red;
 
-  border-width: 3px 3px; /* 20px top and bottom, 5px on the sides */
+  border-width: 3px 3px;
 }
 
 .mat-list-opti-item-cap {
   font-weight: bold;
   width: 8em;
-  /* or whatever width you want. */
+
   max-width: 8em;
-  /* or whatever width you want. */
+
   display: inline-block;
 }
 
 .mat-list-opti-item-value {
   display: inline-block;
 }
-
 
 @media only screen and (max-width: 600px) {
   .mat-list-opti-item-value {

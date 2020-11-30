@@ -1,15 +1,15 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import { LoadExampleDataService } from 'src/app/_services/load-example-data/load-example-data.service';
 import { JOptExampleDefinition } from 'src/app/_services/load-example-data/interface/jopt-example-defintion';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
+/**
+ * Start up component showing the different expansion panels to control the demo application
+ *
+ * @export
+ * @class ExampleComponent
+ */
 @Component({
   selector: 'app-example',
   templateUrl: './example.component.html',
@@ -22,15 +22,35 @@ export class ExampleComponent {
 
   activeExampleId = 'exampleOne';
 
+  /**
+   * Creates an instance of ExampleComponent.
+   * @param {LoadExampleDataService} loadService
+   * @param {OptimizationWrapperService} dataService
+   * @memberof ExampleComponent
+   */
   constructor(
     private loadService: LoadExampleDataService,
     private dataService: OptimizationWrapperService
   ) {}
 
+  /**
+   *
+   * Focus/Scroll on the Element selector part of the demo
+   *
+   * @memberof ExampleComponent
+   */
   public focusElementSelectorPanel(): void {
     this.elSelectorRef.nativeElement.scrollIntoView();
   }
 
+  /**
+   *
+   * Loads a new example into the demo applicaion defined by its example id
+   *
+   * @param {string} exampleId
+   * @return {*}  {Promise<unknown>}
+   * @memberof ExampleComponent
+   */
   async loadExample(exampleId: string): Promise<unknown> {
     const promise = await this.loadService.loadExample(exampleId);
     this.dataService.init();
@@ -39,6 +59,14 @@ export class ExampleComponent {
     return promise;
   }
 
+  /**
+   *
+   * Gets the example desciption for a certain example id
+   *
+   * @param {string} exampleId
+   * @return {*}  {string}
+   * @memberof ExampleComponent
+   */
   public getExampleDesc(exampleId: string): string {
     const examples = this.loadService
       .getExampledDefs()
@@ -50,6 +78,14 @@ export class ExampleComponent {
     }
   }
 
+  /**
+   *
+   * Gets the example title for a certain example id
+   *
+   * @param {string} exampleId
+   * @return {*}  {string}
+   * @memberof ExampleComponent
+   */
   public getExampleTitle(exampleId: string): string {
     const examples = this.loadService
       .getExampledDefs()
@@ -61,10 +97,24 @@ export class ExampleComponent {
     }
   }
 
+  /**
+   *
+   * Sets the current example by id
+   *
+   * @param {string} id
+   * @memberof ExampleComponent
+   */
   public setExampelId(id: string): void {
     this.curExampleId = id;
   }
 
+  /**
+   *
+   * Gets all example defintions of this demo application
+   *
+   * @return {*}  {JOptExampleDefinition[]}
+   * @memberof ExampleComponent
+   */
   public getExampledDefs(): JOptExampleDefinition[] {
     return this.loadService.getExampledDefs();
   }

@@ -4,6 +4,12 @@ import _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 
+/**
+ * A generic service to request events from the swagger endpoint.
+ *
+ * @export
+ * @class EventSourceService
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +21,14 @@ export class EventSourceService {
     );
   }
 
+
+  /**
+   *
+   *
+   * @template R
+   * @return {*}  {Observable<R>}
+   * @memberof EventSourceService
+   */
   newProgressObservable<R>(): Observable<R> {
     return this.newObservable(
       environment.host + ':' + environment.port + environment.apiProgress,
@@ -22,6 +36,14 @@ export class EventSourceService {
     );
   }
 
+
+  /**
+   *
+   *
+   * @template R
+   * @return {*}  {Observable<R>}
+   * @memberof EventSourceService
+   */
   newWarningObservable<R>(): Observable<R> {
     return this.newObservable(
       environment.host + ':' + environment.port + environment.apiWarning,
@@ -29,10 +51,28 @@ export class EventSourceService {
     );
   }
 
+
+  /**
+   *
+   *
+   * @param {string} path
+   * @return {*}  {EventSource}
+   * @memberof EventSourceService
+   */
   newEventSource(path: string): EventSource {
     return new EventSource(path);
   }
 
+
+  /**
+   *
+   *
+   * @template R
+   * @param {string} path
+   * @param {(data: string) => R} [converter=_.identity]
+   * @return {*}  {Observable<R>}
+   * @memberof EventSourceService
+   */
   newObservable<R>(
     path: string,
     converter: (data: string) => R = _.identity

@@ -3,41 +3,12 @@
     <h4>
       <mat-label>Running algorithm:</mat-label>
     </h4>
-    <div class="dontbreak"> {{latestProgress?.callerId }} at {{ latestProgress?.curProgress+2 }}%</div>
+    <div class="dontbreak">
+      {{ latestProgress?.callerId }} at {{ latestProgress?.curProgress + 2 }}%
+    </div>
     <h4>
       <mat-label>Current cost:</mat-label>
     </h4>
-    <div> {{latestProgress?.curCost}}</div>
+    <div>{{ latestProgress?.curCost }}</div>
   </mat-card>
-
 </div>
-
-
-<!--<mat-card>
-  <h4>
-    <mat-label>Running algorithm:</mat-label>
-  </h4>
-  <div>{{ (latestProgress?.callerId) }} at {{ (latestProgress?.curProgress)+2 }}%</div>
-  <h4>
-    <mat-label>Current cost:</mat-label>
-  </h4>
-  <div> {{ latestCost }}</div>
-
-   <div style="width: 100%; height: 200px;">
-      <ngx-charts-line-chart
-      [scheme]="colorScheme"
-      [results]="multi"
-      [gradient]="gradient"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [legend]="showLegend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [autoScale]="autoScale"
-      [animations]="animations">
-      </ngx-charts-line-chart>
-    </div>
-
-</mat-card>-->

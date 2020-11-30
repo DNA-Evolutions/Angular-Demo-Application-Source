@@ -32,6 +32,14 @@ import { Observable } from 'rxjs';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
 import { EventHandler } from './interface/event-handler';
 
+/**
+ * The component for the Leafletmap
+ *
+ * @export
+ * @class LeafletMapComponent
+ * @implements {AfterViewInit}
+ * @implements {OnDestroy}
+ */
 @Component({
   selector: 'app-leaflet-map',
   templateUrl: './leaflet-map.component.html',
@@ -49,6 +57,17 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
   myOptimizationOutput$: Observable<JOptOptimizationOutput>;
 
+  /**
+   * Creates an instance of LeafletMapComponent.
+   *
+   * @param {LeafletMarkerService} markerService
+   * @param {GeoAndRoutingService} geoService
+   * @param {ElementRef} elementRef
+   * @param {LeafletPolylineService} polylineService
+   * @param {OptimizationWrapperService} optiService
+   * @param {MatDialog} dialog
+   * @memberof LeafletMapComponent
+   */
   constructor(
     private markerService: LeafletMarkerService,
     private geoService: GeoAndRoutingService,
@@ -61,6 +80,11 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.myOptimizationOutput$ = this.optiService.optimizationOutputObservable();
   }
 
+  /**
+   *
+   *
+   * @memberof LeafletMapComponent
+   */
   ngAfterViewInit(): void {
     this.initMap();
     this.initMapHandlers();
@@ -69,7 +93,6 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
       // Drawing result
       this.refreshMap();
       result.solution.routes.forEach((r, index) => {
-        //console.log('Draw lines');
         this.polylineService.drawRouteResultPolyline(
           r,
           index,
@@ -87,10 +110,21 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  /**
+   * Handler for showing map info (lat, lon of cursor and zoom level of map)
+   *
+   * @protected
+   * @memberof LeafletMapComponent
+   */
   protected initMapHandlers(): void {
     this.map.on('mousemove', this.onMouseMoveHandler);
   }
 
+  /**
+   *  Refreshing the map and redraw data
+   *
+   * @memberof LeafletMapComponent
+   */
   public refreshMap(): void {
     this.map.eachLayer((curLayer) => {
       if (curLayer !== this.tiles) {
@@ -101,12 +135,24 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.addMarksers();
   }
 
+  /**
+   *
+   * Move/zoom map to predefined position
+   *
+   * @memberof LeafletMapComponent
+   */
   public refreshMapCenter(): void {
     const mapViewDef = this.geoService.mapViewDef();
 
     this.map.setView(mapViewDef.center, mapViewDef.zoom, { animation: true });
   }
 
+  /**
+   *
+   *
+   * @private
+   * @memberof LeafletMapComponent
+   */
   private addMarksers(): void {
     const iconNode = L.icon({
       iconUrl: MapIconNodeOptions.mapIcon,
@@ -130,6 +176,12 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.markerService.markResources(this.map, this.elementRef, iconResource);
   }
 
+  /**
+   *
+   *
+   * @private
+   * @memberof LeafletMapComponent
+   */
   private initMap(): void {
     this.mapViewDef = this.geoService.mapViewDef();
 
@@ -151,9 +203,14 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.addMarksers();
   }
 
+  /**
+   *
+   *
+   * @protected
+   * @param {*} evt
+   * @memberof LeafletMapComponent
+   */
   protected onMapMouseMove(evt: any): void {
-    // uncomment to study offset
-
     // Lat and Long are embedded in the event object
     const lat: string = evt.latlng.lat.toFixed(3);
     const long: string = evt.latlng.lng.toFixed(3);
@@ -161,16 +218,27 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.mcText = `Latitude: ${lat} &nbsp; &nbsp; Longitude: ${long} &nbsp; Zoom: ${zoom}`;
   }
 
+  /**
+   *
+   *
+   * @memberof LeafletMapComponent
+   */
   public ngOnDestroy(): void {
     this.map.off('mousemove', this.onMouseMoveHandler);
   }
 
+  /**
+   * Opens the last result of the optimizer
+   *
+   * @param {JOptOptimizationOutput} output
+   * @memberof LeafletMapComponent
+   */
   openOptimizationResultDialog(output: JOptOptimizationOutput): void {
     console.log(output);
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',
-      maxHeight: '90%',
+      maxHeight: '85vh',
       data: { result: output },
     });
 
@@ -179,19 +247,41 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  /**
+   *
+   *
+   * @return {*}  {boolean}
+   * @memberof LeafletMapComponent
+   */
   public isFullScreen(): boolean {
     return this.isFullScreenMap;
   }
 
+  /**
+   *
+   *
+   * @memberof LeafletMapComponent
+   */
   public toggleFullScreenMap(): void {
     this.isFullScreenMap = !this.isFullScreenMap;
     window.dispatchEvent(new Event('resize'));
   }
 
+  /**
+   * Invalidates the map, to allow a redrawing of tiles after fullscreen was enabled/disabled
+   *
+   * @memberof LeafletMapComponent
+   */
   public invalidateMapSize(): void {
     this.map.invalidateSize();
   }
 
+  /**
+   *
+   *
+   * @param {*} event
+   * @memberof LeafletMapComponent
+   */
   onResize(event) {
     console.log('resize');
     event.target.innerWidth;

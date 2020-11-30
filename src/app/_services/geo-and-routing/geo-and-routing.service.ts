@@ -4,6 +4,14 @@ import { LoadExampleDataService } from '../load-example-data/load-example-data.s
 import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
 import { JOptGeoPosition } from 'build/openapi';
 
+/**
+ * Service that is providing functionality to extract connection shapes
+ * between elements. In case a connection is not found, a straight connection
+ * shap is generated.
+ *
+ * @export
+ * @class GeoAndRoutingService
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +21,17 @@ export class GeoAndRoutingService {
     private optiWrapper: OptimizationWrapperService
   ) {}
 
+  /**
+   * Decodes a route shape
+   *
+   * @see https://valhalla.readthedocs.io/en/latest/decoding/
+   *
+   * @static
+   * @param {string} str
+   * @param {number} precision
+   * @return {*}  {number[]}
+   * @memberof GeoAndRoutingService
+   */
   static decode(str: string, precision: number): number[] {
     let index = 0;
     let lat = 0;
@@ -61,11 +80,25 @@ export class GeoAndRoutingService {
     return coordinates;
   }
 
+  /**
+   *
+   * @return {*}  {MapViewDefinition}
+   * @memberof GeoAndRoutingService
+   */
   public mapViewDef(): MapViewDefinition {
     return this.dataSerive.mapViewDef();
   }
 
-  // TODO array of from->to ?
+  /**
+   *
+   * Creates the route shape line. Either by decoding an existing (extracted) route shape, or
+   * by creating a straight line, if no route shape is provided/found.
+   *
+   * @param {string} elementIdFrom
+   * @param {string} elementIdTo
+   * @return {*}  {number[]}
+   * @memberof GeoAndRoutingService
+   */
   public getSingleRouteShape(
     elementIdFrom: string,
     elementIdTo: string
@@ -83,8 +116,6 @@ export class GeoAndRoutingService {
     // We try to look up the shape if it can't be found we simply do a direct polyline
     const coordinates = [];
 
-    // TODO
-
     let fromPosition: JOptGeoPosition;
     let toPosition: JOptGeoPosition;
 
@@ -92,19 +123,13 @@ export class GeoAndRoutingService {
     const elemenFrom = this.optiWrapper.node(elementIdFrom);
     const elemenTo = this.optiWrapper.node(elementIdTo);
 
-    //console.log(elementIdFrom);
-    //console.log(elemenFrom);
-
     if (elemenFrom !== undefined) {
-      //console.log(elementIdFrom);
       fromPosition = elemenFrom.position;
     } else {
-      //console.log(elementIdFrom);
       const elemenFromAsRes = this.optiWrapper.resource(elementIdFrom);
 
       if (elemenFromAsRes !== undefined) {
         fromPosition = elemenFromAsRes.position;
-        //console.log(fromPosition);
       }
     }
 
@@ -129,6 +154,15 @@ export class GeoAndRoutingService {
     return coordinates;
   }
 
+  /**
+   *
+   *
+   * @param {string} fromId
+   * @param {string} toId
+   * @param {object[]} routeConnections
+   * @return {*}  {object}
+   * @memberof GeoAndRoutingService
+   */
   getRouteConnection(
     fromId: string,
     toId: string,
@@ -139,6 +173,15 @@ export class GeoAndRoutingService {
     );
   }
 
+  /**
+   *
+   *
+   * @param {string} fromId
+   * @param {string} toId
+   * @param {object} routeConnection
+   * @return {*}  {boolean}
+   * @memberof GeoAndRoutingService
+   */
   isDesiredConnection(
     fromId: string,
     toId: string,
@@ -154,14 +197,35 @@ export class GeoAndRoutingService {
     return false;
   }
 
+  /**
+   *
+   *
+   * @param {object} routeConnection
+   * @return {*}  {string}
+   * @memberof GeoAndRoutingService
+   */
   getFromId(routeConnection: object): string {
     return routeConnection['fromId'];
   }
 
+  /**
+   *
+   *
+   * @param {object} routeConnection
+   * @return {*}  {string}
+   * @memberof GeoAndRoutingService
+   */
   getToId(routeConnection: object): string {
     return routeConnection['toId'];
   }
 
+  /**
+   *
+   *
+   * @param {object} routeConnection
+   * @return {*}  {number[]}
+   * @memberof GeoAndRoutingService
+   */
   extractShape(routeConnection: object): number[] {
     const trip = routeConnection['trip'];
     const legs = trip['legs'];

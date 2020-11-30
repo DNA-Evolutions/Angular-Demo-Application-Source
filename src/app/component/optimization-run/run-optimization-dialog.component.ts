@@ -84,7 +84,7 @@ export class RunOptimizationDialogComponent {
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',
-      maxHeight: '90%',
+      maxHeight: '85vh',
       data: { result: output },
     });
 

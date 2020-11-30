@@ -4,9 +4,6 @@
     justify-content: center;
 }
 
-.intro-title > img{
-  //flex-basis: 40%;
-}
 
 .intro-title > h3{
   padding-left: 5px;
@@ -23,6 +20,7 @@ input.preview{
   border: 2px solid rgb(102, 102, 102);
 }
 
+
 @media only screen and (max-width: 600px) {
   li{
     margin: 20px 0;
@@ -33,6 +31,9 @@ input.preview{
   }
 
   div.helpdesc{
+    font-size: 0.9em;
+  }
+  .mat-dialog-title > h3 {
     font-size: 0.9em;
   }
 }

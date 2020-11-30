@@ -6,6 +6,12 @@ import { environment } from 'src/environments/environment';
 import { JOptExampleDefinition } from './interface/jopt-example-defintion';
 import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
 
+/**
+ * Service to load predefined examples, parse and provide the data to other components.
+ *
+ * @export
+ * @class LoadExampleDataService
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -22,20 +28,49 @@ export class LoadExampleDataService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * The extracted Example Input
+   *
+   * @return {*}  {JOptOptimizationInput}
+   * @memberof LoadExampleDataService
+   */
   public optimizationInput(): JOptOptimizationInput {
     return this.defaultOptimizationInput;
   }
 
+  /**
+   *
+   * All extracted predefined element connections
+
+   * @return {*}  {JOptEdgeConnection[]}
+   * @memberof LoadExampleDataService
+   */
   public connections(): JOptEdgeConnection[] {
     return this.geoConnections;
   }
 
+  /**
+   * Extracted connections of certain element ids.
+   *
+   * @param {string[]} ids
+   * @return {*}  {JOptEdgeConnection[]}
+   * @memberof LoadExampleDataService
+   */
   public extractEdgeConnections(ids: string[]): JOptEdgeConnection[] {
     return this.geoConnections.filter((c) =>
       this.isDesiredConnectionsMember(ids, c)
     );
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {string[]} ids
+   * @param {JOptEdgeConnection} c
+   * @return {*}  {boolean}
+   * @memberof LoadExampleDataService
+   */
   private isDesiredConnectionsMember(
     ids: string[],
     c: JOptEdgeConnection
@@ -47,27 +82,67 @@ export class LoadExampleDataService {
     return ids.indexOf(c.fromId) > -1 && ids.indexOf(c.toId) > -1;
   }
 
+  /**
+   *
+   *
+   * @return {*}  {object[]}
+   * @memberof LoadExampleDataService
+   */
   public routes(): object[] {
     return this.geoRoutes;
   }
 
+  /**
+   *
+   *
+   * @return {*}  {MapViewDefinition}
+   * @memberof LoadExampleDataService
+   */
   public mapViewDef(): MapViewDefinition {
     return this.mapViewDefintion;
   }
 
+  /**
+   *
+   *
+   * @return {*}  {JOptExampleDefinition[]}
+   * @memberof LoadExampleDataService
+   */
   public getExampledDefs(): JOptExampleDefinition[] {
     return this.exampleDefs;
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {string} exampleId
+   * @return {*}  {JOptExampleDefinition}
+   * @memberof LoadExampleDataService
+   */
   private getExampleDef(exampleId: string): JOptExampleDefinition {
     return this.exampleDefs.find((d) => d.exampleId === exampleId);
   }
 
   // Loaders
+
+  /**
+   *
+   *
+   * @return {*}  {Promise<unknown>}
+   * @memberof LoadExampleDataService
+   */
   public loadDefaultExample(): Promise<unknown> {
     return this.loadExample(this.defaultExampleId);
   }
 
+  /**
+   *
+   *
+   * @param {string} exampleId
+   * @return {*}  {Promise<unknown>}
+   * @memberof LoadExampleDataService
+   */
   public async loadExample(exampleId: string): Promise<unknown> {
     return this.loadExampleHelper(environment.exampleAssertHelperPath)
       .then(() => {
@@ -85,20 +160,30 @@ export class LoadExampleDataService {
       });
   }
 
-  // TODO use generics
+  /**
+   *
+   *
+   * @param {string} path
+   * @return {*}  {Promise<JOptExampleDefinition[]>}
+   * @memberof LoadExampleDataService
+   */
   loadExampleHelper(path: string): Promise<JOptExampleDefinition[]> {
-    //console.log('Trigger call');
     return new Promise<JOptExampleDefinition[]>((resolve) => {
       this.http.get(path).subscribe((data: JOptExampleDefinition[]) => {
         this.exampleDefs = data;
-        //console.log(this.exampleDefs);
         resolve(this.exampleDefs);
       });
     });
   }
 
+  /**
+   *
+   *
+   * @param {string} path
+   * @return {*}  {Promise<JOptEdgeConnection[]>}
+   * @memberof LoadExampleDataService
+   */
   loadGeoConnections(path: string): Promise<JOptEdgeConnection[]> {
-    //console.log('Trigger call');
     return new Promise((resolve) => {
       this.http.get(path).subscribe((data: any) => {
         this.geoConnections = data;
@@ -107,35 +192,48 @@ export class LoadExampleDataService {
     });
   }
 
-  // TODO add interface
+  /**
+   *
+   *
+   * @param {string} path
+   * @return {*}  {Promise<any>}
+   * @memberof LoadExampleDataService
+   */
   loadGeoRoutes(path: string): Promise<any> {
-    //console.log('Trigger call');
     return new Promise((resolve) => {
       this.http.get(path).subscribe((data: any) => {
-        //console.log(data);
         this.geoRoutes = data;
         resolve(data);
       });
     });
   }
 
+  /**
+   *
+   *
+   * @param {string} path
+   * @return {*}  {Promise<MapViewDefinition>}
+   * @memberof LoadExampleDataService
+   */
   loadMapViewDefintion(path: string): Promise<MapViewDefinition> {
-    //console.log('Trigger call');
     return new Promise((resolve) => {
       this.http.get(path).subscribe((data: any) => {
-        //console.log(data);
         this.mapViewDefintion = data;
         resolve(data);
       });
     });
   }
 
+  /**
+   *
+   *
+   * @param {string} path
+   * @return {*}  {Promise<JOptOptimizationInput>}
+   * @memberof LoadExampleDataService
+   */
   loadOptimizationInput(path: string): Promise<JOptOptimizationInput> {
-    //console.log('Exttracting optimization input from: ', path);
     return new Promise((resolve) => {
-      //console.log('Trigger call');
       this.http.get(path).subscribe((data: JOptOptimizationInput) => {
-        //console.log(data);
         this.defaultOptimizationInput = data;
         resolve(data);
       });
