@@ -2,11 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import {
-  JOptOpeningHours,
-  JOptGeoNode,
-  JOptConstraint,
-} from 'build/openapi';
+import { JOptOpeningHours, JOptGeoNode, JOptConstraint } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 import { NodePropertiesData } from './interface/node-properties-data.interface';
@@ -18,11 +14,18 @@ import {
   DummyConstraintResource,
 } from './data/dummy-constraint';
 
+/**
+ * The Component to show/modify node properties.
+ *
+ * @export
+ * @class NodePropertiesDialogComponent
+ *
+ */
 @Component({
   selector: 'app-node-properties-dialog',
   templateUrl: 'node-properties-dialog.component.html',
 })
-export class NodePropertiesDialogComponent implements OnInit {
+export class NodePropertiesDialogComponent {
   openingHoursForm: FormGroup;
 
   //
@@ -42,6 +45,14 @@ export class NodePropertiesDialogComponent implements OnInit {
 
   resourceIds: string[];
 
+  /**
+   * Creates an instance of NodePropertiesDialogComponent.
+   * @param {OptimizationWrapperService} dataService
+   * @param {MatSnackBar} snackBar
+   * @param {MatDialogRef<NodePropertiesDialogComponent>} dialogRef
+   * @param {NodePropertiesData} data
+   * @memberof NodePropertiesDialogComponent
+   */
   constructor(
     private dataService: OptimizationWrapperService,
     private snackBar: MatSnackBar,
@@ -76,8 +87,13 @@ export class NodePropertiesDialogComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
-
+  /**
+   *
+   *
+   * @private
+   * @param {JOptGeoNode} node
+   * @memberof NodePropertiesDialogComponent
+   */
   private setConstraint(node: JOptGeoNode): void {
     if (node.constraints !== undefined) {
       this.constraintCopy = JSON.parse(JSON.stringify(node.constraints));
@@ -116,6 +132,13 @@ export class NodePropertiesDialogComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {JOptConstraint} con
+   * @memberof NodePropertiesDialogComponent
+   */
   private setEmptyBindingResource(con: JOptConstraint): void {
     con.bindingResources[0] = JSON.parse(
       JSON.stringify(EmptyBindingResourceConstraint)
@@ -125,6 +148,13 @@ export class NodePropertiesDialogComponent implements OnInit {
     );
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {JOptConstraint} con
+   * @memberof NodePropertiesDialogComponent
+   */
   private setEmptyExcludingResource(con: JOptConstraint): void {
     con.excludingResources[0] = JSON.parse(
       JSON.stringify(EmptyExcludingResourceConstraint)
@@ -134,12 +164,24 @@ export class NodePropertiesDialogComponent implements OnInit {
     );
   }
 
+  /**
+   *
+   *
+   * @param {string} message
+   * @param {string} action
+   * @memberof NodePropertiesDialogComponent
+   */
   openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action, {
       duration: 1000,
     });
   }
 
+  /**
+   *
+   *
+   * @memberof NodePropertiesDialogComponent
+   */
   onSaveClick(): void {
     this.dataService.setNodeOpeningHour(
       this.data.nodeId,
@@ -163,6 +205,13 @@ export class NodePropertiesDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  /**
+   *
+   *
+   * @private
+   * @param {JOptConstraint} con
+   * @memberof NodePropertiesDialogComponent
+   */
   private filterConstraint(con: JOptConstraint): void {
     if (con.bindingResources[0].resources[0].id === '--') {
       con.bindingResources = [];
@@ -175,6 +224,11 @@ export class NodePropertiesDialogComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   *
+   * @memberof NodePropertiesDialogComponent
+   */
   onNoClick(): void {
     this.openSnackBar('Cancelling', 'Ok');
     this.dialogRef.close();

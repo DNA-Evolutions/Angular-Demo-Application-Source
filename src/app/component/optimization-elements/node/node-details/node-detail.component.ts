@@ -2,6 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { JOptRouteElementDetail } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
+/**
+ * The Component to show node result details of the last optimization run.
+ *
+ * @export
+ * @class NodeDetailComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-node-detail',
   templateUrl: 'node-detail.component.html',
@@ -35,6 +42,14 @@ export class NodeDetailComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   *
+   * @param {*} input
+   * @param {number} compare
+   * @return {*}  {boolean}
+   * @memberof NodeDetailComponent
+   */
   public isBigger(input: any, compare: number): boolean {
     return <number>input > compare;
   }

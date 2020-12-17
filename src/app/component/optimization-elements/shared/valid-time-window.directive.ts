@@ -3,10 +3,20 @@ import { NG_VALIDATORS, Validator, ValidationErrors, FormGroup } from '@angular/
 
 import { ValidTimeWindow } from './valid-timewindow.validator';
 
+
+/**
+ * Directive for validating TimeWindows of Nodes and Resources
+ *
+ * @export
+ * @class ValidTimeWindowDirective
+ * @implements {Validator}
+ */
 @Directive({
     selector: '[validTimeWindow]',
     providers: [{ provide: NG_VALIDATORS, useExisting: ValidTimeWindowDirective, multi: true }]
 })
+
+
 export class ValidTimeWindowDirective implements Validator {
     @Input() validTimeWindow: string[] = [];
 

@@ -6,6 +6,15 @@ import { Observable, concat, defer, of, combineLatest } from 'rxjs';
 import { Sort, MatSort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
+
+/**
+ * Used for pagination
+ *
+ * @export
+ * @class SimpleDataSource
+ * @extends {DataSource<T>}
+ * @template T
+ */
 export class SimpleDataSource<T> extends DataSource<T> {
   constructor(private rows$: Observable<T[]>) {
     super();

@@ -9,21 +9,54 @@ import { JOptOptimizationProgress } from 'build/openapi';
 import { ChangeDetectorRef } from '@angular/core';
 import { EventSourceService } from 'src/app/_services/optimization-event/event-source.service';
 
+/**
+ * Component to extract the progress of the currently running optimization
+ *
+ * @export
+ * @class ProgressComponent
+ * @implements {OnInit}
+ * @implements {OnDestroy}
+ */
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html',
 })
 export class ProgressComponent implements OnInit, OnDestroy {
   unsubscribe$: Subject<void> = new Subject<void>();
+
+  /**
+   * Latest progress, excluding "-1" state, in case optimization was not started yet
+   *
+   * @type {Observable<JOptOptimizationProgress>}
+   * @memberof ProgressComponent
+   */
   latestProgress$: Observable<JOptOptimizationProgress>;
 
+  /**
+   *
+   * Raw latest progress, inlcuding "-1" state, in case optimization was not started yet
+   *
+   * @type {Observable<JOptOptimizationProgress>}
+   * @memberof ProgressComponent
+   */
   unfilteredLatestProgress$: Observable<JOptOptimizationProgress>;
 
+  /**
+   * Creates an instance of ProgressComponent.
+   * @param {EventSourceService} eventService
+   * @param {ChangeDetectorRef} cd
+   * @memberof ProgressComponent
+   */
   constructor(
     private readonly eventService: EventSourceService,
     private cd: ChangeDetectorRef
   ) {}
 
+  /**
+   * Filter the progress on init
+   *
+   * @memberof ProgressComponent
+   */
   ngOnInit(): void {
     // Create an observable that waits until a porgress is reported
 
@@ -61,6 +94,11 @@ export class ProgressComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Detach from progress observable
+   *
+   * @memberof ProgressComponent
+   */
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();

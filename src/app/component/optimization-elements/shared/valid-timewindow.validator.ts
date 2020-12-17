@@ -1,6 +1,13 @@
 import { FormGroup } from '@angular/forms';
 
-// custom validator to check that two fields match
+/**
+ * Function to check if a control with twstart and twend
+ * is valid.
+ *
+ * @export
+ * @param {string} controlName
+ * @return {*}
+ */
 export function ValidTimeWindow(controlName: string) {
   return (formGroup: FormGroup) => {
     const presentKeys = Object.keys(formGroup.controls);

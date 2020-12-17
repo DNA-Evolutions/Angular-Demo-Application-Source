@@ -1,15 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NodePropertiesDialogComponent } from '../optimization-elements/node/node-properties-dialog.component';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { ResourcePropertiesDialogComponent } from '../optimization-elements/resource/resource-properties-dialog.component';
 
 /**
- * @title Dialog Overview
+ *
+ * Component to select an element (Node or Resource) to show properties for
+ *
+ * @export
+ * @class OptimizationElementsSelectorComponent
+ * @implements {OnInit}
  */
 @Component({
   selector: 'app-optimization-elements-selector',
@@ -24,11 +25,23 @@ export class OptimizationElementsSelectorComponent implements OnInit {
   selectedNodeId: string;
   selectedResourceId: string;
 
+  /**
+   * Creates an instance of OptimizationElementsSelectorComponent.
+   * @param {MatDialog} dialog
+   * @param {OptimizationWrapperService} optiService
+   * @memberof OptimizationElementsSelectorComponent
+   */
   constructor(
     public dialog: MatDialog,
     public optiService: OptimizationWrapperService
   ) {}
 
+  /**
+   *
+   *
+   * @param {string} id
+   * @memberof OptimizationElementsSelectorComponent
+   */
   public setSelectedId(id: string): void {
     if (this.resourceIds.indexOf(id) !== -1) {
       this.selectedResourceId = id;
@@ -43,6 +56,11 @@ export class OptimizationElementsSelectorComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   *
+   * @memberof OptimizationElementsSelectorComponent
+   */
   public ngOnInit(): void {
     // Get all ids
     this.readElements();
@@ -54,11 +72,23 @@ export class OptimizationElementsSelectorComponent implements OnInit {
     });
   }
 
+  /**
+   *
+   *
+   * @private
+   * @memberof OptimizationElementsSelectorComponent
+   */
   private readElements(): void {
     this.nodeIds = this.optiService.getAllNodeIds();
     this.resourceIds = this.optiService.getAllResourceIds();
   }
 
+  /**
+   *
+   *
+   * @param {string} curNnodeId
+   * @memberof OptimizationElementsSelectorComponent
+   */
   public openNodeDialog(curNnodeId: string): void {
     const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
       maxWidth: '700px',
@@ -66,9 +96,15 @@ export class OptimizationElementsSelectorComponent implements OnInit {
       data: { nodeId: curNnodeId },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe(() => {});
   }
 
+  /**
+   *
+   *
+   * @param {string} curResId
+   * @memberof OptimizationElementsSelectorComponent
+   */
   public openResourceDialog(curResId: string): void {
     const dialogRef = this.dialog.open(ResourcePropertiesDialogComponent, {
       maxWidth: '700px',
@@ -76,6 +112,6 @@ export class OptimizationElementsSelectorComponent implements OnInit {
       data: { resId: curResId },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe(() => {});
   }
 }

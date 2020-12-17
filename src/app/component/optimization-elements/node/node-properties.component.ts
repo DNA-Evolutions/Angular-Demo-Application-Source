@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { NodePropertiesDialogComponent } from './node-properties-dialog.component';
 
 /**
- * @title Dialog Overview
+ * Component to open node properties dialog
+ *
+ * @export
+ * @class NodePropertiesComponent
  */
 @Component({
   selector: 'app-node-properties',
@@ -12,8 +15,20 @@ import { NodePropertiesDialogComponent } from './node-properties-dialog.componen
 export class NodePropertiesComponent {
   nodeId: string;
 
+
+  /**
+   * Creates an instance of NodePropertiesComponent.
+   * @param {MatDialog} dialog
+   * @memberof NodePropertiesComponent
+   */
   constructor(public dialog: MatDialog) {}
 
+
+  /**
+   *
+   *
+   * @memberof NodePropertiesComponent
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(NodePropertiesDialogComponent, {
       maxWidth: '700px',
