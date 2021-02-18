@@ -16,7 +16,7 @@ import { JOptEdgeConnectionDistanceUnit } from './jOptEdgeConnectionDistanceUnit
  * The transition distance from the previous element to this element
  */
 export interface JOptRouteElementDetailTransitionDistance { 
-    value?: number;
     unit?: JOptEdgeConnectionDistanceUnit;
+    value?: number;
 }
 

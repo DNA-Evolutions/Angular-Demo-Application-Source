@@ -15,7 +15,7 @@ import { JOptTimeWindowZoneIdRulesTransitionRules } from './jOptTimeWindowZoneId
 
 export interface JOptTimeWindowZoneIdRules { 
     fixedOffset?: boolean;
-    transitionRules?: Array<JOptTimeWindowZoneIdRulesTransitionRules>;
     transitions?: Array<JOptTimeWindowZoneIdRulesTransitions>;
+    transitionRules?: Array<JOptTimeWindowZoneIdRulesTransitionRules>;
 }
 

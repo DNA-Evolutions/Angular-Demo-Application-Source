@@ -17,9 +17,9 @@ import { JOptEdgeConnectionTimeUnits } from './jOptEdgeConnectionTimeUnits';
  */
 export interface JOptRouteElementDetailDepartureTime { 
     seconds?: number;
-    zero?: boolean;
-    nano?: number;
-    negative?: boolean;
     units?: Array<JOptEdgeConnectionTimeUnits>;
+    zero?: boolean;
+    negative?: boolean;
+    nano?: number;
 }
 

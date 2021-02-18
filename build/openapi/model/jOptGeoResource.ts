@@ -12,6 +12,7 @@
 import { JOptGeoPosition } from './jOptGeoPosition';
 import { JOptWorkingHours } from './jOptWorkingHours';
 import { JOptGeoResourceMaxDistance } from './jOptGeoResourceMaxDistance';
+import { JOptResourceLoad } from './jOptResourceLoad';
 import { JOptGeoResourceMaxTime } from './jOptGeoResourceMaxTime';
 
 
@@ -34,5 +35,6 @@ export interface JOptGeoResource {
     maxDistance: JOptGeoResourceMaxDistance;
     maxTime: JOptGeoResourceMaxTime;
     position: JOptGeoPosition;
+    load: JOptResourceLoad;
 }
 

@@ -16,7 +16,7 @@ import { JOptEdgeConnectionDistanceUnit } from './jOptEdgeConnectionDistanceUnit
  * The total distance to the last elements of the solution
  */
 export interface JOptSolutionHeaderTotTermiDistance { 
-    value?: number;
     unit?: JOptEdgeConnectionDistanceUnit;
+    value?: number;
 }
 

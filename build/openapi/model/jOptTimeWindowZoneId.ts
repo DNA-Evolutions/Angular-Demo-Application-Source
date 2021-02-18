@@ -16,7 +16,7 @@ import { JOptTimeWindowZoneIdRules } from './jOptTimeWindowZoneIdRules';
  * The zoneId
  */
 export interface JOptTimeWindowZoneId { 
-    id?: string;
     rules?: JOptTimeWindowZoneIdRules;
+    id?: string;
 }
 

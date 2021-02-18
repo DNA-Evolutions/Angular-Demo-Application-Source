@@ -13,9 +13,9 @@ import { JOptEdgeConnectionDistanceUnitDimension } from './jOptEdgeConnectionDis
 
 
 export interface JOptEdgeConnectionDistanceUnit { 
-    name?: string;
-    dimension?: JOptEdgeConnectionDistanceUnitDimension;
     symbol?: string;
     baseUnits?: { [key: string]: number; };
+    dimension?: JOptEdgeConnectionDistanceUnitDimension;
+    name?: string;
 }
 

@@ -56,6 +56,10 @@ export interface JOptRouteElementDetail {
      * The node violations, like late
      */
     nodeViolations: Array<JOptViolation>;
+    /**
+     * The load change value for the node after visitation.
+     */
+    loadChange: Array<number>;
 }
 export namespace JOptRouteElementDetail {
     export type ScheduleStatusEnum = 'UNKNOWN' | 'EARLY' | 'IDLE' | 'INTIME' | 'LATE';

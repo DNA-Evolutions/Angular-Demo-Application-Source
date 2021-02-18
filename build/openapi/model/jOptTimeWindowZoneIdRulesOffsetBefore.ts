@@ -9,17 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JOptEdgeConnectionTimeUnits } from './jOptEdgeConnectionTimeUnits';
 
 
-/**
- * The productive time (excluding idling and driving) of the route
- */
-export interface JOptSolutionRouteHeaderProdTime { 
-    seconds?: number;
-    units?: Array<JOptEdgeConnectionTimeUnits>;
-    zero?: boolean;
-    negative?: boolean;
-    nano?: number;
+export interface JOptTimeWindowZoneIdRulesOffsetBefore { 
+    totalSeconds?: number;
+    id?: string;
 }
 

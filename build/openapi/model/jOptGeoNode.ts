@@ -11,6 +11,7 @@
  */
 import { JOptGeoPosition } from './jOptGeoPosition';
 import { JOptGeoNodeVisitDuration } from './jOptGeoNodeVisitDuration';
+import { JOptNodeLoad } from './jOptNodeLoad';
 import { JOptConstraint } from './jOptConstraint';
 import { JOptOpeningHours } from './jOptOpeningHours';
 
@@ -25,12 +26,13 @@ export interface JOptGeoNode {
     openingHours: Array<JOptOpeningHours>;
     visitDuration: JOptGeoNodeVisitDuration;
     constraints: JOptConstraint;
+    load: JOptNodeLoad;
     /**
      * The unique id of the GeoNode
      */
     id: string;
     position: JOptGeoPosition;
-    workNode?: boolean;
     stayNode?: boolean;
+    workNode?: boolean;
 }
 

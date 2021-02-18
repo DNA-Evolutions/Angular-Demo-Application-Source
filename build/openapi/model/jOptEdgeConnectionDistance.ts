@@ -16,7 +16,7 @@ import { JOptEdgeConnectionDistanceUnit } from './jOptEdgeConnectionDistanceUnit
  * The distance for the connection
  */
 export interface JOptEdgeConnectionDistance { 
-    value?: number;
     unit?: JOptEdgeConnectionDistanceUnit;
+    value?: number;
 }
 

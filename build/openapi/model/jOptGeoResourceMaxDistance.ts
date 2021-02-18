@@ -16,7 +16,7 @@ import { JOptEdgeConnectionDistanceUnit } from './jOptEdgeConnectionDistanceUnit
  * The maxDistance a resource is allowed to cover
  */
 export interface JOptGeoResourceMaxDistance { 
-    value?: number;
     unit?: JOptEdgeConnectionDistanceUnit;
+    value?: number;
 }
 

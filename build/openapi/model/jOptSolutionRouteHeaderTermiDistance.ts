@@ -16,7 +16,7 @@ import { JOptEdgeConnectionDistanceUnit } from './jOptEdgeConnectionDistanceUnit
  * The distance to the last element of the route
  */
 export interface JOptSolutionRouteHeaderTermiDistance { 
-    value?: number;
     unit?: JOptEdgeConnectionDistanceUnit;
+    value?: number;
 }
 

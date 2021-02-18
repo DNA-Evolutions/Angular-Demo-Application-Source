@@ -9,16 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JOptTimeWindowZoneIdRulesStandardOffset } from './jOptTimeWindowZoneIdRulesStandardOffset';
 import { LocalTime } from './localTime';
+import { JOptTimeWindowZoneIdRulesOffsetBefore } from './jOptTimeWindowZoneIdRulesOffsetBefore';
 
 
 export interface JOptTimeWindowZoneIdRulesTransitionRules { 
     month?: JOptTimeWindowZoneIdRulesTransitionRules.MonthEnum;
     timeDefinition?: JOptTimeWindowZoneIdRulesTransitionRules.TimeDefinitionEnum;
-    standardOffset?: JOptTimeWindowZoneIdRulesStandardOffset;
-    offsetBefore?: JOptTimeWindowZoneIdRulesStandardOffset;
-    offsetAfter?: JOptTimeWindowZoneIdRulesStandardOffset;
+    standardOffset?: JOptTimeWindowZoneIdRulesOffsetBefore;
+    offsetBefore?: JOptTimeWindowZoneIdRulesOffsetBefore;
+    offsetAfter?: JOptTimeWindowZoneIdRulesOffsetBefore;
     dayOfWeek?: JOptTimeWindowZoneIdRulesTransitionRules.DayOfWeekEnum;
     dayOfMonthIndicator?: number;
     localTime?: LocalTime;

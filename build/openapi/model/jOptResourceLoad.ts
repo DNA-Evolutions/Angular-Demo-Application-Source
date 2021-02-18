@@ -9,17 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JOptEdgeConnectionTimeUnits } from './jOptEdgeConnectionTimeUnits';
 
 
 /**
- * The productive time (excluding idling and driving) of the route
+ * The load of the Resource.
  */
-export interface JOptSolutionRouteHeaderProdTime { 
-    seconds?: number;
-    units?: Array<JOptEdgeConnectionTimeUnits>;
-    zero?: boolean;
-    negative?: boolean;
-    nano?: number;
+export interface JOptResourceLoad { 
+    /**
+     * The initial load value of the Resource,
+     */
+    initialLoad: Array<number>;
+    /**
+     * The load capacity of the Resource,
+     */
+    loadCapacity: Array<number>;
 }
 

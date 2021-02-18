@@ -12,8 +12,8 @@
 
 
 export interface JOptEdgeConnectionTimeUnits { 
+    durationEstimated?: boolean;
     dateBased?: boolean;
     timeBased?: boolean;
-    durationEstimated?: boolean;
 }
 

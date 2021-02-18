@@ -9,18 +9,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { JOptTimeWindowZoneIdRulesStandardOffset } from './jOptTimeWindowZoneIdRulesStandardOffset';
 import { JOptTimeWindowZoneIdRulesDuration } from './jOptTimeWindowZoneIdRulesDuration';
+import { JOptTimeWindowZoneIdRulesOffsetBefore } from './jOptTimeWindowZoneIdRulesOffsetBefore';
 
 
 export interface JOptTimeWindowZoneIdRulesTransitions { 
-    offsetBefore?: JOptTimeWindowZoneIdRulesStandardOffset;
-    offsetAfter?: JOptTimeWindowZoneIdRulesStandardOffset;
+    offsetBefore?: JOptTimeWindowZoneIdRulesOffsetBefore;
+    offsetAfter?: JOptTimeWindowZoneIdRulesOffsetBefore;
     duration?: JOptTimeWindowZoneIdRulesDuration;
-    gap?: boolean;
-    overlap?: boolean;
-    dateTimeAfter?: string;
     instant?: string;
+    gap?: boolean;
     dateTimeBefore?: string;
+    dateTimeAfter?: string;
+    overlap?: boolean;
 }
 
