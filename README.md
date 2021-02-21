@@ -75,13 +75,13 @@ docker run -d --rm \
 	-v ${PWD}:/usr/src/app \
 	-e JOPT_SWAGGER_HOST="http://localhost" \
 	-e JOPT_SWAGGER_PORT="8081" \
-	myDNADemo
+	dna_custom_demo_image
 ```
 
 Same command as a single line:
 
 ```xml
-docker run -d --rm --name myJOptTourOptimizerDemo -p 3000:80 -v ${PWD}:/usr/src/app -e JOPT_SWAGGER_HOST="http://localhost" -e JOPT_SWAGGER_PORT="8081" myDNADemo
+docker run -d --rm --name myJOptTourOptimizerDemo -p 3000:80 -v ${PWD}:/usr/src/app -e JOPT_SWAGGER_HOST="http://localhost" -e JOPT_SWAGGER_PORT="8081" dna_custom_demo_image
 ```
 
 Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, and you should see the Demo Application. If <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">JOptTourOptimizer</a> is not running in the background, you can **NOT** start any Optimization. However, you should see the starting page of the Demo Application. By default, the TourOptimizer is assumed to be available at <a href="http://localhost:8081" target="_blank">http://localhost:8081</a> and is started with the "cors" profile. You can adjust the default settings for host and port in the ``environment.ts`` file.
