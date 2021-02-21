@@ -61,7 +61,7 @@ We recommend serving the Demo Application with docker, especially when you are n
 2) <a href="https://docs.docker.com/engine/reference/commandline/build/" target="_blank">Build</a> the docker image using the ``Dockerfile`` in the main project path, by running:
 
 ```xml
-	docker build -t myDNADemo .
+	docker build -t dna_custom_demo_image .
 ```
 
 ### Run a container
