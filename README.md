@@ -60,6 +60,8 @@ We recommend serving the Demo Application with docker, especially when you are n
 1) Clone this repository and open it in your desired IDE (e.g. <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>) and modify the code if you like.
 2) <a href="https://docs.docker.com/engine/reference/commandline/build/" target="_blank">Build</a> the docker image using the ``Dockerfile`` in the main project path, by running:
 
+ATTENTION: Node.js during the build process can be quite memory consuming. So make sure your docker environment has at least 4 GB of Ram. 
+
 ```xml
 docker build -t dna_custom_demo_image .
 ```
