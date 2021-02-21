@@ -31,6 +31,7 @@ Third-party:
 * [Serve with Docker (recommended)](#serve-with-docker-recommended)
 * [Serve without Docker (not recommended)](#serve-without-docker-not-recommended)
 * [Update/Generate the typescript models using OpenApi Generator](#update-generate-the-typescript-models-using-openapi-generator)
+* [Video - How to use the Demo-Application](#video-how-to-use-the-demo-application)
 * [What's next?](#what-s-next)
 
 ---
@@ -128,6 +129,14 @@ npm run generate:api
 
 to update/generate the TypeScript models.
 
+---
+
+## Video - How to use the Demo-Application
+
+Click to open video:
+
+<a href="https://www.youtube.com/watch?v=2q7cYYArKm8 " target="_blank"><img src="https://img.youtube.com/vi/2q7cYYArKm8/maxresdefault.jpg" width="500"
+title="Tutorial - How to use the Demo-Application" alt="Tutorial - How to use the Demo-Application"></a>
 ---
 
 ## What's next?
