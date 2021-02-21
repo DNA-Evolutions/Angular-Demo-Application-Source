@@ -58,7 +58,11 @@ We recommend serving the Demo Application with docker, especially when you are n
 ### Build the image
 
 1) Clone this repository and open it in your desired IDE (e.g. <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>) and modify the code if you like.
-2) <a href="https://docs.docker.com/engine/reference/commandline/build/" target="_blank">Build</a> the docker image using the ``Dockerfile`` in the main project path.
+2) <a href="https://docs.docker.com/engine/reference/commandline/build/" target="_blank">Build</a> the docker image using the ``Dockerfile`` in the main project path, by running:
+
+```xml
+	docker build -t myDNADemo .
+```
 
 ### Run a container
 
@@ -71,7 +75,13 @@ docker run -d --rm \
 	-v ${PWD}:/usr/src/app \
 	-e JOPT_SWAGGER_HOST="http://localhost" \
 	-e JOPT_SWAGGER_PORT="8081" \
-	YOUR_LOCAL_BUILD_DEMO_APPLICAION_IMAGE_NAME
+	myDNADemo
+```
+
+Same command as a single line:
+
+```xml
+docker run -d --rm --name myJOptTourOptimizerDemo -p 3000:80 -v ${PWD}:/usr/src/app -e JOPT_SWAGGER_HOST="http://localhost" -e JOPT_SWAGGER_PORT="8081" myDNADemo
 ```
 
 Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, and you should see the Demo Application. If <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">JOptTourOptimizer</a> is not running in the background, you can **NOT** start any Optimization. However, you should see the starting page of the Demo Application. By default, the TourOptimizer is assumed to be available at <a href="http://localhost:8081" target="_blank">http://localhost:8081</a> and is started with the "cors" profile. You can adjust the default settings for host and port in the ``environment.ts`` file.
@@ -142,6 +152,16 @@ title="Tutorial - How to use the Demo-Application" alt="Tutorial - How to use th
 ## What's next?
 
 We are going to publish some tutorials on "how to create your own examples". Further, we are going to give some more insides on the structure of the Demo-Application.
+
+---
+
+## TODO's
+
+* Fix some dependencies that seem to have vulnerabilities
+* Improve in-code documentation.
+* Improve code by utilizing "Do's and Don'ts" for Angular
+* Update to Angular 11 or 12
+* ...
 
 ---
 
