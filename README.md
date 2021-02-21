@@ -39,7 +39,7 @@ Third-party:
 
 The angular-demo application was generated with <a href="https://github.com/angular/angular-cli" target="_blank">Angular CLI version 10.1.2</a>. Further, we utilized <a href="https://github.com/OpenAPITools/openapi-generator" target="_blank">OpenApi Generator</a> to automatically create the required TypeScript models from the OpenApi definition provided from our Swagger endpoint of JOptTourOptimizer.
 
-<img src="https://dna-evolutions.com/wp-content/uploads/2020/11/how-to-video-prev.gif" width="300"
+<img src="https://dna-evolutions.com/wp-content/uploads/2020/11/how-to-video-prev.gif" width="450"
 title="DNA-Evolutions Demo Application Preview" alt="DNA-Evolutions Demo Application Preview">
 
 ---
