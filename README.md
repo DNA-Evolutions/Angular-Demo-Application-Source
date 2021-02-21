@@ -115,7 +115,7 @@ If you would like to automatically generate the models based on the <a href="htt
 <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer" target="_blank">TourOptimizer</a>, you will have to install <a href="https://www.npmjs.com/package/@openapitools/openapi-generator-cli" target="_blank">Openapi-Generator-CLI</a>.
 
 ### Create a schema.yaml
-The ``schema.yaml`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">https://swagger.dna-evolutions.com/v3/api-doc</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a>) into the <a href="https://editor.swagger.io/" target="_blank">SwaggerEditor</a> (left panel) and accept to convert JSON to YAML. Then select (from the context menu)   _File->Save as YAML_  and save the file as ``schmema.yaml``.
+The ``schema.yaml`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">https://swagger.dna-evolutions.com/v3/api-docs</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a>) into the <a href="https://editor.swagger.io/" target="_blank">SwaggerEditor</a> (left panel) and accept to convert JSON to YAML. Then select (from the context menu)   _File->Save as YAML_  and save the file as ``schmema.yaml``.
 
 ### Make the schema.yaml available
 
