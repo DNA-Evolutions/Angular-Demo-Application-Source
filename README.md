@@ -53,7 +53,7 @@ We recommend serving the Demo Application with docker, especially when you are n
 
 1) Install a Docker environment and make sure ``docker`` is available in your command line.
 
-2) Even though the Demo-Application needs no TourOptimizer to start, you need to provide a running TourOptimizer instance to test the full functionality of the Demo-Application. Please read the documentation on how to <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/" target="_blank">start the TourOptimizer</a>.
+2) Even though the Demo-Application needs no TourOptimizer to start, you need to provide a running TourOptimizer instance to test the full functionality of the Demo-Application. Please read the documentation on how to <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">start the TourOptimizer</a>.
 
 ### Build the image
 
@@ -90,11 +90,11 @@ Of course, you can host the Demo-Application Angular Project locally without usi
 
 ### Prerequisites (for using ``npm`` and ``ng``)
 
-1) First, you need to make sure <a href="https://www.npmjs.com/get-npm npm" target="_blank">npm (Node Package Manager)</a> is installed.   
+1) First, you need to make sure <a href="https://www.npmjs.com/get-npm" target="_blank">npm (Node Package Manager)</a> is installed.   
 
 2) Further, you need to install <a href="https://angular.io/cli" target="_blank">ng (Angular CLI)</a>
 
-3) Even though the Demo-Application needs no TourOptimizer to start, you need to provide a running TourOptimizer instance to test the full functionality of the Demo-Application. Please read the documentation on how to <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/" target="_blank">start the TourOptimizer</a>.
+3) Even though the Demo-Application needs no TourOptimizer to start, you need to provide a running TourOptimizer instance to test the full functionality of the Demo-Application. Please read the documentation on how to <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">start the TourOptimizer</a>.
 
 
 ### Serve the Demo Application
