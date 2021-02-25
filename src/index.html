@@ -1,16 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>JOpt.Touroptimizer - Demo (Angular)</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="assets/env.js"></script>
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>JOpt.Touroptimizer - Demo (Angular)</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap"
+      rel="stylesheet"
+    />
+    <script src="assets/env.js"></script>
+  </head>
+  <body>
+    <!-- The loading screen - turn off when app root is ready -->
+    <div class="demo-loading">
+      <div class="card center">
+        <a href="https://www.dna-evolutions.com" target="_blank">
+          <img
+            class="card-capation-image"
+            src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
+            alt="map icon"
+        /></a>
+
+        <div class="container">
+          <h1 class="card-capation pulsate">Loading...</h1>
+
+          <div class="loader">
+            <div class="face">
+              <div class="circle"></div>
+            </div>
+            <div class="face">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <h4 class="card-capation card-info">
+            * The first time you start this Demo-Application, it might take up
+            to a minute to load all necessary components...
+          </h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- The app root-->
+    <app-root></app-root>
+  </body>
 </html>

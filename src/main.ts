@@ -8,5 +8,12 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+setTimeout(() => {
+  const loadingElement = document.querySelector('.demo-loading');
+
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((err) => console.error(err))
+    .then(() => loadingElement.classList.add('loaded'))
+    .then(() => setTimeout(() => loadingElement.remove(), 1000));
+}, 1000);
