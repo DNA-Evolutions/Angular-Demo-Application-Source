@@ -1,0 +1,41 @@
+<div mat-dialog-title>
+  <div class="intro-title">
+    <img
+      height="35px"
+      src="./assets/misc/icon/icon-dna-medium.png"
+      alt="dna icon"
+    />
+    &nbsp;Why JOpt?
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<p></p>
+<mat-dialog-content>
+  <div class="videoWrapper">
+    <iframe [src]="safeUrl" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <span style="font-size: small; color: lightgray">
+    <a
+      style="text-decoration: none; color: inherit"
+      href="{{ getYTShortUrl() }}"
+      target="_blank"
+      >YoutTube-Link: {{ getYTShortUrl() }}</a
+    ></span
+  >
+</mat-dialog-content>
+
+<p></p>
+<mat-divider></mat-divider>
+
+<div mat-dialog-actions class="inline">
+  <button
+    mat-raised-button
+    matTooltip="Close this dialog."
+    (click)="close()"
+    color="primary"
+    cdkFocusInitial
+  >
+    Close
+  </button>
+</div>

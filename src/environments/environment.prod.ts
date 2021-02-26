@@ -6,5 +6,6 @@ export const environment = {
   apiWarning: '/api/optimization/stream/warning',
   health: '/actuator/health',
   exampleAssertHelperPath: './assets/precoded-data/example-asserts-helper.json',
-  howtoYTIdent:'2q7cYYArKm8'
+  howtoYTIdent:'2q7cYYArKm8',
+  introYTIdent:'U4mDQGnZGZs'
 };

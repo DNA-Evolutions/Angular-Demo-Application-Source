@@ -23,6 +23,19 @@
     ></mat-expansion-panel-header>
     <div class="helpdesc dontbreakout">
       <p></p>
+      Please watch our introduction video (approx. 2 min). Simply click on
+      the preview of the video, to open it:
+      <p></p>
+
+      <input
+        type="image"
+        class="preview"
+        src="./assets/misc/icon/intro-video-prev.png"
+        (click)="openIntroductionDialog()"
+        alt="Preview of Intro video. Click to open video in a dialog window."
+        matTooltip="Preview of Intro-video. Click, to open video in a dialog window."
+      />
+      <p></p>
       <strong>JOpt</strong> by DNA Evolutiuons has been designed as an
       <strong>integrable</strong> module for existing applications and suites in
       the context of <strong>logistics</strong>-planning purposes for
@@ -199,12 +212,11 @@
         style="padding-right: 5px; padding-left: 2px; height: 20px"
         src="./assets/misc/icon/icon-github.png"
         alt="map icon"
-      />
-      (coming soon).
+      />.
       <p></p>
       <li>
         <a
-          href="https://github.com/DNA-Evolutions/Java-TourOptimizer-Examples"
+          href="https://github.com/DNA-Evolutions/Angular-Demo-Application-Source"
           target="_blank"
           matTooltip="JOpt-Tour-Optimizer Demo Application on GitHub."
           >JOpt-Tour-Optimizer Demo Application on GitHub</a
@@ -293,7 +305,7 @@
         <a
           href="https://www.youtube.com/channel/UCzfZjJLp5Rrk7U2UKsOf8Fw"
           target="_blank"
-          >DNA Tutorials</a
+          >DNA Tutorials and More</a
         >
       </li>
     </div>

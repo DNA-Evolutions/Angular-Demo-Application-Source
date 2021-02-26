@@ -82,6 +82,7 @@ import { BASE_PATH } from 'build/openapi';
 import { environment } from 'src/environments/environment';
 import { IntroductionComponent } from './component/introduction/introduction.component';
 import { HowtoDialogComponent } from './component/introduction/howto-dialog/howto-dialog.component';
+import { IntroVideoDialogComponent } from './component/introduction/intro-video-dialog/intro-video-dialog.component';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,8 @@ import { HowtoDialogComponent } from './component/introduction/howto-dialog/howt
     IntroductionComponent,
     //
     HowtoDialogComponent,
+    //
+    IntroVideoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -197,6 +200,7 @@ import { HowtoDialogComponent } from './component/introduction/howto-dialog/howt
     OptimizationRawRDialogComponent,
     IntroductionComponent,
     HowtoDialogComponent,
+    IntroVideoDialogComponent,
   ],
   bootstrap: [AppComponent],
 })

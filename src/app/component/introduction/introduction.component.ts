@@ -7,6 +7,7 @@ import {
 import { HowtoDialogComponent } from './howto-dialog/howto-dialog.component';
 
 import { environment } from './../../../environments/environment';
+import { IntroVideoDialogComponent } from './intro-video-dialog/intro-video-dialog.component';
 
 /**
  * The component for the help/introduction dialog of the demo application
@@ -74,6 +75,41 @@ export class IntroductionComponent {
     };
 
     const dialogRef = this.dialog.open(HowtoDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      //
+    });
+  }
+
+  /**
+   *
+   *
+   * @memberof IntroductionComponent
+   */
+  openIntroductionDialog(): void {
+    let takeUpPercentage = 85; // take up to 80% of the screen size
+
+    const dialogConfig = new MatDialogConfig();
+
+    let innerWidth = window.innerWidth;
+
+    let relativeWidth = (innerWidth * takeUpPercentage) / 100;
+    if (innerWidth > 1500) {
+      relativeWidth = (1500 * takeUpPercentage) / 100;
+    } else {
+      relativeWidth = (innerWidth * takeUpPercentage) / 100;
+    }
+
+    const relativeHeight = (relativeWidth * 9) / 16 + 160; // 16:9 to which we add 160 px for the dialog action buttons ("close")
+    dialogConfig.width = relativeWidth + 'px';
+
+    dialogConfig.maxHeight = '90%';
+
+    dialogConfig.data = {
+      ytVideoId: environment.introYTIdent,
+    };
+
+    const dialogRef = this.dialog.open(IntroVideoDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((result) => {
       //
