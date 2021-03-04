@@ -16,7 +16,7 @@ pipelines:
         services:
           - docker
         script:
-          - myVersion=$(cat package.json \
+          - myVersion=$(cat "/package.json" \
             | grep version \
             | head -1 \
             | awk -F:'{ print $2 }' \
