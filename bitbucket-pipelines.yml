@@ -10,13 +10,13 @@ pipelines:
           - npm install
         artifacts:
           - node_modules/**
-          - package.json
+          - src/package.json
     - step:
         name: Docker build
         services:
           - docker
         script:
-          - myVersion=$(cat "/package.json" \
+          - myVersion=$(cat "/src/package.json" \
             | grep version \
             | head -1 \
             | awk -F:'{ print $2 }' \
