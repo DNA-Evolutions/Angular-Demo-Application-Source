@@ -65,3 +65,4 @@ export * from './jOptTimeWindowZoneIdRulesTransitions';
 export * from './jOptViolation';
 export * from './jOptWorkingHours';
 export * from './localTime';
+export * from './status';

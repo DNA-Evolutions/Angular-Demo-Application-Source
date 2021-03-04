@@ -10,8 +10,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { JOptOptimizationOutput } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
-import { take } from 'rxjs/operators';
-
+import { concatMap, take, timeout } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+/**
+ *
+ *
+ * @export
+ * @class RunOptimizationDialogComponent
+ */
 @Component({
   selector: 'app-run-optimization-dialog',
   templateUrl: 'run-optimization-dialog.component.html',
@@ -31,13 +37,38 @@ export class RunOptimizationDialogComponent {
 
     this.startOptimization();
   }
-
+  /**
+   *
+   *
+   * @param {string} message
+   * @param {string} action
+   * @memberof RunOptimizationDialogComponent
+   */
   openSnackBar(message: string, action: string): void {
+    this.openSnackBarFor(message, action, 1000);
+  }
+  /**
+   *
+   *
+   * @param {string} message
+   * @param {string} action
+   * @param {number} durationMillis
+   * @memberof RunOptimizationDialogComponent
+   */
+  openSnackBarFor(
+    message: string,
+    action: string,
+    durationMillis: number
+  ): void {
     this.snackBar.open(message, action, {
-      duration: 1000,
+      duration: durationMillis,
     });
   }
-
+  /**
+   *
+   *
+   * @memberof RunOptimizationDialogComponent
+   */
   stopOptimizationGracefully(): void {
     this.openSnackBar('Stoping optimization gracefully', 'ok');
     this.dataService
@@ -57,29 +88,57 @@ export class RunOptimizationDialogComponent {
       );
   }
 
+  // STARTING OPTIMIZATION
+
+  /**
+   * First, the health endpoint is called. If healty, the optimization is started
+   *
+   * @private
+   * @memberof RunOptimizationDialogComponent
+   */
   private startOptimization(): void {
-    // STARTING OPTIMIZATION;
+    // Get the healt observable
+    const healthStatus$ = this.dataService.getEndPointStatus();
 
-    this.dataService
-      .startOptimization()
-      .pipe(take(1))
-      .subscribe(
-        (optimizationResult: JOptOptimizationOutput) => {
-          this.dialogRef.close();
+    // 10 seconds maximal time to extract status
+    const healthTimeOut = 10000;
 
-          this.openOptimizationResultDialog(optimizationResult);
-        },
-        (error) => {
-          console.log('error', error);
-          this.openSnackBar('Error', 'Error');
-          this.dialogRef.close();
-        },
-        () => {
-          this.dialogRef.close();
+    // Concat startOptimization with health
+    const validatedResult$ = healthStatus$.pipe(
+      timeout(healthTimeOut),
+      concatMap((val) => this.dataService.startOptimization(val))
+    );
+
+    validatedResult$.pipe(take(1)).subscribe(
+      (optimizationResult: JOptOptimizationOutput) => {
+        this.dialogRef.close();
+
+        this.openOptimizationResultDialog(optimizationResult);
+      },
+      (error) => {
+        console.log('error', error);
+        if (error instanceof HttpErrorResponse) {
+          this.openSnackBarFor('Error', error.name, 5000);
+        } else if (error.message !== undefined) {
+          this.openSnackBarFor('Error', error.message, 5000);
+        } else {
+          this.openSnackBar('Error', 'Something unexpected happened');
         }
-      );
+
+        this.dialogRef.close();
+      },
+      () => {
+        this.dialogRef.close();
+      }
+    );
   }
 
+  /**
+   *
+   *
+   * @param {JOptOptimizationOutput} output
+   * @memberof RunOptimizationDialogComponent
+   */
   openOptimizationResultDialog(output: JOptOptimizationOutput): void {
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',

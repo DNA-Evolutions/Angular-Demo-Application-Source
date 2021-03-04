@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 
+import { OptimizationHealthControllerService } from './api/optimizationHealthController.service';
 import { OptimizationServiceControllerService } from './api/optimizationServiceController.service';
 
 @NgModule({

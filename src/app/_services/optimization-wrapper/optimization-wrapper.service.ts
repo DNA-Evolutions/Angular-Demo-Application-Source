@@ -18,6 +18,8 @@ import {
   JOptRoute,
   JOptGeoNodeVisitDuration,
   JOptGeoResourceMaxTime,
+  OptimizationHealthControllerService,
+  Status,
 } from 'build/openapi';
 
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
@@ -102,11 +104,13 @@ export class OptimizationWrapperService {
   /**
    * Creates an instance of OptimizationWrapperService.
    * @param {OptimizationServiceControllerService} optiService
+   * @param {OptimizationHealthControllerService} healthService
    * @param {LoadExampleDataService} exampleLoaderService
    * @memberof OptimizationWrapperService
    */
   constructor(
     private readonly optiService: OptimizationServiceControllerService,
+    private readonly healthService: OptimizationHealthControllerService,
     private exampleLoaderService: LoadExampleDataService
   ) {
     this.$refresh = new ReplaySubject(1);
@@ -374,16 +378,43 @@ export class OptimizationWrapperService {
       this.myOptimizationInput.runSettings = newSettings;
     }
   }
+  /**
+   *
+   *
+   * @return {*}  {Observable<Status>}
+   * @memberof OptimizationWrapperService
+   */
+  public getEndPointStatus(): Observable<Status> {
+    return this.healthService.healthStatus();
+  }
 
-  // start optimization
+  // Start optimization
 
   /**
    *
    *
+   * @param {Status} healthStatus
    * @return {*}  {Observable<JOptOptimizationOutput>}
    * @memberof OptimizationWrapperService
    */
-  public startOptimization(): Observable<JOptOptimizationOutput> {
+  public startOptimization(
+    healthStatus: Status
+  ): Observable<JOptOptimizationOutput> {
+    // Check health first
+
+    console.log('healthStatus: ' + healthStatus);
+
+    if (healthStatus.status !== 'UP') {
+      console.log('Error - Endpoint is reachable but not healthy');
+
+      const notHealthyError = new Error(
+        'The endpoint reports an non-UP status.'
+      );
+      notHealthyError.name = 'Endpoint unhealthy';
+      notHealthyError.message = 'Endpoint unhealthy';
+      throw notHealthyError;
+    }
+
     const connections = this.exampleLoaderService.extractEdgeConnections(
       this.getAllElementIds()
     );
@@ -398,6 +429,7 @@ export class OptimizationWrapperService {
       (watcherEvent: JOptOptimizationOutput) => {
         this.$myOptimizationOutputSubject.next(watcherEvent);
         this.curOptimizationOutput = watcherEvent;
+        console.log('Watcherevent');
       },
       (error) => {
         this.$myOptimizationOutputSubject.error(error);
