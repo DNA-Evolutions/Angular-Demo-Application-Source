@@ -1,6 +1,6 @@
 {
   "name": "touroptimizer-angular-demo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "generate:api": "openapi-generator generate -g typescript-angular -i ../openapi/schema.yaml -o ./build/openapi",
     "ng": "ng",
