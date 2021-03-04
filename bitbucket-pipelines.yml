@@ -10,6 +10,7 @@ pipelines:
           - npm install
         artifacts:
           - node_modules/**
+          - package.json
     - step:
         name: Docker build
         services:
