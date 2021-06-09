@@ -2,16 +2,20 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { JOptOpeningHours, JOptGeoNode, JOptConstraint } from 'build/openapi';
+import {
+  OpeningHours,
+  Node,
+  Constraint,
+  BindingResourceConstraint,
+  ExcludingResourceConstraint,
+} from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 import { NodePropertiesData } from './interface/node-properties-data.interface';
 import { FormGroup } from '@angular/forms';
 import {
-  EmptyConstraint,
   EmptyBindingResourceConstraint,
   EmptyExcludingResourceConstraint,
-  DummyConstraintResource,
 } from './data/dummy-constraint';
 
 /**
@@ -29,16 +33,19 @@ export class NodePropertiesDialogComponent {
   openingHoursForm: FormGroup;
 
   //
-  curNode: JOptGeoNode;
+  curNode: Node;
 
   // Copies
-  openingHoursCopy: JOptOpeningHours[];
+  openingHoursCopy: OpeningHours[];
 
   // Copies
   visitDurationMinutes: number;
 
   // Copies
-  constraintCopy: JOptConstraint;
+  constraintsCopy: Constraint[];
+
+  binding: Constraint[] = [];
+  excluding: Constraint[] = [];
 
   // Result indicator
   hasResult?: boolean;
@@ -91,77 +98,64 @@ export class NodePropertiesDialogComponent {
    *
    *
    * @private
-   * @param {JOptGeoNode} node
+   * @param {Node} node
    * @memberof NodePropertiesDialogComponent
    */
-  private setConstraint(node: JOptGeoNode): void {
+  private setConstraint(node: Node): void {
+    let myBindingResoure: Constraint;
+    let myExclduingResoure: Constraint;
+    let modifiedConstraints: Constraint[] = [];
+
     if (node.constraints !== undefined) {
-      this.constraintCopy = JSON.parse(JSON.stringify(node.constraints));
+      this.constraintsCopy = JSON.parse(JSON.stringify(node.constraints));
 
-      // Fill up constraints
-      if (this.constraintCopy.bindingResources === undefined) {
-        this.constraintCopy.bindingResources = [];
+      console.log(this.constraintsCopy);
+
+      for (let c of this.constraintsCopy) {
+        if (c.type._ === BindingResourceConstraint.UEnum.BindingResource) {
+          console.log('found BindingResourceConstraint');
+          if (myBindingResoure === undefined) {
+            myBindingResoure = c;
+          }
+        }
+
+        if (c.type._ === ExcludingResourceConstraint.UEnum.ExcludingResource) {
+          console.log('found ExcludingResourceConstraint');
+          if (myExclduingResoure === undefined) {
+            myExclduingResoure = c;
+          }
+        }
       }
-
-      if (this.constraintCopy.bindingResources.length === 0) {
-        this.setEmptyBindingResource(this.constraintCopy);
-      }
-
-      // Excluding
-
-      if (this.constraintCopy.excludingResources === undefined) {
-        this.constraintCopy.excludingResources = [];
-      }
-
-      if (this.constraintCopy.excludingResources.length === 0) {
-        this.setEmptyExcludingResource(this.constraintCopy);
-      }
-    } else {
-      // Create dummy constraints for representation purpose. Each user can
-      // choose two binding and two excluding constraints
-
-      // Build an empty constraint
-      const myConstraint: JOptConstraint = JSON.parse(
-        JSON.stringify(EmptyConstraint)
-      );
-
-      this.setEmptyBindingResource(myConstraint);
-      this.setEmptyExcludingResource(myConstraint);
-
-      this.constraintCopy = myConstraint;
     }
+
+    // Fill up constraints
+    if (myBindingResoure === undefined) {
+      myBindingResoure = JSON.parse(
+        JSON.stringify(EmptyBindingResourceConstraint)
+      );
+    }
+
+    if (myExclduingResoure === undefined) {
+      myExclduingResoure = JSON.parse(
+        JSON.stringify(EmptyExcludingResourceConstraint)
+      );
+    }
+
+    modifiedConstraints.push(myBindingResoure);
+    this.binding.push(myBindingResoure);
+
+    modifiedConstraints.push(myExclduingResoure);
+    this.excluding.push(myExclduingResoure);
+
+    this.constraintsCopy = modifiedConstraints;
   }
 
-  /**
-   *
-   *
-   * @private
-   * @param {JOptConstraint} con
-   * @memberof NodePropertiesDialogComponent
-   */
-  private setEmptyBindingResource(con: JOptConstraint): void {
-    con.bindingResources[0] = JSON.parse(
-      JSON.stringify(EmptyBindingResourceConstraint)
-    );
-    con.bindingResources[0].resources[0] = JSON.parse(
-      JSON.stringify(DummyConstraintResource)
-    );
+  asBindingResourceType(c: Constraint): BindingResourceConstraint {
+    return c.type as BindingResourceConstraint;
   }
 
-  /**
-   *
-   *
-   * @private
-   * @param {JOptConstraint} con
-   * @memberof NodePropertiesDialogComponent
-   */
-  private setEmptyExcludingResource(con: JOptConstraint): void {
-    con.excludingResources[0] = JSON.parse(
-      JSON.stringify(EmptyExcludingResourceConstraint)
-    );
-    con.excludingResources[0].resources[0] = JSON.parse(
-      JSON.stringify(DummyConstraintResource)
-    );
+  asExcludingResourceType(c: Constraint): ExcludingResourceConstraint {
+    return c.type as ExcludingResourceConstraint;
   }
 
   /**
@@ -194,11 +188,11 @@ export class NodePropertiesDialogComponent {
     );
 
     // Filter the constraints for empty tag "--"
-    this.filterConstraint(this.constraintCopy);
+    this.filterConstraints(this.constraintsCopy);
 
-    //console.log(this.constraintCopy);
-    this.curNode.constraints = this.constraintCopy;
-    console.log(this.curNode);
+    console.log(this.constraintsCopy);
+
+    this.curNode.constraints = this.constraintsCopy;
 
     this.openSnackBar('Saved changes', 'Ok');
 
@@ -209,19 +203,40 @@ export class NodePropertiesDialogComponent {
    *
    *
    * @private
-   * @param {JOptConstraint} con
+   * @param {Constraint[]} cons
    * @memberof NodePropertiesDialogComponent
    */
-  private filterConstraint(con: JOptConstraint): void {
-    if (con.bindingResources[0].resources[0].id === '--') {
-      con.bindingResources = [];
-    } else {
-    }
+  private filterConstraints(cons: Constraint[]): void {
+    cons.filter((c) => {
+      // Binding
+      if (c.type._ === BindingResourceConstraint.UEnum.BindingResource) {
+        let curRess = (c.type as BindingResourceConstraint).resources;
 
-    if (con.excludingResources[0].resources[0].id === '--') {
-      con.excludingResources = [];
-    } else {
-    }
+        if (curRess.length === 0) {
+          return true;
+        }
+
+        if (curRess.length > 0) {
+          return curRess[0].resourceId === '--';
+        }
+      }
+
+      // Exclduing
+      if (c.type._ === ExcludingResourceConstraint.UEnum.ExcludingResource) {
+        let curRess = (c.type as ExcludingResourceConstraint).resources;
+
+        if (curRess.length === 0) {
+          return true;
+        }
+
+        if (curRess.length > 0) {
+          return curRess[0].resourceId === '--';
+        }
+      }
+
+      // Filter unknow constraints
+      return true;
+    });
   }
 
   /**

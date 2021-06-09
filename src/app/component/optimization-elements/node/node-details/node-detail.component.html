@@ -26,13 +26,13 @@
     <mat-list-item role="listitem">
       <div class="mat-list-node-item-cap">Duration:</div>
       <div class="mat-list-node-item-value dontbreak">
-        {{ curDetail.visitDuration | durationFormatPipe: "s":"auto" }}
+        {{ curDetail.durationTime | durationFormatPipe: "PT":"auto" }}
       </div>
     </mat-list-item>
     <mat-list-item role="listitem">
       <div class="mat-list-node-item-cap">Idle:</div>
       <div class="mat-list-node-item-value dontbreak">
-        {{ curDetail.idleTime | durationFormatPipe: "s":"auto" }}
+        {{ curDetail.idleTime | durationFormatPipe: "PT":"auto" }}
       </div>
     </mat-list-item>
     <mat-list-item role="listitem">
@@ -46,19 +46,19 @@
   <p></p>
   <mat-list-item role="listitem">
     <mat-list dense role="list">
-      <div *ngIf="isBigger(curDetail.earlyDeviation, 0)">
+      <div *ngIf="isBigger(curDetail.earlyDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)">
         <mat-list-item role="listitem">
           <div class="mat-list-node-item-cap">Early:</div>
           <div class="mat-list-node-item-value violation dontbreak">
-            {{ curDetail.earlyDeviation | durationFormatPipe: "s":"auto" }}
+            {{ curDetail.earlyDeviation | durationFormatPipe: "PT":"auto" }}
           </div>
         </mat-list-item>
       </div>
-      <div *ngIf="isBigger(curDetail.lateDeviation, 0)">
+      <div *ngIf="isBigger(curDetail.lateDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)">
         <mat-list-item role="listitem">
           <div class="mat-list-node-item-cap">Late:</div>
           <div class="mat-list-node-item-value violation dontbreak">
-            {{ curDetail.lateDeviation | durationFormatPipe: "s":"auto" }}
+            {{ curDetail.lateDeviation | durationFormatPipe: "PT":"auto" }}
           </div>
         </mat-list-item>
       </div>

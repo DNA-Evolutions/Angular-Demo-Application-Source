@@ -3,7 +3,7 @@
 <div mat-dialog-content style="max-height: 50vh">
   <p></p>
   <mat-accordion>
-    <div *ngFor="let prop of settingsCopy?.properties">
+    <div *ngFor="let prop of settingsAsArray">
       <mat-expansion-panel [disabled]="false" class="wide">
         <mat-expansion-panel-header>
           <mat-panel-title>

@@ -3,10 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
-  JOptGeoResource,
-  JOptWorkingHours,
-  JOptGeoResourceMaxDistance,
-  JOptGeoResourceMaxTime,
+  Resource,
+  WorkingHours,
 } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { ResourcePropertiesData } from './interface/resource-properties-data.interface';
@@ -17,14 +15,14 @@ import { ResourcePropertiesData } from './interface/resource-properties-data.int
 })
 export class ResourcePropertiesDialogComponent {
   //
-  curRes: JOptGeoResource;
+  curRes: Resource;
 
   // Copies
-  workingHoursCopy: JOptWorkingHours[];
+  workingHoursCopy: WorkingHours[];
 
-  maxDistanceCopy: JOptGeoResourceMaxDistance;
+  maxDistanceCopy: String;
 
-  maxTimeCopy: JOptGeoResourceMaxTime;
+  maxTimeCopy: String;
   maxTimeHours: number;
 
   // Result indicator
@@ -47,6 +45,7 @@ export class ResourcePropertiesDialogComponent {
       this.workingHoursCopy = JSON.parse(
         JSON.stringify(this.curRes.workingHours)
       );
+
       this.maxDistanceCopy = JSON.parse(
         JSON.stringify(this.curRes.maxDistance)
       );

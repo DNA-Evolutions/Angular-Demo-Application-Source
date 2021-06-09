@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 
-import { JOptOpeningHours, JOptGeoNode, JOptRouteElementDetail } from 'build/openapi';
+import { OpeningHours, GeoNode, RouteElementDetail } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class ResourceDetailComponent implements OnInit {
 
     @Input() resourceId: string;
 
-    curDetail?: JOptRouteElementDetail;
+    curDetail?: RouteElementDetail;
 
     constructor(
         private dataService: OptimizationWrapperService) { }

@@ -1,5 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { JOptGeoNode, JOptGeoResource, JOptRoute } from 'build/openapi';
+import { GeoNode, Resource, Route, Node } from 'build/openapi';
 import { MatDialog } from '@angular/material/dialog';
 import { NodePropertiesDialogComponent } from 'src/app/component/optimization-elements/node/node-properties-dialog.component';
 import { ResourcePropertiesDialogComponent } from 'src/app/component/optimization-elements/resource/resource-properties-dialog.component';
@@ -29,7 +29,7 @@ export class PopUpService {
    * @param {ElementRef} ref
    * @memberof PopUpService
    */
-  bindNodePopUp(marker: any, node: JOptGeoNode, ref: ElementRef): void {
+  bindNodePopUp(marker: any, node: Node, ref: ElementRef): void {
     const popupOptions = {
       className: 'node-popup pop',
     };
@@ -58,7 +58,7 @@ export class PopUpService {
    * @param {ElementRef} ref
    * @memberof PopUpService
    */
-  bindPolyRoutePopUp(polyline: any, route: JOptRoute, ref: ElementRef): void {
+  bindPolyRoutePopUp(polyline: any, route: Route, ref: ElementRef): void {
     const popupOptions = {
       className: 'route-popup pop',
     };
@@ -75,7 +75,7 @@ export class PopUpService {
       'RouteId: ' +
         (route.id + 1) +
         '; Visitor: ' +
-        route.visitorId +
+        route.resourceId +
         ' - Click for details'
     );
   }
@@ -90,7 +90,7 @@ export class PopUpService {
    * @param {ElementRef} ref
    * @memberof PopUpService
    */
-  bindResourcePopUp(marker: any, res: JOptGeoResource, ref: ElementRef): void {
+  bindResourcePopUp(marker: any, res: Resource, ref: ElementRef): void {
     const popupOptions = {
       className: 'resource-popup pop',
     };
@@ -153,7 +153,7 @@ export class PopUpService {
    * @memberof PopUpService
    */
   openRouteResultDialog(curRouteId: number): void {
-    console.log(curRouteId);
+
     const dialogRef = this.dialog.open(RouteResultDialogComponent, {
       width: '80%',
       maxHeight: '80vh',

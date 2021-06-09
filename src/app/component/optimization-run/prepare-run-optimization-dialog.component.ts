@@ -8,8 +8,9 @@ import { PrepareRunOptimizationDialogData } from './prepare-run-optimization-dat
 import { RunOptimizationDialogComponent } from './run-optimization-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { JOptOptimizationRunOptions } from 'build/openapi';
+import { OptimizationOptions } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
+import { Kv } from '../optimization-elements/result/optimization/interface/keyvalue/key-value.interface';
 
 @Component({
   selector: 'app-prepare-run-optimization-dialog',
@@ -17,10 +18,12 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
   styleUrls: ['prepare-run-optimization-view.component.scss'],
 })
 export class PrepareRunOptimizationDialogComponent {
-  curSettings: JOptOptimizationRunOptions;
+  curSettings: OptimizationOptions;
 
   // Copies
-  settingsCopy: JOptOptimizationRunOptions;
+  settingsCopy: OptimizationOptions;
+
+  settingsAsArray: Kv[];
 
   constructor(
     private dataService: OptimizationWrapperService,
@@ -31,7 +34,16 @@ export class PrepareRunOptimizationDialogComponent {
     public runDialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: PrepareRunOptimizationDialogData
   ) {
+
     this.curSettings = this.dataService.optimizerSettings();
+    this.settingsAsArray = [];
+
+    let jsonObject = this.curSettings.properties;  
+
+    for (var value in jsonObject) {  
+      this.settingsAsArray.push({key: value, value:jsonObject[value]});
+    }  
+
 
     if (this.curSettings === undefined) {
       this.openSnackBar('Input is not valid', 'Invalid');
@@ -146,13 +158,18 @@ export class PrepareRunOptimizationDialogComponent {
   }
 
   onStartClick(): void {
+
+    this.settingsAsArray.forEach((entry: Kv) => {
+        this.settingsCopy.properties[entry.key] = entry.value;
+    });
+
     this.dataService.setOptimizerSettings(this.settingsCopy);
     this.openRunDialog();
     this.prepareDialogRef.close();
   }
 
   onNoClick(): void {
-    console.log('RunOptimizationDialogComponent closing without saving.');
+    //console.log('RunOptimizationDialogComponent closing without saving.');
     this.openSnackBar('Cancelling', 'Ok');
     this.prepareDialogRef.close();
   }

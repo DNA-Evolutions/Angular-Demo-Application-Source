@@ -1,5 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { JOptRoute } from 'build/openapi';
+import { Route } from 'build/openapi';
 import * as L from 'leaflet';
 import { GeoAndRoutingService } from '../../geo-and-routing/geo-and-routing.service';
 import { PopUpService } from '../pop-up/leaflet-popup.service';
@@ -32,7 +32,7 @@ export class LeafletPolylineService {
    * @memberof LeafletPolylineService
    */
   public drawRouteResultPolyline(
-    route: JOptRoute,
+    route: Route,
     index: number,
     ref: ElementRef,
     map: any
@@ -43,7 +43,7 @@ export class LeafletPolylineService {
 
     const ids = Array<string>();
     ids.push(route.startElementId);
-    route.elementDetails.map((d) => d.id).forEach((id) => ids.push(id));
+    route.elementDetails.map((d) => d.elementId).forEach((id) => ids.push(id));
     ids.push(route.endElementId);
 
     //console.log(ids);
@@ -64,7 +64,7 @@ export class LeafletPolylineService {
    */
   private drawMutliElementPolyine(
     ids: Array<string>,
-    route: JOptRoute,
+    route: Route,
     index: number,
     ref: ElementRef,
     map: any

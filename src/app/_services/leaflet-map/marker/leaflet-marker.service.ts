@@ -1,4 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
+import { GeoNode, NodeType } from 'build/openapi';
 import * as L from 'leaflet';
 import { OptimizationWrapperService } from '../../optimization-wrapper/optimization-wrapper.service';
 import { PopUpService } from '../pop-up/leaflet-popup.service';
@@ -18,7 +19,6 @@ export class LeafletMarkerService {
     private popupService: PopUpService
   ) {}
 
-
   /**
    * Adding Nodes to the map
    *
@@ -30,16 +30,16 @@ export class LeafletMarkerService {
   markNodes(map: L.map, ref: ElementRef, icon: any): void {
     // Get nodes
     this.dataService.nodes().forEach((n) => {
-      const lat = n.position.geoCoordinate.latitude;
-      const lon = n.position.geoCoordinate.longitude;
+      const lat = (n.type as GeoNode).position.latitude;
+      const lon = (n.type as GeoNode).position.longitude;
       const marker = L.marker([lat, lon], { icon });
 
       this.popupService.bindNodePopUp(marker, n, ref);
 
       marker.addTo(map);
+      // }
     });
   }
-
 
   /**
    * Adding Resources to the map
@@ -52,8 +52,8 @@ export class LeafletMarkerService {
   markResources(map: L.map, ref: ElementRef, icon: any): void {
     // Get nodes
     this.dataService.resources().forEach((r) => {
-      const lat = r.position.geoCoordinate.latitude;
-      const lon = r.position.geoCoordinate.longitude;
+      const lat = r.position.latitude;
+      const lon = r.position.longitude;
 
       const marker = L.marker([lat, lon], { icon });
 

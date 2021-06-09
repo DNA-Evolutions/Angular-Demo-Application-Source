@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { OptimizationWrapperService } from '../optimization-wrapper/optimization-wrapper.service';
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
 import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
-import { JOptGeoPosition } from 'build/openapi';
+import { GeoNode, Position } from 'build/openapi';
 
 /**
  * Service that is providing functionality to extract connection shapes
@@ -116,15 +116,17 @@ export class GeoAndRoutingService {
     // We try to look up the shape if it can't be found we simply do a direct polyline
     const coordinates = [];
 
-    let fromPosition: JOptGeoPosition;
-    let toPosition: JOptGeoPosition;
+    let fromPosition: Position;
+    let toPosition: Position;
 
     // Fallback
     const elemenFrom = this.optiWrapper.node(elementIdFrom);
     const elemenTo = this.optiWrapper.node(elementIdTo);
 
     if (elemenFrom !== undefined) {
-      fromPosition = elemenFrom.position;
+      if (elemenFrom.type._ === GeoNode.UEnum.Geo) {
+        fromPosition = (elemenFrom.type as GeoNode).position;
+      }
     } else {
       const elemenFromAsRes = this.optiWrapper.resource(elementIdFrom);
 
@@ -134,7 +136,9 @@ export class GeoAndRoutingService {
     }
 
     if (elemenTo !== undefined) {
-      toPosition = elemenTo.position;
+      if (elemenTo.type._ === GeoNode.UEnum.Geo) {
+        toPosition = (elemenTo.type as GeoNode).position;
+      }
     } else {
       const elemenToAsRes = this.optiWrapper.resource(elementIdTo);
 
@@ -143,14 +147,8 @@ export class GeoAndRoutingService {
       }
     }
 
-    coordinates.push([
-      fromPosition.geoCoordinate.latitude,
-      fromPosition.geoCoordinate.longitude,
-    ]);
-    coordinates.push([
-      toPosition.geoCoordinate.latitude,
-      toPosition.geoCoordinate.longitude,
-    ]);
+    coordinates.push([fromPosition.latitude, fromPosition.longitude]);
+    coordinates.push([toPosition.latitude, toPosition.longitude]);
     return coordinates;
   }
 

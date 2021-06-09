@@ -10,6 +10,7 @@ import { LoadExampleDataService } from './_services/load-example-data/load-examp
 import { OptimizationWrapperService } from './_services/optimization-wrapper/optimization-wrapper.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IntroductionComponent } from './component/introduction/introduction.component';
+import { version } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,8 @@ export class AppComponent implements OnInit {
   description = 'Optimization framework for Tour Optimization';
 
   desiredNodeId = new FormControl('');
+
+  public version: string = version;
 
   constructor(
     private loadService: LoadExampleDataService,

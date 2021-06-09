@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
 
-import { JOptRouteElementDetail, JOptRoute } from 'build/openapi';
+import { RouteElementDetail, Route } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -32,7 +32,7 @@ export class RouteResultDialogComponent implements OnInit {
    * @type {JOptRoute}
    * @memberof RouteResultDialogComponent
    */
-  @Input() route: JOptRoute;
+  @Input() route: Route;
 
   /**
    *
@@ -41,9 +41,9 @@ export class RouteResultDialogComponent implements OnInit {
    * @type {JOptRoute}
    * @memberof RouteResultDialogComponent
    */
-  curRoute?: JOptRoute;
+  curRoute?: Route;
 
-  expandedElement: JOptRouteElementDetail | null;
+  expandedElement: RouteElementDetail | null;
 
   public panelOpenState: boolean;
 

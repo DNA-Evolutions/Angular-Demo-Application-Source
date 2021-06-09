@@ -1,225 +1,170 @@
 {
-  "geoNodes": [
-    {
-      "openingHours": [
-        {
-          "timeWindow": {
-            "begin": "2025-05-06T08:00:00",
-            "end": "2025-05-06T17:00:00",
-            "zoneId": "Europe/Berlin"
-          }
-        }
-      ],
-      "visitDuration": "PT30M",
-      "constraints": { "bindingResources": [], "excludingResources": [] },
-      "id": "Koeln",
-      "position": {
-        "locationIndex": 0,
-        "geoCoordinate": {
-          "latitude": 50.9333,
-          "longitude": 6.95,
-          "boundaryRadius": 1.0,
-          "size": 1
-        }
+  "ident" : "DemoAppExampleFour",
+  "nodes" : [ {
+    "id" : "Koeln",
+    "type" : {
+      "position" : {
+        "latitude" : 50.9333,
+        "longitude" : 6.95
       },
-      "stayNode": false,
-      "workNode": true
+      "_" : "Geo"
     },
-    {
-      "openingHours": [
-        {
-          "timeWindow": {
-            "begin": "2025-05-06T08:00:00",
-            "end": "2025-05-06T17:00:00",
-            "zoneId": "Europe/Berlin"
-          }
-        }
-      ],
-      "visitDuration": "PT30M",
-      "constraints": { "bindingResources": [], "excludingResources": [] },
-      "id": "Wuppertal",
-      "position": {
-        "locationIndex": 0,
-        "geoCoordinate": {
-          "latitude": 51.2667,
-          "longitude": 7.18333,
-          "boundaryRadius": 1.0,
-          "size": 1
-        }
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Wuppertal",
+    "type" : {
+      "position" : {
+        "latitude" : 51.2667,
+        "longitude" : 7.18333
       },
-      "stayNode": false,
-      "workNode": true
+      "_" : "Geo"
     },
-    {
-      "openingHours": [
-        {
-          "timeWindow": {
-            "begin": "2025-05-06T08:00:00",
-            "end": "2025-05-06T17:00:00",
-            "zoneId": "Europe/Berlin"
-          }
-        }
-      ],
-      "visitDuration": "PT30M",
-      "constraints": { "bindingResources": [], "excludingResources": [] },
-      "id": "Essen",
-      "position": {
-        "locationIndex": 0,
-        "geoCoordinate": {
-          "latitude": 51.45,
-          "longitude": 7.01667,
-          "boundaryRadius": 1.0,
-          "size": 1
-        }
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Essen",
+    "type" : {
+      "position" : {
+        "latitude" : 51.45,
+        "longitude" : 7.01667
       },
-      "stayNode": false,
-      "workNode": true
+      "_" : "Geo"
     },
-    {
-      "openingHours": [
-        {
-          "timeWindow": {
-            "begin": "2025-05-06T08:00:00",
-            "end": "2025-05-06T17:00:00",
-            "zoneId": "Europe/Berlin"
-          }
-        }
-      ],
-      "visitDuration": "PT30M",
-      "constraints": { "bindingResources": [], "excludingResources": [] },
-      "id": "Duesseldorf",
-      "position": {
-        "locationIndex": 0,
-        "geoCoordinate": {
-          "latitude": 51.22201,
-          "longitude": 6.78677,
-          "boundaryRadius": 1.0,
-          "size": 1
-        }
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Duesseldorf",
+    "type" : {
+      "position" : {
+        "latitude" : 51.22201,
+        "longitude" : 6.78677
       },
-      "stayNode": false,
-      "workNode": true
+      "_" : "Geo"
     },
-    {
-      "openingHours": [
-        {
-          "timeWindow": {
-            "begin": "2025-05-06T08:00:00",
-            "end": "2025-05-06T17:00:00",
-            "zoneId": "Europe/Berlin"
-          }
-        }
-      ],
-      "visitDuration": "PT30M",
-      "constraints": {
-        "bindingResources": [
-          {
-            "resources": [{ "id": "Jack from Koeln", "priority": 10 }],
-            "hard": true
-          }
-        ],
-        "excludingResources": [
-          {
-            "resources": [{ "id": "Jack from Koeln", "priority": 10 }],
-            "hard": true
-          }
-        ]
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Bielefeld",
+    "type" : {
+      "position" : {
+        "latitude" : 52.02113,
+        "longitude" : 8.5294
       },
-      "id": "Bielefeld",
-      "position": {
-        "locationIndex": 0,
-        "geoCoordinate": {
-          "latitude": 52.02113,
-          "longitude": 8.5294,
-          "boundaryRadius": 1.0,
-          "size": 1
-        }
-      },
-      "stayNode": false,
-      "workNode": true
+      "_" : "Geo"
     },
-    {
-      "openingHours": [
-        {
-          "timeWindow": {
-            "begin": "2025-05-06T08:00:00",
-            "end": "2025-05-06T17:00:00",
-            "zoneId": "Europe/Berlin"
-          }
-        }
-      ],
-      "visitDuration": "PT30M",
-      "constraints": {
-        "bindingResources": [
-          {
-            "resources": [{ "id": "Jack from Koeln", "priority": 10 }],
-            "hard": true
-          }
-        ],
-        "excludingResources": [
-          {
-            "resources": [{ "id": "Jack from Koeln", "priority": 10 }],
-            "hard": true
-          }
-        ]
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "constraints" : [ {
+      "type" : {
+        "resources" : [ {
+          "resourceId" : "Jack from Koeln",
+          "priority" : 10
+        } ],
+        "_" : "BindingResource"
       },
-      "id": "Gelsenkirchen",
-      "position": {
-        "locationIndex": 0,
-        "geoCoordinate": {
-          "latitude": 51.54398,
-          "longitude": 7.10001,
-          "boundaryRadius": 1.0,
-          "size": 1
-        }
+      "isHard" : true
+    }, {
+      "type" : {
+        "resources" : [ {
+          "resourceId" : "Jack from Koeln",
+          "priority" : 10
+        } ],
+        "_" : "ExcludingResource"
       },
-      "stayNode": false,
-      "workNode": true
+      "isHard" : true
+    } ],
+    "priority" : 1
+  }, {
+    "id" : "Gelsenkirchen",
+    "type" : {
+      "position" : {
+        "latitude" : 51.54398,
+        "longitude" : 7.10001
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "constraints" : [ {
+      "type" : {
+        "resources" : [ {
+          "resourceId" : "Jack from Koeln",
+          "priority" : 10
+        } ],
+        "_" : "BindingResource"
+      },
+      "isHard" : true
+    }, {
+      "type" : {
+        "resources" : [ {
+          "resourceId" : "Jack from Koeln",
+          "priority" : 10
+        } ],
+        "_" : "ExcludingResource"
+      },
+      "isHard" : true
+    } ],
+    "priority" : 1
+  } ],
+  "resources" : [ {
+    "id" : "Jack from Koeln",
+    "type" : {
+      "_" : "Capacity"
+    },
+    "position" : {
+      "latitude" : 50.9333,
+      "longitude" : 6.95
+    },
+    "workingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "maxTime" : "PT9H",
+    "maxDistance" : "1200.0 km"
+  } ],
+  "optimizationOptions" : {
+    "properties" : {
+      "JOpt.Algorithm.PreOptimization.SA.NumIterations" : "1000",
+      "JOptWeight.RouteTime" : "1.0",
+      "JOptWeight.RouteDistance" : "1.0",
+      "JOptWeight.TimeWindow" : "1.0",
+      "JOptExitCondition.JOptGenerationCount" : "200"
     }
-  ],
-  "eventNodes": [],
-  "pillarGeoNodes": [],
-  "pillarEventNodes": [],
-  "geoResources": [
-    {
-      "id": "Jack from Koeln",
-      "workingHours": [
-        {
-          "timeWindow": {
-            "begin": "2025-05-06T08:00:00",
-            "end": "2025-05-06T17:00:00",
-            "zoneId": "Europe/Berlin"
-          }
-        }
-      ],
-      "maxDistance": "1200.0 km",
-      "maxTime": "PT9H",
-      "position": {
-        "locationIndex": 0,
-        "geoCoordinate": {
-          "latitude": 50.9333,
-          "longitude": 6.95,
-          "boundaryRadius": 1.0,
-          "size": 1
-        }
-      }
-    }
-  ],
-  "keySetting": {
-    "license": "{\"version\":\"9.0\",\"identifier\":\"PUBLIC-\",\"description\":\"Key provided to everybody for evaluation purpose from DNA evolutions GmbH.\",\"contact\":\"info@dna-evolutions.com\",\"modules\":[{\"Module:\":\"Elements\",\"max\":20},{\"Module:\":\"Date\",\"creation\":\"2020-11-03\",\"due\":\"2022-11-03\"}],\"key\":\"PUBLIC-5a8d9466d51f4adccefb7319a12884505cc675fe520fe26bd3\"}",
-    "timeOut": 300.0
   },
-  "runSettings": {
-    "properties": [
-      {
-        "key": "JOpt.Algorithm.PreOptimization.SA.NumIterations",
-        "value": "1000"
-      },
-      { "key": "JOptWeight.RouteTime", "value": "1.0" },
-      { "key": "JOptWeight.RouteDistance", "value": "1.0" },
-      { "key": "JOptWeight.TimeWindow", "value": "1.0" },
-      { "key": "JOptExitCondition.JOptGenerationCount", "value": "200" }
-    ],
-    "timeOut": 300.0
+  "extension" : {
+    "keySetting" : {
+      "jsonLicense" : "{\"version\":\"9.0\",\"identifier\":\"PUBLIC-\",\"description\":\"Key provided to everybody for evaluation purpose from DNA evolutions GmbH.\",\"contact\":\"info@dna-evolutions.com\",\"modules\":[{\"Module:\":\"Elements\",\"max\":20},{\"Module:\":\"Date\",\"creation\":\"2020-11-03\",\"due\":\"2022-11-03\"}],\"key\":\"PUBLIC-5a8d9466d51f4adccefb7319a12884505cc675fe520fe26bd3\"}"
+    },
+    "timeOut" : 300.000000000
   }
 }

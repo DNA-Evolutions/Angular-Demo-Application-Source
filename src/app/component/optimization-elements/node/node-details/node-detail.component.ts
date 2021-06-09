@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { JOptRouteElementDetail } from 'build/openapi';
+import { RouteElementDetail } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 /**
@@ -17,9 +17,9 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 export class NodeDetailComponent implements OnInit {
   @Input() nodeId: string;
 
-  @Input() detail: JOptRouteElementDetail;
+  @Input() detail: RouteElementDetail;
 
-  curDetail?: JOptRouteElementDetail;
+  curDetail?: RouteElementDetail;
 
   public moreDetailsState: boolean;
 

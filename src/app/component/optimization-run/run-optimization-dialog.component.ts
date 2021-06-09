@@ -7,7 +7,7 @@ import {
 import { RunOptimizationDialogData } from './run-optimization-data.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { JOptOptimizationOutput } from 'build/openapi';
+import { OptimizationConfigJSONConfig } from 'build/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
 import { concatMap, take, timeout } from 'rxjs/operators';
@@ -110,7 +110,7 @@ export class RunOptimizationDialogComponent {
     );
 
     validatedResult$.pipe(take(1)).subscribe(
-      (optimizationResult: JOptOptimizationOutput) => {
+      (optimizationResult: OptimizationConfigJSONConfig) => {
         this.dialogRef.close();
 
         this.openOptimizationResultDialog(optimizationResult);
@@ -136,10 +136,10 @@ export class RunOptimizationDialogComponent {
   /**
    *
    *
-   * @param {JOptOptimizationOutput} output
+   * @param {OptimizationConfigJSONConfig} output
    * @memberof RunOptimizationDialogComponent
    */
-  openOptimizationResultDialog(output: JOptOptimizationOutput): void {
+  openOptimizationResultDialog(output: OptimizationConfigJSONConfig): void {
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',

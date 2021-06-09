@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { JOptOptimizationInput, JOptEdgeConnection } from 'build/openapi';
+import { OptimizationConfigJSONConfig, ElementConnection } from 'build/openapi';
 
 import { environment } from 'src/environments/environment';
 import { JOptExampleDefinition } from './interface/jopt-example-defintion';
@@ -21,8 +21,8 @@ export class LoadExampleDataService {
   private exampleDefs: JOptExampleDefinition[];
 
   private curDef: JOptExampleDefinition;
-  private defaultOptimizationInput: JOptOptimizationInput = null;
-  private geoConnections: JOptEdgeConnection[];
+  private defaultOptimizationInput: OptimizationConfigJSONConfig = null;
+  private geoConnections: ElementConnection[];
   private geoRoutes: object[];
   private mapViewDefintion: MapViewDefinition;
 
@@ -31,10 +31,10 @@ export class LoadExampleDataService {
   /**
    * The extracted Example Input
    *
-   * @return {*}  {JOptOptimizationInput}
+   * @return {*}  {OptimizationConfigJSONConfig}
    * @memberof LoadExampleDataService
    */
-  public optimizationInput(): JOptOptimizationInput {
+  public optimizationInput(): OptimizationConfigJSONConfig {
     return this.defaultOptimizationInput;
   }
 
@@ -42,10 +42,10 @@ export class LoadExampleDataService {
    *
    * All extracted predefined element connections
 
-   * @return {*}  {JOptEdgeConnection[]}
+   * @return {*}  {ElementConnection[]}
    * @memberof LoadExampleDataService
    */
-  public connections(): JOptEdgeConnection[] {
+  public connections(): ElementConnection[] {
     return this.geoConnections;
   }
 
@@ -53,10 +53,10 @@ export class LoadExampleDataService {
    * Extracted connections of certain element ids.
    *
    * @param {string[]} ids
-   * @return {*}  {JOptEdgeConnection[]}
+   * @return {*}  {ElementConnection[]}
    * @memberof LoadExampleDataService
    */
-  public extractEdgeConnections(ids: string[]): JOptEdgeConnection[] {
+  public extractEdgeConnections(ids: string[]): ElementConnection[] {
     return this.geoConnections.filter((c) =>
       this.isDesiredConnectionsMember(ids, c)
     );
@@ -67,19 +67,19 @@ export class LoadExampleDataService {
    *
    * @private
    * @param {string[]} ids
-   * @param {JOptEdgeConnection} c
+   * @param {ElementConnection} c
    * @return {*}  {boolean}
    * @memberof LoadExampleDataService
    */
   private isDesiredConnectionsMember(
     ids: string[],
-    c: JOptEdgeConnection
+    c: ElementConnection
   ): boolean {
-    if (c.fromId === c.toId) {
+    if (c.fromElementId === c.toElementId) {
       return false;
     }
 
-    return ids.indexOf(c.fromId) > -1 && ids.indexOf(c.toId) > -1;
+    return ids.indexOf(c.fromElementId) > -1 && ids.indexOf(c.toElementId) > -1;
   }
 
   /**
@@ -180,10 +180,10 @@ export class LoadExampleDataService {
    *
    *
    * @param {string} path
-   * @return {*}  {Promise<JOptEdgeConnection[]>}
+   * @return {*}  {Promise<ElementConnection[]>}
    * @memberof LoadExampleDataService
    */
-  loadGeoConnections(path: string): Promise<JOptEdgeConnection[]> {
+  loadGeoConnections(path: string): Promise<ElementConnection[]> {
     return new Promise((resolve) => {
       this.http.get(path).subscribe((data: any) => {
         this.geoConnections = data;
@@ -228,12 +228,12 @@ export class LoadExampleDataService {
    *
    *
    * @param {string} path
-   * @return {*}  {Promise<JOptOptimizationInput>}
+   * @return {*}  {Promise<OptimizationConfigJSONConfig>}
    * @memberof LoadExampleDataService
    */
-  loadOptimizationInput(path: string): Promise<JOptOptimizationInput> {
+  loadOptimizationInput(path: string): Promise<OptimizationConfigJSONConfig> {
     return new Promise((resolve) => {
-      this.http.get(path).subscribe((data: JOptOptimizationInput) => {
+      this.http.get(path).subscribe((data: OptimizationConfigJSONConfig) => {
         this.defaultOptimizationInput = data;
         resolve(data);
       });

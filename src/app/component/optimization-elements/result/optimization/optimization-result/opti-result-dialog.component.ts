@@ -9,9 +9,9 @@ import {
 import { ViewChild } from '@angular/core';
 
 import {
-  JOptRouteElementDetail,
-  JOptRoute,
-  JOptOptimizationOutput,
+  RouteElementDetail,
+  Route,
+  OptimizationConfigJSONConfig,
 } from 'build/openapi';
 
 import {
@@ -55,7 +55,7 @@ export class OptimizationResultDialogComponent
    * @type {JOptOptimizationOutput}
    * @memberof OptimizationResultDialogComponent
    */
-  @Input() result: JOptOptimizationOutput;
+  @Input() result: OptimizationConfigJSONConfig;
 
   /**
    * The current result used by the component.
@@ -63,17 +63,17 @@ export class OptimizationResultDialogComponent
    * @type {JOptOptimizationOutput}
    * @memberof OptimizationResultDialogComponent
    */
-  curResult?: JOptOptimizationOutput;
+  curResult?: OptimizationConfigJSONConfig;
 
   /**
    *
    * Some helper vars for representation
    *
    */
-  expandedElement: JOptRouteElementDetail | null;
+  expandedElement: RouteElementDetail | null;
 
   // For pagination
-  displayedRows$: Observable<JOptRoute[]>;
+  displayedRows$: Observable<Route[]>;
   totalRows$: Observable<number>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -193,7 +193,7 @@ export class OptimizationResultDialogComponent
    * @param {JOptRoute} curRoute
    * @memberof OptimizationResultDialogComponent
    */
-  openRouteResultDialog(curRoute: JOptRoute): void {
+  openRouteResultDialog(curRoute: Route): void {
     const dialogRef = this.dialog.open(RouteResultDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',

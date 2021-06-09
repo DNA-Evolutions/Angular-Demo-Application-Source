@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 
-import { JOptOptimizationOutput } from 'build/openapi';
+import { OptimizationConfigJSONConfig } from 'build/openapi';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -55,7 +55,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
   protected onMouseMoveHandler: EventHandler;
 
-  myOptimizationOutput$: Observable<JOptOptimizationOutput>;
+  myOptimizationOutput$: Observable<OptimizationConfigJSONConfig>;
 
   /**
    * Creates an instance of LeafletMapComponent.
@@ -89,7 +89,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.initMap();
     this.initMapHandlers();
 
-    this.myOptimizationOutput$.subscribe((result: JOptOptimizationOutput) => {
+    this.myOptimizationOutput$.subscribe((result: OptimizationConfigJSONConfig) => {
       // Drawing result
       this.refreshMap();
       result.solution.routes.forEach((r, index) => {
@@ -233,8 +233,8 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
    * @param {JOptOptimizationOutput} output
    * @memberof LeafletMapComponent
    */
-  openOptimizationResultDialog(output: JOptOptimizationOutput): void {
-    console.log(output);
+  openOptimizationResultDialog(output: OptimizationConfigJSONConfig): void {
+    //console.log(output);
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',
       maxWidth: '95%',
@@ -283,7 +283,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
    * @memberof LeafletMapComponent
    */
   onResize(event) {
-    console.log('resize');
+    //console.log('resize');
     event.target.innerWidth;
     this.map.invalidateSize();
   }

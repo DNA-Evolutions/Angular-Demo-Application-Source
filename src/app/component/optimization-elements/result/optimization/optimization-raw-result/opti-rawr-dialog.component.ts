@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Inject, AfterViewInit } from '@angular/core';
 
-import { JOptOptimizationOutput } from 'build/openapi';
+import { JSONConfig, OptimizationConfigJSONConfig, TextSolution } from 'build/openapi';
 
 import {
   MAT_DIALOG_DATA,
@@ -22,9 +22,11 @@ import {
 })
 export class OptimizationRawRDialogComponent implements OnInit {
   //
-  @Input() result: JOptOptimizationOutput;
+  @Input() result: OptimizationConfigJSONConfig;
 
-  curResult?: JOptOptimizationOutput;
+  curResult?: OptimizationConfigJSONConfig;
+
+  textSolution?: TextSolution;
 
   /**
    * Creates an instance of OptimizationRawRDialogComponent.
@@ -55,6 +57,10 @@ export class OptimizationRawRDialogComponent implements OnInit {
 
       if (this.curResult !== undefined) {
         //Found existing result;
+        if (this.curResult.extension !== undefined) {
+         this.textSolution = (this.curResult.extension as JSONConfig).textSolution;
+        }
+        
       } else {
         //Found no result;
       }

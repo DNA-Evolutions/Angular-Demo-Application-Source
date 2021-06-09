@@ -5,6 +5,7 @@ import * as moment from 'moment';
   name: 'durationFormatPipe',
 })
 export class DurationFormatPipe implements PipeTransform {
+
   transform(
     durationOrg: string,
     sourceUnit: string,
@@ -36,6 +37,10 @@ export class DurationFormatPipe implements PipeTransform {
     //
     if (targetUnit === 's') {
       return durationSeconds.toFixed(0) + ' [s]';
+    }
+
+    if (targetUnit === 'no_unit_s') {
+      return durationSeconds.toFixed(0);
     }
 
     if (targetUnit === 'min') {

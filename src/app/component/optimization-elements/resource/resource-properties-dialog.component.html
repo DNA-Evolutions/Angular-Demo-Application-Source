@@ -49,7 +49,7 @@
                   name="twstart{{ i }}"
                   [ngxMatDatetimePicker]="pickerBegin"
                   placeholder="WorkingHours start"
-                  [(ngModel)]="workinghours.timeWindow.begin"
+                  [(ngModel)]="workinghours.begin"
                 />
                 <mat-datepicker-toggle matSuffix [for]="pickerBegin">
                 </mat-datepicker-toggle>
@@ -80,7 +80,7 @@
                   name="twend{{ i }}"
                   [ngxMatDatetimePicker]="pickerEnd"
                   placeholder="WorkingHours end"
-                  [(ngModel)]="workinghours.timeWindow.end"
+                  [(ngModel)]="workinghours.end"
                 />
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd">
                 </mat-datepicker-toggle>

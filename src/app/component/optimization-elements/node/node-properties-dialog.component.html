@@ -49,7 +49,7 @@
                   name="twstart{{ i }}"
                   [ngxMatDatetimePicker]="pickerBegin"
                   placeholder="OpeningHours start"
-                  [(ngModel)]="openinghours.timeWindow.begin"
+                  [(ngModel)]="openinghours.begin"
                 />
                 <mat-datepicker-toggle matSuffix [for]="pickerBegin">
                 </mat-datepicker-toggle>
@@ -81,7 +81,7 @@
                   name="twend{{ i }}"
                   [ngxMatDatetimePicker]="pickerEnd"
                   placeholder="OpeningHours end"
-                  [(ngModel)]="openinghours.timeWindow.end"
+                  [(ngModel)]="openinghours.end"
                   required
                 />
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd">
@@ -197,29 +197,29 @@
               <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <mat-accordion>
+           <mat-accordion>
               <div
                 *ngFor="
-                  let bingdingRes of constraintCopy?.bindingResources;
+                  let bingdingRes of binding;
                   let i = index
                 "
                 [attr.data-index]="i"
               >
-                <!-- hard constraint-->
+                <!-- hard constraint -->
                 <mat-label>As hard constraint: </mat-label>
 
                 <mat-checkbox
                   name="bhard{{ i }}"
-                  [(ngModel)]="bingdingRes.hard"
+                  [(ngModel)]="bingdingRes.isHard"
                 >
-                  ({{ bingdingRes.hard }})
+                  ({{ bingdingRes.isHard }})
                 </mat-checkbox>
                 <p></p>
-                <!-- hard constraint end-->
+                <!-- hard constraint end -->
 
                 <div
                   *ngFor="
-                    let constraintResource of bingdingRes.resources;
+                    let constraintResource of asBindingResourceType(bingdingRes).resources;
                     let j = index
                   "
                   [attr.data-index]="j"
@@ -228,7 +228,7 @@
                     <mat-expansion-panel-header>
                       <mat-panel-title> Binding resource </mat-panel-title>
                       <mat-panel-description>
-                        {{ constraintResource.id }} ({{
+                        {{ constraintResource.resourceId }} ({{
                           constraintResource.priority
                         }})
                       </mat-panel-description>
@@ -243,7 +243,7 @@
                           <mat-label>Ids</mat-label>
                           <mat-select
                             name="bidselect{{ i }}{{ j }}"
-                            [(ngModel)]="constraintResource.id"
+                            [(ngModel)]="constraintResource.resourceId"
                           >
                             <mat-option value="--">not present</mat-option>
                             <mat-option
@@ -282,6 +282,8 @@
                 </div>
               </div>
             </mat-accordion>
+
+
           </mat-expansion-panel>
         </mat-accordion>
         <p></p>
@@ -298,29 +300,30 @@
               <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <mat-accordion>
+
+          <mat-accordion>
               <div
                 *ngFor="
-                  let exclduingRes of constraintCopy?.excludingResources;
+                  let exclduingRes of excluding;
                   let i = index
                 "
                 [attr.data-index]="i"
               >
-                <!-- hard constraint-->
+                <!-- hard constraint -->
                 <mat-label>As hard constraint: </mat-label>
 
                 <mat-checkbox
                   name="exhard{{ i }}"
-                  [(ngModel)]="exclduingRes.hard"
+                  [(ngModel)]="exclduingRes.isHard"
                 >
-                  ({{ exclduingRes.hard }})
+                  ({{ exclduingRes.isHard }})
                 </mat-checkbox>
                 <p></p>
-                <!-- hard constraint end-->
+                <!-- hard constraint end -->
 
                 <div
                   *ngFor="
-                    let constraintResource of exclduingRes.resources;
+                    let constraintResource of asExcludingResourceType(exclduingRes).resources;
                     let j = index
                   "
                   [attr.data-index]="j"
@@ -329,7 +332,7 @@
                     <mat-expansion-panel-header>
                       <mat-panel-title> Excluding resource </mat-panel-title>
                       <mat-panel-description>
-                        {{ constraintResource.id }} ({{
+                        {{ constraintResource.resourceId }} ({{
                           constraintResource.priority
                         }})
                       </mat-panel-description>
@@ -344,7 +347,7 @@
                           <mat-label>Ids</mat-label>
                           <mat-select
                             name="exidselect{{ i }}{{ j }}"
-                            [(ngModel)]="constraintResource.id"
+                            [(ngModel)]="constraintResource.resourceId"
                           >
                             <mat-option value="--">not present</mat-option>
                             <mat-option
@@ -383,6 +386,8 @@
                 </div>
               </div>
             </mat-accordion>
+
+
           </mat-expansion-panel>
         </mat-accordion>
         <p></p>

@@ -1,283 +1,180 @@
 {
-	"geoNodes": [{
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Koeln",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 50.9333,
-					"longitude": 6.95,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}, {
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Gelsenkirchen",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 51.54398,
-					"longitude": 7.10001,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}, {
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Essen",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 51.45,
-					"longitude": 7.01667,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}, {
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Dueren",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 50.8,
-					"longitude": 6.48333,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}, {
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Nuernberg",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 49.4478,
-					"longitude": 11.0683,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}, {
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Heilbronn",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 49.1403,
-					"longitude": 9.22,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}, {
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Wuppertal",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 51.2667,
-					"longitude": 7.18333,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}, {
-			"openingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"visitDuration": "PT30M",
-			"constraints": {
-				"bindingResources": [],
-				"excludingResources": []
-			},
-			"id": "Stuttgart",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 48.7667,
-					"longitude": 9.18333,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			},
-			"workNode": true,
-			"stayNode": false
-		}
-	],
-	"eventNodes": [],
-	"pillarGeoNodes": [],
-	"pillarEventNodes": [],
-	"geoResources": [{
-			"id": "Jack from Koeln",
-			"workingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"maxDistance": "1200.0 km",
-			"maxTime": "PT9H",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 50.9333,
-					"longitude": 6.95,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			}
-		}, {
-			"id": "Jane from Darmstadt",
-			"workingHours": [{
-					"timeWindow": {
-						"begin": "2025-05-06T08:00:00",
-						"end": "2025-05-06T17:00:00",
-						"zoneId": "Europe/Berlin"
-					}
-				}
-			],
-			"maxDistance": "1200.0 km",
-			"maxTime": "PT9H",
-			"position": {
-				"locationIndex": 0,
-				"geoCoordinate": {
-					"latitude": 49.87387,
-					"longitude": 8.6497,
-					"boundaryRadius": 1.0,
-					"size": 1
-				}
-			}
-		}
-	],
-	"keySetting": {
-		"license": "{\"version\":\"9.0\",\"identifier\":\"PUBLIC-\",\"description\":\"Key provided to everybody for evaluation purpose from DNA evolutions GmbH.\",\"contact\":\"info@dna-evolutions.com\",\"modules\":[{\"Module:\":\"Elements\",\"max\":20},{\"Module:\":\"Date\",\"creation\":\"2020-11-03\",\"due\":\"2022-11-03\"}],\"key\":\"PUBLIC-5a8d9466d51f4adccefb7319a12884505cc675fe520fe26bd3\"}",
-		"timeOut": 300.000000000
-	},
-	"runSettings": {
-		"properties": [{
-				"key": "JOpt.Algorithm.PreOptimization.SA.NumIterations",
-				"value": "1000"
-			}, {
-				"key": "JOptWeight.RouteTime",
-				"value": "1.0"
-			}, {
-				"key": "JOptWeight.RouteDistance",
-				"value": "1.0"
-			}, {
-				"key": "JOptWeight.TimeWindow",
-				"value": "1.0"
-			}, {
-				"key": "JOptExitCondition.JOptGenerationCount",
-				"value": "200"
-			}
-		],
-		"timeOut": 300.000000000
-	}
+  "ident" : "DemoAppExampleOne",
+  "nodes" : [ {
+    "id" : "Koeln",
+    "type" : {
+      "position" : {
+        "latitude" : 50.9333,
+        "longitude" : 6.95
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Gelsenkirchen",
+    "type" : {
+      "position" : {
+        "latitude" : 51.54398,
+        "longitude" : 7.10001
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Essen",
+    "type" : {
+      "position" : {
+        "latitude" : 51.45,
+        "longitude" : 7.01667
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Dueren",
+    "type" : {
+      "position" : {
+        "latitude" : 50.8,
+        "longitude" : 6.48333
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Nuernberg",
+    "type" : {
+      "position" : {
+        "latitude" : 49.4478,
+        "longitude" : 11.0683
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Heilbronn",
+    "type" : {
+      "position" : {
+        "latitude" : 49.1403,
+        "longitude" : 9.22
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Wuppertal",
+    "type" : {
+      "position" : {
+        "latitude" : 51.2667,
+        "longitude" : 7.18333
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  }, {
+    "id" : "Stuttgart",
+    "type" : {
+      "position" : {
+        "latitude" : 48.7667,
+        "longitude" : 9.18333
+      },
+      "_" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT30M",
+    "priority" : 1
+  } ],
+  "resources" : [ {
+    "id" : "Jack from Koeln",
+    "type" : {
+      "_" : "Capacity"
+    },
+    "position" : {
+      "latitude" : 50.9333,
+      "longitude" : 6.95
+    },
+    "workingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "maxTime" : "PT9H",
+    "maxDistance" : "1200.0 km"
+  }, {
+    "id" : "Jane from Darmstadt",
+    "type" : {
+      "_" : "Capacity"
+    },
+    "position" : {
+      "latitude" : 49.87387,
+      "longitude" : 8.6497
+    },
+    "workingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "maxTime" : "PT9H",
+    "maxDistance" : "1200.0 km"
+  } ],
+  "optimizationOptions" : {
+    "properties" : {
+      "JOpt.Algorithm.PreOptimization.SA.NumIterations" : "1000",
+      "JOptWeight.RouteTime" : "1.0",
+      "JOptWeight.RouteDistance" : "1.0",
+      "JOptWeight.TimeWindow" : "1.0",
+      "JOptExitCondition.JOptGenerationCount" : "200"
+    }
+  },
+  "extension" : {
+    "keySetting" : {
+      "jsonLicense" : "{\"version\":\"9.0\",\"identifier\":\"PUBLIC-\",\"description\":\"Key provided to everybody for evaluation purpose from DNA evolutions GmbH.\",\"contact\":\"info@dna-evolutions.com\",\"modules\":[{\"Module:\":\"Elements\",\"max\":20},{\"Module:\":\"Date\",\"creation\":\"2020-11-03\",\"due\":\"2022-11-03\"}],\"key\":\"PUBLIC-5a8d9466d51f4adccefb7319a12884505cc675fe520fe26bd3\"}"
+    },
+    "timeOut" : 300.000000000
+  }
 }

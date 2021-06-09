@@ -103,7 +103,7 @@
         >
           <mat-expansion-panel-header class="mat-row">
             <span class="mat-cell"
-              ><strong>{{ route.visitorId }}</strong></span
+              ><strong>{{ route.resourceId }}</strong></span
             >
             <span class="mat-cell"
               ><strong>(#{{ route.id + 1 }})</strong></span
@@ -119,13 +119,13 @@
               <mat-list-item role="listitem">
                 <div class="mat-list-route-item-cap">Resource:</div>
                 <div class="mat-list-route-item-value dontbreak">
-                  {{ route.visitorId }}
+                  {{ route.resourceId }}
                 </div>
               </mat-list-item>
               <mat-list-item role="listitem">
                 <div class="mat-list-route-item-cap">Start:</div>
                 <div class="mat-list-route-item-value dontbreak">
-                  {{ route.hoursStart | dateFormatPipe }}
+                  {{ route.startTime | dateFormatPipe }}
                 </div>
               </mat-list-item>
               <mat-list-item role="listitem">
@@ -163,7 +163,7 @@
                 color="primary"
                 (click)="openRouteResultDialog(route)"
               >
-                Full details
+                Full Details
               </button>
             </div>
           </div>

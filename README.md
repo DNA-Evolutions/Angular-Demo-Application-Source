@@ -5,6 +5,12 @@ title="DNA-Evolutions" alt="DNA-Evolutions"></a>
 
 To utilize <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">JOptTourOptimizer-Docker</a>, we created an Angular-Demo application. This demo application is hosted on <a href="https://azure.microsoft.com/" target="_blank">Microsoft Azure</a> and is made available via <a href="https://demo.dna-evolutions.com/" target="_blank">https://demo.dna-evolutions.com</a>. Here we would like to share the latest source-code of this project. This is not a classical "Hello World" project, as it is using multiple dependencies and advanced concepts. However, feel free to explore the project and extract whatever you need to get started with JOpt.
 
+**Update June 8th 2021:**
+
+From now on, the Angular Demo uses our new swagger definition (see 
+<a href="https://swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig" target="_blank">swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig</a>). This requires using JOpt.TourOptimizer with **version 1.0.3 or higher**. This swagger definition has the advantage that it enables almost all features of JOpt at the REST-endpoint.
+
+
 ---
 
 ## Further Documentation and helpful Links
@@ -16,6 +22,8 @@ Our content:
 - Our official repository - <a href="https://public.repo.dna-evolutions.com" target="_blank">public.repo.dna-evolutions.com</a>
 - Our official JavaDocs - <a href="https://public.javadoc.dna-evolutions.com" target="_blank">public.javadoc.dna-evolutions.com</a>
 - Our YouTube channel - <a href="https://www.youtube.com/channel/UCzfZjJLp5Rrk7U2UKsOf8Fw" target="_blank">DNA Tutorials</a>
+- Our DockerHub channel - <a href="https://hub.docker.com/u/dnaevolutions" target="_blank">DNA DockerHub</a>
+- Our LinkedIn channel - <a href="https://www.linkedin.com/company/dna-evolutions/" target="_blank">DNA LinkedIn</a>
 
 Third-party:
 - <a href="https://angular.io/cli" target="_blank">Angular CLI</a>
@@ -126,12 +134,18 @@ Of course, you can host the Demo-Application Angular Project locally without usi
 If you would like to automatically generate the models based on the <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">latest Swagger API-Docs</a> of the
 <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer" target="_blank">TourOptimizer</a>, you will have to install <a href="https://www.npmjs.com/package/@openapitools/openapi-generator-cli" target="_blank">Openapi-Generator-CLI</a>.
 
-### Create a schema.yaml
-The ``schema.yaml`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">https://swagger.dna-evolutions.com/v3/api-docs</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a>) into the <a href="https://editor.swagger.io/" target="_blank">SwaggerEditor</a> (left panel) and accept to convert JSON to YAML. Then select (from the context menu)   _File->Save as YAML_  and save the file as ``schmema.yaml``.
+Note: OpenApiGenerator can also be run as Docker container or Maven depedency.
 
-### Make the schema.yaml available
+### Create a schema.def file
+The ``schema.def`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig" target="_blank">swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig</a> (or from <a href="http://localhost:8081/v3/api-docs/OptimizeConfig" target="_blank">http://localhost:8081/v3/v3/api-docs/OptimizeConfig</a>) into a new file called ``schmema.def``. You can either provide a JSON or YAML definition.
 
-Within the file ``package.json`` of the Demo-Application project, the script ``npm run generate:api`` is defined. It expects the ``schmema.yaml`` to be saved at ``../openapi/schema.yaml``. Meaning, you will have to create a new folder called ``openapi`` next to your project folder (NOT inside the project folder itself) and save your ``schmema.yaml`` inside the ``openapi`` folder.
+**Update June 2021:**
+
+Native JSON is also supported from now on.
+
+### Make the schema.def available
+
+Within the file ``package.json`` of the Demo-Application project, the script ``npm run generate:api`` is defined. It expects the ``schmema.def`` to be saved at ``../openapi/schema.def``. Meaning, you will have to create a new folder called ``openapi`` next to your project folder (NOT inside the project folder itself) and save your ``schmema.def`` inside the ``openapi`` folder.
 
 If this is done, you can call:
 
@@ -140,6 +154,17 @@ npm run generate:api
 ```
 
 to update/generate the TypeScript models.
+
+**Update June 2021:**
+
+From now on, we use a new <a href="https://swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig" target="_blank">swagger definition</a>.  This swagger definition has the advantage that it enables almost all features of JOpt at the REST-endpoint. The models are more complex than before, and OpenApiGenerator seems to have an issue with one of our variable definitions (we already created an issue for that). However, we can easily fix it.
+
+You need to do the following two replacement commands by using a *"replace All"* feature of your IDE:
+
+1. Search: ``_u:``  replace all with ``_?:``
+2. Search: ``_u?:``  replace all with ``_?:``
+
+(Make sure the replacement only takes place in the folder ``build\openapi\model``)
 
 ---
 
