@@ -1,28 +1,29 @@
 image: node:10
 
 pipelines:
-  default:
-    - step:
-        name: Installation
-        caches:
-          - node
-        script:
-          - npm install
-          - npm run get-version --silent > ./VERSION
-        artifacts:
-          - node_modules/**
-          - VERSION
-    - step:
-        name: Docker build
-        services:
-          - docker
-        script:
-          - myVersion=$(cat "VERSION")
-          - docker version
-          - docker build -t dnaevolutions/jopt_demoapplication:${myVersion} .
-          - docker tag dnaevolutions/jopt_demoapplication:${myVersion} dnaevolutions/jopt_demoapplication:latest
-          - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_PASS
-          - docker push dnaevolutions/jopt_demoapplication
+    tags:
+      '*':
+        - step:
+            name: Installation
+            caches:
+              - node
+            script:
+              - npm install
+              - npm run get-version --silent > ./VERSION
+            artifacts:
+              - node_modules/**
+              - VERSION
+        - step:
+            name: Docker build
+            services:
+              - docker
+            script:
+              - myVersion=$(cat "VERSION")
+              - docker version
+              - docker build -t dnaevolutions/jopt_demoapplication:${myVersion} .
+              - docker tag dnaevolutions/jopt_demoapplication:${myVersion} dnaevolutions/jopt_demoapplication:latest
+              - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_PASS
+              - docker push dnaevolutions/jopt_demoapplication
 definitions:
   services:
     docker:
