@@ -10,6 +10,11 @@ To utilize <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/
 From now on, the Angular Demo uses our new swagger definition (see 
 <a href="https://swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig" target="_blank">swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig</a>). This requires using JOpt.TourOptimizer with **version 1.0.3 or higher**. This swagger definition has the advantage that it enables almost all features of JOpt at the REST-endpoint.
 
+---
+
+# Contact
+
+If you need any help, please contact us via our company website <a href="https://www.dna-evolutions.com" target="_blank">www.dna-evolutions.com</a> or write an email to <a href="mailto:info@dna-evolutions.com">info@dna-evolutions.com</a>.
 
 ---
 
