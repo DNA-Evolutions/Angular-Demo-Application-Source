@@ -8,7 +8,10 @@ To utilize <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/
 **Update June 8th 2021:**
 
 From now on, the Angular Demo uses our new swagger definition (see 
-<a href="https://swagger.dna-evolutions.com/v3/api-docs/Optimize" target="_blank">swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig</a>). This requires using JOpt.TourOptimizer with **version 1.0.3 or higher**. This swagger definition has the advantage that it enables almost all features of JOpt at the REST-endpoint.
+<a href="https://swagger.dna-evolutions.com/v3/api-docs/Optimize" target="_blank">swagger.dna-evolutions.com/v3/api-docs/Optimize</a>). This requires using JOpt.TourOptimizer with **version 1.0.3 or higher**. This swagger definition has the advantage that it enables almost all features of JOpt at the REST-endpoint.
+
+**Update 21st September 2021:**
+The replacement described in *Update June 2021* is no longer necessary. However, models already created need to be recreated. Further, the legacy endpoint is dropped, and the main-endpoint changed to <a href="https://swagger.dna-evolutions.com/v3/api-docs/Optimize" target="_blank">swagger.dna-evolutions.com/v3/api-docs/Optimize</a>.
 
 ---
 
@@ -173,8 +176,7 @@ You need to do the following two replacement commands by using a *"replace All"*
 
 
 **Update September 2021:**
-The replacement described in *Update June 2021* is no longer necessary. However, models already created need to be recreated. Further, the legacy endpoint is dropped, and the main-endpoint changed to <a href="https://swagger.dna-evolutions.com/v3/api-docs/Optimize" target="_blank">.
-
+The replacement described in *Update June 2021* is no longer necessary. However, models already created need to be recreated. Further, the legacy endpoint is dropped, and the main-endpoint changed to <a href="https://swagger.dna-evolutions.com/v3/api-docs/Optimize" target="_blank">swagger.dna-evolutions.com/v3/api-docs/Optimize</a>.
 
 ---
 
