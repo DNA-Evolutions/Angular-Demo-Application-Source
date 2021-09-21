@@ -1,6 +1,6 @@
 /**
  * DNA Evolutions - JOpt.TourOptimizer
- * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3.
+ * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3. JOpt.TourOpptimizer is a service that delivers route optimization and automatic scheduling features to be easily integrated into any third-party application. JOpt.TourOpptimizer encapsulates all necessary optimization functionality and provides a comprehensive REST API that offers a domain-specific optimization interface for the transportation industry. The service is stateless and does not come with graphical user interfaces, map depiction or any databases. These extensions and adjustments are supposed to be introduced by the consumer of the service while integrating it into his/her own application. The service will allow for many suitable adjustments and user-specific settings to adjust the behaviour and optimization goals (e.g. minimizing distance, maximizing resource utilization, etc.) through a comprehensive set of functions. This will enable you to gain control of the complete optimization processes.
  *
  * The version of the OpenAPI document: unknown
  * Contact: info@dna-evolutions.com
@@ -10,13 +10,8 @@
  * Do not edit the class manually.
  */
 import { Qualification } from './qualification';
-import { WorkingHoursMaxTime } from './workingHoursMaxTime';
 import { Constraint } from './constraint';
-import { WorkingHoursLocalFlexTime } from './workingHoursLocalFlexTime';
-import { WorkingHoursMaxDistance } from './workingHoursMaxDistance';
 import { StartReductionTimeDefinition } from './startReductionTimeDefinition';
-import { WorkingHoursLocalPostFlexTime } from './workingHoursLocalPostFlexTime';
-import { WorkingHoursMaxLocalPillarAfterHoursTime } from './workingHoursMaxLocalPillarAfterHoursTime';
 import { StartReductionTimeIncludeDefinition } from './startReductionTimeIncludeDefinition';
 import { StayOutCycleDefinition } from './stayOutCycleDefinition';
 import { StartReductionTimePillarDefinition } from './startReductionTimePillarDefinition';
@@ -39,15 +34,30 @@ export interface WorkingHours {
      * The zoneId of the Working hours.
      */
     zoneId: string;
-    maxTime?: WorkingHoursMaxTime;
-    maxDistance?: WorkingHoursMaxDistance;
+    /**
+     * The maximal time a Resource should work within the WorkingHour.
+     */
+    maxTime?: string;
+    /**
+     * The maximla distance a resource should cover within the WorkingHour.
+     */
+    maxDistance?: string;
     stayOutCycleDefinition?: StayOutCycleDefinition;
     startReductionTimeDefinition?: StartReductionTimeDefinition;
     startReductionTimePillarDefinition?: StartReductionTimePillarDefinition;
     startReductionTimeIncludeDefinition?: StartReductionTimeIncludeDefinition;
-    localFlexTime?: WorkingHoursLocalFlexTime;
-    localPostFlexTime?: WorkingHoursLocalPostFlexTime;
-    maxLocalPillarAfterHoursTime?: WorkingHoursMaxLocalPillarAfterHoursTime;
+    /**
+     * The local flexible time. In some cases a Resource should start working later compared to what is defined in the working hours. This way idle time can be reduced. The local flex time is the maximum a Resource is allowed to start working later, depending on the Optimization maybe flex time is not or only partially used.
+     */
+    localFlexTime?: string;
+    /**
+     * The localPostFlexTime
+     */
+    localPostFlexTime?: string;
+    /**
+     * The maxLocalPillarAfterHoursTime
+     */
+    maxLocalPillarAfterHoursTime?: string;
     /**
      * The nodeColorCapacities
      */
@@ -65,12 +75,12 @@ export interface WorkingHours {
      */
     qualifications?: Array<Qualification>;
     /**
-     * The isClosedRoute boolean describes if a Resource has to visit the termination element of the Route. By default, the start element and the termination element of a Route is the Resource itself. In case of a closed route, by default, the Resource returns to its original starting location.
-     */
-    isClosedRoute?: boolean;
-    /**
      * The boolean isAvailableForStay defines if this working hour is allowed to end at an overnight stay.
      */
     isAvailableForStay?: boolean;
+    /**
+     * The isClosedRoute boolean describes if a Resource has to visit the termination element of the Route. By default, the start element and the termination element of a Route is the Resource itself. In case of a closed route, by default, the Resource returns to its original starting location.
+     */
+    isClosedRoute?: boolean;
 }
 

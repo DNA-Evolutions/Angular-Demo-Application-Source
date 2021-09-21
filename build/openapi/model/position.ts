@@ -1,6 +1,6 @@
 /**
  * DNA Evolutions - JOpt.TourOptimizer
- * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3.
+ * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3. JOpt.TourOpptimizer is a service that delivers route optimization and automatic scheduling features to be easily integrated into any third-party application. JOpt.TourOpptimizer encapsulates all necessary optimization functionality and provides a comprehensive REST API that offers a domain-specific optimization interface for the transportation industry. The service is stateless and does not come with graphical user interfaces, map depiction or any databases. These extensions and adjustments are supposed to be introduced by the consumer of the service while integrating it into his/her own application. The service will allow for many suitable adjustments and user-specific settings to adjust the behaviour and optimization goals (e.g. minimizing distance, maximizing resource utilization, etc.) through a comprehensive set of functions. This will enable you to gain control of the complete optimization processes.
  *
  * The version of the OpenAPI document: unknown
  * Contact: info@dna-evolutions.com
@@ -10,10 +10,11 @@
  * Do not edit the class manually.
  */
 import { GeoAddress } from './geoAddress';
+import { LocationParameters } from './locationParameters';
 
 
 /**
- * The destinationPosition. If set, the Resource will finish its Route a the alternate destination position. However, the next workinghour the Resource will start at its original start location no matter where the alternate destination (of the previous hour) is located.
+ * The effective position of the element. In case events are used, this position is inherited.
  */
 export interface Position { 
     /**
@@ -24,6 +25,11 @@ export interface Position {
      * The longitude of the position
      */
     longitude: number;
+    /**
+     * The locationId
+     */
+    locationId?: string;
     geoAddress?: GeoAddress;
+    locationParameters?: LocationParameters;
 }
 

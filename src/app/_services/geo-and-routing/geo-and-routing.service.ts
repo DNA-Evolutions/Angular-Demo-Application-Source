@@ -124,7 +124,7 @@ export class GeoAndRoutingService {
     const elemenTo = this.optiWrapper.node(elementIdTo);
 
     if (elemenFrom !== undefined) {
-      if (elemenFrom.type._ === GeoNode.UEnum.Geo) {
+      if (elemenFrom.type.typeName === "Geo") {
         fromPosition = (elemenFrom.type as GeoNode).position;
       }
     } else {
@@ -136,7 +136,7 @@ export class GeoAndRoutingService {
     }
 
     if (elemenTo !== undefined) {
-      if (elemenTo.type._ === GeoNode.UEnum.Geo) {
+      if (elemenTo.type.typeName === "Geo") {
         toPosition = (elemenTo.type as GeoNode).position;
       }
     } else {

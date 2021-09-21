@@ -11,7 +11,7 @@ import { ViewChild } from '@angular/core';
 import {
   RouteElementDetail,
   Route,
-  OptimizationConfigJSONConfig,
+  RestOptimization,
 } from 'build/openapi';
 
 import {
@@ -55,7 +55,7 @@ export class OptimizationResultDialogComponent
    * @type {JOptOptimizationOutput}
    * @memberof OptimizationResultDialogComponent
    */
-  @Input() result: OptimizationConfigJSONConfig;
+  @Input() result: RestOptimization;
 
   /**
    * The current result used by the component.
@@ -63,7 +63,7 @@ export class OptimizationResultDialogComponent
    * @type {JOptOptimizationOutput}
    * @memberof OptimizationResultDialogComponent
    */
-  curResult?: OptimizationConfigJSONConfig;
+  curResult?: RestOptimization;
 
   /**
    *

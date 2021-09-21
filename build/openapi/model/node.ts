@@ -1,6 +1,6 @@
 /**
  * DNA Evolutions - JOpt.TourOptimizer
- * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3.
+ * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3. JOpt.TourOpptimizer is a service that delivers route optimization and automatic scheduling features to be easily integrated into any third-party application. JOpt.TourOpptimizer encapsulates all necessary optimization functionality and provides a comprehensive REST API that offers a domain-specific optimization interface for the transportation industry. The service is stateless and does not come with graphical user interfaces, map depiction or any databases. These extensions and adjustments are supposed to be introduced by the consumer of the service while integrating it into his/her own application. The service will allow for many suitable adjustments and user-specific settings to adjust the behaviour and optimization goals (e.g. minimizing distance, maximizing resource utilization, etc.) through a comprehensive set of functions. This will enable you to gain control of the complete optimization processes.
  *
  * The version of the OpenAPI document: unknown
  * Contact: info@dna-evolutions.com
@@ -16,7 +16,6 @@ import { NodeType } from './nodeType';
 import { NodeColor } from './nodeColor';
 import { INodeDepot } from './iNodeDepot';
 import { OfferedNode } from './offeredNode';
-import { NodeReturnStartDuration } from './nodeReturnStartDuration';
 import { OpeningHours } from './openingHours';
 
 
@@ -93,7 +92,10 @@ export interface Node {
      * The jointVisitDuration. If nodes are situated closely to each other (defined via property \'JOpt.JointVisitDuration.maxRadiusMeter\') a joint visit duration can be defined. For example, 3 nodes have a visit duration of 20 minutes each. The  joint visit duration for ALL nodes is set to be 10 minutes. Further, they are close enough to each other, that the joint visit duration logic can be triggered. The optimizer finds a solution in which all three nodes are visted in direct succession. The first node (of the three) needs to be visted for the original visit duration of 20 minutes. The seconds and third nodes only needs to be visited for 10 minutes.
      */
     jointVisitDuration?: string;
-    returnStartDuration?: NodeReturnStartDuration;
+    /**
+     * The returnStartDuration
+     */
+    returnStartDuration?: string;
     /**
      * The boolean isOptimizable. Defines if a node is optimizable. This property will be auto-defined by the optimizer..
      */
@@ -115,17 +117,17 @@ export interface Node {
      */
     isUnassigned?: boolean;
     /**
-     * The boolean isOpeningHoursIncludesDuration. By default a node\'s openingHour defines the time-window  in which a task has to be fulfilled, meaning a Visitor has to arrive, work, and leave within that time-window. If isOpeningHoursIncludesDuration is set to false, the time-window only counts as arrival-window for the Resource.
+     * The boolean isWaitOnEarlyArrival. In case a Resources reaches a node too early (before the start of the node\'s OpeningHours), the Resource can either start working direclty (false) or wait for the node to open (true, default).
      */
-    isOpeningHoursIncludesDuration?: boolean;
+    isWaitOnEarlyArrival?: boolean;
     /**
      * The boolean isWaitOnEarlyArrivalFirstNode. In case a Resources reaches the FIRST node of a route too early (before the start of the node\'s OpeningHours),\"              + \" the Resource can either start working direclty (true) or wait for the FIRST node to open (false, default). This setting only takes action if isWaitOnEarlyArrival is set to true.
      */
     isWaitOnEarlyArrivalFirstNode?: boolean;
     /**
-     * The boolean isWaitOnEarlyArrival. In case a Resources reaches a node too early (before the start of the node\'s OpeningHours), the Resource can either start working direclty (false) or wait for the node to open (true, default).
+     * The boolean isOpeningHoursIncludesDuration. By default a node\'s openingHour defines the time-window  in which a task has to be fulfilled, meaning a Visitor has to arrive, work, and leave within that time-window. If isOpeningHoursIncludesDuration is set to false, the time-window only counts as arrival-window for the Resource.
      */
-    isWaitOnEarlyArrival?: boolean;
+    isOpeningHoursIncludesDuration?: boolean;
     /**
      * The boolean isCausingIdleTimeCost. By default, waiting at a node to open is creating idle time cost. As the Optimizer tries to reduce cost, it will also try to reschedule nodes if idle time cost is generated. In some problem setups (especially problems of the kind: Low node count, high WorkingHours availability) it may be desired to keep the position of the nodes, even though idle time is created.
      */

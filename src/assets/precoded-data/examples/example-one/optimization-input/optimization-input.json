@@ -7,7 +7,7 @@
         "latitude" : 50.9333,
         "longitude" : 6.95
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -23,7 +23,7 @@
         "latitude" : 51.54398,
         "longitude" : 7.10001
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -39,7 +39,7 @@
         "latitude" : 51.45,
         "longitude" : 7.01667
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -55,7 +55,7 @@
         "latitude" : 50.8,
         "longitude" : 6.48333
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -71,7 +71,7 @@
         "latitude" : 49.4478,
         "longitude" : 11.0683
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -87,7 +87,7 @@
         "latitude" : 49.1403,
         "longitude" : 9.22
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -103,7 +103,7 @@
         "latitude" : 51.2667,
         "longitude" : 7.18333
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -119,7 +119,7 @@
         "latitude" : 48.7667,
         "longitude" : 9.18333
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -132,7 +132,7 @@
   "resources" : [ {
     "id" : "Jack from Koeln",
     "type" : {
-      "_" : "Capacity"
+      "typeName" : "Capacity"
     },
     "position" : {
       "latitude" : 50.9333,
@@ -148,7 +148,7 @@
   }, {
     "id" : "Jane from Darmstadt",
     "type" : {
-      "_" : "Capacity"
+      "typeName" : "Capacity"
     },
     "position" : {
       "latitude" : 49.87387,

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Inject, AfterViewInit } from '@angular/core';
 
-import { JSONConfig, OptimizationConfigJSONConfig, TextSolution } from 'build/openapi';
+import { JSONConfig, RestOptimization, TextSolution } from 'build/openapi';
 
 import {
   MAT_DIALOG_DATA,
@@ -22,9 +22,9 @@ import {
 })
 export class OptimizationRawRDialogComponent implements OnInit {
   //
-  @Input() result: OptimizationConfigJSONConfig;
+  @Input() result: RestOptimization;
 
-  curResult?: OptimizationConfigJSONConfig;
+  curResult?: RestOptimization;
 
   textSolution?: TextSolution;
 
@@ -60,7 +60,7 @@ export class OptimizationRawRDialogComponent implements OnInit {
         if (this.curResult.extension !== undefined) {
          this.textSolution = (this.curResult.extension as JSONConfig).textSolution;
         }
-        
+
       } else {
         //Found no result;
       }

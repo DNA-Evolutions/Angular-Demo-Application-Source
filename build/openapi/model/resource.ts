@@ -1,6 +1,6 @@
 /**
  * DNA Evolutions - JOpt.TourOptimizer
- * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3.
+ * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3. JOpt.TourOpptimizer is a service that delivers route optimization and automatic scheduling features to be easily integrated into any third-party application. JOpt.TourOpptimizer encapsulates all necessary optimization functionality and provides a comprehensive REST API that offers a domain-specific optimization interface for the transportation industry. The service is stateless and does not come with graphical user interfaces, map depiction or any databases. These extensions and adjustments are supposed to be introduced by the consumer of the service while integrating it into his/her own application. The service will allow for many suitable adjustments and user-specific settings to adjust the behaviour and optimization goals (e.g. minimizing distance, maximizing resource utilization, etc.) through a comprehensive set of functions. This will enable you to gain control of the complete optimization processes.
  *
  * The version of the OpenAPI document: unknown
  * Contact: info@dna-evolutions.com
@@ -9,23 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { WorkingHours } from './workingHours';
+import { Qualification } from './qualification';
 import { IResourceDepot } from './iResourceDepot';
 import { Constraint } from './constraint';
 import { Position } from './position';
-import { ResourcePostFlexTime } from './resourcePostFlexTime';
-import { ResourceMaxDriveTimeLastNode } from './resourceMaxDriveTimeLastNode';
+import { StayOutDefinition } from './stayOutDefinition';
 import { ResourceType } from './resourceType';
 import { StartReductionTimeDefinition } from './startReductionTimeDefinition';
-import { ResourceMaxDriveDistanceFirstNode } from './resourceMaxDriveDistanceFirstNode';
-import { ResourceStayOutPolicyDistance } from './resourceStayOutPolicyDistance';
-import { ResourceFlexTime } from './resourceFlexTime';
-import { ResourceStayOutPolicyTime } from './resourceStayOutPolicyTime';
-import { WorkingHours } from './workingHours';
-import { Qualification } from './qualification';
-import { ResourceMaxPillarAfterHoursTime } from './resourceMaxPillarAfterHoursTime';
-import { StayOutDefinition } from './stayOutDefinition';
-import { ResourceMaxDriveDistanceLastNode } from './resourceMaxDriveDistanceLastNode';
-import { ResourceMaxDriveTimeFirstNode } from './resourceMaxDriveTimeFirstNode';
 import { StartReductionTimeIncludeDefinition } from './startReductionTimeIncludeDefinition';
 import { StayOutCycleDefinition } from './stayOutCycleDefinition';
 import { StartReductionTimePillarDefinition } from './startReductionTimePillarDefinition';
@@ -60,8 +51,14 @@ export interface Resource {
     destinationPosition?: Position;
     stayOutDefinition?: StayOutDefinition;
     stayOutCycleDefinition?: StayOutCycleDefinition;
-    stayOutPolicyTime?: ResourceStayOutPolicyTime;
-    stayOutPolicyDistance?: ResourceStayOutPolicyDistance;
+    /**
+     * The stayOutPolicyTime
+     */
+    stayOutPolicyTime?: string;
+    /**
+     * The stayOutPolicyDistance
+     */
+    stayOutPolicyDistance?: string;
     /**
      * The capacity
      */
@@ -81,13 +78,34 @@ export interface Resource {
     startReductionTimeDefinition?: StartReductionTimeDefinition;
     startReductionTimePillarDefinition?: StartReductionTimePillarDefinition;
     startReductionTimeIncludeDefinition?: StartReductionTimeIncludeDefinition;
-    flexTime?: ResourceFlexTime;
-    postFlexTime?: ResourcePostFlexTime;
-    maxPillarAfterHoursTime?: ResourceMaxPillarAfterHoursTime;
-    maxDriveTimeFirstNode?: ResourceMaxDriveTimeFirstNode;
-    maxDriveDistanceFirstNode?: ResourceMaxDriveDistanceFirstNode;
-    maxDriveTimeLastNode?: ResourceMaxDriveTimeLastNode;
-    maxDriveDistanceLastNode?: ResourceMaxDriveDistanceLastNode;
+    /**
+     * The local flexible time. In some cases a Resource should start working later compared to what is defined in the working hours. This way idle time can be reduced. The local flex time is the maximum a Resource is allowed to start working later, depending on the Optimization maybe flex time is not or only partially used.
+     */
+    flexTime?: string;
+    /**
+     * The postFlexTime
+     */
+    postFlexTime?: string;
+    /**
+     * The maxPillarAfterHoursTime
+     */
+    maxPillarAfterHoursTime?: string;
+    /**
+     * The maxDriveTimeFirstNode
+     */
+    maxDriveTimeFirstNode?: string;
+    /**
+     * The maxDriveDistanceFirstNode
+     */
+    maxDriveDistanceFirstNode?: string;
+    /**
+     * The maxDriveTimeLastNode
+     */
+    maxDriveTimeLastNode?: string;
+    /**
+     * The maxDriveDistanceLastNode
+     */
+    maxDriveDistanceLastNode?: string;
     /**
      * The kilometerCost defines how much arbitrary cost arises per kilometer driven.
      */
@@ -140,6 +158,10 @@ export interface Resource {
      * The connectionTimeEfficiencyFactor. The default time for passing a connection is devided by this factor. For example, if a connections needs 30 minutes to be passed by default, a Resource with a connectionTimeEfficiencyFactor of 1.5 only needs 20 minutes. By default this factor is one.
      */
     connectionTimeEfficiencyFactor?: number;
+    /**
+     * The co2emissionFactor.
+     */
+    co2emissionFactor?: number;
     resourceDepot?: IResourceDepot;
     /**
      * The overallVisitDurationEfficiency. The base duration a Resource spends at a node is devided by this factor. For example, if a node has 30 minutes of visit duration assigned, a Resource with a overallVisitDurationEfficiency of 1.5 only needs 20 minutes. By default this factor is one.

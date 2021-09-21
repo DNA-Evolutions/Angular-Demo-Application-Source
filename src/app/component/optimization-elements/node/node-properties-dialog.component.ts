@@ -112,14 +112,14 @@ export class NodePropertiesDialogComponent {
       console.log(this.constraintsCopy);
 
       for (let c of this.constraintsCopy) {
-        if (c.type._ === BindingResourceConstraint.UEnum.BindingResource) {
+        if (c.type.typeName === "BindingResource") {
           console.log('found BindingResourceConstraint');
           if (myBindingResoure === undefined) {
             myBindingResoure = c;
           }
         }
 
-        if (c.type._ === ExcludingResourceConstraint.UEnum.ExcludingResource) {
+        if (c.type.typeName === "ExcludingResource") {
           console.log('found ExcludingResourceConstraint');
           if (myExclduingResoure === undefined) {
             myExclduingResoure = c;
@@ -209,7 +209,7 @@ export class NodePropertiesDialogComponent {
   private filterConstraints(cons: Constraint[]): void {
     cons.filter((c) => {
       // Binding
-      if (c.type._ === BindingResourceConstraint.UEnum.BindingResource) {
+      if (c.type.typeName === "BindingResource") {
         let curRess = (c.type as BindingResourceConstraint).resources;
 
         if (curRess.length === 0) {
@@ -222,7 +222,7 @@ export class NodePropertiesDialogComponent {
       }
 
       // Exclduing
-      if (c.type._ === ExcludingResourceConstraint.UEnum.ExcludingResource) {
+      if (c.type.typeName === "ExcludingResource") {
         let curRess = (c.type as ExcludingResourceConstraint).resources;
 
         if (curRess.length === 0) {

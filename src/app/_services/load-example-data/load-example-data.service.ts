@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OptimizationConfigJSONConfig, ElementConnection } from 'build/openapi';
+import { RestOptimization, ElementConnection } from 'build/openapi';
 
 import { environment } from 'src/environments/environment';
 import { JOptExampleDefinition } from './interface/jopt-example-defintion';
@@ -21,7 +21,7 @@ export class LoadExampleDataService {
   private exampleDefs: JOptExampleDefinition[];
 
   private curDef: JOptExampleDefinition;
-  private defaultOptimizationInput: OptimizationConfigJSONConfig = null;
+  private defaultOptimizationInput: RestOptimization = null;
   private geoConnections: ElementConnection[];
   private geoRoutes: object[];
   private mapViewDefintion: MapViewDefinition;
@@ -31,10 +31,10 @@ export class LoadExampleDataService {
   /**
    * The extracted Example Input
    *
-   * @return {*}  {OptimizationConfigJSONConfig}
+   * @return {*}  {RestOptimization}
    * @memberof LoadExampleDataService
    */
-  public optimizationInput(): OptimizationConfigJSONConfig {
+  public optimizationInput(): RestOptimization {
     return this.defaultOptimizationInput;
   }
 
@@ -228,12 +228,12 @@ export class LoadExampleDataService {
    *
    *
    * @param {string} path
-   * @return {*}  {Promise<OptimizationConfigJSONConfig>}
+   * @return {*}  {Promise<RestOptimization>}
    * @memberof LoadExampleDataService
    */
-  loadOptimizationInput(path: string): Promise<OptimizationConfigJSONConfig> {
+  loadOptimizationInput(path: string): Promise<RestOptimization> {
     return new Promise((resolve) => {
-      this.http.get(path).subscribe((data: OptimizationConfigJSONConfig) => {
+      this.http.get(path).subscribe((data: RestOptimization) => {
         this.defaultOptimizationInput = data;
         resolve(data);
       });

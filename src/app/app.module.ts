@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Service
-import { OptimizationConfigServiceControllerService } from 'build/openapi/api/optimizationConfigServiceController.service';
+import { OptimizationServiceControllerService } from 'build/openapi/api/optimizationServiceController.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -170,7 +170,7 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
     ScrollingModule,
   ],
   providers: [
-    OptimizationConfigServiceControllerService,
+    OptimizationServiceControllerService,
     [
       {
         provide: BASE_PATH,

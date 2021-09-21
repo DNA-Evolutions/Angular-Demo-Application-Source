@@ -7,7 +7,7 @@
         "latitude" : 50.9333,
         "longitude" : 6.95
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -23,7 +23,7 @@
         "latitude" : 51.2667,
         "longitude" : 7.18333
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -39,7 +39,7 @@
         "latitude" : 51.45,
         "longitude" : 7.01667
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -55,7 +55,7 @@
         "latitude" : 51.22201,
         "longitude" : 6.78677
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -71,7 +71,7 @@
         "latitude" : 52.02113,
         "longitude" : 8.5294
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -85,7 +85,7 @@
           "resourceId" : "Jack from Koeln",
           "priority" : 10
         } ],
-        "_" : "BindingResource"
+        "typeName" : "BindingResource"
       },
       "isHard" : true
     }, {
@@ -94,7 +94,7 @@
           "resourceId" : "Jack from Koeln",
           "priority" : 10
         } ],
-        "_" : "ExcludingResource"
+        "typeName" : "ExcludingResource"
       },
       "isHard" : true
     } ],
@@ -106,7 +106,7 @@
         "latitude" : 51.54398,
         "longitude" : 7.10001
       },
-      "_" : "Geo"
+      "typeName" : "Geo"
     },
     "openingHours" : [ {
       "begin" : "2025-05-06T06:00:00Z",
@@ -120,7 +120,7 @@
           "resourceId" : "Jack from Koeln",
           "priority" : 10
         } ],
-        "_" : "BindingResource"
+        "typeName" : "BindingResource"
       },
       "isHard" : true
     }, {
@@ -129,7 +129,7 @@
           "resourceId" : "Jack from Koeln",
           "priority" : 10
         } ],
-        "_" : "ExcludingResource"
+        "typeName" : "ExcludingResource"
       },
       "isHard" : true
     } ],
@@ -138,7 +138,7 @@
   "resources" : [ {
     "id" : "Jack from Koeln",
     "type" : {
-      "_" : "Capacity"
+      "typeName" : "Capacity"
     },
     "position" : {
       "latitude" : 50.9333,

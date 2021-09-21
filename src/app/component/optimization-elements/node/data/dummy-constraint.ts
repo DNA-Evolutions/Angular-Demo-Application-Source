@@ -13,12 +13,12 @@ export const DummyConstraintResource: ResourceWithPriority = {
 
 export const EmptyBindingResourceConstraintType: BindingResourceConstraint = {
   resources: [DummyConstraintResource],
-  _: "BindingResource",
+  typeName: "BindingResource",
 };
 
 export const EmptyExcludingResourceConstraintType: ExcludingResourceConstraint = {
   resources: [DummyConstraintResource],
-  _: "ExcludingResource"
+  typeName: "ExcludingResource"
 };
 
 export const EmptyBindingResourceConstraint: Constraint = {

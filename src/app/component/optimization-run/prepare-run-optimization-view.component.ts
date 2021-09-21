@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PrepareRunOptimizationDialogComponent } from './prepare-run-optimization-dialog.component';
-import { OptimizationConfigJSONConfig } from 'build/openapi';
+import { RestOptimization } from 'build/openapi';
 import { Observable } from 'rxjs';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
@@ -16,7 +16,7 @@ export class PrepareRunOptimizationViewComponent implements OnInit {
   public showAsIcon: boolean;
 
   nodeId: string;
-  myOptimizationOutput$: Observable<OptimizationConfigJSONConfig>;
+  myOptimizationOutput$: Observable<RestOptimization>;
 
   constructor(
     public dialog: MatDialog,
@@ -45,7 +45,7 @@ export class PrepareRunOptimizationViewComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {});
   }
 
-  openOptimizationResultDialog(output: OptimizationConfigJSONConfig): void {
+  openOptimizationResultDialog(output: RestOptimization): void {
     //console.log(output);
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
       minWidth: '40%',

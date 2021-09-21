@@ -6,13 +6,13 @@ import { Subject } from 'rxjs';
 import * as moment from 'moment';
 
 import {
-  OptimizationConfigJSONConfig,
+  RestOptimization,
   Node,
   Resource,
   OptimizationOptions,
   OpeningHours,
   WorkingHours,
-  OptimizationConfigServiceControllerService,
+  OptimizationServiceControllerService,
   RouteElementDetail,
   Route,
   OptimizationHealthControllerService,
@@ -34,19 +34,19 @@ import { LoadExampleDataService } from '../load-example-data/load-example-data.s
 export class OptimizationWrapperService {
   private $refresh: ReplaySubject<any>;
 
-  private myOptimizationInput: OptimizationConfigJSONConfig;
+  private myOptimizationInput: RestOptimization;
   private curNodes: Node[];
   private curRess: Resource[];
   private curSettings: OptimizationOptions;
 
-  private $myInternalOptimizationOutput: Observable<OptimizationConfigJSONConfig>;
-  private $myOptimizationOutputSubject: Subject<OptimizationConfigJSONConfig>;
-  private curOptimizationOutput?: OptimizationConfigJSONConfig;
+  private $myInternalOptimizationOutput: Observable<RestOptimization>;
+  private $myOptimizationOutputSubject: Subject<RestOptimization>;
+  private curOptimizationOutput?: RestOptimization;
 
   // Static methods
   public static nodeResult(
     nodeId: string,
-    out: OptimizationConfigJSONConfig
+    out: RestOptimization
   ): RouteElementDetail {
     const detailsAspirants = out.solution.routes
       .map((r) => this.getDetailInRoute(nodeId, r))
@@ -63,13 +63,13 @@ export class OptimizationWrapperService {
    *
    * @static
    * @param {number} routeId
-   * @param {OptimizationConfigJSONConfig} out
+   * @param {RestOptimization} out
    * @return {*}  {Route}
    * @memberof OptimizationWrapperService
    */
   public static routeResult(
     routeId: number,
-    out: OptimizationConfigJSONConfig
+    out: RestOptimization
   ): Route {
     const routes = out.solution.routes.filter((r) => r.id === routeId);
 
@@ -100,13 +100,13 @@ export class OptimizationWrapperService {
 
   /**
    * Creates an instance of OptimizationWrapperService.
-   * @param {OptimizationConfigServiceControllerService} optiService
+   * @param {OptimizationServiceControllerService} optiService
    * @param {OptimizationHealthControllerService} healthService
    * @param {LoadExampleDataService} exampleLoaderService
    * @memberof OptimizationWrapperService
    */
   constructor(
-    private readonly optiService: OptimizationConfigServiceControllerService,
+    private readonly optiService: OptimizationServiceControllerService,
     private readonly healthService: OptimizationHealthControllerService,
     private exampleLoaderService: LoadExampleDataService
   ) {
@@ -275,20 +275,20 @@ export class OptimizationWrapperService {
   /**
    *
    *
-   * @return {*}  {Observable<OptimizationConfigJSONConfig>}
+   * @return {*}  {Observable<RestOptimization>}
    * @memberof OptimizationWrapperService
    */
-  public optimizationOutputObservable(): Observable<OptimizationConfigJSONConfig> {
+  public optimizationOutputObservable(): Observable<RestOptimization> {
     return this.$myOptimizationOutputSubject;
   }
 
   /**
    *
    *
-   * @return {*}  {OptimizationConfigJSONConfig}
+   * @return {*}  {RestOptimization}
    * @memberof OptimizationWrapperService
    */
-  public optimizationOutput(): OptimizationConfigJSONConfig {
+  public optimizationOutput(): RestOptimization {
     return this.curOptimizationOutput;
   }
 
@@ -391,12 +391,12 @@ export class OptimizationWrapperService {
    *
    *
    * @param {Status} healthStatus
-   * @return {*}  {Observable<OptimizationConfigJSONConfig>}
+   * @return {*}  {Observable<RestOptimization>}
    * @memberof OptimizationWrapperService
    */
   public startOptimization(
     healthStatus: Status
-  ): Observable<OptimizationConfigJSONConfig> {
+  ): Observable<RestOptimization> {
     // Check health first
 
     console.log('healthStatus: ' + JSON.stringify(healthStatus));
@@ -423,7 +423,7 @@ export class OptimizationWrapperService {
     );
 
     this.$myInternalOptimizationOutput.subscribe(
-      (watcherEvent: OptimizationConfigJSONConfig) => {
+      (watcherEvent: RestOptimization) => {
         this.$myOptimizationOutputSubject.next(watcherEvent);
         this.curOptimizationOutput = watcherEvent;
         //console.log('Watcherevent');

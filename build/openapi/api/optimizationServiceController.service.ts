@@ -1,6 +1,6 @@
 /**
  * DNA Evolutions - JOpt.TourOptimizer
- * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3.
+ * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3. JOpt.TourOpptimizer is a service that delivers route optimization and automatic scheduling features to be easily integrated into any third-party application. JOpt.TourOpptimizer encapsulates all necessary optimization functionality and provides a comprehensive REST API that offers a domain-specific optimization interface for the transportation industry. The service is stateless and does not come with graphical user interfaces, map depiction or any databases. These extensions and adjustments are supposed to be introduced by the consumer of the service while integrating it into his/her own application. The service will allow for many suitable adjustments and user-specific settings to adjust the behaviour and optimization goals (e.g. minimizing distance, maximizing resource utilization, etc.) through a comprehensive set of functions. This will enable you to gain control of the complete optimization processes.
  *
  * The version of the OpenAPI document: unknown
  * Contact: info@dna-evolutions.com
@@ -21,9 +21,7 @@ import { JOptOptimizationError } from '../model/models';
 import { JOptOptimizationProgress } from '../model/models';
 import { JOptOptimizationStatus } from '../model/models';
 import { JOptOptimizationWarning } from '../model/models';
-import { JSONConfig } from '../model/models';
-import { OptimizationConfig } from '../model/models';
-import { OptimizationConfigJSONConfig } from '../model/models';
+import { RestOptimization } from '../model/models';
 import { Solution } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -34,7 +32,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class OptimizationConfigServiceControllerService {
+export class OptimizationServiceControllerService {
 
     protected basePath = 'http://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -97,10 +95,10 @@ export class OptimizationConfigServiceControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public error(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<JOptOptimizationError>;
-    public error(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<JOptOptimizationError>>;
-    public error(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<JOptOptimizationError>>;
-    public error(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public error(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<Array<JOptOptimizationError>>;
+    public error(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpResponse<Array<JOptOptimizationError>>>;
+    public error(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpEvent<Array<JOptOptimizationError>>>;
+    public error(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -108,7 +106,7 @@ export class OptimizationConfigServiceControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json'
+                'text/event-stream'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -122,7 +120,7 @@ export class OptimizationConfigServiceControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<JOptOptimizationError>(`${this.configuration.basePath}/api/optimize/config/stream/error`,
+        return this.httpClient.get<Array<JOptOptimizationError>>(`${this.configuration.basePath}/api/optimize/stream/error`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -139,9 +137,9 @@ export class OptimizationConfigServiceControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public progress(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<JOptOptimizationProgress>;
-    public progress(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpResponse<JOptOptimizationProgress>>;
-    public progress(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpEvent<JOptOptimizationProgress>>;
+    public progress(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<Array<JOptOptimizationProgress>>;
+    public progress(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpResponse<Array<JOptOptimizationProgress>>>;
+    public progress(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpEvent<Array<JOptOptimizationProgress>>>;
     public progress(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -164,7 +162,7 @@ export class OptimizationConfigServiceControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<JOptOptimizationProgress>(`${this.configuration.basePath}/api/optimize/config/stream/progress`,
+        return this.httpClient.get<Array<JOptOptimizationProgress>>(`${this.configuration.basePath}/api/optimize/stream/progress`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -176,18 +174,17 @@ export class OptimizationConfigServiceControllerService {
     }
 
     /**
-     * This service obtains a JOptOptimizationInput object and starts the optimization
-     * This is the main entry point to access the JOpt.TourOptimization service and start an optimization run in JOpt. Once you have set upa JOptOptimizationInput instance and added all desired nodes, resources and properties you can pass it here and let JOpt find an optimal solution for your setup 
-     * @param optimizationConfigJSONConfig 
+     * The entry point to access the JOpt.TourOptimization optimization service. Once you have set up an input, you can let JOpt find an optimal solution for your setup.
+     * @param restOptimization 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public run(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<OptimizationConfig>;
-    public run(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<OptimizationConfig>>;
-    public run(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<OptimizationConfig>>;
-    public run(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (optimizationConfigJSONConfig === null || optimizationConfigJSONConfig === undefined) {
-            throw new Error('Required parameter optimizationConfigJSONConfig was null or undefined when calling run.');
+    public run(restOptimization: RestOptimization, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<RestOptimization>;
+    public run(restOptimization: RestOptimization, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<RestOptimization>>;
+    public run(restOptimization: RestOptimization, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<RestOptimization>>;
+    public run(restOptimization: RestOptimization, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (restOptimization === null || restOptimization === undefined) {
+            throw new Error('Required parameter restOptimization was null or undefined when calling run.');
         }
 
         let headers = this.defaultHeaders;
@@ -219,8 +216,8 @@ export class OptimizationConfigServiceControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<OptimizationConfig>(`${this.configuration.basePath}/api/optimize/config/run`,
-            optimizationConfigJSONConfig,
+        return this.httpClient.post<RestOptimization>(`${this.configuration.basePath}/api/optimize/run`,
+            restOptimization,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -232,18 +229,17 @@ export class OptimizationConfigServiceControllerService {
     }
 
     /**
-     * This service obtains a JOptOptimizationInput object and starts the optimization
-     * This is the main entry point to access the JOpt.TourOptimization service and start an optimization run in JOpt. Once you have set upa JOptOptimizationInput instance and added all desired nodes, resources and properties you can pass it here and let JOpt find an optimal solution for your setup 
-     * @param optimizationConfigJSONConfig 
+     * The entry point to access the JOpt.TourOptimization optimization service. Once you have set up an input, you can let JOpt find an optimal solution for your setup.
+     * @param restOptimization 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public runOnlyResult(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Solution>;
-    public runOnlyResult(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Solution>>;
-    public runOnlyResult(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Solution>>;
-    public runOnlyResult(optimizationConfigJSONConfig: OptimizationConfigJSONConfig, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (optimizationConfigJSONConfig === null || optimizationConfigJSONConfig === undefined) {
-            throw new Error('Required parameter optimizationConfigJSONConfig was null or undefined when calling runOnlyResult.');
+    public runOnlyResult(restOptimization: RestOptimization, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Solution>;
+    public runOnlyResult(restOptimization: RestOptimization, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Solution>>;
+    public runOnlyResult(restOptimization: RestOptimization, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Solution>>;
+    public runOnlyResult(restOptimization: RestOptimization, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (restOptimization === null || restOptimization === undefined) {
+            throw new Error('Required parameter restOptimization was null or undefined when calling runOnlyResult.');
         }
 
         let headers = this.defaultHeaders;
@@ -275,8 +271,50 @@ export class OptimizationConfigServiceControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<Solution>(`${this.configuration.basePath}/api/optimize/config/runOnlyResult`,
-            optimizationConfigJSONConfig,
+        return this.httpClient.post<Solution>(`${this.configuration.basePath}/api/optimize/runOnlyResult`,
+            restOptimization,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Emmits once an optimization started
+     * Emmits once an optimization started
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public runStartedSginal(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<boolean>;
+    public runStartedSginal(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<boolean>>;
+    public runStartedSginal(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<boolean>>;
+    public runStartedSginal(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.get<boolean>(`${this.configuration.basePath}/api/optimize/startedSginal`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -293,10 +331,10 @@ export class OptimizationConfigServiceControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public status(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<JOptOptimizationStatus>;
-    public status(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<JOptOptimizationStatus>>;
-    public status(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<JOptOptimizationStatus>>;
-    public status(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public status(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<Array<JOptOptimizationStatus>>;
+    public status(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpResponse<Array<JOptOptimizationStatus>>>;
+    public status(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpEvent<Array<JOptOptimizationStatus>>>;
+    public status(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -304,7 +342,7 @@ export class OptimizationConfigServiceControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json'
+                'text/event-stream'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -318,7 +356,7 @@ export class OptimizationConfigServiceControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<JOptOptimizationStatus>(`${this.configuration.basePath}/api/optimize/config/stream/status`,
+        return this.httpClient.get<Array<JOptOptimizationStatus>>(`${this.configuration.basePath}/api/optimize/stream/status`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -360,63 +398,8 @@ export class OptimizationConfigServiceControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<boolean>(`${this.configuration.basePath}/api/optimize/config/stop`,
+        return this.httpClient.post<boolean>(`${this.configuration.basePath}/api/optimize/stop`,
             null,
-            {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Validates a JSONConfig
-     * @param jSONConfig 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public validateJSONConfig(jSONConfig: JSONConfig, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<boolean>;
-    public validateJSONConfig(jSONConfig: JSONConfig, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<boolean>>;
-    public validateJSONConfig(jSONConfig: JSONConfig, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<boolean>>;
-    public validateJSONConfig(jSONConfig: JSONConfig, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (jSONConfig === null || jSONConfig === undefined) {
-            throw new Error('Required parameter jSONConfig was null or undefined when calling validateJSONConfig.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.post<boolean>(`${this.configuration.basePath}/api/optimize/config/validateJSONConfig`,
-            jSONConfig,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -433,10 +416,10 @@ export class OptimizationConfigServiceControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public warning(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<JOptOptimizationWarning>;
-    public warning(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<JOptOptimizationWarning>>;
-    public warning(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<JOptOptimizationWarning>>;
-    public warning(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public warning(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<Array<JOptOptimizationWarning>>;
+    public warning(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpResponse<Array<JOptOptimizationWarning>>>;
+    public warning(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<HttpEvent<Array<JOptOptimizationWarning>>>;
+    public warning(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/event-stream'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -444,7 +427,7 @@ export class OptimizationConfigServiceControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json'
+                'text/event-stream'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -458,7 +441,7 @@ export class OptimizationConfigServiceControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<JOptOptimizationWarning>(`${this.configuration.basePath}/api/optimize/config/stream/warning`,
+        return this.httpClient.get<Array<JOptOptimizationWarning>>(`${this.configuration.basePath}/api/optimize/stream/warning`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
