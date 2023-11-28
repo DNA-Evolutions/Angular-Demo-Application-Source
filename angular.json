@@ -75,19 +75,19 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "touroptimizer-angular-demo:build",
-                        "port": 5000
+                      "port": 5000,
+                        "buildTarget": "touroptimizer-angular-demo:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "touroptimizer-angular-demo:build:production"
+                          "buildTarget": "touroptimizer-angular-demo:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "touroptimizer-angular-demo:build"
+                      "buildTarget": "touroptimizer-angular-demo:build"
                     }
                 },
                 "test": {
