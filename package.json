@@ -34,11 +34,11 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.6.2",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1102.19",
-    "@angular/cli": "~11.2.19",
+    "@angular-devkit/build-angular": "^12.2.18",
+    "@angular/cli": "~12.2.18",
     "@angular/compiler-cli": "~17.0.4",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
