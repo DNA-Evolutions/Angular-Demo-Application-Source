@@ -8,7 +8,7 @@ import { HowtoDialogComponent } from './howto-dialog/howto-dialog.component';
 
 import { environment } from './../../../environments/environment';
 import { IntroVideoDialogComponent } from './intro-video-dialog/intro-video-dialog.component';
-import { version } from '../../../../package.json';
+import packageJson from '../../../../package.json';
 
 /**
  * The component for the help/introduction dialog of the demo application
@@ -29,7 +29,7 @@ export class IntroductionComponent {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<IntroductionComponent>
   ) {
-    this.myVersion = version;
+    this.myVersion = packageJson.version;
   }
 
   /**

@@ -10,7 +10,8 @@ import { LoadExampleDataService } from './_services/load-example-data/load-examp
 import { OptimizationWrapperService } from './_services/optimization-wrapper/optimization-wrapper.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IntroductionComponent } from './component/introduction/introduction.component';
-import { version } from '../../package.json';
+
+import packageJson from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
 
   desiredNodeId = new FormControl('');
 
-  public version: string = version;
+  public version: string = packageJson.version;
 
   constructor(
     private loadService: LoadExampleDataService,

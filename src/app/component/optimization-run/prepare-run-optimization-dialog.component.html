@@ -3,6 +3,7 @@
 <div mat-dialog-content style="max-height: 50vh">
   <p></p>
   <mat-accordion>
+
     <div *ngFor="let prop of settingsAsArray">
       <mat-expansion-panel [disabled]="false" class="wide">
         <mat-expansion-panel-header>
@@ -21,8 +22,8 @@
           </mat-panel-title>
           <mat-panel-description> </mat-panel-description>
         </mat-expansion-panel-header>
-
-        <div style="width: 60%">
+        
+        <div style="width: 60%" *ngIf="settingsAsArray && settingsAsArray.length > 0">
           <mat-slider
             style="width: 100%"
             [disabled]="isDisabledSliderValue(prop.key)"
@@ -30,12 +31,16 @@
             [min]="0"
             [step]="getStepPropertyValue(prop.key)"
             [(ngModel)]="prop.value"
+            [name]="'slider-' + prop.key"
+            ngDefaultControl 
             matTooltip="{{
               prop.key
             }}  -  Move slider to adjust the current value of {{ prop.value }}."
-          >
+            >
+            <input matSliderThumb>
           </mat-slider>
         </div>
+
         <mat-divider></mat-divider>
 
         <div class="boxinfo wideleft">
@@ -50,6 +55,8 @@
       </mat-expansion-panel>
       <p></p>
     </div>
+
+
   </mat-accordion>
 </div>
 <mat-divider></mat-divider>
@@ -68,7 +75,7 @@
     href="https://docs.dna-evolutions.com/overview_docs/optimizationproperties/Optimization_Properties.html"
     target="_blank"
     matTooltip="Visit our documentation on Optimization Properties."
-    class="mat-raised-button infobutton"
+    mat-raised-button class="mat-raised-button infobutton"
     >Properties</a
   >
 </div>

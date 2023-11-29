@@ -267,14 +267,18 @@ div.violation {
  */
 
 .mat-raised-button.infobutton {
-  background-color: #ebefbe;
+  background-color: #ebefbe !important;
   margin-left: 10px;
   padding-left: 2rem;
+  top:0;
+  bottom:0;
+  margin-top: 0px;
 }
 
 .right {
   float: right;
 }
+
 
 .mat-raised-button.infobutton::after {
   content: "";

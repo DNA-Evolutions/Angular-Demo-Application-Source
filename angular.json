@@ -13,6 +13,13 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "allowedCommonJsDependencies": [
+                            "rxjs-compat",
+                            "lodash",
+                            "rfdc",
+                            "moment",
+                            "leaflet"
+                         ],
                         "outputPath": "dist/touroptimizer-angular-demo",
                         "index": "src/index.html",
                         "main": "src/main.ts",

@@ -168,6 +168,9 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
     MatGridListModule,
     MatStepperModule,
     ScrollingModule,
+
+
+
   ],
   providers: [
     OptimizationServiceControllerService,
@@ -190,7 +193,7 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
 
     LeafletMarkerService,
   ],
-  entryComponents: [
+  /*entryComponents: [
     PrepareRunOptimizationDialogComponent,
     RunOptimizationDialogComponent,
     NodePropertiesDialogComponent,
@@ -201,7 +204,7 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
     IntroductionComponent,
     HowtoDialogComponent,
     IntroVideoDialogComponent,
-  ],
+  ],*/
   bootstrap: [AppComponent],
 })
 export class AppModule {}
