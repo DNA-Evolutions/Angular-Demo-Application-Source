@@ -41,42 +41,38 @@
         {{ curDetail.transitionDistance | distanceFormatPipe: "m":"km" }}
       </div>
     </mat-list-item>
-  </mat-list>
 
-  <p></p>
-  <mat-list-item role="listitem">
-    <mat-list dense role="list">
       <div *ngIf="isBigger(curDetail.earlyDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)">
         <mat-list-item role="listitem">
-          <div class="mat-list-node-item-cap">Early:</div>
-          <div class="mat-list-node-item-value violation dontbreak">
+          <div class="mat-list-node-item-cap violationtext">Early:</div>
+          <div class="mat-list-node-item-value violation">
             {{ curDetail.earlyDeviation | durationFormatPipe: "PT":"auto" }}
           </div>
         </mat-list-item>
       </div>
       <div *ngIf="isBigger(curDetail.lateDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)">
         <mat-list-item role="listitem">
-          <div class="mat-list-node-item-cap">Late:</div>
-          <div class="mat-list-node-item-value violation dontbreak">
+          <div class="mat-list-node-item-cap violationtext">Late:</div>
+          <div class="mat-list-node-item-value violation">
             {{ curDetail.lateDeviation | durationFormatPipe: "PT":"auto" }}
           </div>
         </mat-list-item>
       </div>
       <div *ngFor="let vio of curDetail.nodeViolations">
         <mat-list-item role="listitem">
-          <div class="mat-list-node-item-cap">Violation:</div>
-          <div class="mat-list-node-item-value violation dontbreak">
+          <div class="mat-list-node-item-cap violationtext">Violation:</div>
+          <div class="mat-list-node-item-value violation">
             {{ vio.attribute }} - {{ vio.subAttribute }}
           </div>
         </mat-list-item>
       </div>
     </mat-list>
-  </mat-list-item>
+
 </ng-template>
 
 <ng-template #nonExistingDetail>
   <p></p>
   Please start an optimization first or make sure the node did not get
-  unassigned..
+  unassigned.
   <p></p>
 </ng-template>

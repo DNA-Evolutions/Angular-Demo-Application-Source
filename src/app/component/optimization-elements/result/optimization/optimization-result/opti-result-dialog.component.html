@@ -141,20 +141,18 @@
                   {{ route.header.distance | distanceFormatPipe: "m":"km" }}
                 </div>
               </mat-list-item>
+
+              <div *ngFor="let vio of route.header.routeViolations">
+                <mat-list-item role="listitem">
+                  <div class="mat-list-route-item-cap violationtext">Violation:</div>
+                  <div class="mat-list-route-item-value violation">
+                    {{ vio.attribute }} - {{ vio.subAttribute }}:
+                    {{ vio.value | durationFormatPipe: "h":"auto" }}
+                  </div>
+                </mat-list-item>
+              </div>
             </mat-list>
-            <mat-list-item role="listitem">
-              <mat-list dense role="list">
-                <div *ngFor="let vio of route.header.routeViolations">
-                  <mat-list-item role="listitem">
-                    <div class="mat-list-route-item-cap">Violation:</div>
-                    <div class="mat-list-route-item-value violation dontbreak">
-                      {{ vio.attribute }} - {{ vio.subAttribute }}:
-                      {{ vio.value | durationFormatPipe: "h":"auto" }}
-                    </div>
-                  </mat-list-item>
-                </div>
-              </mat-list>
-            </mat-list-item>
+
             <div style="display: flex; justify-content: flex-end">
               <button
                 style="margin: 10px"

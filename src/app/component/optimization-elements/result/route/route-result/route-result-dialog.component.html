@@ -68,23 +68,19 @@
                 {{ curRoute.header.distance | distanceFormatPipe: "m":"km" }}
               </div>
             </mat-list-item>
+
+            <div *ngFor="let vio of curRoute.header.routeViolations">
+              <mat-list-item role="listitem">
+                <div class="mat-list-route-item-cap violationtext">Violation:</div>
+                <div class="mat-list-route-item-value violation">
+                  {{ vio.attribute }} - {{ vio.subAttribute }}:
+                  {{ vio.value | durationFormatPipe: "h":"auto" }}
+                </div>
+              </mat-list-item>
+            </div>
+
           </mat-list>
           <p></p>
-
-          <p></p>
-          <mat-list-item role="listitem">
-            <mat-list dense role="list">
-              <div *ngFor="let vio of curRoute.header.routeViolations">
-                <mat-list-item role="listitem">
-                  <div class="mat-list-route-item-cap">Violation:</div>
-                  <div class="mat-list-route-item-value">
-                    {{ vio.attribute }} - {{ vio.subAttribute }}:
-                    {{ vio.value | durationFormatPipe: "h":"auto" }}
-                  </div>
-                </mat-list-item>
-              </div>
-            </mat-list>
-          </mat-list-item>
         </div>
       </mat-expansion-panel>
     </div>
