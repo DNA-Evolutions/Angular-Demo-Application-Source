@@ -24,6 +24,10 @@
         </mat-expansion-panel-header>
         
         <div style="width: 60%" *ngIf="settingsAsArray && settingsAsArray.length > 0">
+
+
+          <div *ngIf="getPropertyType(prop.key).includes('slider')">
+
           <mat-slider
             style="width: 100%"
             [disabled]="isDisabledSliderValue(prop.key)"
@@ -39,6 +43,36 @@
             >
             <input matSliderThumb>
           </mat-slider>
+
+         </div>
+
+         <div *ngIf="getPropertyType(prop.key).includes('checkbox')">
+          
+          <mat-checkbox
+            [name]="'slider-' + prop.key"
+            ngDefaultControl 
+            [(ngModel)]="prop.value"
+            matTooltip="{{
+              prop.key
+            }}  -  Move slider to adjust the current value of {{ prop.value }}."
+            >Check to enable {{prop.key}}
+          </mat-checkbox>
+         </div>
+
+         <!--<div *ngIf="getPropertyType(prop.key).includes('checkbox')">
+          <mat-checkbox
+            style="width: 100%"
+            
+            [name]="'slider-' + prop.key"
+            ngDefaultControl 
+            matTooltip="{{
+              prop.key
+            }}  -  Move slider to adjust the current value of {{ prop.value }}."
+            >
+            <input matSliderThumb>
+          </mat-checkbox>
+         </div>-->
+
         </div>
 
         <mat-divider></mat-divider>

@@ -38,11 +38,11 @@ export class PrepareRunOptimizationDialogComponent {
     this.curSettings = this.dataService.optimizerSettings();
     this.settingsAsArray = [];
 
-    let jsonObject = this.curSettings.properties;  
+    let jsonObject = this.curSettings.properties;
 
-    for (var value in jsonObject) {  
-      this.settingsAsArray.push({key: value, value:jsonObject[value]});
-    }  
+    for (var value in jsonObject) {
+      this.settingsAsArray.push({ key: value, value: jsonObject[value] });
+    }
 
 
     if (this.curSettings === undefined) {
@@ -91,6 +91,13 @@ export class PrepareRunOptimizationDialogComponent {
     return '1';
   }
 
+  getPropertyType(key: string): string {
+    if (key === 'JOpt.AutoFilter') {
+      return 'checkbox';
+    }
+    return 'slider';
+  }
+
   getPropertyAbbr(key: string): string {
     if (key === 'JOpt.Algorithm.PreOptimization.SA.NumIterations') {
       return 'SA.NumIterations';
@@ -110,6 +117,10 @@ export class PrepareRunOptimizationDialogComponent {
 
     if (key === 'JOptWeight.RouteTime') {
       return 'JOptWeight.RouteTime';
+    }
+
+    if (key === 'JOpt.AutoFilter') {
+      return 'AutoFilter';
     }
 
     return key;
@@ -136,6 +147,10 @@ export class PrepareRunOptimizationDialogComponent {
       return 'JOpt weight for RouteTime during the Optimization. A higher value results in a higher Optimization cost-penalty for routes that take more time.';
     }
 
+    if (key === 'JOpt.AutoFilter') {
+      return 'Turns on or off the AutoFilter. The AutoFilter is able to remove nodes that are violating the optimization too often.';
+    }
+
     return '';
   }
 
@@ -160,7 +175,7 @@ export class PrepareRunOptimizationDialogComponent {
   onStartClick(): void {
 
     this.settingsAsArray.forEach((entry: Kv) => {
-        this.settingsCopy.properties[entry.key] = entry.value;
+      this.settingsCopy.properties[entry.key] = entry.value;
     });
 
     this.dataService.setOptimizerSettings(this.settingsCopy);

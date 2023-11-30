@@ -152,6 +152,7 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
     MatToolbarModule,
     MatIconModule,
     MatSliderModule,
+    MatCheckboxModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatTabsModule,
