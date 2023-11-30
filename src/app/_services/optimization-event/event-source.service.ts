@@ -75,21 +75,48 @@ export class EventSourceService {
    */
   newObservable<R>(
     path: string,
-    converter: (data: string) => R = _.identity
+    converter: (data: string) => R = _.identity,
+    retryLimit: number = 3  // Default retry limit
   ): Observable<R> {
-    return new Observable((observer) => {
-      const eventSource = this.newEventSource(path);
 
+    let notStartedCounter = 0;
+    let hasTransitioned = false; // State variable to track transition
+
+    return new Observable((observer) => {
+      let retryCount = 0;
+
+      const eventSource = this.newEventSource(path);
       eventSource.onmessage = (event) => {
-        observer.next(converter(event.data));
+
+        const dataconv = converter(event.data);
+
+        if (event.data.includes('NOT STARTED')) {
+          notStartedCounter = notStartedCounter + 1;
+
+          if (hasTransitioned || notStartedCounter > 5) {
+            // If transitioned and "NOT STARTED" appears again, close the EventSource
+            observer.complete(); // Notify the observer that the stream is complete
+            eventSource.close(); // Close the EventSource
+            return;
+          }
+        } else {
+          // If other data is received, set or reset the transition state
+          hasTransitioned = true;
+        }
+
+
+        observer.next(dataconv);
       };
 
       eventSource.onerror = () => {
-        if (eventSource.readyState !== eventSource.CONNECTING) {
-          observer.error('An error occurred.');
+        retryCount++;
+        if (retryCount >= retryLimit) {
+          observer.error('Max retry attempts reached.');
+          eventSource.close();
+          observer.complete();
         }
-        eventSource.close();
-        observer.complete();
+        // Optionally, you can add a delay before reconnecting
+        // This can be done using setTimeout or similar mechanisms
       };
 
       return () => {

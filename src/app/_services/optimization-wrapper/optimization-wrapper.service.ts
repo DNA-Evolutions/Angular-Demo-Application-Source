@@ -422,19 +422,20 @@ export class OptimizationWrapperService {
       this.myOptimizationInput
     );
 
-    this.$myInternalOptimizationOutput.subscribe(
-      (watcherEvent: RestOptimization) => {
+    this.$myInternalOptimizationOutput.subscribe({
+      next: (watcherEvent: RestOptimization) => {
         this.$myOptimizationOutputSubject.next(watcherEvent);
         this.curOptimizationOutput = watcherEvent;
         //console.log('Watcherevent');
       },
-      (error) => {
+      error: (error) => {
         this.$myOptimizationOutputSubject.error(error);
       },
-      () => {
+      complete: () => {
         //console.log('Completed');
       }
-    );
+    });
+    
 
     return this.$myOptimizationOutputSubject;
   }

@@ -109,13 +109,12 @@ export class RunOptimizationDialogComponent {
       concatMap((val) => this.dataService.startOptimization(val))
     );
 
-    validatedResult$.pipe(take(1)).subscribe(
-      (optimizationResult: RestOptimization) => {
+    validatedResult$.pipe(take(1)).subscribe({
+      next: (optimizationResult: RestOptimization) => {
         this.dialogRef.close();
-
         this.openOptimizationResultDialog(optimizationResult);
       },
-      (error) => {
+      error: (error) => {
         console.log('error', error);
         if (error instanceof HttpErrorResponse) {
           this.openSnackBarFor('Error', error.name, 5000);
@@ -124,13 +123,12 @@ export class RunOptimizationDialogComponent {
         } else {
           this.openSnackBar('Error', 'Something unexpected happened');
         }
-
         this.dialogRef.close();
       },
-      () => {
+      complete: () => {
         this.dialogRef.close();
       }
-    );
+    });
   }
 
   /**

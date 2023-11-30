@@ -137,6 +137,7 @@ div.boxinfo {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1;
   -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -168,6 +169,7 @@ p.boxinfotitle {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
   box-sizing: inherit;
   margin: 0 -0.6rem;
   padding: 0.4rem 0.6rem 0.4rem 2rem;
@@ -189,6 +191,7 @@ div.boxteaser {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -243,6 +246,7 @@ p.boxteasertitle {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.6;
   -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
   box-sizing: inherit;
   margin: 0 -0.6rem;
   padding: 0.4rem 0.6rem 0.4rem 2rem;
@@ -260,6 +264,10 @@ div.inline {
 
 div.violation {
   border: 2px red solid;
+}
+
+div.violationtext {
+  color: red;
 }
 
 /*
@@ -392,6 +400,11 @@ div.buttongroup > button + a {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+.mat-expansion-panel-header {
+  min-height: 40px;
+  height: auto !important;
 }
 
 @media only screen and (max-width: 600px) {
