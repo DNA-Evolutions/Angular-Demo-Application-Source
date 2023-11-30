@@ -188,11 +188,9 @@ export class NodePropertiesDialogComponent {
     );
 
     // Filter the constraints for empty tag "--"
-    this.filterConstraints(this.constraintsCopy);
+    const fitlererdConstraint = this.filterConstraints(this.constraintsCopy);
 
-    console.log(this.constraintsCopy);
-
-    this.curNode.constraints = this.constraintsCopy;
+    this.curNode.constraints = fitlererdConstraint;
 
     this.openSnackBar('Saved changes', 'Ok');
 
@@ -206,18 +204,18 @@ export class NodePropertiesDialogComponent {
    * @param {Constraint[]} cons
    * @memberof NodePropertiesDialogComponent
    */
-  private filterConstraints(cons: Constraint[]): void {
-    cons.filter((c) => {
+  private filterConstraints(cons: Constraint[]): Constraint[] {
+    const fitlererdConstraint = cons.filter(c => {
       // Binding
       if (c.type.typeName === "BindingResource") {
         let curRess = (c.type as BindingResourceConstraint).resources;
 
         if (curRess.length === 0) {
-          return true;
+          return !true;
         }
 
         if (curRess.length > 0) {
-          return curRess[0].resourceId === '--';
+          return curRess[0].resourceId !== '--';
         }
       }
 
@@ -226,17 +224,19 @@ export class NodePropertiesDialogComponent {
         let curRess = (c.type as ExcludingResourceConstraint).resources;
 
         if (curRess.length === 0) {
-          return true;
+          return !true;
         }
 
         if (curRess.length > 0) {
-          return curRess[0].resourceId === '--';
+          return curRess[0].resourceId !== '--';
         }
       }
 
       // Filter unknow constraints
-      return true;
+      return !true;
     });
+
+    return fitlererdConstraint;
   }
 
   /**
