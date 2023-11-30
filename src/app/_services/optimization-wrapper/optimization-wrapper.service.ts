@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import {
   RestOptimization,
   Node,
+  GeoNode,
   Resource,
   OptimizationOptions,
   OpeningHours,
@@ -343,6 +344,48 @@ export class OptimizationWrapperService {
 
     if (curNode !== undefined) {
       curNode.openingHours = newHours;
+    }
+  }
+
+  /**
+   *
+   *
+   * @param {string} nodeId
+   * @param {number} latitude
+   * @param {number} longitude
+   * @memberof OptimizationWrapperService
+   */
+  public setNodePosition(
+    nodeId: string,
+    latitude: number,
+    longitude: number
+  ): void {
+    const curNode = this.node(nodeId);
+
+    if (curNode !== undefined) {
+      (curNode.type as GeoNode).position.latitude = latitude;
+      (curNode.type as GeoNode).position.longitude = longitude;
+    }
+  }
+
+   /**
+   *
+   *
+   * @param {string} resId
+   * @param {number} latitude
+   * @param {number} longitude
+   * @memberof OptimizationWrapperService
+   */
+  public setResourcePosition(
+    resId: string,
+    latitude: number,
+    longitude: number
+  ): void {
+    const curRes = this.curRess.find((r) => r.id === resId);
+
+    if (curRes !== undefined) {
+      curRes.position.latitude = latitude;
+      curRes.position.longitude = longitude;
     }
   }
 

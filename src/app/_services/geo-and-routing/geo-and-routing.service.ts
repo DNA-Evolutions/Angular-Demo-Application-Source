@@ -91,6 +91,24 @@ export class GeoAndRoutingService {
 
   /**
    *
+   * @return {*}  {boolean}
+   * @memberof GeoAndRoutingService
+   */
+  public exampleHasDraggableResource() : boolean {
+    return this.dataSerive.curExampleHasMovableResources();
+  }
+
+    /**
+   *
+   * @return {*}  {boolean}
+   * @memberof GeoAndRoutingService
+   */
+    public exampleHasDraggableNode() : boolean {
+      return this.dataSerive.curExampleHasMovableNodes();;
+    }
+
+  /**
+   *
    * Creates the route shape line. Either by decoding an existing (extracted) route shape, or
    * by creating a straight line, if no route shape is provided/found.
    *

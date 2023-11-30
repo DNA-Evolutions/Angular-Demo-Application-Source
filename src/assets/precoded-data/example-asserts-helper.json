@@ -34,5 +34,14 @@
     "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
     "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
     "mapViewPropertiesPath": "./assets/precoded-data/examples/example-four/map-view-properties/map-view-properties.json"
+  },
+  {
+    "exampleId": "exampleFive",
+    "title": "Free moving Example",
+    "desc": "An example where nodes and resources can be freely moved around. However, polylines will be just represented as lines in the result.",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-five/optimization-input/optimization-input.json",
+    "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+    "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-five/map-view-properties/map-view-properties.json"
   }
 ]

@@ -16,7 +16,10 @@ import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
   providedIn: 'root',
 })
 export class LoadExampleDataService {
-  defaultExampleId = 'exampleOne';
+  //defaultExampleId = 'exampleOne';
+  defaultExampleId = 'exampleFive';
+  exampleWithMovableResources: string[] = ["exampleFive"];
+  exampleWithMovableNodes: string[] = ["exampleFive"];
 
   private exampleDefs: JOptExampleDefinition[];
 
@@ -135,6 +138,22 @@ export class LoadExampleDataService {
   public loadDefaultExample(): Promise<unknown> {
     return this.loadExample(this.defaultExampleId);
   }
+
+
+  public curExampleHasMovableNodes(): boolean {
+    if(this.curDef != undefined){
+      return this.exampleWithMovableNodes.includes(this.curDef.exampleId);
+    }
+    return false;
+  }
+
+  public curExampleHasMovableResources(): boolean {
+    if(this.curDef != undefined){
+      return this.exampleWithMovableResources.includes(this.curDef.exampleId);
+    }
+    return false;
+  }
+
 
   /**
    *

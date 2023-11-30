@@ -172,8 +172,11 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
       shadowAnchor: MapIconResourceOptions.shadowAnchor,
     });
 
-    this.markerService.markNodes(this.map, this.elementRef, iconNode);
-    this.markerService.markResources(this.map, this.elementRef, iconResource);
+    const isDraggableNode = this.geoService.exampleHasDraggableNode();
+    const isDraggableResource = this.geoService.exampleHasDraggableResource();
+
+    this.markerService.markNodes(this.map, this.elementRef, iconNode, isDraggableNode);
+    this.markerService.markResources(this.map, this.elementRef, iconResource, isDraggableResource);
   }
 
   /**

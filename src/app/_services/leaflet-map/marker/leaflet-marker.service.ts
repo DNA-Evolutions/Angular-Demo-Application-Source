@@ -27,12 +27,12 @@ export class LeafletMarkerService {
    * @param {*} icon
    * @memberof LeafletMarkerService
    */
-  markNodes(map: L.map, ref: ElementRef, icon: any): void {
+  markNodes(map: L.map, ref: ElementRef, icon: any, isDraggable: boolean): void {
     // Get nodes
     this.dataService.nodes().forEach((n) => {
       const lat = (n.type as GeoNode).position.latitude;
       const lon = (n.type as GeoNode).position.longitude;
-      const marker = L.marker([lat, lon], { icon });
+      const marker = L.marker([lat, lon], { icon, draggable: isDraggable });
 
       this.popupService.bindNodePopUp(marker, n, ref);
 
@@ -49,13 +49,13 @@ export class LeafletMarkerService {
    * @param {*} icon
    * @memberof LeafletMarkerService
    */
-  markResources(map: L.map, ref: ElementRef, icon: any): void {
+  markResources(map: L.map, ref: ElementRef, icon: any, isDraggable: boolean): void {
     // Get nodes
     this.dataService.resources().forEach((r) => {
       const lat = r.position.latitude;
       const lon = r.position.longitude;
 
-      const marker = L.marker([lat, lon], { icon });
+      const marker = L.marker([lat, lon], { icon, draggable: isDraggable  });
 
       this.popupService.bindResourcePopUp(marker, r, ref);
       marker.addTo(map);

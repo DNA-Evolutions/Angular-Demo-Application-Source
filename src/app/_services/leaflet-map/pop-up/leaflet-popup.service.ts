@@ -5,6 +5,7 @@ import { NodePropertiesDialogComponent } from 'src/app/component/optimization-el
 import { ResourcePropertiesDialogComponent } from 'src/app/component/optimization-elements/resource/resource-properties-dialog.component';
 import * as L from 'leaflet';
 import { RouteResultDialogComponent } from 'src/app/component/optimization-elements/result/route/route-result/route-result-dialog.component';
+import { OptimizationWrapperService } from '../../optimization-wrapper/optimization-wrapper.service';
 
 /**
  *
@@ -17,7 +18,9 @@ import { RouteResultDialogComponent } from 'src/app/component/optimization-eleme
   providedIn: 'root',
 })
 export class PopUpService {
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    private dataService: OptimizationWrapperService,
+    public dialog: MatDialog) {}
 
 
   /**
@@ -43,6 +46,12 @@ export class PopUpService {
     marker.on('click', () => {
       this.openNodeDialog(node.id);
       marker.closePopup();
+    });
+
+    marker.on('dragend', (event) => {
+      // Handle the dragend event
+      const newLatLng = event.target.getLatLng();
+      this.dataService.setNodePosition(node.id, newLatLng.lat,  newLatLng.lng);
     });
 
     marker.bindTooltip('Node: ' + node.id + ' - Click for details');
@@ -103,6 +112,12 @@ export class PopUpService {
     marker.bindPopup(popupContent, popupOptions).on('popupopen', () => {
       this.openResourceDialog(res.id);
       marker.closePopup();
+    });
+
+    marker.on('dragend', (event) => {
+      // Handle the dragend event
+      const newLatLng = event.target.getLatLng();
+      this.dataService.setResourcePosition(res.id, newLatLng.lat,  newLatLng.lng);
     });
 
     marker.bindTooltip('Resource: ' + res.id + ' - Click for details');
