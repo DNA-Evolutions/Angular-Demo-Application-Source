@@ -42,12 +42,17 @@
                 </mat-label>
               </h4>
 
+
+              <!-- XXX add back [ngxMatDatetimePicker]="pickerBegin" to input -->
+
+              <!-- See https://github.com/h2qutc/angular-material-components/issues/370
+                   AND https://github.com/h2qutc/angular-material-components/issues/348 -->
+
               <mat-form-field style="width: 100% !important" appearance="fill">
                 <mat-label>OpeningHours start</mat-label>
                 <input
                   matInput
                   name="twstart{{ i }}"
-                  [ngxMatDatetimePicker]="pickerBegin"
                   placeholder="OpeningHours start"
                   [(ngModel)]="openinghours.begin"
                 />
@@ -74,12 +79,12 @@
                 </mat-label>
               </h4>
 
+              <!-- XXX add back [ngxMatDatetimePicker]="pickerEnd" to input -->
               <mat-form-field style="width: 100% !important" appearance="fill">
                 <mat-label>OpeningHours end</mat-label>
                 <input
                   matInput
                   name="twend{{ i }}"
-                  [ngxMatDatetimePicker]="pickerEnd"
                   placeholder="OpeningHours end"
                   [(ngModel)]="openinghours.end"
                   required
