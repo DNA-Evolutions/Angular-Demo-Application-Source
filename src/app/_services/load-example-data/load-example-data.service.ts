@@ -16,8 +16,7 @@ import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
   providedIn: 'root',
 })
 export class LoadExampleDataService {
-  //defaultExampleId = 'exampleOne';
-  defaultExampleId = 'exampleFive';
+  defaultExampleId = 'exampleOne';
   exampleWithMovableResources: string[] = ["exampleFive"];
   exampleWithMovableNodes: string[] = ["exampleFive"];
 
