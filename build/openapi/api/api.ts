@@ -1,5 +1,11 @@
+export * from './healthStatus.service';
+import { HealthStatusService } from './healthStatus.service';
+export * from './optimization.service';
+import { OptimizationService } from './optimization.service';
 export * from './optimizationHealthController.service';
 import { OptimizationHealthControllerService } from './optimizationHealthController.service';
 export * from './optimizationServiceController.service';
 import { OptimizationServiceControllerService } from './optimizationServiceController.service';
-export const APIS = [OptimizationHealthControllerService, OptimizationServiceControllerService];
+export * from './stream.service';
+import { StreamService } from './stream.service';
+export const APIS = [HealthStatusService, OptimizationService, OptimizationHealthControllerService, OptimizationServiceControllerService, StreamService];
