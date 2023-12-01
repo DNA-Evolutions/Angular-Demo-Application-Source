@@ -24,12 +24,14 @@ import packageJson from '../../../../package.json';
 export class IntroductionComponent {
 
  myVersion: string;
+ myOpenApiModelVersion: string;
 
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<IntroductionComponent>
   ) {
     this.myVersion = packageJson.version;
+    this.myOpenApiModelVersion = packageJson.touroptimizerspecversion; 
   }
 
   /**
