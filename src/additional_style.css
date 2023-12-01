@@ -1,0 +1,14 @@
+.mat-datepicker-content {
+    box-shadow: 0 2px 4px -1px #0003, 0 4px 5px #00000024, 0 1px 10px #0000001f;
+    background-color: #fff;
+    color: #000000de
+  }
+  
+  .mat-calendar-body-selected {
+    background-color: #2600ff;
+    color: #fff;
+  }
+  
+  .mat-calendar-body-cell-content {
+    border: none !important;
+  }

@@ -36,6 +36,7 @@
                         ],
                         "styles": [
                             "src/styles.css",
+                            "src/additional_style.css",
                             "src/demo-loading.scss",
                             "node_modules/leaflet/dist/leaflet.css",
                             "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
