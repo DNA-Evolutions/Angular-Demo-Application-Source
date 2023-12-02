@@ -29,11 +29,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatTimepickerModule,
-  NgxMatNativeDateModule,
-} from '@angular-material-components/datetime-picker';
+//import {
+//  NgxMatDatetimePickerModule,
+//  NgxMatTimepickerModule,
+// NgxMatNativeDateModule,
+//} from '@angular-material-components/datetime-picker';
 import { PrepareRunOptimizationDialogComponent } from './component/optimization-run/prepare-run-optimization-dialog.component';
 import { PrepareRunOptimizationViewComponent } from './component/optimization-run/prepare-run-optimization-view.component';
 import { RunOptimizationDialogComponent } from './component/optimization-run/run-optimization-dialog.component';
@@ -143,9 +143,9 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
     MatNativeDateModule,
     MatDividerModule,
     MatCardModule,
-    NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule,
-    NgxMatNativeDateModule,
+    //NgxMatDatetimePickerModule,
+    //NgxMatTimepickerModule,
+    //NgxMatNativeDateModule,
     MatExpansionModule,
     MatButtonModule,
     MatSnackBarModule,
