@@ -42,7 +42,7 @@
   <mat-divider></mat-divider>
 
   <div style="padding-top: 10px">
-    <h4>Select an example:</h4>
+    <h5>Select an example:</h5>
 
     <mat-form-field appearance="fill">
       <mat-label>Select an element...</mat-label>
@@ -60,7 +60,7 @@
     </mat-form-field>
 
     <div *ngIf="curExampleId" style="padding-bottom: 15px">
-      <h4>Example Description:</h4>
+      <h5>Example Description:</h5>
       <div class="exampledesc">
         {{ getExampleDesc(curExampleId) }}
       </div>
@@ -261,7 +261,7 @@
   <mat-divider></mat-divider>
 
   <div style="margin-top: 10px">
-    <h4>Please select a Node or a Resource:</h4>
+    <h5>Please select a Node or a Resource:</h5>
     <app-optimization-elements-selector></app-optimization-elements-selector>
   </div>
 </mat-expansion-panel>

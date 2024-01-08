@@ -48,8 +48,9 @@
   <div
     *ngIf="myOptimizationOutput$ | async as result; else nonExistingIconResult"
   >
+  <div class="map-interact">
     <img
-      style="float: left; height: 30px; padding-top: 25px"
+      style="height: 50px;padding-top: 15px;"
       src="./assets/misc/icon/icon-run2.png"
       (click)="openDialog()"
       alt="start icon"
@@ -58,7 +59,7 @@
     />
     <p></p>
     <img
-      style="float: left; height: 30px; padding-top: 25px"
+      style="height: 40px;padding-top: 5px;"
       src="./assets/misc/icon/icon-last-result.png"
       (click)="openOptimizationResultDialog(result)"
       alt="show latest result icon"
@@ -69,7 +70,7 @@
 
   <ng-template #nonExistingIconResult>
     <img
-      style="float: left; height: 30px; padding-top: 25px"
+      style="height: 50px;padding-top: 15px;"
       src="./assets/misc/icon/icon-run2.png"
       (click)="openDialog()"
       alt="start icon"

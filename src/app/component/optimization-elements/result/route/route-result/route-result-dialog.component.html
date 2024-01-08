@@ -11,11 +11,11 @@
       >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <h4>
+            <h5>
               {{
                 panelOpenState ? "Close Route Overview" : "Show Route Overview"
               }}
-            </h4>
+            </h5>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div style="background-color: whitesmoke">
@@ -90,7 +90,7 @@
     <!-- -->
 
     <div class="frameborder">
-      <h4 style="margin-left: 10px">Path</h4>
+      <h5 style="margin-left: 10px">Path</h5>
       <mat-vertical-stepper [linear]="false" [selectedIndex]="0" #stepper>
         <div
           *ngFor="let element of curRoute.elementDetails; let i = index"

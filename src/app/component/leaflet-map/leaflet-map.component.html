@@ -8,7 +8,7 @@
       <a href="#map">
         <img
           *ngIf="isFullScreen()"
-          style="float: left; height: 30px; padding-top: 15px"
+          style="height: 45px;"
           src="./assets/misc/icon/icon-reduce.png"
           (click)="toggleFullScreenMap()"
           alt="decrease icon"
@@ -18,25 +18,24 @@
 
         <img
           *ngIf="!isFullScreen()"
-          style="float: left; height: 30px; padding-top: 15px"
+          style="height: 45px;"
           src="./assets/misc/icon/icon-enlarge.png"
           (click)="toggleFullScreenMap()"
           alt="decrease icon"
           matTooltip="Enlarge map size"
           class="zoomicon iconopacity"
         />
-        <p></p>
       </a>
 
       <img
-        style="float: left; height: 30px; padding-top: 25px"
+        style="height: 50px;"
         src="./assets/misc/icon/icon-reset-view.png"
         (click)="refreshMapCenter()"
         alt="reset view icon"
         matTooltip="Reset zoom and position"
         class="zoomicon iconopacity"
       />
-      <p></p>
+      <!--<p></p>-->
 
       <app-prepare-run-optimization-view
         asIcon="true"

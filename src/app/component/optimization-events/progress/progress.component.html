@@ -1,14 +1,14 @@
 <div *ngIf="latestProgress$ | async; let latestProgress">
   <mat-card>
-    <h4>
+    <h5>
       <mat-label>Running algorithm:</mat-label>
-    </h4>
+    </h5>
     <div class="dontbreak">
       {{ latestProgress?.callerId }} at {{ latestProgress?.curProgress + 2 }}%
     </div>
-    <h4>
+    <h5>
       <mat-label>Current cost:</mat-label>
-    </h4>
+    </h5>
     <div>{{ latestProgress?.curCost }}</div>
   </mat-card>
 </div>

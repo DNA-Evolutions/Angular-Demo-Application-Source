@@ -150,6 +150,10 @@ div.boxinfo {
   width: 50%;
 }
 
+.boxinfo p {
+  padding-top: 0.6rem;
+}
+
 p.boxinfotitle::after {
   content: "";
   background: url("/assets/misc/icon/icon-info.png");
