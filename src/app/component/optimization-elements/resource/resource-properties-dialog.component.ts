@@ -28,6 +28,9 @@ export class ResourcePropertiesDialogComponent {
   // Result indicator
   hasResult?: boolean;
 
+  enabledSaveTooltip = "Save all modifications and close this dialog.";
+  disabledSaveTooltip = "Please correct the errors before saving. For example, the start lies after the end. Or different days are overlapping.";
+
   constructor(
     private dataService: OptimizationWrapperService,
     private snackBar: MatSnackBar,

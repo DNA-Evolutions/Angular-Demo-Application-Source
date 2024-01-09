@@ -47,18 +47,24 @@
 
               <!-- See https://github.com/h2qutc/angular-material-components/issues/370
                    AND https://github.com/h2qutc/angular-material-components/issues/348 -->
+                   <app-custom-date-time-picker [(ngModel)]="openinghours.begin" [endTime]="openinghours.end" name="twstart{{ i }}"></app-custom-date-time-picker>
 
-              <mat-form-field style="width: 100% !important" appearance="fill">
+              <!-- <mat-form-field style="width: 100% !important" appearance="fill">
                 <mat-label>OpeningHours start</mat-label>
+                
+
+            
+                
                 <input
                   matInput
                   name="twstart{{ i }}"
                   placeholder="OpeningHours start"
                   [(ngModel)]="openinghours.begin"
+                  [ngxMatDatetimePicker]="pickerBegin"
                 />
                 <mat-datepicker-toggle matSuffix [for]="pickerBegin">
                 </mat-datepicker-toggle>
-                <!--<ngx-mat-datetime-picker
+               <ngx-mat-datetime-picker
                   #pickerBegin
                   [showSpinners]="true"
                   [showSeconds]="false"
@@ -67,8 +73,8 @@
                   [stepSecond]="60"
                   [touchUi]="true"
                 >
-                </ngx-mat-datetime-picker>-->
-              </mat-form-field>
+                </ngx-mat-datetime-picker>
+              </mat-form-field>-->
 
               <p></p>
               <h5>
@@ -79,8 +85,10 @@
                 </mat-label>
               </h5>
 
+              <app-custom-date-time-picker [(ngModel)]="openinghours.end" [startTime]="openinghours.begin" name="twend{{ i }}}"></app-custom-date-time-picker>
+
               <!-- XXX add back [ngxMatDatetimePicker]="pickerEnd" to input -->
-              <mat-form-field style="width: 100% !important" appearance="fill">
+              <!--<mat-form-field style="width: 100% !important" appearance="fill">
                 <mat-label>OpeningHours end</mat-label>
                 <input
                   matInput
@@ -91,7 +99,7 @@
                 />
                 <mat-datepicker-toggle matSuffix [for]="pickerEnd">
                 </mat-datepicker-toggle>
-                <!--<ngx-mat-datetime-picker
+                <ngx-mat-datetime-picker
                   #pickerEnd
                   [showSpinners]="true"
                   [showSeconds]="false"
@@ -100,8 +108,8 @@
                   [stepSecond]="60"
                   [touchUi]="true"
                 >
-                </ngx-mat-datetime-picker>-->
-              </mat-form-field>
+                </ngx-mat-datetime-picker>
+              </mat-form-field>-->
 
               <p></p>
             </mat-expansion-panel>
@@ -446,15 +454,20 @@
   <p></p>
   <mat-divider></mat-divider>
   <div mat-dialog-actions class="inline buttongroup">
-    <button
-      mat-raised-button
-      matTooltip="Save all modifications and close this dialog."
-      color="primary"
-      [disabled]="!f.valid"
-      cdkFocusInitial
-    >
-      Save
-    </button>
+    
+    <span *ngIf="!f.valid" [matTooltip]="f.valid ? enabledSaveTooltip : disabledSaveTooltip">
+      <mat-icon>info</mat-icon>
+    </span>
+      <button
+        mat-raised-button
+        [matTooltip]="enabledSaveTooltip"
+        color="primary"
+        [disabled]="!f.valid"
+        cdkFocusInitial
+      >
+        Save
+      </button>
+
     <button
       mat-raised-button
       type="button"

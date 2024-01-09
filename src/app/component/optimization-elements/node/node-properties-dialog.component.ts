@@ -52,6 +52,9 @@ export class NodePropertiesDialogComponent {
 
   resourceIds: string[];
 
+  enabledSaveTooltip = "Save all modifications and close this dialog.";
+  disabledSaveTooltip = "Please correct the errors before saving. For example, the start lies after the end. Or different days are overlapping.";
+
   /**
    * Creates an instance of NodePropertiesDialogComponent.
    * @param {OptimizationWrapperService} dataService
