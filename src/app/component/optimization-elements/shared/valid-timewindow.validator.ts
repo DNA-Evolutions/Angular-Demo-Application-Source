@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 
 /**
  * Function to check if a control with twstart and twend
@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms';
  * @return {*}
  */
 export function ValidTimeWindow(controlName: string) {
+  
   return (formGroup: FormGroup) => {
     const presentKeys = Object.keys(formGroup.controls);
 
@@ -44,22 +45,35 @@ export function ValidTimeWindow(controlName: string) {
       if (curStartMillis > 0 && curEndMillis > 0) {
         if (curEndMillis <= curStartMillis) {
           // Error
-
           curEndControl.setErrors({ endBeforeStart: true });
+        } else {
+          // Remove the endBeforeStart error if it's not valid anymore
+          removeError(curEndControl, "endBeforeStart");
         }
       }
 
       if (lastEndMillis !== undefined) {
         if (curStartMillis < lastEndMillis) {
           //console.log('Hours overlapping');
-          curStartControl.setErrors({ overlapping: true });
-          curEndControl.setErrors({ overlapping: true });
-          lastEndControl.setErrors({ overlapping: true });
+          removeError(curStartControl, "overlapping");
+          removeError(curEndControl, "overlapping");
+          removeError(lastEndControl, "overlapping");
+        }else{
+
         }
       }
 
       lastEndMillis = curEndMillis;
       lastEndControl = curEndControl;
     }
+
+    function removeError(control: AbstractControl, errorKey: string) {
+      const errors = control.errors;
+      if (errors && errors[errorKey]) {
+        delete errors[errorKey];
+        control.setErrors(Object.keys(errors).length === 0 ? null : errors);
+      }
+    }
+    
   };
 }
