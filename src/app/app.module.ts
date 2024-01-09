@@ -84,6 +84,8 @@ import { IntroductionComponent } from './component/introduction/introduction.com
 import { HowtoDialogComponent } from './component/introduction/howto-dialog/howto-dialog.component';
 import { IntroVideoDialogComponent } from './component/introduction/intro-video-dialog/intro-video-dialog.component';
 
+import { CustomDateTimePickerComponent } from './component/custom-date-time-picker/custom-date-time-picker.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,7 +128,8 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
     //
     HowtoDialogComponent,
     //
-    IntroVideoDialogComponent
+    IntroVideoDialogComponent,
+    CustomDateTimePickerComponent
   ],
   imports: [
     BrowserModule,
