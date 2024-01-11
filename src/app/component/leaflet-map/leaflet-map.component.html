@@ -8,7 +8,7 @@
       <a href="#map">
         <img
           *ngIf="isFullScreen()"
-          style="height: 45px;"
+          style="height: 35px;"
           src="./assets/misc/icon/icon-reduce.png"
           (click)="toggleFullScreenMap()"
           alt="decrease icon"
@@ -18,7 +18,7 @@
 
         <img
           *ngIf="!isFullScreen()"
-          style="height: 45px;"
+          style="height: 35px;"
           src="./assets/misc/icon/icon-enlarge.png"
           (click)="toggleFullScreenMap()"
           alt="decrease icon"
@@ -28,7 +28,7 @@
       </a>
 
       <img
-        style="height: 50px;"
+        style="height: 40px;"
         src="./assets/misc/icon/icon-reset-view.png"
         (click)="refreshMapCenter()"
         alt="reset view icon"
