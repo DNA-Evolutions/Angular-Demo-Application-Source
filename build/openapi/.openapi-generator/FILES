@@ -1,12 +1,15 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 api.module.ts
 api/api.ts
 api/healthStatus.service.ts
 api/optimization.service.ts
+api/optimizationFAF.service.ts
+api/optimizationFAFServiceController.service.ts
 api/optimizationHealthController.service.ts
 api/optimizationServiceController.service.ts
+api/readDatabaseEncryptedServiceController.service.ts
+api/readDatabaseServiceController.service.ts
 api/stream.service.ts
 configuration.ts
 encoder.ts
@@ -27,6 +30,10 @@ model/constraint.ts
 model/constraintType.ts
 model/coreBuildOptions.ts
 model/creatorSetting.ts
+model/databaseEncryptedItemSearch.ts
+model/databaseInfoSearch.ts
+model/databaseInfoSearchResult.ts
+model/databaseItemSearch.ts
 model/dateDef.ts
 model/degradingLoadCapacity.ts
 model/degradingLoadCapacityAllOf.ts
@@ -103,6 +110,7 @@ model/routeHeader.ts
 model/routeTrip.ts
 model/sameVisitorNodeRelation.ts
 model/sameVisitorNodeRelationAllOf.ts
+model/securityHelperItemMetadata.ts
 model/simpleLoad.ts
 model/simpleLoadAllOf.ts
 model/simpleLoadCapacity.ts
