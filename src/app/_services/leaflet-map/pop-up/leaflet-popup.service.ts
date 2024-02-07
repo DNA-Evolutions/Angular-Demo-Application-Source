@@ -32,7 +32,7 @@ export class PopUpService {
    * @param {ElementRef} ref
    * @memberof PopUpService
    */
-  bindNodePopUp(marker: any, node: Node, ref: ElementRef): void {
+  bindNodePopUp(marker: any, node: Node, ref: ElementRef, isDraggable: boolean): void {
     const popupOptions = {
       className: 'node-popup pop',
     };
@@ -54,7 +54,7 @@ export class PopUpService {
       this.dataService.setNodePosition(node.id, newLatLng.lat,  newLatLng.lng);
     });
 
-    marker.bindTooltip('Node: ' + node.id + ' - Click for details');
+    marker.bindTooltip('Node: ' + node.id + ' - Click for details' + (isDraggable?' or hold to move':''));
   }
 
   //
@@ -99,7 +99,7 @@ export class PopUpService {
    * @param {ElementRef} ref
    * @memberof PopUpService
    */
-  bindResourcePopUp(marker: any, res: Resource, ref: ElementRef): void {
+  bindResourcePopUp(marker: any, res: Resource, ref: ElementRef, isDraggable: boolean): void {
     const popupOptions = {
       className: 'resource-popup pop',
     };
@@ -120,7 +120,7 @@ export class PopUpService {
       this.dataService.setResourcePosition(res.id, newLatLng.lat,  newLatLng.lng);
     });
 
-    marker.bindTooltip('Resource: ' + res.id + ' - Click for details');
+    marker.bindTooltip('Resource: ' + res.id + ' - Click for details' + (isDraggable?' or hold to move':''));
   }
 
 
@@ -139,7 +139,7 @@ export class PopUpService {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('NodeDetailMarkerViewComponent was closed: ' + result);
+      //console.log('NodeDetailMarkerViewComponent was closed: ' + result);
     });
   }
 

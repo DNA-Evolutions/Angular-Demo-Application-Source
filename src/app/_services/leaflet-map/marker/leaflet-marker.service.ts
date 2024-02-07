@@ -34,7 +34,7 @@ export class LeafletMarkerService {
       const lon = (n.type as GeoNode).position.longitude;
       const marker = L.marker([lat, lon], { icon, draggable: isDraggable });
 
-      this.popupService.bindNodePopUp(marker, n, ref);
+      this.popupService.bindNodePopUp(marker, n, ref, isDraggable);
 
       marker.addTo(map);
       // }
@@ -57,7 +57,7 @@ export class LeafletMarkerService {
 
       const marker = L.marker([lat, lon], { icon, draggable: isDraggable  });
 
-      this.popupService.bindResourcePopUp(marker, r, ref);
+      this.popupService.bindResourcePopUp(marker, r, ref, isDraggable);
       marker.addTo(map);
     });
   }
