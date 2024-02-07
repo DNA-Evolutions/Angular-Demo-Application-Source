@@ -5,6 +5,10 @@ title="DNA-Evolutions" alt="DNA-Evolutions"></a>
 
 To utilize <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">JOptTourOptimizer-Docker</a>, we created an Angular-Demo application. This demo application is hosted on <a href="https://azure.microsoft.com/" target="_blank">Microsoft Azure</a> and is made available via <a href="https://demo.dna-evolutions.com/" target="_blank">https://demo.dna-evolutions.com</a>. Here we would like to share the latest source-code of this project. This is not a classical "Hello World" project, as it is using multiple dependencies and advanced concepts. However, feel free to explore the project and extract whatever you need to get started with JOpt.
 
+**Update January 7th 2024:**
+
+From now on, the Angular Demo uses Angular 17. We also updated/upgraded multiple other dependencies. The generated models are using JOpt.TourOptimizer with **version 1.2.6 or higher**. In addition, a "free moving example" was added. Nodes and Resources can be freely positioned via drag and drop.
+
 **Update June 8th 2021:**
 
 From now on, the Angular Demo uses our new swagger definition (see 
@@ -45,7 +49,7 @@ Third-party:
 
 * [General - DNA Demo Application](#general-dna-demo-application)
 * [Serve with Docker (recommended)](#serve-with-docker-recommended)
-* [Serve without Docker (not recommended)](#serve-without-docker-not-recommended)
+* [Serve without Docker](#serve-without-docker)
 * [Update/Generate the typescript models using OpenApi Generator](#update-generate-the-typescript-models-using-openapi-generator)
 * [Video - How to use the Demo-Application](#video-how-to-use-the-demo-application)
 * [What's next?](#what-s-next)
@@ -54,7 +58,7 @@ Third-party:
 
 ## General - DNA Demo Application
 
-The angular-demo application was generated with <a href="https://github.com/angular/angular-cli" target="_blank">Angular CLI version 10.1.2</a>. Further, we utilized <a href="https://github.com/OpenAPITools/openapi-generator" target="_blank">OpenApi Generator</a> to automatically create the required TypeScript models from the OpenApi definition provided from our Swagger endpoint of JOptTourOptimizer.
+The angular-demo application was generated with <a href="https://github.com/angular/angular-cli" target="_blank">Angular CLI version 17.0.3</a>. Further, we utilized <a href="https://github.com/OpenAPITools/openapi-generator" target="_blank">OpenApi Generator</a> to automatically create the required TypeScript models from the OpenApi definition provided from our Swagger endpoint of JOptTourOptimizer.
 
 <img src="https://dna-evolutions.com/wp-content/uploads/2020/11/how-to-video-prev.gif" width="450"
 title="DNA-Evolutions Demo Application Preview" alt="DNA-Evolutions Demo Application Preview">
@@ -71,7 +75,12 @@ We recommend serving the Demo Application with docker, especially when you are n
 
 2) Even though the Demo-Application needs no TourOptimizer to start, you need to provide a running TourOptimizer instance to test the full functionality of the Demo-Application. Please read the documentation on how to <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">start the TourOptimizer</a>.
 
-### Build the image
+
+### Start the image
+
+Please visit <a href="https://hub.docker.com/repository/docker/dnaevolutions/jopt_demoapplication/general" target="_blank">https://hub.docker.com/repository/docker/dnaevolutions/jopt_demoapplication/general</a> and follow the instructions if you want to start the pre-built image without using the sources. 
+
+### Build the image from scratch
 
 1) Clone this repository and open it in your desired IDE (e.g. <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>) and modify the code if you like.
 2) <a href="https://docs.docker.com/engine/reference/commandline/build/" target="_blank">Build</a> the docker image using the ``Dockerfile`` in the main project path, by running:
@@ -112,7 +121,7 @@ You can provide three environment variables:
 
 ---
 
-## Serve without Docker (not recommended)
+## Serve without Docker
 
 Of course, you can host the Demo-Application Angular Project locally without using docker. However, you have to make sure your environment is set up correctly.
 
@@ -144,16 +153,16 @@ If you would like to automatically generate the models based on the <a href="htt
 
 Note: OpenApiGenerator can also be run as Docker container or Maven depedency.
 
-### Create a schema.def file
-The ``schema.def`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig" target="_blank">swagger.dna-evolutions.com/v3/api-docs/OptimizeConfig</a> (or from <a href="http://localhost:8081/v3/api-docs/OptimizeConfig" target="_blank">http://localhost:8081/v3/v3/api-docs/OptimizeConfig</a>) into a new file called ``schmema.def``. You can either provide a JSON or YAML definition.
+### Create a touroptimizer_spec.json file
+The ``touroptimizer_spec.json`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">swagger.dna-evolutions.com/v3/api-docs</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a> or <a href="https://github.com/DNA-Evolutions/Java-REST-Client-Examples/tree/master/src/main/resources/swagger/touroptimizer/spec/touroptimizer_spec.json" target="_blank">GitHub</a>) into a new file called ``touroptimizer_spec.json``.
 
 **Update June 2021:**
 
 Native JSON is also supported from now on.
 
-### Make the schema.def available
+### Make the touroptimizer_spec.json available
 
-Within the file ``package.json`` of the Demo-Application project, the script ``npm run generate:api`` is defined. It expects the ``schmema.def`` to be saved at ``../openapi/schema.def``. Meaning, you will have to create a new folder called ``openapi`` next to your project folder (NOT inside the project folder itself) and save your ``schmema.def`` inside the ``openapi`` folder.
+Within the file ``package.json`` of the Demo-Application project, the script ``npm run generate:api`` is defined. It expects the ``touroptimizer_spec.json`` to be saved at ``../openapi/touroptimizer_spec.json``. Meaning, you will have to create a new folder called ``openapi`` next to your project folder (NOT inside the project folder itself) and save your ``touroptimizer_spec.json`` inside the ``openapi`` folder.
 
 If this is done, you can call:
 
@@ -162,21 +171,6 @@ npm run generate:api
 ```
 
 to update/generate the TypeScript models.
-
-**Update June 2021:**
-
-From now on, we use a new <a href="https://swagger.dna-evolutions.com/v3/api-docs/Optimize" target="_blank">swagger definition</a>.  This swagger definition has the advantage that it enables almost all features of JOpt at the REST-endpoint.<strike> The models are more complex than before, and OpenApiGenerator seems to have an issue with one of our variable definitions (we already created an issue for that). However, we can easily fix it.
-
-You need to do the following two replacement commands by using a *"replace All"* feature of your IDE:
-
-1. Search: ``_u:``  replace all with ``_?:``
-2. Search: ``_u?:``  replace all with ``_?:``
-
-(Make sure the replacement only takes place in the folder ``build\openapi\model``)</strike>
-
-
-**Update September 2021:**
-The replacement described in *Update June 2021* is no longer necessary. However, models already created need to be recreated. Further, the legacy endpoint is dropped, and the main-endpoint changed to <a href="https://swagger.dna-evolutions.com/v3/api-docs/Optimize" target="_blank">swagger.dna-evolutions.com/v3/api-docs/Optimize</a>.
 
 ---
 
@@ -196,11 +190,7 @@ We are going to publish some tutorials on "how to create your own examples". Fur
 
 ## TODO's
 
-* Fix some dependencies that seem to have vulnerabilities
 * Improve in-code documentation.
-* Improve code by utilizing "Do's and Don'ts" for Angular
-* Update to Angular 11 or 12
-* ...
 
 ---
 
