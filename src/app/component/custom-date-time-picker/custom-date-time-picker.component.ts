@@ -57,7 +57,7 @@ export class CustomDateTimePickerComponent implements ControlValueAccessor, OnCh
     const endTime = new Date(this.date.value);
     if (this.startTime && endTime <= this.startTime) {
       // Handle invalid case (e.g., show an error message or reset selectedTime)
-      console.log("ERROR")
+      //console.log("ERROR")
     }
   }
   // Not in use DONE

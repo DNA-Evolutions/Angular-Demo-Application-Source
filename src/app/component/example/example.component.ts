@@ -22,6 +22,8 @@ export class ExampleComponent {
 
   activeExampleId = 'exampleOne';
 
+  currentYear = new Date().getFullYear();
+
   /**
    * Creates an instance of ExampleComponent.
    * @param {LoadExampleDataService} loadService

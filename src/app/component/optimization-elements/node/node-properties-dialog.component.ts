@@ -112,18 +112,18 @@ export class NodePropertiesDialogComponent {
     if (node.constraints !== undefined) {
       this.constraintsCopy = JSON.parse(JSON.stringify(node.constraints));
 
-      console.log(this.constraintsCopy);
+      //console.log(this.constraintsCopy);
 
       for (let c of this.constraintsCopy) {
         if (c.type.typeName === "BindingResource") {
-          console.log('found BindingResourceConstraint');
+          //console.log('found BindingResourceConstraint');
           if (myBindingResoure === undefined) {
             myBindingResoure = c;
           }
         }
 
         if (c.type.typeName === "ExcludingResource") {
-          console.log('found ExcludingResourceConstraint');
+          //console.log('found ExcludingResourceConstraint');
           if (myExclduingResoure === undefined) {
             myExclduingResoure = c;
           }

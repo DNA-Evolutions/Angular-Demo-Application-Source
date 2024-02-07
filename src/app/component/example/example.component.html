@@ -1,6 +1,6 @@
 <!-- Example selection -->
 <p></p>
-<mat-expansion-panel #mep="matExpansionPanel" class="wide" [expanded]="false">
+<mat-expansion-panel #mepexample="matExpansionPanel" class="wide" [expanded]="false">
   <mat-expansion-panel-header class="colored">
     <mat-panel-title>
       <div class="panelcaption">
@@ -42,7 +42,7 @@
   <mat-divider></mat-divider>
 
   <div style="padding-top: 10px">
-    <h5>Select an example:</h5>
+    <h3>Select an example:</h3>
 
     <mat-form-field appearance="fill">
       <mat-label>Select an element...</mat-label>
@@ -60,7 +60,7 @@
     </mat-form-field>
 
     <div *ngIf="curExampleId" style="padding-bottom: 15px">
-      <h5>Example Description:</h5>
+      <h3>Example Description:</h3>
       <div class="exampledesc">
         {{ getExampleDesc(curExampleId) }}
       </div>
@@ -74,7 +74,7 @@
       <button
         mat-raised-button
         matTooltip="Open example"
-        (click)="loadExample(curExampleId); mep.expanded = false"
+        (click)="loadExample(curExampleId); mepexample.expanded = false; mepopti.expanded = true; mepmap.expanded = true;"
         color="primary"
         cdkFocusInitial
       >
@@ -112,7 +112,7 @@
 <p></p>
 
 <!-- START OPTIMIZATION -->
-<mat-expansion-panel class="wide" [expanded]="true">
+<mat-expansion-panel #mepopti="matExpansionPanel" class="wide" [expanded]="true">
   <mat-expansion-panel-header class="colored">
     <mat-panel-title>
       <div class="panelcaption">
@@ -177,7 +177,7 @@
 
 <!-- MAP -->
 
-<mat-expansion-panel class="wide" [expanded]="true">
+<mat-expansion-panel #mepmap="matExpansionPanel" class="wide" [expanded]="true">
   <mat-expansion-panel-header class="colored">
     <mat-panel-title>
       <div class="panelcaption">
@@ -261,7 +261,7 @@
   <mat-divider></mat-divider>
 
   <div style="margin-top: 10px">
-    <h5>Please select a Node or a Resource:</h5>
+    <h3>Please select a Node or a Resource:</h3>
     <app-optimization-elements-selector></app-optimization-elements-selector>
   </div>
 </mat-expansion-panel>
@@ -275,7 +275,7 @@
 <div class="footer">
   <div>
     <a href="https://www.dna-evolutions.com" target="_blank"
-      >&copy; 2023 DNA Evolutions GmbH</a
+      >&copy; {{currentYear}} DNA Evolutions GmbH</a
     >
     <a
       style="padding-left: 20px"
