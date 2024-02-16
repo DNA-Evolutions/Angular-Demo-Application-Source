@@ -195,9 +195,9 @@ export class OptimizationResultDialogComponent
    */
   openRouteResultDialog(curRoute: Route): void {
     const dialogRef = this.dialog.open(RouteResultDialogComponent, {
-      minWidth: '40%',
-      maxWidth: '95%',
-      maxHeight: '90%',
+      minWidth: '40vw',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
       data: { route: curRoute },
     });
 
@@ -211,9 +211,9 @@ export class OptimizationResultDialogComponent
    */
   openRawResultDialog(): void {
     const dialogRef = this.dialog.open(OptimizationRawRDialogComponent, {
-      minWidth: '40%',
-      maxWidth: '95%',
-      maxHeight: '90%',
+      minWidth: '40vw',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
       data: { result: this.curResult },
     });
 

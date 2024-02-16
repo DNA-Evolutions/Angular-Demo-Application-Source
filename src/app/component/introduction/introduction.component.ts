@@ -94,7 +94,7 @@ export class IntroductionComponent {
    *
    * @memberof IntroductionComponent
    */
-  openIntroductionDialog(): void {
+  openIntroductionVideoDialog(): void {
     let takeUpPercentage = 85; // take up to 80% of the screen size
 
     const dialogConfig = new MatDialogConfig();

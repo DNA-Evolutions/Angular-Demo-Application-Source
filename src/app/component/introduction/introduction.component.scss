@@ -1,7 +1,7 @@
 .intro-title{
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -12,8 +12,6 @@
 .intro-title > h5{
   padding-left: 5px;
 }
-
-
 
 div.helpdesc{
   font-size: 16px;
@@ -41,4 +39,5 @@ input.preview{
   .mat-dialog-title > h3 {
     font-size: 0.9em;
   }
+
 }
