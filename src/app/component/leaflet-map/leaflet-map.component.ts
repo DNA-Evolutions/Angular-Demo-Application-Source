@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 
-import { RestOptimization } from 'build/openapi';
+import { RestOptimization } from '@openapibuild/openapi';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';

@@ -1,5 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { Route } from 'build/openapi';
+import { Route } from '@openapibuild/openapi';
 import * as L from 'leaflet';
 import { GeoAndRoutingService } from '../../geo-and-routing/geo-and-routing.service';
 import { PopUpService } from '../pop-up/leaflet-popup.service';

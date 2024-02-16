@@ -7,7 +7,7 @@ import {
 import { RunOptimizationDialogData } from './run-optimization-data.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { RestOptimization } from 'build/openapi';
+import { RestOptimization } from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
 import { concatMap, take, timeout } from 'rxjs/operators';

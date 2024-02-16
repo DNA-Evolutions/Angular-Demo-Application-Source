@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   Resource,
   WorkingHours,
-} from 'build/openapi';
+} from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { ResourcePropertiesData } from './interface/resource-properties-data.interface';
 

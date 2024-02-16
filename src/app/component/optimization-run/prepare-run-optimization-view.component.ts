@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PrepareRunOptimizationDialogComponent } from './prepare-run-optimization-dialog.component';
-import { RestOptimization } from 'build/openapi';
+import { RestOptimization } from '@openapibuild/openapi';
 import { Observable } from 'rxjs';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';

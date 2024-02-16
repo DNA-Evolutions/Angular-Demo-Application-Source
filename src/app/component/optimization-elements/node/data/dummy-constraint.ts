@@ -3,7 +3,7 @@ import {
   ExcludingResourceConstraint,
   Constraint,
   ResourceWithPriority
-} from 'build/openapi';
+} from '@openapibuild/openapi';
 
 
 export const DummyConstraintResource: ResourceWithPriority = {

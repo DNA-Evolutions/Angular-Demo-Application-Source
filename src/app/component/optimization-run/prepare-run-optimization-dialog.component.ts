@@ -8,7 +8,7 @@ import { PrepareRunOptimizationDialogData } from './prepare-run-optimization-dat
 import { RunOptimizationDialogComponent } from './run-optimization-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { OptimizationOptions } from 'build/openapi';
+import { OptimizationOptions } from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { Kv } from '../optimization-elements/result/optimization/interface/keyvalue/key-value.interface';
 

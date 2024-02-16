@@ -18,7 +18,7 @@ import {
   Route,
   OptimizationHealthControllerService,
   Status,
-} from 'build/openapi';
+} from '@openapibuild/openapi';
 
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
 

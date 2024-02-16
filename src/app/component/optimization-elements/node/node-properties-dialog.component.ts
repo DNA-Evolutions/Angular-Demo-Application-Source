@@ -8,7 +8,7 @@ import {
   Constraint,
   BindingResourceConstraint,
   ExcludingResourceConstraint,
-} from 'build/openapi';
+} from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 import { NodePropertiesData } from './interface/node-properties-data.interface';

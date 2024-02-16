@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import _ from 'lodash';
 
-import { environment } from './../../../environments/environment';
+import { environment } from '@env/environment';
 
 /**
  * A generic service to request events from the swagger endpoint.

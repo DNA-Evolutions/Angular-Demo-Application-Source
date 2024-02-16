@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 
-import { OpeningHours, GeoNode, RouteElementDetail } from 'build/openapi';
+import { OpeningHours, GeoNode, RouteElementDetail } from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 @Component({

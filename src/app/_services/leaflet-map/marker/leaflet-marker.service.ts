@@ -1,5 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { GeoNode, NodeType } from 'build/openapi';
+import { GeoNode, NodeType } from '@openapibuild/openapi';
 import * as L from 'leaflet';
 import { OptimizationWrapperService } from '../../optimization-wrapper/optimization-wrapper.service';
 import { PopUpService } from '../pop-up/leaflet-popup.service';

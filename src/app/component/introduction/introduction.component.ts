@@ -6,7 +6,7 @@ import {
 } from '@angular/material/dialog';
 import { HowtoDialogComponent } from './howto-dialog/howto-dialog.component';
 
-import { environment } from './../../../environments/environment';
+import { environment } from '@env/environment';
 import { IntroVideoDialogComponent } from './intro-video-dialog/intro-video-dialog.component';
 import packageJson from '../../../../package.json';
 

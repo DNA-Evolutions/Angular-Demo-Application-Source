@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Inject, AfterViewInit } from '@angular/core';
 
-import { JSONConfig, RestOptimization, TextSolution } from 'build/openapi';
+import { JSONConfig, RestOptimization, TextSolution } from '@openapibuild/openapi';
 
 import {
   MAT_DIALOG_DATA,

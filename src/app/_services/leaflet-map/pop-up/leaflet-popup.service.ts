@@ -1,5 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { GeoNode, Resource, Route, Node } from 'build/openapi';
+import { GeoNode, Resource, Route, Node } from '@openapibuild/openapi';
 import { MatDialog } from '@angular/material/dialog';
 import { NodePropertiesDialogComponent } from 'src/app/component/optimization-elements/node/node-properties-dialog.component';
 import { ResourcePropertiesDialogComponent } from 'src/app/component/optimization-elements/resource/resource-properties-dialog.component';

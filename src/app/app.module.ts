@@ -79,7 +79,7 @@ import { OptimizationElementsSelectorComponent } from './component/optimization-
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { OptimizationRawRDialogComponent } from './component/optimization-elements/result/optimization/optimization-raw-result/opti-rawr-dialog.component';
 import { BASE_PATH } from 'build/openapi';
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
 import { IntroductionComponent } from './component/introduction/introduction.component';
 import { HowtoDialogComponent } from './component/introduction/howto-dialog/howto-dialog.component';
 import { IntroVideoDialogComponent } from './component/introduction/intro-video-dialog/intro-video-dialog.component';

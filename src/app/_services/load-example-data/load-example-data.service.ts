@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RestOptimization, ElementConnection } from 'build/openapi';
+import { RestOptimization, ElementConnection } from '@openapibuild/openapi';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
 import { JOptExampleDefinition } from './interface/jopt-example-defintion';
 import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
 

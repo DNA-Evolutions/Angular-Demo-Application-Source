@@ -4,7 +4,7 @@ import { Subject, Observable, of, throwError, iif } from 'rxjs';
 
 import { mergeMap, retryWhen, concatMap, delay } from 'rxjs/operators';
 
-import { JOptOptimizationProgress } from 'build/openapi';
+import { JOptOptimizationProgress } from '@openapibuild/openapi';
 
 import { ChangeDetectorRef } from '@angular/core';
 import { EventSourceService } from 'src/app/_services/optimization-event/event-source.service';

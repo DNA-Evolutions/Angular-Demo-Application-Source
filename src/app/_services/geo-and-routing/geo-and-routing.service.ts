@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { OptimizationWrapperService } from '../optimization-wrapper/optimization-wrapper.service';
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
 import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
-import { GeoNode, Position } from 'build/openapi';
+import { GeoNode, Position } from '@openapibuild/openapi';
 
 /**
  * Service that is providing functionality to extract connection shapes

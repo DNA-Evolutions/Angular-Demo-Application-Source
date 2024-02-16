@@ -12,7 +12,7 @@ import {
   RouteElementDetail,
   Route,
   RestOptimization,
-} from 'build/openapi';
+} from '@openapibuild/openapi';
 
 import {
   MAT_DIALOG_DATA,

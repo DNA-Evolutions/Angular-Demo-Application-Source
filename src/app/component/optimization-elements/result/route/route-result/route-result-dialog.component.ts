@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Inject } from '@angular/core';
 
-import { RouteElementDetail, Route } from 'build/openapi';
+import { RouteElementDetail, Route } from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
