@@ -1,0 +1,78 @@
+.consent-container {
+  padding: 20px;
+  background-color: #f2f2f2; /* Light grey background for the consent box */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 500px;
+  margin: 100px auto;
+  position: relative; /* Allows absolute positioning of the logo toolbar inside */
+  padding-top: 70px;
+
+  /* Logo Toolbar */
+  .logo-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #c0ca48; /* Primary color for the toolbar background */
+    padding: 10px 0; /* Adjust padding to fit your design */
+    border-top-left-radius: 8px; /* Maintain the border radius of the container */
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: center; /* Center the logo horizontally */
+  }
+
+  .logo {
+    width: 200px; /* Adjust based on actual size and preference */
+    /*height: 100px;  Adjust if your logo is not square */
+    object-fit: contain; /* Keeps the aspect ratio without cropping */
+  }
+
+  h2, p, ul, a {
+    color: #000; /* Text color against the light grey background */
+  }
+
+  ul {
+    text-align: left;
+    list-style: inside;
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: #c0ca48; /* Primary color for links */
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #c0ca48; /* Primary color for buttons */
+      color: #fff; /* White text for buttons */
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: darken(#c0ca48, 10%);
+      }
+    }
+
+    .decline {
+      background-color: #ccc; /* Grey color for decline button */
+
+      &:hover {
+        background-color: darken(#ccc, 10%);
+      }
+    }
+  }
+}

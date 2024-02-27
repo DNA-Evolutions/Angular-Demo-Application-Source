@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConsentComponent } from './component/consent/consent.component';
+import { ExampleComponent } from './component/example/example.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tourOptimization', pathMatch: 'full' },
+  { path: 'consent', component: ConsentComponent },
+  { path: 'example', component: ExampleComponent }
 ];
 
 @NgModule({

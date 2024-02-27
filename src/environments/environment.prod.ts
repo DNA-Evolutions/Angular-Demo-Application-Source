@@ -7,5 +7,6 @@ export const environment = {
   health: '/actuator/health',
   exampleAssertHelperPath: './assets/precoded-data/example-asserts-helper.json',
   howtoYTIdent:'2q7cYYArKm8',
-  introYTIdent:'U4mDQGnZGZs'
+  introYTIdent:'U4mDQGnZGZs',
+  showConsentPage: window["env"]["showConsentPage"] || true,
 };

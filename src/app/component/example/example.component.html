@@ -1,3 +1,39 @@
+<!-- Toolbar selection -->
+<mat-toolbar class="colored">
+  <mat-toolbar-row>
+    <div class="toolbar">
+      <a href="https://www.dna-evolutions.com" target="_blank">
+        <img
+          class="leftitem disappearable"
+          src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
+          alt="map icon"
+      /></a>
+
+      <div class="centeritem disappearablesmall">
+        <strong><u>JOpt.</u></strong>
+      </div>
+
+      <div class="centeritem">
+        <strong>TourOptimizer</strong>
+      </div>
+
+      <div class="centeritem">
+        <strong> - Demo</strong> 
+      </div>
+
+      <div class="rightitem">
+        <input
+          type="image"
+          width="40px;"
+          matTooltip="Watch our Howto-Video and get further information."
+          src="./assets/misc/icon/help-icon.png"
+          (click)="openIntroductionDialog()"
+        />
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <!-- Example selection -->
 <p></p>
 <mat-expansion-panel #mepexample="matExpansionPanel" class="wide" [expanded]="false">

@@ -3,6 +3,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { LoadExampleDataService } from 'src/app/_services/load-example-data/load-example-data.service';
 import { JOptExampleDefinition } from 'src/app/_services/load-example-data/interface/jopt-example-defintion';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
+import { IntroductionComponent } from '../introduction/introduction.component';
+import { MatDialog } from '@angular/material/dialog';
 
 /**
  * Start up component showing the different expansion panels to control the demo application
@@ -32,7 +34,8 @@ export class ExampleComponent {
    */
   constructor(
     private loadService: LoadExampleDataService,
-    private dataService: OptimizationWrapperService
+    private dataService: OptimizationWrapperService,
+    public dialog: MatDialog
   ) {}
 
   /**
@@ -119,5 +122,17 @@ export class ExampleComponent {
    */
   public getExampledDefs(): JOptExampleDefinition[] {
     return this.loadService.getExampledDefs();
+  }
+
+  openIntroductionDialog(): void {
+    const dialogRef = this.dialog.open(IntroductionComponent, {
+      minWidth: '10vw',
+      maxWidth: '95vw',
+      maxHeight: '95vh',
+      disableClose: false,
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
   }
 }

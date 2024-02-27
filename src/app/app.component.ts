@@ -3,15 +3,8 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
-
-import { FormControl } from '@angular/forms';
-import { LoadExampleDataService } from './_services/load-example-data/load-example-data.service';
-import { OptimizationWrapperService } from './_services/optimization-wrapper/optimization-wrapper.service';
-import { MatDialog } from '@angular/material/dialog';
-import { IntroductionComponent } from './component/introduction/introduction.component';
-
-import packageJson from '../../package.json';
+import { Router } from '@angular/router';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-root',
@@ -19,57 +12,18 @@ import packageJson from '../../package.json';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  exampleDefaultId = 'exampleOne';
-  exampleId: string;
-
-  curExampleId: string;
-
-  //
-  exampleIdChangesSubject: BehaviorSubject<string>;
-
-  title = 'JOpt.TourOptimizer - Demo Application';
-  description = 'Optimization framework for Tour Optimization';
-
-  desiredNodeId = new FormControl('');
-
-  public version: string = packageJson.version;
 
   constructor(
-    private loadService: LoadExampleDataService,
-    private dataService: OptimizationWrapperService,
-    public dialog: MatDialog
-  ) {}
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.exampleIdChangesSubject = new BehaviorSubject(this.exampleDefaultId);
 
-    this.exampleIdChangesSubject.subscribe(() => {});
-  }
+    if (environment.showConsentPage) {
+      this.router.navigate(['/consent']);
+    } else {
+      this.router.navigate(['/example']);
+    }
 
-  updateDesiredNodeId(): void {
-    this.desiredNodeId.setValue('');
-  }
-
-  async loadExample(exampleId: string): Promise<unknown> {
-    const promise = await this.loadService.loadExample(exampleId);
-    this.dataService.init();
-    this.exampleIdChangesSubject.next(exampleId);
-    return promise;
-  }
-
-  public setExampelId(id: string): void {
-    this.curExampleId = id;
-  }
-
-  openIntroductionDialog(): void {
-    const dialogRef = this.dialog.open(IntroductionComponent, {
-      minWidth: '10vw',
-      maxWidth: '95vw',
-      maxHeight: '95vh',
-      disableClose: false,
-      data: {},
-    });
-
-    dialogRef.afterClosed().subscribe(() => {});
   }
 }

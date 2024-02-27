@@ -85,10 +85,12 @@ import { HowtoDialogComponent } from './component/introduction/howto-dialog/howt
 import { IntroVideoDialogComponent } from './component/introduction/intro-video-dialog/intro-video-dialog.component';
 
 import { CustomDateTimePickerComponent } from './component/custom-date-time-picker/custom-date-time-picker.component';
+import { ConsentComponent } from './component/consent/consent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConsentComponent,
     //
     PrepareRunOptimizationDialogComponent,
     PrepareRunOptimizationViewComponent,

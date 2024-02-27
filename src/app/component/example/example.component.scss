@@ -32,6 +32,35 @@ div.panelicon {
 
 //
 
+
+div.toolbar {
+  width: 100%;
+  text-align: center;
+  font-size: larger;
+}
+
+.leftitem {
+  float: left;
+  height: 55px;
+  padding-top: 5px;
+}
+
+.centeritem {
+  margin: 10px 0px 0 0;
+  display: inline-block;
+  text-align: center;
+}
+
+.rightitem {
+  float: right;
+  margin: 5px 25px 10px 0;
+}
+
+.mat-toolbar.colored {
+  background: #c0ca48;
+  color: #fff;
+}
+
 div.footer {
   width: 95%;
   margin: 0 auto;
@@ -54,6 +83,13 @@ div.exampledesc {
   background-color: whitesmoke;
 }
 
+
+@media only screen and (max-width: 300px) {
+  .disappearablesmall {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   div.paneltitle {
     display: block;
@@ -66,4 +102,14 @@ div.exampledesc {
     text-align: center;
     display: inline-block;
   }
+
+  .centeritem {
+    padding-top: 5px;
+  }
+
+  .rightitem {
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
 }
+
