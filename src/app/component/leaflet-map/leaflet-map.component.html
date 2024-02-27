@@ -5,7 +5,7 @@
     </div>
 
     <div class="map-interact">
-      <a href="#map">
+      <a [routerLink]="[]" [fragment]="'map'">
         <img
           *ngIf="isFullScreen()"
           style="height: 35px;"
