@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 
 import { RestOptimization } from '@openapibuild/openapi';
 
-const iconRetinaUrl = 'assets/marker-icon-2x.png';
-const iconUrl = 'assets/marker-icon.png';
-const shadowUrl = 'assets/marker-shadow.png';
+/*const iconRetinaUrl = 'assets/maps/marker-icon-2x.png';
+const iconUrl = 'assets/maps/marker-icon-green.png';
+const shadowUrl = 'assets/maps/marker-shadow.png';
 
 const iconDefault = L.icon({
   iconRetinaUrl,
@@ -17,7 +17,7 @@ const iconDefault = L.icon({
   tooltipAnchor: [16, -28],
   shadowSize: [41, 41],
 });
-L.Marker.prototype.options.icon = iconDefault;
+L.Marker.prototype.options.icon = iconDefault;*/
 
 import { GeoAndRoutingService } from 'src/app/_services/geo-and-routing/geo-and-routing.service';
 import { LeafletMarkerService } from 'src/app/_services/leaflet-map/marker/leaflet-marker.service';
@@ -28,9 +28,12 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 
 import { MapIconResourceOptions } from './marker-icon/map-icon-resource-options';
 import { MapIconNodeOptions } from './marker-icon/map-icon-node-options';
+import { MapIconEventOptions } from './marker-icon/map-icon-event-options';
+import { MapIconPillarOptions } from './marker-icon/map-icon-pillar-options';
 import { Observable } from 'rxjs';
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
 import { EventHandler } from './interface/event-handler';
+import { OptimizationNonGeoElementsSelectorComponent } from '../optimization-elements-selector/optimization-non-geo-elements-selector.component';
 
 /**
  * The component for the Leafletmap
@@ -53,6 +56,8 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
   public isFullScreenMap = false;
 
+  public hasNodeEvents = false;
+
   protected onMouseMoveHandler: EventHandler;
 
   myOptimizationOutput$: Observable<RestOptimization>;
@@ -74,7 +79,8 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     private elementRef: ElementRef,
     private polylineService: LeafletPolylineService,
     private optiService: OptimizationWrapperService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cdRef: ChangeDetectorRef
   ) {
     this.onMouseMoveHandler = (evt: any) => this.onMapMouseMove(evt);
     this.myOptimizationOutput$ = this.optiService.optimizationOutputObservable();
@@ -91,13 +97,14 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
     this.myOptimizationOutput$.subscribe((result: RestOptimization) => {
       // Drawing result
-      this.refreshMap();
+      this.refreshMap(result);
       result.solution.routes.forEach((r, index) => {
         this.polylineService.drawRouteResultPolyline(
           r,
           index,
           this.elementRef,
-          this.map
+          this.map,
+          result
         );
       });
     });
@@ -120,19 +127,19 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.map.on('mousemove', this.onMouseMoveHandler);
   }
 
-  /**
-   *  Refreshing the map and redraw data
-   *
-   * @memberof LeafletMapComponent
-   */
-  public refreshMap(): void {
+
+  public refreshMap(restOptimization?: RestOptimization): void {
     this.map.eachLayer((curLayer) => {
       if (curLayer !== this.tiles) {
         this.map.removeLayer(curLayer);
       }
     });
 
-    this.addMarksers();
+    if(restOptimization == undefined){
+      restOptimization = this.optiService.optimizationOutput();
+    }
+
+    this.addMarksers(restOptimization);
   }
 
   /**
@@ -147,13 +154,17 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.map.setView(mapViewDef.center, mapViewDef.zoom, { animation: true });
   }
 
-  /**
-   *
-   *
-   * @private
-   * @memberof LeafletMapComponent
-   */
-  private addMarksers(): void {
+  public getMap(): L.map{
+    return this.map;
+  }
+
+  public getElementRef():ElementRef{
+    return this.elementRef;
+  }
+
+
+  private addMarksers(result?: RestOptimization): void {
+
     const iconNode = L.icon({
       iconUrl: MapIconNodeOptions.mapIcon,
       iconSize: MapIconNodeOptions.iconSize,
@@ -161,6 +172,24 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
       shadowUrl: MapIconNodeOptions.mapShadowIcon,
       shadowSize: MapIconNodeOptions.shadowSize,
       shadowAnchor: MapIconNodeOptions.shadowAnchor,
+    });
+
+    const iconEvent = L.icon({
+      iconUrl: MapIconEventOptions.mapIcon,
+      iconSize: MapIconEventOptions.iconSize,
+      iconAnchor: MapIconEventOptions.iconAnchor,
+      shadowUrl: MapIconEventOptions.mapShadowIcon,
+      shadowSize: MapIconEventOptions.shadowSize,
+      shadowAnchor: MapIconEventOptions.shadowAnchor,
+    });
+
+    const iconPillar = L.icon({
+      iconUrl: MapIconPillarOptions.mapIcon,
+      iconSize: MapIconPillarOptions.iconSize,
+      iconAnchor: MapIconPillarOptions.iconAnchor,
+      shadowUrl: MapIconPillarOptions.mapShadowIcon,
+      shadowSize: MapIconPillarOptions.shadowSize,
+      shadowAnchor: MapIconPillarOptions.shadowAnchor,
     });
 
     const iconResource = L.icon({
@@ -175,7 +204,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     const isDraggableNode = this.geoService.exampleHasDraggableNode();
     const isDraggableResource = this.geoService.exampleHasDraggableResource();
 
-    this.markerService.markNodes(this.map, this.elementRef, iconNode, isDraggableNode);
+    this.markerService.markNodes(this, iconNode, iconEvent, iconPillar, isDraggableNode, result);
     this.markerService.markResources(this.map, this.elementRef, iconResource, isDraggableResource);
   }
 
@@ -250,6 +279,18 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  openNonGeoEventsDialog(): void {
+    const dialogRef = this.dialog.open(OptimizationNonGeoElementsSelectorComponent, {
+      minWidth: '10vw',
+      maxWidth: '95vw',
+      maxHeight: '85vh',
+      disableClose: false,
+      data: {  },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+
   /**
    *
    *
@@ -258,6 +299,15 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
    */
   public isFullScreen(): boolean {
     return this.isFullScreenMap;
+  }
+
+  public hasEventNodes(): boolean {
+    return this.hasNodeEvents;
+  }
+
+  public setHasEventNodes(hasEventNodes: boolean): void {
+    this.cdRef.detectChanges();
+    this.hasNodeEvents = hasEventNodes;
   }
 
   /**

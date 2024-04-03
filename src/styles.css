@@ -5,10 +5,20 @@
 @import "../node_modules/leaflet/dist/leaflet.css";
 
 html,
-body {
+
+ body {
   height: 100%;
   background-color: whitesmoke;
 }
+
+/*body {
+  height: 100%;
+  background-color: #f5f5f5;
+  background-image: url('./assets/misc/icon/bg_pattern.png');
+  background-repeat: repeat;
+
+  box-shadow: inset 0 0 10px #000000;
+}*/
 
 body {
   margin: 0;
@@ -337,7 +347,7 @@ div.violationtext {
 
 .mat-raised-button.nodedetailbutton::after {
   content: "";
-  background: url("/assets/maps/marker-icon.png");
+  background: url("/assets/maps/marker-icon-blue.png");
   background-size: cover;
   margin-top: 0.4rem;
   height: 22px;

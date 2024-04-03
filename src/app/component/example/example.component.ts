@@ -20,9 +20,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class ExampleComponent {
   @ViewChild('elselectoranchor', { static: false }) elSelectorRef: ElementRef;
 
-  curExampleId = 'exampleOne';
-
-  activeExampleId = 'exampleOne';
+  curExampleId = this.loadService.getDefaultExampleId();
+  
+  activeExampleId = this.loadService.getDefaultExampleId();
 
   currentYear = new Date().getFullYear();
 

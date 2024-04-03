@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { OptimizationWrapperService } from '../optimization-wrapper/optimization-wrapper.service';
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
 import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
-import { GeoNode, Position } from '@openapibuild/openapi';
+import { GeoNode, Position, RestOptimization } from '@openapibuild/openapi';
 
 /**
  * Service that is providing functionality to extract connection shapes
@@ -119,7 +119,8 @@ export class GeoAndRoutingService {
    */
   public getSingleRouteShape(
     elementIdFrom: string,
-    elementIdTo: string
+    elementIdTo: string,
+    result?: RestOptimization
   ): number[] {
     const c = this.getRouteConnection(
       elementIdFrom,
@@ -162,6 +163,58 @@ export class GeoAndRoutingService {
 
       if (elemenToAsRes !== undefined) {
         toPosition = elemenToAsRes.position;
+      }
+    }
+
+
+    // Use details for events if possible
+           
+    let fallbackPos:Position = {latitude:0.0, longitude:0.0};
+
+    if(fromPosition == undefined){
+      
+      if(result !== undefined){
+
+        // Check if we can get it from effective positon
+        let curDetail = OptimizationWrapperService.nodeResult(
+          elemenFrom.id,
+          result
+        );
+
+        if(curDetail!== undefined){
+          const lat = curDetail.effectivePosition.latitude;
+          const lon = curDetail.effectivePosition.longitude;
+          fromPosition = {latitude:lat, longitude:lon};
+        }else{
+          fromPosition =  fallbackPos;
+        }
+
+      }else{
+        // Fallback
+        fromPosition = fallbackPos;
+      }
+    }
+
+    if(toPosition == undefined){
+      if(result !== undefined){
+        
+        // Check if we can get it from effective positon
+        let curDetail = OptimizationWrapperService.nodeResult(
+          elemenTo.id,
+          result
+        );
+
+        if(curDetail!== undefined){
+          const lat = curDetail.effectivePosition.latitude;
+          const lon = curDetail.effectivePosition.longitude;
+          toPosition = {latitude:lat, longitude:lon};
+        }else{
+          toPosition =  fallbackPos;
+        }
+
+      }else{
+        // Fallback
+        toPosition = fallbackPos;
       }
     }
 

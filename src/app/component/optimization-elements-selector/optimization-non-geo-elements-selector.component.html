@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Select a non-geo element to review or modify
+    <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+</h1>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-content style="max-height: 50vh">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Select an non-geo element...</mat-label>
+            <mat-select [(ngModel)]="selectedId" (ngModelChange)="setSelectedId($event)">
+                <mat-optgroup label="Non-geo elements">
+                    <mat-option ngDefaultControl *ngFor="let nodeId of nodeIds" [value]="nodeId">
+                        {{nodeId}}
+                    </mat-option>
+                </mat-optgroup>
+            </mat-select>
+        </mat-form-field>
+        <!--<p></p>-->
+
+        <!--<div class="selectElement" *ngIf="selectedNodeId">
+            <button mat-raised-button class="nodedetailbutton" matTooltip="Open details of Node"
+                (click)="openNodeDialog(selectedNodeId)" cdkFocusInitial>Open details of {{selectedNodeId}}</button>
+        </div>
+
+        <div class="selectElement" *ngIf="!selectedNodeId">
+            <button mat-raised-button [disabled]="true" matTooltip="Select an element" color="primary"
+                cdkFocusInitial>Select an element first</button>
+        </div>-->
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="inline buttongroup">
+
+    <button mat-raised-button color="warn" (click)="onNoClick()">Close</button>
+
+    <a href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#nodes"
+        target="_blank" matTooltip="Visit our documentation on Nodes." mat-raised-button
+        class="mat-raised-button infobutton">Nodes</a>
+
+</div>

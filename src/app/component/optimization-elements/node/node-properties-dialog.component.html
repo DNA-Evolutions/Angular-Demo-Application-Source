@@ -1,35 +1,22 @@
 <h1 mat-dialog-title>Properties of Node: {{ curNode?.id }}</h1>
 <mat-divider></mat-divider>
 
-<form
-  name="form"
-  (ngSubmit)="f.form.valid && onSaveClick()"
-  #f="ngForm"
-  [validTimeWindow]="['']"
-  novalidate
->
+<form name="form" (ngSubmit)="f.form.valid && onSaveClick()" #f="ngForm" [validTimeWindow]="['']" novalidate>
   <div mat-dialog-content style="max-height: 50vh">
     <mat-tab-group>
       <mat-tab label="Basic">
         <p></p>
         <ul>
           <li>
-            <mat-label
-              matTooltip="When is a node open for service? Click on cards to modify."
-              >Modify OpeningHours
+            <mat-label matTooltip="When is a node open for service? Click on cards to modify.">Modify OpeningHours
             </mat-label>
           </li>
         </ul>
         <p></p>
 
         <mat-accordion>
-          <div
-            *ngFor="let openinghours of openingHoursCopy; let i = index"
-            [attr.data-index]="i"
-          >
-            <mat-expansion-panel
-              style="width: 95%; margin: 0 auto;"
-            >
+          <div *ngFor="let openinghours of openingHoursCopy; let i = index" [attr.data-index]="i">
+            <mat-expansion-panel style="width: 95%; margin: 0 auto;">
               <mat-expansion-panel-header>
                 <mat-panel-title> Opening hour </mat-panel-title>
                 <mat-panel-description> # {{ i + 1 }} </mat-panel-description>
@@ -37,8 +24,7 @@
 
               <p></p>
               <h5>
-                <mat-label matTooltip="Till when the node should be visited."
-                  >OpeningHours start :
+                <mat-label matTooltip="Till when the node should be visited.">OpeningHours start :
                 </mat-label>
               </h5>
 
@@ -47,7 +33,8 @@
 
               <!-- See https://github.com/h2qutc/angular-material-components/issues/370
                    AND https://github.com/h2qutc/angular-material-components/issues/348 -->
-                   <app-custom-date-time-picker [(ngModel)]="openinghours.begin" [endTime]="openinghours.end" name="twstart{{ i }}"></app-custom-date-time-picker>
+              <app-custom-date-time-picker [(ngModel)]="openinghours.begin" [endTime]="openinghours.end"
+                name="twstart{{ i }}"></app-custom-date-time-picker>
 
               <!-- <mat-form-field style="width: 100% !important" appearance="fill">
                 <mat-label>OpeningHours start</mat-label>
@@ -78,14 +65,13 @@
 
               <p></p>
               <h5>
-                <mat-label
-                  matTooltip="Till when the work at the node should be done."
-                >
+                <mat-label matTooltip="Till when the work at the node should be done.">
                   OpeningHours end:
                 </mat-label>
               </h5>
 
-              <app-custom-date-time-picker [(ngModel)]="openinghours.end" [startTime]="openinghours.begin" name="twend{{ i }}}"></app-custom-date-time-picker>
+              <app-custom-date-time-picker [(ngModel)]="openinghours.end" [startTime]="openinghours.begin"
+                name="twend{{ i }}}"></app-custom-date-time-picker>
 
               <!-- XXX add back [ngxMatDatetimePicker]="pickerEnd" to input -->
               <!--<mat-form-field style="width: 100% !important" appearance="fill">
@@ -118,21 +104,18 @@
         </mat-accordion>
         <mat-divider></mat-divider>
 
+        <!-- Duration -->
+
         <p></p>
         <ul>
           <li>
-            <mat-label
-              matTooltip="How long a Resource needs to stay at the node? Click on card to modify."
-            >
-              Modify Visit duration</mat-label
-            >
+            <mat-label matTooltip="How long a Resource needs to stay at the node? Click on card to modify.">
+              Modify Visit duration</mat-label>
           </li>
         </ul>
         <p></p>
         <mat-accordion>
-          <mat-expansion-panel
-            style="width: 95%; margin: 0 auto"
-          >
+          <mat-expansion-panel style="width: 95%; margin: 0 auto">
             <mat-expansion-panel-header>
               <mat-panel-title> Visit duration </mat-panel-title>
               <mat-panel-description>
@@ -144,26 +127,49 @@
                 <h5>
                   <mat-label>Visit duration [min]</mat-label>
                 </h5>
-                <input
-                  matInput
-                  name="visitduration"
-                  #visitDuration
-                  min="1"
-                  max="999"
-                  pattern="\d*"
-                  placeholder="30"
-                  maxLength="3"
-                  [(ngModel)]="visitDurationMinutes"
-                  type="number"
-                  oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<=0) {this.value = 1;}"
-                />
-                <mat-hint align="end"
-                  >{{ visitDuration.value.length }} / 3</mat-hint
-                >
+                <input matInput name="visitduration" #visitDuration min="1" max="999" pattern="\d*" placeholder="30"
+                  maxLength="3" [(ngModel)]="visitDurationMinutes" type="number"
+                  oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<=0) {this.value = 1;}" />
+                <mat-hint align="end">{{ visitDuration.value.length }} / 3</mat-hint>
               </mat-form-field>
             </mat-card>
           </mat-expansion-panel>
         </mat-accordion>
+        <p></p>
+        <mat-divider></mat-divider>
+        <!-- Pillar -->
+        <p></p>
+        <ul>
+          <li>
+            <mat-label matTooltip="If checkbox is checked, the node act as captures node with hard-constrained opening hours.">
+              As captured node (pillar):</mat-label>
+
+              <mat-checkbox name="pillarCon" [(ngModel)]="isPillar" (ngModelChange)="togglePillar($event)">
+              </mat-checkbox>
+              {{ isPillar }}
+
+
+            <!--<mat-checkbox name="pillarCon"
+            [(ngModel)]="isGeoPillar(curNode)">
+          
+            </mat-checkbox>-->
+            
+            
+          </li>
+        </ul>
+        <p></p>
+
+        <!--<mat-checkbox
+          name="pillarCon"
+          [(ngModel)]="exclduingRes.isHard"
+        >-->
+
+
+
+        <p></p>
+        <!-- hard constraint end -->
+        <!-- Buttons etc-->
+
         <p></p>
         <mat-divider></mat-divider>
         <div class="wide boxteaser">
@@ -171,30 +177,21 @@
           <p class="dontbreakout">
             <span>
               Get to know more features, including 
-              <strong>time windows, </strong
-              ><strong>pick-up and delivery, </strong
-              ><strong>zone-codes, </strong> 
+              <strong>time windows, </strong><strong>pick-up and delivery, </strong><strong>zone-codes, </strong> 
               <strong>hard-constraints, </strong> and more...
             </span>
             <span style="margin-top: 0px; vertical-align: auto">
               Visit
-              <a
-                href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
-                target="_blank"
-                >Special features</a
-              >
+              <a href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
+                target="_blank">Special features</a>
             </span>
             <span>
-              <img
-                style="
+              <img style="
                   margin-top: 10px;
                   padding-left: 10px;
                   height: 40px;
                   vertical-align: middle;
-                "
-                src="./assets/misc/icon/click-icon.png"
-                alt="click icon"
-            /></span>
+                " src="./assets/misc/icon/click-icon.png" alt="click icon" /></span>
           </p>
         </div>
       </mat-tab>
@@ -202,47 +199,36 @@
       <mat-tab label="Advandced">
         <p></p>
         <mat-accordion>
-          <mat-expansion-panel
-            style="width: 95%; margin: 0 auto"
-          >
+          <mat-expansion-panel style="width: 95%; margin: 0 auto">
             <mat-expansion-panel-header>
               <mat-panel-title> Binding resources </mat-panel-title>
               <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
 
-           <mat-accordion>
-              <div
-                *ngFor="
+            <mat-accordion>
+              <div *ngFor="
                   let bingdingRes of binding;
                   let i = index
-                "
-                [attr.data-index]="i"
-              >
+                " [attr.data-index]="i">
                 <!-- hard constraint -->
                 <mat-label>As hard constraint: </mat-label>
 
-                <mat-checkbox
-                  name="bhard{{ i }}"
-                  [(ngModel)]="bingdingRes.isHard"
-                >
+                <mat-checkbox name="bhard{{ i }}" [(ngModel)]="bingdingRes.isHard">
                   ({{ bingdingRes.isHard }})
                 </mat-checkbox>
                 <p></p>
                 <!-- hard constraint end -->
 
-                <div
-                  *ngFor="
+                <div *ngFor="
                     let constraintResource of asBindingResourceType(bingdingRes).resources;
                     let j = index
-                  "
-                  [attr.data-index]="j"
-                >
+                  " [attr.data-index]="j">
                   <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title> Binding resource </mat-panel-title>
                       <mat-panel-description>
                         {{ constraintResource.resourceId }} ({{
-                          constraintResource.priority
+                        constraintResource.priority
                         }})
                       </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -254,15 +240,9 @@
 
                         <mat-form-field appearance="fill">
                           <mat-label>Ids</mat-label>
-                          <mat-select
-                            name="bidselect{{ i }}{{ j }}"
-                            [(ngModel)]="constraintResource.resourceId"
-                          >
+                          <mat-select name="bidselect{{ i }}{{ j }}" [(ngModel)]="constraintResource.resourceId">
                             <mat-option value="--">not present</mat-option>
-                            <mat-option
-                              *ngFor="let id of resourceIds"
-                              [value]="id"
-                              >{{ id }}
+                            <mat-option *ngFor="let id of resourceIds" [value]="id">{{ id }}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>
@@ -272,22 +252,10 @@
                         <h5>
                           <mat-label>Priority</mat-label>
                         </h5>
-                        <input
-                          matInput
-                          name="bpriority{{ i }}{{ j }}"
-                          #priority
-                          min="1"
-                          max="10"
-                          pattern="\d*"
-                          placeholder="30"
-                          maxLength="2"
-                          [(ngModel)]="constraintResource.priority"
-                          type="number"
-                          oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<1) {this.value = 1;} if (this.value>10) {this.value = 10;}"
-                        />
-                        <mat-hint align="end"
-                          >{{ priority.value.length }} / 2</mat-hint
-                        >
+                        <input matInput name="bpriority{{ i }}{{ j }}" #priority min="1" max="10" pattern="\d*"
+                          placeholder="30" maxLength="2" [(ngModel)]="constraintResource.priority" type="number"
+                          oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<1) {this.value = 1;} if (this.value>10) {this.value = 10;}" />
+                        <mat-hint align="end">{{ priority.value.length }} / 2</mat-hint>
                       </mat-form-field>
                     </mat-card>
                   </mat-expansion-panel>
@@ -305,48 +273,37 @@
         <p></p>
         <!-- Excluding-->
         <mat-accordion>
-          <mat-expansion-panel
-            style="width: 95%; margin: 0 auto"
-          >
+          <mat-expansion-panel style="width: 95%; margin: 0 auto">
             <mat-expansion-panel-header>
               <mat-panel-title> Exclduing resources </mat-panel-title>
               <mat-panel-description> </mat-panel-description>
             </mat-expansion-panel-header>
 
 
-          <mat-accordion>
-              <div
-                *ngFor="
+            <mat-accordion>
+              <div *ngFor="
                   let exclduingRes of excluding;
                   let i = index
-                "
-                [attr.data-index]="i"
-              >
+                " [attr.data-index]="i">
                 <!-- hard constraint -->
                 <mat-label>As hard constraint: </mat-label>
 
-                <mat-checkbox
-                  name="exhard{{ i }}"
-                  [(ngModel)]="exclduingRes.isHard"
-                >
+                <mat-checkbox name="exhard{{ i }}" [(ngModel)]="exclduingRes.isHard">
                   ({{ exclduingRes.isHard }})
                 </mat-checkbox>
                 <p></p>
                 <!-- hard constraint end -->
 
-                <div
-                  *ngFor="
+                <div *ngFor="
                     let constraintResource of asExcludingResourceType(exclduingRes).resources;
                     let j = index
-                  "
-                  [attr.data-index]="j"
-                >
+                  " [attr.data-index]="j">
                   <mat-expansion-panel>
                     <mat-expansion-panel-header>
                       <mat-panel-title> Excluding resource </mat-panel-title>
                       <mat-panel-description>
                         {{ constraintResource.resourceId }} ({{
-                          constraintResource.priority
+                        constraintResource.priority
                         }})
                       </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -358,15 +315,9 @@
 
                         <mat-form-field appearance="fill">
                           <mat-label>Ids</mat-label>
-                          <mat-select
-                            name="exidselect{{ i }}{{ j }}"
-                            [(ngModel)]="constraintResource.resourceId"
-                          >
+                          <mat-select name="exidselect{{ i }}{{ j }}" [(ngModel)]="constraintResource.resourceId">
                             <mat-option value="--">not present</mat-option>
-                            <mat-option
-                              *ngFor="let id of resourceIds"
-                              [value]="id"
-                              >{{ id }}
+                            <mat-option *ngFor="let id of resourceIds" [value]="id">{{ id }}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>
@@ -376,22 +327,10 @@
                         <h5>
                           <mat-label>Priority</mat-label>
                         </h5>
-                        <input
-                          matInput
-                          name="expriority{{ i }}{{ j }}"
-                          #priority
-                          min="0"
-                          max="10"
-                          pattern="\d*"
-                          placeholder="30"
-                          maxLength="2"
-                          [(ngModel)]="constraintResource.priority"
-                          type="number"
-                          oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<0) {this.value = 0;} if (this.value>10) {this.value = 10;}"
-                        />
-                        <mat-hint align="end"
-                          >{{ priority.value.length }} / 2</mat-hint
-                        >
+                        <input matInput name="expriority{{ i }}{{ j }}" #priority min="0" max="10" pattern="\d*"
+                          placeholder="30" maxLength="2" [(ngModel)]="constraintResource.priority" type="number"
+                          oninput="javascript: if (this.value.length > this.maxLength) {this.value = this.value.slice(0, this.maxLength);} if (this.value<0) {this.value = 0;} if (this.value>10) {this.value = 10;}" />
+                        <mat-hint align="end">{{ priority.value.length }} / 2</mat-hint>
                       </mat-form-field>
                     </mat-card>
                   </mat-expansion-panel>
@@ -409,8 +348,7 @@
         <div class="boxinfo wide">
           <p class="boxinfotitle">Info</p>
           <p class="dontbreakout">
-            <strong>Binding Resources</strong
-            > are the preferred visitors of a node (sorted by priority value).
+            <strong>Binding Resources</strong> are the preferred visitors of a node (sorted by priority value).
             In case the constraint is defined as hard,
             the optimizer will have to schedule one of the binding Resources. 
             An <strong>excluding Resource</strong> is the counter-concept.
@@ -423,13 +361,8 @@
       <ng-template #hasAResult>
         <mat-tab>
           <ng-template matTabLabel>
-            <span
-              matBadge="1"
-              matBadgePosition="before"
-              matBadgeColor="accent"
-              matBadgeOverlap="false"
-              >Last Result</span
-            >
+            <span matBadge="1" matBadgePosition="before" matBadgeColor="accent" matBadgeOverlap="false">Last
+              Result</span>
           </ng-template>
           <app-node-detail [nodeId]="curNode?.id"></app-node-detail>
         </mat-tab>
@@ -438,13 +371,8 @@
       <ng-template #hasNoResult>
         <mat-tab>
           <ng-template matTabLabel>
-            <span
-              matBadge="0"
-              matBadgePosition="before"
-              matBadgeColor="primary"
-              matBadgeOverlap="false"
-              >Last Result</span
-            >
+            <span matBadge="0" matBadgePosition="before" matBadgeColor="primary" matBadgeOverlap="false">Last
+              Result</span>
           </ng-template>
           <app-node-detail [nodeId]="curNode?.id"></app-node-detail>
         </mat-tab>
@@ -454,34 +382,22 @@
   <p></p>
   <mat-divider></mat-divider>
   <div mat-dialog-actions class="inline buttongroup">
-    
+
     <span *ngIf="!f.valid" [matTooltip]="f.valid ? enabledSaveTooltip : disabledSaveTooltip">
       <mat-icon>info</mat-icon>
     </span>
-      <button
-        mat-raised-button
-        [matTooltip]="enabledSaveTooltip"
-        color="primary"
-        [disabled]="!f.valid"
-        cdkFocusInitial
-      >
-        Save
-      </button>
+    <button mat-raised-button [matTooltip]="enabledSaveTooltip" color="primary" [disabled]="!f.valid" cdkFocusInitial>
+      Save
+    </button>
 
-    <button
-      mat-raised-button
-      type="button"
-      matTooltip="Close this dialog and discard all modifications."
-      color="warn"
-      (click)="onNoClick()"
-    >
+    <button mat-raised-button type="button" matTooltip="Close this dialog and discard all modifications." color="warn"
+      (click)="onNoClick()">
       Cancel
     </button>
 
     <a mat-raised-button class="mat-raised-button infobutton"
-     href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#nodes" 
-    matTooltip="Visit our documentation on Nodes."
-    target="_blank">Nodes</a>
+      href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#nodes"
+      matTooltip="Visit our documentation on Nodes." target="_blank">Nodes</a>
 
   </div>
 </form>

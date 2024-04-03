@@ -40,6 +40,16 @@
       <app-prepare-run-optimization-view
         asIcon="true"
       ></app-prepare-run-optimization-view>
+
+      <img
+      *ngIf="hasEventNodes()"
+      style="height: 35px;"
+      src="./assets/maps/marker-icon-green.png"
+      (click)="openNonGeoEventsDialog()"
+      alt="decrease icon"
+      matTooltip="Open to show events (no geo location)"
+      class="dezoomicon iconopacity"
+    />
     </div>
 
     <div class="map-controll">

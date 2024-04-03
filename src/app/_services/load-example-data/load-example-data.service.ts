@@ -17,8 +17,10 @@ import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
 })
 export class LoadExampleDataService {
   defaultExampleId = 'exampleOne';
-  exampleWithMovableResources: string[] = ["exampleFive"];
-  exampleWithMovableNodes: string[] = ["exampleFive"];
+
+  // TODO load via json - like mapviewproperties
+  exampleWithMovableResources: string[] = ["exampleFive","exampleSix"];
+  exampleWithMovableNodes: string[] = ["exampleFive","exampleSix"];
 
   private exampleDefs: JOptExampleDefinition[];
 
@@ -136,6 +138,10 @@ export class LoadExampleDataService {
    */
   public loadDefaultExample(): Promise<unknown> {
     return this.loadExample(this.defaultExampleId);
+  }
+
+  public getDefaultExampleId(){
+    return this.defaultExampleId;
   }
 
 

@@ -86,6 +86,7 @@ import { IntroVideoDialogComponent } from './component/introduction/intro-video-
 
 import { CustomDateTimePickerComponent } from './component/custom-date-time-picker/custom-date-time-picker.component';
 import { ConsentComponent } from './component/consent/consent.component';
+import { OptimizationNonGeoElementsSelectorComponent } from './component/optimization-elements-selector/optimization-non-geo-elements-selector.component';
 
 @NgModule({
   declarations: [
@@ -131,7 +132,10 @@ import { ConsentComponent } from './component/consent/consent.component';
     HowtoDialogComponent,
     //
     IntroVideoDialogComponent,
-    CustomDateTimePickerComponent
+    CustomDateTimePickerComponent,
+    //
+    OptimizationNonGeoElementsSelectorComponent
+
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
+  NodeType,
+  GeoPillarNode,
+  GeoNode,
+  EventNode,
   OpeningHours,
   Node,
   Constraint,
@@ -17,6 +21,7 @@ import {
   EmptyBindingResourceConstraint,
   EmptyExcludingResourceConstraint,
 } from './data/dummy-constraint';
+import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
 
 /**
  * The Component to show/modify node properties.
@@ -55,6 +60,10 @@ export class NodePropertiesDialogComponent {
   enabledSaveTooltip = "Save all modifications and close this dialog.";
   disabledSaveTooltip = "Please correct the errors before saving. For example, the start lies after the end. Or different days are overlapping.";
 
+  isPillar: boolean = false;
+
+  typeCopy: NodeType;
+
   /**
    * Creates an instance of NodePropertiesDialogComponent.
    * @param {OptimizationWrapperService} dataService
@@ -91,9 +100,18 @@ export class NodePropertiesDialogComponent {
         this.curNode
       );
 
+      this.updateIsPillarFlag();
+
+      this.typeCopy = JSON.parse(
+        JSON.stringify(this.curNode.type)
+      );
+
+      
+
       const curResult = this.dataService.optimizationOutput();
 
       this.hasResult = curResult !== undefined;
+
     }
   }
 
@@ -159,7 +177,7 @@ export class NodePropertiesDialogComponent {
 
   asExcludingResourceType(c: Constraint): ExcludingResourceConstraint {
     return c.type as ExcludingResourceConstraint;
-  }
+  } 
 
   /**
    *
@@ -192,8 +210,18 @@ export class NodePropertiesDialogComponent {
 
     // Filter the constraints for empty tag "--"
     const fitlererdConstraint = this.filterConstraints(this.constraintsCopy);
-
+ 
     this.curNode.constraints = fitlererdConstraint;
+
+    this.curNode.type = this.typeCopy;
+
+
+    // XXX - Maybe use this code later to transform nodes => evens and vice versa
+    //this.testTranform2Event();
+
+    
+    // To update the map view, we have to trigger a new map refresh
+    (this.dataService.getRefreshObservable() as ReplaySubject<boolean>).next(true);
 
     this.openSnackBar('Saved changes', 'Ok');
 
@@ -241,6 +269,143 @@ export class NodePropertiesDialogComponent {
 
     return fitlererdConstraint;
   }
+
+
+
+
+
+  /*
+  /
+  / Pillar
+  /
+  */
+
+   // This method should be called whenever curNode changes
+   updateIsPillarFlag() {
+
+    // Cast node.type to GeoNode or Event
+    if (this.curNode.type.typeName === 'Geo') {
+      const geoNodeType = this.curNode?.type as GeoNode;
+      this.isPillar = !!geoNodeType?.pillarNode;
+    }
+
+    if (this.curNode.type.typeName === 'Event') {
+      const eventNodeType = this.curNode?.type as EventNode;
+      this.isPillar = !!eventNodeType?.pillarNode;
+    }
+
+   
+  }
+
+  // Responds to checkbox changes
+  togglePillar(value: boolean) {
+
+    let type = this.typeCopy; // or this.curNode.type
+
+    // Ensure curNode.type is treated as GeoNode
+    if (!type) {
+      // If type is not defined, define it with an empty GeoNode
+      type = {} as GeoNode;
+    }
+    const geoNodeType = type as GeoNode;
+
+
+
+    if (value) {
+      // If checkbox is checked and pillarNode doesn't exist, create it
+      if (!geoNodeType.pillarNode) {
+        // Initialize pillarNode here. Adjust the initialization as necessary.
+        console.log("Creating a pillar node")
+
+        const minimalGeoPillarNode: GeoPillarNode = {
+
+          // Potential flags
+
+          /*attachedResourceId: "Jack from Koeln",
+          /onlyScheduledInCompany: false,
+					/isOverwritingRouteTermination: false,
+					/isSchedulableBeforeWorkingHours: false,
+					/isSchedulableAfterWorkingHours: false,
+					/isTimeAdjustableAnchor: false*/
+
+        };
+
+        geoNodeType.pillarNode = minimalGeoPillarNode;
+      }
+    } else {
+      // If checkbox is unchecked, remove or empty pillarNode
+      delete geoNodeType.pillarNode; // or geoNodeType.pillarNode = undefined;
+    }
+
+    // After modification, you might need to update the state of curNode
+    // in your application state if it's being managed centrally
+  }
+
+
+  // XXX
+  private testTranform2Event(){
+
+    //
+    const eventType : EventNode = {typeName:"Event"};
+
+
+
+    this.curNode.type = eventType
+
+    //this.curNode.type.typeName = "Event"
+
+
+    console.log(JSON.stringify(this.curNode))
+  }
+
+  public testTranform2Pillar(){
+
+  }
+
+
+/*
+  public isGeoPillar(node: Node): boolean{
+    
+    if (node !== undefined) {
+      let geoNode = node.type as GeoNode
+      if(geoNode.pillarNode){
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  private transformToGeoPillar(node: Node){
+
+    if (node !== undefined) {
+
+      let geoNode = node.type as GeoNode
+
+      if(geoNode.pillarNode){
+        console.log()
+      }
+      
+
+    }
+
+    if(node.type as GeoNode){
+
+    }
+
+    if (node.type.typeName === "Geo") {
+
+    }
+    
+    if (node.type.typeName === "Geo") {
+      
+    }
+
+    console.log(node.type.typeName)
+      
+  }*/
+
+
 
   /**
    *

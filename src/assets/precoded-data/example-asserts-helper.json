@@ -38,10 +38,19 @@
   {
     "exampleId": "exampleFive",
     "title": "Free moving Example",
-    "desc": "An example where nodes and resources can be freely moved around. However, polylines will be just represented as lines in the result.",
+    "desc": "An example where nodes and resources can be freely moved around.",
     "optimizationInputPath": "./assets/precoded-data/examples/example-five/optimization-input/optimization-input.json",
     "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
     "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
     "mapViewPropertiesPath": "./assets/precoded-data/examples/example-five/map-view-properties/map-view-properties.json"
+  },
+  {
+    "exampleId": "exampleSix",
+    "title": "Non-Geo Events and free moving Example",
+    "desc": "An example where nodes and resources can be freely moved around. Further, event nodes without a geo location are added.",
+    "optimizationInputPath": "./assets/precoded-data/examples/example-six/optimization-input/optimization-input.json",
+    "matrixInputPath": "./assets/precoded-data/examples/shared/geo-data/matrix/connections.json",
+    "routesInputPath": "./assets/precoded-data/examples/shared/geo-data/routes/routes.json",
+    "mapViewPropertiesPath": "./assets/precoded-data/examples/example-six/map-view-properties/map-view-properties.json"
   }
 ]

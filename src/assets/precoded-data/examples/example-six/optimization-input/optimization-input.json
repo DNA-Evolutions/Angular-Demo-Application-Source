@@ -1,0 +1,253 @@
+{
+  "ident" : "DemoAppExampleSix",
+  "nodes" : [ {
+    "id" : "Event1",
+    "type" : {
+      "typeName" : "Event"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Event2",
+    "type" : {
+      "typeName" : "Event"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Node3",
+    "type" : {
+      "position" : {
+        "latitude" : 51.45,
+        "longitude" : 7.01667
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Node4",
+    "type" : {
+      "position" : {
+        "latitude" : 50.8,
+        "longitude" : 6.48333
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Node5",
+    "type" : {
+      "position" : {
+        "latitude" : 49.4478,
+        "longitude" : 11.0683
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Node6",
+    "type" : {
+      "position" : {
+        "latitude" : 49.1403,
+        "longitude" : 9.22
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Node7",
+    "type" : {
+      "position" : {
+        "latitude" : 51.2667,
+        "longitude" : 7.18333
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Node8",
+    "type" : {
+      "position" : {
+        "latitude" : 48.7667,
+        "longitude" : 9.18333
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  }, {
+    "id" : "Node9",
+    "type" : {
+      "position" : {
+        "latitude" : 50.07667,
+        "longitude" : 9.78333
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  } , {
+    "id" : "Node10",
+    "type" : {
+      "position" : {
+        "latitude" : 48.2667,
+        "longitude" : 9.818333
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  } , {
+    "id" : "Node11",
+    "type" : {
+      "position" : {
+        "latitude" : 50.97,
+        "longitude" : 8.88333
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  } , {
+    "id" : "Node12",
+    "type" : {
+      "position" : {
+        "latitude" : 48.8667,
+        "longitude" : 10.88333
+      },
+      "typeName" : "Geo"
+    },
+    "openingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "visitDuration" : "PT20M",
+    "priority" : 1
+  } ],
+  "resources" : [ {
+    "id" : "Resource1",
+    "type" : {
+      "typeName" : "Capacity"
+    },
+    "position" : {
+      "latitude" : 50.9333,
+      "longitude" : 6.95
+    },
+    "workingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "maxTime" : "PT9H",
+    "maxDistance" : "1200.0 km"
+  }, {
+    "id" : "Resource2",
+    "type" : {
+      "typeName" : "Capacity"
+    },
+    "position" : {
+      "latitude" : 49.49387,
+      "longitude" : 10.2497
+    },
+    "workingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "maxTime" : "PT9H",
+    "maxDistance" : "1200.0 km"
+  }, {
+    "id" : "Resource3",
+    "type" : {
+      "typeName" : "Capacity"
+    },
+    "position" : {
+      "latitude" : 50.164,
+      "longitude" : 8.35
+    },
+    "workingHours" : [ {
+      "begin" : "2025-05-06T06:00:00Z",
+      "end" : "2025-05-06T15:00:00Z",
+      "zoneId" : "Europe/Berlin"
+    } ],
+    "maxTime" : "PT9H",
+    "maxDistance" : "1200.0 km"
+  }  ],
+  "optimizationOptions" : {
+    "properties" : {
+      "JOpt.Algorithm.PreOptimization.SA.NumIterations" : "1000",
+      "JOptWeight.RouteTime" : "1.0",
+      "JOptWeight.RouteDistance" : "1.0",
+      "JOptWeight.TimeWindow" : "1.0",
+      "JOptExitCondition.JOptGenerationCount" : "200",
+      "JOpt.AutoFilter": "true"
+    }
+  },
+  "extension" : {
+    "keySetting" : {
+      "jsonLicense" : "{\r\n\t\"version\": \"1.1\",\r\n\t\"identifier\": \"PUBLIC-\",\r\n\t\"description\": \"Key provided to for evaluation purpose from DNA evolutions GmbH.\",\r\n\t\"contact\": \"www.dna-evolutions.com\",\r\n\t\"modules\": [{\r\n\t\t\t\"Module:\": \"Elements\",\r\n\t\t\t\"max\": 15\r\n\t\t}, {\r\n\t\t\t\"Module:\": \"Date\",\r\n\t\t\t\"creation\": \"2021-05-25\",\r\n\t\t\t\"due\": \"2027-05-25\"\r\n\t\t}\r\n\t],\r\n\t\"key\": \"PUBLIC-bc799ef350fe9841c1354736d8f863cb85bac88cefd19960c1\"\r\n}"
+    },
+    "timeOut" : 300.000000000
+  }
+}

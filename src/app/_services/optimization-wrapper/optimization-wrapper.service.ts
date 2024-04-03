@@ -54,7 +54,10 @@ export class OptimizationWrapperService {
       .filter((d) => d !== undefined);
 
     if (detailsAspirants.length !== 0) {
-      return detailsAspirants[0];
+
+      let choosenDetail = detailsAspirants[0];
+
+      return choosenDetail;
     }
     return undefined;
   }
@@ -216,6 +219,10 @@ export class OptimizationWrapperService {
     return this.nodes().map((n) => n.id);
   }
 
+  public getAllEventNodeIds(): string[] {
+    return this.nodes().filter((n) => n.type.typeName === "Event").map((n) => n.id);
+  }
+
   /**
    *
    *
@@ -362,20 +369,20 @@ export class OptimizationWrapperService {
   ): void {
     const curNode = this.node(nodeId);
 
-    if (curNode !== undefined) {
+    if (curNode !== undefined && curNode.type.typeName === 'Geo') {
       (curNode.type as GeoNode).position.latitude = latitude;
       (curNode.type as GeoNode).position.longitude = longitude;
     }
   }
 
-   /**
-   *
-   *
-   * @param {string} resId
-   * @param {number} latitude
-   * @param {number} longitude
-   * @memberof OptimizationWrapperService
-   */
+  /**
+  *
+  *
+  * @param {string} resId
+  * @param {number} latitude
+  * @param {number} longitude
+  * @memberof OptimizationWrapperService
+  */
   public setResourcePosition(
     resId: string,
     latitude: number,
@@ -475,13 +482,14 @@ export class OptimizationWrapperService {
         this.$myOptimizationOutputSubject.error(error);
       },
       complete: () => {
-        //console.log('Completed');
+        console.log('Optimization completed');
       }
     });
-    
 
     return this.$myOptimizationOutputSubject;
   }
+
+
 
   /**
    *
