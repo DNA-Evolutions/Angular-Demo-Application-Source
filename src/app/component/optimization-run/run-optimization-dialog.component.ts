@@ -139,7 +139,7 @@ export class RunOptimizationDialogComponent {
    */
   openOptimizationResultDialog(output: RestOptimization): void {
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {
-      minWidth: '40vw',
+      minWidth: '80vw',
       maxWidth: '95vw',
       maxHeight: '85vh',
       data: { result: output },
