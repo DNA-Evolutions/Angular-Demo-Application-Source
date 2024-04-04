@@ -2,7 +2,7 @@ FROM node:lts-alpine As builder
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 # To install legacy deps
-#RUN npm install --legacy-peer-deps
+RUN npm install
 COPY . .
 RUN npm run build --omit=dev
 FROM nginx:1.25.4-alpine
