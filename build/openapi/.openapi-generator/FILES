@@ -8,6 +8,8 @@ api/optimizationFAF.service.ts
 api/optimizationFAFServiceController.service.ts
 api/optimizationHealthController.service.ts
 api/optimizationServiceController.service.ts
+api/readDatabaseDownloadEncryptedServiceController.service.ts
+api/readDatabaseDownloadServiceController.service.ts
 api/readDatabaseEncryptedServiceController.service.ts
 api/readDatabaseServiceController.service.ts
 api/stream.service.ts

@@ -8,6 +8,8 @@ import { OptimizationFAFService } from './api/optimizationFAF.service';
 import { OptimizationFAFServiceControllerService } from './api/optimizationFAFServiceController.service';
 import { OptimizationHealthControllerService } from './api/optimizationHealthController.service';
 import { OptimizationServiceControllerService } from './api/optimizationServiceController.service';
+import { ReadDatabaseDownloadEncryptedServiceControllerService } from './api/readDatabaseDownloadEncryptedServiceController.service';
+import { ReadDatabaseDownloadServiceControllerService } from './api/readDatabaseDownloadServiceController.service';
 import { ReadDatabaseEncryptedServiceControllerService } from './api/readDatabaseEncryptedServiceController.service';
 import { ReadDatabaseServiceControllerService } from './api/readDatabaseServiceController.service';
 import { StreamService } from './api/stream.service';

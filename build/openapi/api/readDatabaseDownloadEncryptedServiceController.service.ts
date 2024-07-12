@@ -17,7 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { RestOptimization } from '../model/models';
+import { DatabaseEncryptedItemSearch } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class OptimizationFAFService {
+export class ReadDatabaseDownloadEncryptedServiceControllerService {
 
     protected basePath = 'http://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -85,18 +85,18 @@ export class OptimizationFAFService {
     }
 
     /**
-     * Provide an optimization and let JOpt solve it.
-     * The entry point to access the JOpt.TourOptimization optimization service in fire and forget mode. Once you have set up an input, you can let JOpt find an optimal solution for your setup.
-     * @param restOptimization 
+     * Download decrypted optimization by id and creator. Only works, if connected to a database.
+     * Download encrypted optimizations by creator.
+     * @param databaseEncryptedItemSearch 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public runFAF(restOptimization: RestOptimization, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<boolean>;
-    public runFAF(restOptimization: RestOptimization, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<boolean>>;
-    public runFAF(restOptimization: RestOptimization, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<boolean>>;
-    public runFAF(restOptimization: RestOptimization, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (restOptimization === null || restOptimization === undefined) {
-            throw new Error('Required parameter restOptimization was null or undefined when calling runFAF.');
+    public downloadEncryptedZippedOptimization(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<Blob>;
+    public downloadEncryptedZippedOptimization(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<HttpResponse<Blob>>;
+    public downloadEncryptedZippedOptimization(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<HttpEvent<Blob>>;
+    public downloadEncryptedZippedOptimization(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<any> {
+        if (databaseEncryptedItemSearch === null || databaseEncryptedItemSearch === undefined) {
+            throw new Error('Required parameter databaseEncryptedItemSearch was null or undefined when calling downloadEncryptedZippedOptimization.');
         }
 
         let headers = this.defaultHeaders;
@@ -105,6 +105,7 @@ export class OptimizationFAFService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
+                'application/x-bzip2',
                 'application/json'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -123,15 +124,10 @@ export class OptimizationFAFService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.post<boolean>(`${this.configuration.basePath}/api/optimizefaf/runFAF`,
-            restOptimization,
+        return this.httpClient.post(`${this.configuration.basePath}/api/db/download/downloadEncryptedZippedOptimization`,
+            databaseEncryptedItemSearch,
             {
-                responseType: <any>responseType_,
+                responseType: "blob",
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -141,17 +137,18 @@ export class OptimizationFAFService {
     }
 
     /**
-     * The entry point to access the JOpt.TourOptimization optimization service in fire and forget mode. Once you have set up an input, you can let JOpt find an optimal solution for your setup.
-     * @param restOptimization 
+     * Download decrypted solution by id and creator. Only works, if connected to a database.
+     * Download encrypted solution by creator.
+     * @param databaseEncryptedItemSearch 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public runOnlyResultFAF(restOptimization: RestOptimization, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<boolean>;
-    public runOnlyResultFAF(restOptimization: RestOptimization, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<boolean>>;
-    public runOnlyResultFAF(restOptimization: RestOptimization, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<boolean>>;
-    public runOnlyResultFAF(restOptimization: RestOptimization, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (restOptimization === null || restOptimization === undefined) {
-            throw new Error('Required parameter restOptimization was null or undefined when calling runOnlyResultFAF.');
+    public downloadEncryptedZippedSolution(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<Blob>;
+    public downloadEncryptedZippedSolution(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<HttpResponse<Blob>>;
+    public downloadEncryptedZippedSolution(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<HttpEvent<Blob>>;
+    public downloadEncryptedZippedSolution(databaseEncryptedItemSearch: DatabaseEncryptedItemSearch, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/x-bzip2' | 'application/json'}): Observable<any> {
+        if (databaseEncryptedItemSearch === null || databaseEncryptedItemSearch === undefined) {
+            throw new Error('Required parameter databaseEncryptedItemSearch was null or undefined when calling downloadEncryptedZippedSolution.');
         }
 
         let headers = this.defaultHeaders;
@@ -160,6 +157,7 @@ export class OptimizationFAFService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
+                'application/x-bzip2',
                 'application/json'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
@@ -178,15 +176,10 @@ export class OptimizationFAFService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.post<boolean>(`${this.configuration.basePath}/api/optimizefaf/runOnlyResultFAF`,
-            restOptimization,
+        return this.httpClient.post(`${this.configuration.basePath}/api/db/download/downloadEncryptedZippedSolution`,
+            databaseEncryptedItemSearch,
             {
-                responseType: <any>responseType_,
+                responseType: "blob",
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
