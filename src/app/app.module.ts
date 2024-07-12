@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 // Modules
 import { ApiModule } from 'build/openapi/api.module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -88,135 +88,120 @@ import { CustomDateTimePickerComponent } from './component/custom-date-time-pick
 import { ConsentComponent } from './component/consent/consent.component';
 import { OptimizationNonGeoElementsSelectorComponent } from './component/optimization-elements-selector/optimization-non-geo-elements-selector.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    ConsentComponent,
-    //
-    PrepareRunOptimizationDialogComponent,
-    PrepareRunOptimizationViewComponent,
-    //
-    RunOptimizationDialogComponent,
-    //
-    ProgressComponent,
-    //
-    LeafletMapComponent,
-    //
-    ExampleComponent,
-    //
-    NodePropertiesComponent,
-    NodePropertiesDialogComponent,
-    NodeDetailComponent,
-    //
-    ResourceDetailComponent,
-    ResourcePropertiesDialogComponent,
-    //
-    ValidTimeWindowDirective,
-
-    //
-    RouteResultDialogComponent,
-    //
-    DateFormatPipe,
-    DurationFormatPipe,
-    DistanceFormatPipe,
-
-    //
-    OptimizationResultDialogComponent,
-    //
-    OptimizationElementsSelectorComponent,
-    //
-    OptimizationRawRDialogComponent,
-    //
-    IntroductionComponent,
-    //
-    HowtoDialogComponent,
-    //
-    IntroVideoDialogComponent,
-    CustomDateTimePickerComponent,
-    //
-    OptimizationNonGeoElementsSelectorComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ApiModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatDividerModule,
-    MatCardModule,
-    //NgxMatDatetimePickerModule,
-    //NgxMatTimepickerModule,
-    //NgxMatNativeDateModule,
-    MatExpansionModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSliderModule,
-    MatCheckboxModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-    MatTooltipModule,
-    NgxChartsModule,
-    MatBadgeModule,
-
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatListModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatGridListModule,
-    MatStepperModule,
-    ScrollingModule,
-
-
-
-  ],
-  providers: [
-    OptimizationServiceControllerService,
-    [
-      {
-        provide: BASE_PATH,
-        useValue: environment.host + ':' + environment.port,
-      },
+@NgModule({ declarations: [
+        AppComponent,
+        ConsentComponent,
+        //
+        PrepareRunOptimizationDialogComponent,
+        PrepareRunOptimizationViewComponent,
+        //
+        RunOptimizationDialogComponent,
+        //
+        ProgressComponent,
+        //
+        LeafletMapComponent,
+        //
+        ExampleComponent,
+        //
+        NodePropertiesComponent,
+        NodePropertiesDialogComponent,
+        NodeDetailComponent,
+        //
+        ResourceDetailComponent,
+        ResourcePropertiesDialogComponent,
+        //
+        ValidTimeWindowDirective,
+        //
+        RouteResultDialogComponent,
+        //
+        DateFormatPipe,
+        DurationFormatPipe,
+        DistanceFormatPipe,
+        //
+        OptimizationResultDialogComponent,
+        //
+        OptimizationElementsSelectorComponent,
+        //
+        OptimizationRawRDialogComponent,
+        //
+        IntroductionComponent,
+        //
+        HowtoDialogComponent,
+        //
+        IntroVideoDialogComponent,
+        CustomDateTimePickerComponent,
+        //
+        OptimizationNonGeoElementsSelectorComponent
     ],
-    OptimizationWrapperService,
-    GeoAndRoutingService,
-    LoadExampleDataService,
-
-    {
-      provide: APP_INITIALIZER,
-      useFactory: exampleDataProviderFactory,
-      deps: [LoadExampleDataService],
-      multi: true,
-    },
-
-    LeafletMarkerService,
-  ],
-  /*entryComponents: [
-    PrepareRunOptimizationDialogComponent,
-    RunOptimizationDialogComponent,
-    NodePropertiesDialogComponent,
-    ResourcePropertiesDialogComponent,
-    RouteResultDialogComponent,
-    OptimizationResultDialogComponent,
-    OptimizationRawRDialogComponent,
-    IntroductionComponent,
-    HowtoDialogComponent,
-    IntroVideoDialogComponent,
-  ],*/
-  bootstrap: [AppComponent],
-})
+    /*entryComponents: [
+      PrepareRunOptimizationDialogComponent,
+      RunOptimizationDialogComponent,
+      NodePropertiesDialogComponent,
+      ResourcePropertiesDialogComponent,
+      RouteResultDialogComponent,
+      OptimizationResultDialogComponent,
+      OptimizationRawRDialogComponent,
+      IntroductionComponent,
+      HowtoDialogComponent,
+      IntroVideoDialogComponent,
+    ],*/
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        ApiModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDividerModule,
+        MatCardModule,
+        //NgxMatDatetimePickerModule,
+        //NgxMatTimepickerModule,
+        //NgxMatNativeDateModule,
+        MatExpansionModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSliderModule,
+        MatCheckboxModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
+        MatTabsModule,
+        MatTooltipModule,
+        NgxChartsModule,
+        MatBadgeModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatListModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatGridListModule,
+        MatStepperModule,
+        ScrollingModule], providers: [
+        OptimizationServiceControllerService,
+        [
+            {
+                provide: BASE_PATH,
+                useValue: environment.host + ':' + environment.port,
+            },
+        ],
+        OptimizationWrapperService,
+        GeoAndRoutingService,
+        LoadExampleDataService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: exampleDataProviderFactory,
+            deps: [LoadExampleDataService],
+            multi: true,
+        },
+        LeafletMarkerService,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
 
 export function exampleDataProviderFactory(provider: LoadExampleDataService) {
