@@ -5,6 +5,10 @@ title="DNA-Evolutions" alt="DNA-Evolutions"></a>
 
 To utilize <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">JOptTourOptimizer-Docker</a>, we created an Angular-Demo application. This demo application is hosted on <a href="https://azure.microsoft.com/" target="_blank">Microsoft Azure</a> and is made available via <a href="https://demo.dna-evolutions.com/" target="_blank">https://demo.dna-evolutions.com</a>. Here we would like to share the latest source-code of this project. This is not a classical "Hello World" project, as it is using multiple dependencies and advanced concepts. However, feel free to explore the project and extract whatever you need to get started with JOpt.
 
+**Update July 12th 2024:**
+
+From now on, the Angular Demo uses Angular 18. We also updated/upgraded multiple other dependencies. The generated models are using JOpt.TourOptimizer with **version 1.2.7 or higher**.
+
 **Update January 7th 2024:**
 
 From now on, the Angular Demo uses Angular 17. We also updated/upgraded multiple other dependencies. The generated models are using JOpt.TourOptimizer with **version 1.2.6 or higher**. In addition, a "free moving example" was added. Nodes and Resources can be freely positioned via drag and drop.
