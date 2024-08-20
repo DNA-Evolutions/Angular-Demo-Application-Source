@@ -67,6 +67,8 @@ The angular-demo application was generated with <a href="https://github.com/angu
 <img src="https://dna-evolutions.com/wp-content/uploads/2020/11/how-to-video-prev.gif" width="450"
 title="DNA-Evolutions Demo Application Preview" alt="DNA-Evolutions Demo Application Preview">
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/DNA-Evolutions/Angular-Demo-Application-Source)
+
 ---
 
 ## Serve with Docker (recommended)
