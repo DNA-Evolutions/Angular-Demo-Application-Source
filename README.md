@@ -67,7 +67,9 @@ The angular-demo application was generated with <a href="https://github.com/angu
 <img src="https://dna-evolutions.com/wp-content/uploads/2020/11/how-to-video-prev.gif" width="450"
 title="DNA-Evolutions Demo Application Preview" alt="DNA-Evolutions Demo Application Preview">
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/DNA-Evolutions/Angular-Demo-Application-Source)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/DNA-Evolutions/Angular-Demo-Application-Source) (this takes quite a while).
+Please make sure you set a valid touroptizer-application endpoint. By default it is <a href="http://localhost:8081" target="_blank">[Angular CLI](http://localhost:8081)</a>. 
+You can modify the endpoint in the ``src/environments/environment.ts`` or ``src/environments/environment.prod.ts`` under the key ``host`` and ``port``.
 
 ---
 
