@@ -13,7 +13,8 @@ import { ValidTimeWindow } from './valid-timewindow.validator';
  */
 @Directive({
     selector: '[validTimeWindow]',
-    providers: [{ provide: NG_VALIDATORS, useExisting: ValidTimeWindowDirective, multi: true }]
+    providers: [{ provide: NG_VALIDATORS, useExisting: ValidTimeWindowDirective, multi: true }],
+    standalone: false
 })
 
 

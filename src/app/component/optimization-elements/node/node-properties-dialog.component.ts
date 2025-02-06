@@ -31,8 +31,9 @@ import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
  *
  */
 @Component({
-  selector: 'app-node-properties-dialog',
-  templateUrl: 'node-properties-dialog.component.html',
+    selector: 'app-node-properties-dialog',
+    templateUrl: 'node-properties-dialog.component.html',
+    standalone: false
 })
 export class NodePropertiesDialogComponent {
   openingHoursForm: FormGroup;

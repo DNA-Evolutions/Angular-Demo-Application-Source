@@ -2,16 +2,17 @@ import { Component, Input, OnChanges, SimpleChanges, forwardRef } from '@angular
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-custom-date-time-picker',
-  templateUrl: './custom-date-time-picker.component.html',
-  styleUrls: ['./custom-date-time-picker.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomDateTimePickerComponent),
-      multi: true
-    }
-  ]
+    selector: 'app-custom-date-time-picker',
+    templateUrl: './custom-date-time-picker.component.html',
+    styleUrls: ['./custom-date-time-picker.component.css'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CustomDateTimePickerComponent),
+            multi: true
+        }
+    ],
+    standalone: false
 })
 export class CustomDateTimePickerComponent implements ControlValueAccessor, OnChanges {
   @Input() startTime: Date; // Input for start time TODO Maybe use later on

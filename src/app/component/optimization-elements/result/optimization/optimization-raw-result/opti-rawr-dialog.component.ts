@@ -16,9 +16,10 @@ import {
  * @implements {OnInit}
  */
 @Component({
-  selector: 'app-opti-result-dialog',
-  templateUrl: 'opti-rawr-dialog.component.html',
-  styleUrls: ['./opti-rawr-dialog.component.scss'],
+    selector: 'app-opti-result-dialog',
+    templateUrl: 'opti-rawr-dialog.component.html',
+    styleUrls: ['./opti-rawr-dialog.component.scss'],
+    standalone: false
 })
 export class OptimizationRawRDialogComponent implements OnInit {
   //

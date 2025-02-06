@@ -9,8 +9,9 @@ import { NodePropertiesDialogComponent } from './node-properties-dialog.componen
  * @class NodePropertiesComponent
  */
 @Component({
-  selector: 'app-node-properties',
-  templateUrl: 'node-properties.component.html',
+    selector: 'app-node-properties',
+    templateUrl: 'node-properties.component.html',
+    standalone: false
 })
 export class NodePropertiesComponent {
   nodeId: string;

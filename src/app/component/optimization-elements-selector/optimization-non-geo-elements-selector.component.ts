@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     selector: 'app-non-geo-elements-view',
     templateUrl: 'optimization-non-geo-elements-selector.component.html',
     styleUrls: ['optimization-non-geo-elements-selector.component.scss'],
+    standalone: false
 })
 export class OptimizationNonGeoElementsSelectorComponent implements OnInit {
 

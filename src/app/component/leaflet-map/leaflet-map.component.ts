@@ -44,9 +44,10 @@ import { OptimizationNonGeoElementsSelectorComponent } from '../optimization-ele
  * @implements {OnDestroy}
  */
 @Component({
-  selector: 'app-leaflet-map',
-  templateUrl: './leaflet-map.component.html',
-  styleUrls: ['./leaflet-map.component.scss'],
+    selector: 'app-leaflet-map',
+    templateUrl: './leaflet-map.component.html',
+    styleUrls: ['./leaflet-map.component.scss'],
+    standalone: false
 })
 export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   private map: any;

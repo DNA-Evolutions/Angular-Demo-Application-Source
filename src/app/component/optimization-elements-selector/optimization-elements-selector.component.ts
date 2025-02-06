@@ -13,9 +13,10 @@ import { ResourcePropertiesDialogComponent } from '../optimization-elements/reso
  * @implements {OnInit}
  */
 @Component({
-  selector: 'app-optimization-elements-selector',
-  templateUrl: 'optimization-elements-selector.component.html',
-  styleUrls: ['./optimization-elements-selector.component.scss'],
+    selector: 'app-optimization-elements-selector',
+    templateUrl: 'optimization-elements-selector.component.html',
+    styleUrls: ['./optimization-elements-selector.component.scss'],
+    standalone: false
 })
 export class OptimizationElementsSelectorComponent implements OnInit {
   nodeIds: string[];

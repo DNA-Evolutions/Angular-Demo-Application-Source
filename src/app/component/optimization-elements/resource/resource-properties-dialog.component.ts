@@ -10,8 +10,9 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 import { ResourcePropertiesData } from './interface/resource-properties-data.interface';
 
 @Component({
-  selector: 'app-resource-properties-dialog',
-  templateUrl: 'resource-properties-dialog.component.html',
+    selector: 'app-resource-properties-dialog',
+    templateUrl: 'resource-properties-dialog.component.html',
+    standalone: false
 })
 export class ResourcePropertiesDialogComponent {
   //

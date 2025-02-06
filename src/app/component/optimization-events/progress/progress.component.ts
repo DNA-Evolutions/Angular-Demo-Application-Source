@@ -18,8 +18,9 @@ import { EventSourceService } from 'src/app/_services/optimization-event/event-s
  * @implements {OnDestroy}
  */
 @Component({
-  selector: 'app-progress',
-  templateUrl: './progress.component.html',
+    selector: 'app-progress',
+    templateUrl: './progress.component.html',
+    standalone: false
 })
 export class ProgressComponent implements OnInit, OnDestroy {
   unsubscribe$: Subject<void> = new Subject<void>();

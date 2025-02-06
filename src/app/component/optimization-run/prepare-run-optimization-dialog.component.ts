@@ -13,9 +13,10 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 import { Kv } from '../optimization-elements/result/optimization/interface/keyvalue/key-value.interface';
 
 @Component({
-  selector: 'app-prepare-run-optimization-dialog',
-  templateUrl: 'prepare-run-optimization-dialog.component.html',
-  styleUrls: ['prepare-run-optimization-view.component.scss'],
+    selector: 'app-prepare-run-optimization-dialog',
+    templateUrl: 'prepare-run-optimization-dialog.component.html',
+    styleUrls: ['prepare-run-optimization-view.component.scss'],
+    standalone: false
 })
 export class PrepareRunOptimizationDialogComponent {
   curSettings: OptimizationOptions;

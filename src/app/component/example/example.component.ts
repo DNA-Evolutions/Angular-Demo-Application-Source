@@ -13,9 +13,10 @@ import { MatDialog } from '@angular/material/dialog';
  * @class ExampleComponent
  */
 @Component({
-  selector: 'app-example',
-  templateUrl: './example.component.html',
-  styleUrls: ['./example.component.scss'],
+    selector: 'app-example',
+    templateUrl: './example.component.html',
+    styleUrls: ['./example.component.scss'],
+    standalone: false
 })
 export class ExampleComponent {
   @ViewChild('elselectoranchor', { static: false }) elSelectorRef: ElementRef;

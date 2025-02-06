@@ -10,9 +10,10 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
  * @implements {OnInit}
  */
 @Component({
-  selector: 'app-node-detail',
-  templateUrl: 'node-detail.component.html',
-  styleUrls: ['./node-detail.component.scss'],
+    selector: 'app-node-detail',
+    templateUrl: 'node-detail.component.html',
+    styleUrls: ['./node-detail.component.scss'],
+    standalone: false
 })
 export class NodeDetailComponent implements OnInit {
   @Input() nodeId: string;

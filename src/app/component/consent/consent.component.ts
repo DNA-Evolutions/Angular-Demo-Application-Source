@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-consent',
-  templateUrl: './consent.component.html',
-  styleUrls: ['./consent.component.scss']
+    selector: 'app-consent',
+    templateUrl: './consent.component.html',
+    styleUrls: ['./consent.component.scss'],
+    standalone: false
 })
 export class ConsentComponent {
 

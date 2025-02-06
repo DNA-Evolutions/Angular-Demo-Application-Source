@@ -9,9 +9,10 @@ import { DomSanitizer } from '@angular/platform-browser';
  * @class HowtoDialogComponent
  */
 @Component({
-  selector: 'app-howto-video-dialog',
-  templateUrl: 'howto-dialog.component.html',
-  styleUrls: ['howto-dialog.component.scss'],
+    selector: 'app-howto-video-dialog',
+    templateUrl: 'howto-dialog.component.html',
+    styleUrls: ['howto-dialog.component.scss'],
+    standalone: false
 })
 export class HowtoDialogComponent {
   @Input() ytVideoId: string;

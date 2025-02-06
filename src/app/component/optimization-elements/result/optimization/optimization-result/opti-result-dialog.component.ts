@@ -42,9 +42,10 @@ import { OptimizationRawRDialogComponent } from '../optimization-raw-result/opti
  * @implements {AfterViewInit}
  */
 @Component({
-  selector: 'app-opti-result-dialog',
-  templateUrl: 'opti-result-dialog.component.html',
-  styleUrls: ['./opti-result-dialog.component.scss'],
+    selector: 'app-opti-result-dialog',
+    templateUrl: 'opti-result-dialog.component.html',
+    styleUrls: ['./opti-result-dialog.component.scss'],
+    standalone: false
 })
 export class OptimizationResultDialogComponent
   implements OnInit, AfterViewInit {

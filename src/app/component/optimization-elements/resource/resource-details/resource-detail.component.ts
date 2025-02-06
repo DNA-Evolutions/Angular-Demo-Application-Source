@@ -6,7 +6,8 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 
 @Component({
     selector: 'app-resource-detail',
-    templateUrl: 'resource-detail.component.html'
+    templateUrl: 'resource-detail.component.html',
+    standalone: false
 })
 export class ResourceDetailComponent implements OnInit {
 

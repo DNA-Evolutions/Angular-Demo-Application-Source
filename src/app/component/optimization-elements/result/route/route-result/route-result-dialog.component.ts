@@ -13,9 +13,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
  * @implements {OnInit}
  */
 @Component({
-  selector: 'app-route-result-dialog',
-  templateUrl: 'route-result-dialog.component.html',
-  styleUrls: ['./route-result-dialog.component.scss'],
+    selector: 'app-route-result-dialog',
+    templateUrl: 'route-result-dialog.component.html',
+    styleUrls: ['./route-result-dialog.component.scss'],
+    standalone: false
 })
 export class RouteResultDialogComponent implements OnInit {
   /**

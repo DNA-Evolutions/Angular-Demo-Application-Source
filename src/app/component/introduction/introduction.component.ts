@@ -17,9 +17,10 @@ import packageJson from '../../../../package.json';
  * @class IntroductionComponent
  */
 @Component({
-  selector: 'app-introduction',
-  templateUrl: 'introduction.component.html',
-  styleUrls: ['introduction.component.scss'],
+    selector: 'app-introduction',
+    templateUrl: 'introduction.component.html',
+    styleUrls: ['introduction.component.scss'],
+    standalone: false
 })
 export class IntroductionComponent {
 

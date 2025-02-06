@@ -19,8 +19,9 @@ import { HttpErrorResponse } from '@angular/common/http';
  * @class RunOptimizationDialogComponent
  */
 @Component({
-  selector: 'app-run-optimization-dialog',
-  templateUrl: 'run-optimization-dialog.component.html',
+    selector: 'app-run-optimization-dialog',
+    templateUrl: 'run-optimization-dialog.component.html',
+    standalone: false
 })
 export class RunOptimizationDialogComponent {
   constructor(

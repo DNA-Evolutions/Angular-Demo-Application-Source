@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'distanceFormatPipe',
+    name: 'distanceFormatPipe',
+    standalone: false
 })
 export class DistanceFormatPipe implements PipeTransform {
   transform(distanceOrg: any, sourceUnit: string, targetUnit: string): string {

@@ -7,9 +7,10 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
 
 @Component({
-  selector: 'app-prepare-run-optimization-view',
-  templateUrl: 'prepare-run-optimization-view.component.html',
-  styleUrls: ['prepare-run-optimization-view.component.scss'],
+    selector: 'app-prepare-run-optimization-view',
+    templateUrl: 'prepare-run-optimization-view.component.html',
+    styleUrls: ['prepare-run-optimization-view.component.scss'],
+    standalone: false
 })
 export class PrepareRunOptimizationViewComponent implements OnInit {
   @Input() asIcon: boolean;
