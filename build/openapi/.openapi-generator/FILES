@@ -20,6 +20,8 @@ index.ts
 model/absoluteNodeColorCapacity.ts
 model/absoluteNodeColorMultiRouteConstraint.ts
 model/absoluteNodeColorMultiRouteConstraintAllOf.ts
+model/anyDef.ts
+model/anyDefAllOf.ts
 model/bindingResourceConstraint.ts
 model/bindingResourceConstraintAllOf.ts
 model/capacityResource.ts
@@ -37,6 +39,12 @@ model/databaseInfoSearch.ts
 model/databaseInfoSearchResult.ts
 model/databaseItemSearch.ts
 model/dateDef.ts
+model/day.ts
+model/dayAllOf.ts
+model/dayMonth.ts
+model/dayMonthAllOf.ts
+model/dayMonthYear.ts
+model/dayMonthYearAllOf.ts
 model/degradingLoadCapacity.ts
 model/degradingLoadCapacityAllOf.ts
 model/differentVisitorNodeRelation.ts
@@ -49,12 +57,14 @@ model/encodedPolyline.ts
 model/eventNode.ts
 model/eventNodeAllOf.ts
 model/eventPillarNode.ts
+model/eventPillarNodeAllOf.ts
 model/excludingResourceConstraint.ts
 model/excludingResourceConstraintAllOf.ts
 model/geoAddress.ts
 model/geoNode.ts
 model/geoNodeAllOf.ts
 model/geoPillarNode.ts
+model/geoPillarNodeAllOf.ts
 model/iLoad.ts
 model/iLoadCapacity.ts
 model/iNodeDepot.ts
@@ -91,6 +101,7 @@ model/optimizationOptions.ts
 model/optimizationPersistenceSetting.ts
 model/optimizationPersistenceStratgySetting.ts
 model/optimizationStatus.ts
+model/pillarType.ts
 model/pluginSetting.ts
 model/pluginSettings.ts
 model/position.ts
@@ -146,6 +157,7 @@ model/typeWithExpertiseConstraintAllOf.ts
 model/typeWithExpertiseQualification.ts
 model/typeWithExpertiseQualificationAllOf.ts
 model/uKPostCode.ts
+model/uKPostCodeAllOf.ts
 model/uKPostCodeConstraint.ts
 model/uKPostCodeConstraintAllOf.ts
 model/uKPostCodeQualification.ts
@@ -153,8 +165,12 @@ model/uKPostCodeQualificationAllOf.ts
 model/unloadAllLoad.ts
 model/unloadAllLoadAllOf.ts
 model/violation.ts
+model/weekDay.ts
+model/weekDayAllOf.ts
 model/workingHours.ts
+model/zoneCodeType.ts
 model/zoneNumber.ts
+model/zoneNumberAllOf.ts
 model/zoneNumberConstraint.ts
 model/zoneNumberConstraintAllOf.ts
 model/zoneNumberQualification.ts

@@ -319,16 +319,7 @@ export class NodePropertiesDialogComponent {
         console.log("Creating a pillar node")
 
         const minimalGeoPillarNode: GeoPillarNode = {
-
-          // Potential flags
-
-          /*attachedResourceId: "Jack from Koeln",
-          /onlyScheduledInCompany: false,
-					/isOverwritingRouteTermination: false,
-					/isSchedulableBeforeWorkingHours: false,
-					/isSchedulableAfterWorkingHours: false,
-					/isTimeAdjustableAnchor: false*/
-
+          typeName: 'GeoPillarNode'
         };
 
         geoNodeType.pillarNode = minimalGeoPillarNode;
