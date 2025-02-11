@@ -166,10 +166,10 @@ If you would like to automatically generate the models based on the <a href="htt
 Note: OpenApiGenerator can also be run as Docker container or Maven depedency.
 
 ### Create a touroptimizer_spec.json file
-The ``touroptimizer_spec.json`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">swagger.dna-evolutions.com/v3/api-docs</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a>.**Please, clean all 'oneOf' keys before using the schema.**
+The ``touroptimizer_spec.json`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">swagger.dna-evolutions.com/v3/api-docs</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a>). **Please, clean all 'oneOf' keys before using the schema.**
 
 ### Download touroptimizer_spec_cleaned.json file
- or <a href="https://github.com/DNA-Evolutions/Java-REST-Client-Examples/tree/master/src/main/resources/swagger/touroptimizer/spec/touroptimizer_spec_cleaned.json" target="_blank">GitHub</a>) into a new file called ``touroptimizer_spec.json``. 
+ Visit <a href="https://github.com/DNA-Evolutions/Java-REST-Client-Examples/tree/master/src/main/resources/swagger/touroptimizer/spec/touroptimizer_spec_cleaned.json" target="_blank">cleaned schema on GitHub</a>) and save as a new file called ``touroptimizer_spec.json``. 
 
 **Update June 2021:**
 
