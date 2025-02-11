@@ -5,6 +5,10 @@ title="DNA-Evolutions" alt="DNA-Evolutions"></a>
 
 To utilize <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer/blob/main/README.md#how-to-start-jopttouroptimizer-docker" target="_blank">JOptTourOptimizer-Docker</a>, we created an Angular-Demo application. This demo application is hosted on <a href="https://azure.microsoft.com/" target="_blank">Microsoft Azure</a> and is made available via <a href="https://demo.dna-evolutions.com/" target="_blank">https://demo.dna-evolutions.com</a>. Here we would like to share the latest source-code of this project. This is not a classical "Hello World" project, as it is using multiple dependencies and advanced concepts. However, feel free to explore the project and extract whatever you need to get started with JOpt.
 
+**Update January 11th 2025:**
+
+From now on, the Angular Demo uses Angular 19.1. We also updated/upgraded multiple other dependencies. The generated models are using JOpt.TourOptimizer with **version 1.3.0 or higher**.
+
 **Update July 12th 2024:**
 
 From now on, the Angular Demo uses Angular 18. We also updated/upgraded multiple other dependencies. The generated models are using JOpt.TourOptimizer with **version 1.2.7 or higher**.
@@ -162,7 +166,10 @@ If you would like to automatically generate the models based on the <a href="htt
 Note: OpenApiGenerator can also be run as Docker container or Maven depedency.
 
 ### Create a touroptimizer_spec.json file
-The ``touroptimizer_spec.json`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">swagger.dna-evolutions.com/v3/api-docs</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a> or <a href="https://github.com/DNA-Evolutions/Java-REST-Client-Examples/tree/master/src/main/resources/swagger/touroptimizer/spec/touroptimizer_spec.json" target="_blank">GitHub</a>) into a new file called ``touroptimizer_spec.json``.
+The ``touroptimizer_spec.json`` containing the API-Docs is not part of this repository. Copy and paste the Swagger definition under <a href="https://swagger.dna-evolutions.com/v3/api-docs" target="_blank">swagger.dna-evolutions.com/v3/api-docs</a> (or from <a href="http://localhost:8081/v3/api-docs" target="_blank">http://localhost:8081/v3/api-docs</a>.**Please, clean all 'oneOf' keys before using the schema.**
+
+### Download touroptimizer_spec_cleaned.json file
+ or <a href="https://github.com/DNA-Evolutions/Java-REST-Client-Examples/tree/master/src/main/resources/swagger/touroptimizer/spec/touroptimizer_spec_cleaned.json" target="_blank">GitHub</a>) into a new file called ``touroptimizer_spec.json``. 
 
 **Update June 2021:**
 
