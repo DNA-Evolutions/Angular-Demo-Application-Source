@@ -20,4 +20,6 @@ export * from './readDatabaseServiceController.service';
 import { ReadDatabaseServiceControllerService } from './readDatabaseServiceController.service';
 export * from './stream.service';
 import { StreamService } from './stream.service';
-export const APIS = [HealthStatusService, OptimizationService, OptimizationFAFService, OptimizationFAFServiceControllerService, OptimizationHealthControllerService, OptimizationServiceControllerService, ReadDatabaseDownloadEncryptedServiceControllerService, ReadDatabaseDownloadServiceControllerService, ReadDatabaseEncryptedServiceControllerService, ReadDatabaseServiceControllerService, StreamService];
+export * from './writeDatabaseServiceController.service';
+import { WriteDatabaseServiceControllerService } from './writeDatabaseServiceController.service';
+export const APIS = [HealthStatusService, OptimizationService, OptimizationFAFService, OptimizationFAFServiceControllerService, OptimizationHealthControllerService, OptimizationServiceControllerService, ReadDatabaseDownloadEncryptedServiceControllerService, ReadDatabaseDownloadServiceControllerService, ReadDatabaseEncryptedServiceControllerService, ReadDatabaseServiceControllerService, StreamService, WriteDatabaseServiceControllerService];

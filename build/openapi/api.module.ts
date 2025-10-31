@@ -13,6 +13,7 @@ import { ReadDatabaseDownloadServiceControllerService } from './api/readDatabase
 import { ReadDatabaseEncryptedServiceControllerService } from './api/readDatabaseEncryptedServiceController.service';
 import { ReadDatabaseServiceControllerService } from './api/readDatabaseServiceController.service';
 import { StreamService } from './api/stream.service';
+import { WriteDatabaseServiceControllerService } from './api/writeDatabaseServiceController.service';
 
 @NgModule({
   imports:      [],

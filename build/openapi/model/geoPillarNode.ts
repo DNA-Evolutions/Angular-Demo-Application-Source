@@ -1,6 +1,6 @@
 /**
  * DNA Evolutions - JOpt.TourOptimizer
- * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3. JOpt.TourOptimizer is a service that delivers route optimization and automatic scheduling features to be easily integrated into any third-party application. JOpt.TourOptimizer encapsulates all necessary optimization functionality and provides a comprehensive REST API that offers a domain-specific optimization interface for the transportation industry. The service is stateless and does not come with graphical user interfaces, map depiction or any databases. These extensions and adjustments are supposed to be introduced by the consumer of the service while integrating it into his/her own application. The service will allow for many suitable adjustments and user-specific settings to adjust the behaviour and optimization goals (e.g. minimizing distance, maximizing resource utilization, etc.) through a comprehensive set of functions. This will enable you to gain control of the complete optimization processes.This service is based on JOpt (7.5.1-rc3-j17-SNAPSHOT)
+ * This is DNA\'s JOpt.TourOptimizer service. A RESTful Spring Boot application using springdoc-openapi and OpenAPI 3. JOpt.TourOptimizer is a service that delivers route optimization and automatic scheduling features to be easily integrated into any third-party application. JOpt.TourOptimizer encapsulates all necessary optimization functionality and provides a comprehensive REST API that offers a domain-specific optimization interface for the transportation industry. The service is stateless and does not come with graphical user interfaces, map depiction or any databases. These extensions and adjustments are supposed to be introduced by the consumer of the service while integrating it into his/her own application. The service will allow for many suitable adjustments and user-specific settings to adjust the behaviour and optimization goals (e.g. minimizing distance, maximizing resource utilization, etc.) through a comprehensive set of functions. This will enable you to gain control of the complete optimization processes.This service is based on JOpt (7.5.2-rc1-j17-SNAPSHOT)
  *
  * The version of the OpenAPI document: unknown
  * Contact: info@dna-evolutions.com
@@ -29,32 +29,32 @@ export interface GeoPillarNode extends PillarType {
      */
     typeName: string;
     /**
-     * The isForcedStayNode
+     * The isAutoTransformable2StartAnchor
      */
-    isForcedStayNode?: boolean;
-    /**
-     * The isSchedulableBeforeWorkingHours
-     */
-    isSchedulableBeforeWorkingHours?: boolean;
-    /**
-     * The boolean isOverwritingRouteStart. Instead of using the default start element of the route, the geoPillar will be used as so-called startAnchor.
-     */
-    isOverwritingRouteStart?: boolean;
-    /**
-     * The boolean isOverwritingRouteTermination. Instead of using the default termination element of the route, the geoPillar will be used as so-called endAnchor.
-     */
-    isOverwritingRouteTermination?: boolean;
+    isAutoTransformable2StartAnchor?: boolean;
     /**
      * The isTimeAdjustableAnchor
      */
     isTimeAdjustableAnchor?: boolean;
     /**
-     * The isAutoTransformable2StartAnchor
-     */
-    isAutoTransformable2StartAnchor?: boolean;
-    /**
      * The isSchedulableAfterWorkingHours
      */
     isSchedulableAfterWorkingHours?: boolean;
+    /**
+     * The boolean isOverwritingRouteStart. Instead of using the default start element of the route, the geoPillar will be used as so-called startAnchor.
+     */
+    isOverwritingRouteStart?: boolean;
+    /**
+     * The isSchedulableBeforeWorkingHours
+     */
+    isSchedulableBeforeWorkingHours?: boolean;
+    /**
+     * The boolean isOverwritingRouteTermination. Instead of using the default termination element of the route, the geoPillar will be used as so-called endAnchor.
+     */
+    isOverwritingRouteTermination?: boolean;
+    /**
+     * The isForcedStayNode
+     */
+    isForcedStayNode?: boolean;
 }
 

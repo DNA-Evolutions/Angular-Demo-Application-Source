@@ -13,6 +13,7 @@ api/readDatabaseDownloadServiceController.service.ts
 api/readDatabaseEncryptedServiceController.service.ts
 api/readDatabaseServiceController.service.ts
 api/stream.service.ts
+api/writeDatabaseServiceController.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
@@ -24,6 +25,14 @@ model/anyDef.ts
 model/anyDefAllOf.ts
 model/bindingResourceConstraint.ts
 model/bindingResourceConstraintAllOf.ts
+model/bitTypeConstraint.ts
+model/bitTypeConstraintAllOf.ts
+model/bitTypeQualification.ts
+model/bitTypeQualificationAllOf.ts
+model/bitTypeWithExpertiseConstraint.ts
+model/bitTypeWithExpertiseConstraintAllOf.ts
+model/bitTypeWithExpertiseQualification.ts
+model/bitTypeWithExpertiseQualificationAllOf.ts
 model/capacityResource.ts
 model/capacityResourceAllOf.ts
 model/connectedConstraint.ts
@@ -32,6 +41,8 @@ model/connectionByTime.ts
 model/connectionRelatedLateMargin.ts
 model/constraint.ts
 model/constraintType.ts
+model/constructionHook.ts
+model/constructionOptimizationAlgorithmConfig.ts
 model/coreBuildOptions.ts
 model/creatorSetting.ts
 model/databaseEncryptedItemSearch.ts
@@ -65,6 +76,8 @@ model/geoNode.ts
 model/geoNodeAllOf.ts
 model/geoPillarNode.ts
 model/geoPillarNodeAllOf.ts
+model/heuristicOptimizationAlgorithmConfig.ts
+model/hookType.ts
 model/iLoad.ts
 model/iLoadCapacity.ts
 model/iNodeDepot.ts
@@ -80,6 +93,10 @@ model/jSONConfig.ts
 model/loadDimension.ts
 model/locationParameters.ts
 model/longLongPair.ts
+model/magnetoNodeConstraint.ts
+model/magnetoNodeConstraintAllOf.ts
+model/maxDistanceConstructionHook.ts
+model/maxDistanceConstructionHookAllOf.ts
 model/mixedFlexLoad.ts
 model/mixedFlexLoadAllOf.ts
 model/models.ts
@@ -100,6 +117,7 @@ model/optimizationKeySetting.ts
 model/optimizationOptions.ts
 model/optimizationPersistenceSetting.ts
 model/optimizationPersistenceStratgySetting.ts
+model/optimizationSchemeOptions.ts
 model/optimizationStatus.ts
 model/pillarType.ts
 model/pluginSetting.ts
@@ -150,6 +168,10 @@ model/timeWindowNodeRelation.ts
 model/timeWindowNodeRelationAllOf.ts
 model/typeConstraint.ts
 model/typeConstraintAllOf.ts
+model/typeDictionaries.ts
+model/typeDictionary.ts
+model/typeLevelOffering.ts
+model/typeLevelRequirement.ts
 model/typeQualification.ts
 model/typeWithExpertise.ts
 model/typeWithExpertiseConstraint.ts
@@ -169,6 +191,7 @@ model/weekDay.ts
 model/weekDayAllOf.ts
 model/workingHours.ts
 model/zoneCodeType.ts
+model/zoneConnection.ts
 model/zoneNumber.ts
 model/zoneNumberAllOf.ts
 model/zoneNumberConstraint.ts
