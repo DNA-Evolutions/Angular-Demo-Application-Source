@@ -4,23 +4,23 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@env/*": ["src/environments/*"],
-      "@openapibuild/*": ["build/*"]
+      "@env/*": [
+        "src/environments/*"
+      ],
+      "@openapibuild/*": [
+        "build/*"
+      ]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
     "useDefineForClassFields": false
   }
 }

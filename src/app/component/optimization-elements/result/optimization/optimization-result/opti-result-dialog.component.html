@@ -1,20 +1,18 @@
 <h1 mat-dialog-title>Optimization Solution</h1>
 
 <div mat-dialog-content style="max-height: 50vh">
-  <div *ngIf="curResult; then existingResult; else nonExistingResult"></div>
-
-  <ng-template #existingResult>
+  @if (curResult) {
     <div mat-dialog-content>
       <mat-expansion-panel
         class="mat-elevation-z1"
         (opened)="setStep(-1); panelOpenState = true"
         (closed)="panelOpenState = false"
         [expanded]="step === -1"
-      >
+        >
         <mat-expansion-panel-header>
           <h5>
             {{
-              panelOpenState ? "Close Result Overview" : "Show Result Overview"
+            panelOpenState ? "Close Result Overview" : "Show Result Overview"
             }}
           </h5>
         </mat-expansion-panel-header>
@@ -32,24 +30,22 @@
                 {{ curResult.solution.header.numScheduledRoutes }}
               </div>
             </mat-list-item>
-
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap"># Elements:</div>
               <div class="mat-list-opti-item-value dontbreak">
                 {{ curResult.solution.header.totElements }}
               </div>
             </mat-list-item>
-
-            <mat-list-item
-              role="listitem"
-              *ngIf="curResult.solution.header.unassignedElementIds.length > 0"
-            >
-              <div class="mat-list-opti-item-cap">Unassigned:</div>
-              <div class="mat-list-opti-item-value dontbreak">
-                {{ curResult.solution.header.unassignedElementIds }}
-              </div>
-            </mat-list-item>
-
+            @if (curResult.solution.header.unassignedElementIds.length > 0) {
+              <mat-list-item
+                role="listitem"
+                >
+                <div class="mat-list-opti-item-cap">Unassigned:</div>
+                <div class="mat-list-opti-item-value dontbreak">
+                  {{ curResult.solution.header.unassignedElementIds }}
+                </div>
+              </mat-list-item>
+            }
             <mat-list-item role="listitem">
               <div class="mat-list-opti-item-cap">Total Cost:</div>
               <div class="mat-list-opti-item-value dontbreak">
@@ -60,8 +56,8 @@
               <div class="mat-list-opti-item-cap">Total Time:</div>
               <div class="mat-list-opti-item-value dontbreak">
                 {{
-                  curResult.solution.header.totTime
-                    | durationFormatPipe: "PT":"auto"
+                curResult.solution.header.totTime
+                | durationFormatPipe: "PT":"auto"
                 }}
               </div>
             </mat-list-item>
@@ -69,8 +65,8 @@
               <div class="mat-list-opti-item-cap">Total Distance:</div>
               <div class="mat-list-opti-item-value dontbreak">
                 {{
-                  curResult.solution.header.totDistance
-                    | distanceFormatPipe: "m":"km"
+                curResult.solution.header.totDistance
+                | distanceFormatPipe: "m":"km"
                 }}
               </div>
             </mat-list-item>
@@ -78,146 +74,140 @@
           <p></p>
         </div>
       </mat-expansion-panel>
-
       <mat-divider></mat-divider>
     </div>
     <div mat-dialog-content>
       <h5>Routes</h5>
-
       <!-- -->
-
       <mat-accordion displayMode="flat" class="mat-table">
         <section #sort matSort class="mat-elevation-z0 mat-header-row">
           <span class="mat-header-cell" mat-sort-header="visitorId"
             >Visitor</span
-          >
-          <span class="mat-header-cell" mat-sort-header="id">Id</span>
-        </section>
-
-        <mat-expansion-panel
-          class="mat-elevation-z1"
-          *ngFor="let route of displayedRows$ | async; let i = index"
-          [attr.data-index]="i"
-          [expanded]="step === i"
-          (opened)="setStep(i); isExpanded = true"
-        >
-          <mat-expansion-panel-header class="mat-row">
-            <span class="mat-cell"
-              ><strong>{{ route.resourceId }}</strong></span
             >
-            <span class="mat-cell"
-              ><strong>(#{{ route.id + 1 }})</strong></span
-            >
-          </mat-expansion-panel-header>
-
-          <div style="background-color: whitesmoke">
-            <mat-list dense role="list">
-              <mat-list-item role="listitem">
-                <div class="mat-list-route-item-cap">RouteId:</div>
-                <div class="mat-list-route-item-value dontbreak">{{ route.id }}</div>
-              </mat-list-item>
-              <mat-list-item role="listitem">
-                <div class="mat-list-route-item-cap">Resource:</div>
-                <div class="mat-list-route-item-value dontbreak">
-                  {{ route.resourceId }}
-                </div>
-              </mat-list-item>
-              <mat-list-item role="listitem">
-                <div class="mat-list-route-item-cap">Start:</div>
-                <div class="mat-list-route-item-value dontbreak">
-                  {{ route.startTime | dateFormatPipe }}
-                </div>
-              </mat-list-item>
-              <mat-list-item role="listitem">
-                <div class="mat-list-route-item-cap">Time:</div>
-                <div class="mat-list-route-item-value dontbreak">
-                  {{ route.header.time | durationFormatPipe: "PT":"auto" }}
-                </div>
-              </mat-list-item>
-
-              <mat-list-item role="listitem">
-                <div class="mat-list-route-item-cap">Distance:</div>
-                <div class="mat-list-route-item-value dontbreak">
-                  {{ route.header.distance | distanceFormatPipe: "m":"km" }}
-                </div>
-              </mat-list-item>
-
-              <div *ngFor="let vio of route.header.routeViolations">
-                <mat-list-item role="listitem">
-                  <div class="mat-list-route-item-cap violationtext">Violation:</div>
-                  <div class="mat-list-route-item-value violation">
-                    {{ vio.attribute }} - {{ vio.subAttribute }}:
-                    {{ vio.value | durationFormatPipe: "h":"auto" }}
-                  </div>
-                </mat-list-item>
-              </div>
-            </mat-list>
-
-            <div style="display: flex; justify-content: flex-end">
-              <button
-                style="margin: 10px"
-                mat-raised-button
-                matTooltip="Show route details."
-                color="primary"
-                (click)="openRouteResultDialog(route)"
+            <span class="mat-header-cell" mat-sort-header="id">Id</span>
+          </section>
+          @for (route of displayedRows$ | async; track route; let i = $index) {
+            <mat-expansion-panel
+              class="mat-elevation-z1"
+              [attr.data-index]="i"
+              [expanded]="step === i"
+              (opened)="setStep(i); isExpanded = true"
               >
-                Full Details
-              </button>
-            </div>
+              <mat-expansion-panel-header class="mat-row">
+                <span class="mat-cell"
+                  ><strong>{{ route.resourceId }}</strong></span
+                  >
+                  <span class="mat-cell"
+                    ><strong>(#{{ route.id + 1 }})</strong></span
+                    >
+                  </mat-expansion-panel-header>
+                  <div style="background-color: whitesmoke">
+                    <mat-list dense role="list">
+                      <mat-list-item role="listitem">
+                        <div class="mat-list-route-item-cap">RouteId:</div>
+                        <div class="mat-list-route-item-value dontbreak">{{ route.id }}</div>
+                      </mat-list-item>
+                      <mat-list-item role="listitem">
+                        <div class="mat-list-route-item-cap">Resource:</div>
+                        <div class="mat-list-route-item-value dontbreak">
+                          {{ route.resourceId }}
+                        </div>
+                      </mat-list-item>
+                      <mat-list-item role="listitem">
+                        <div class="mat-list-route-item-cap">Start:</div>
+                        <div class="mat-list-route-item-value dontbreak">
+                          {{ route.startTime | dateFormatPipe }}
+                        </div>
+                      </mat-list-item>
+                      <mat-list-item role="listitem">
+                        <div class="mat-list-route-item-cap">Time:</div>
+                        <div class="mat-list-route-item-value dontbreak">
+                          {{ route.header.time | durationFormatPipe: "PT":"auto" }}
+                        </div>
+                      </mat-list-item>
+                      <mat-list-item role="listitem">
+                        <div class="mat-list-route-item-cap">Distance:</div>
+                        <div class="mat-list-route-item-value dontbreak">
+                          {{ route.header.distance | distanceFormatPipe: "m":"km" }}
+                        </div>
+                      </mat-list-item>
+                      @for (vio of route.header.routeViolations; track vio) {
+                        <div>
+                          <mat-list-item role="listitem">
+                            <div class="mat-list-route-item-cap violationtext">Violation:</div>
+                            <div class="mat-list-route-item-value violation">
+                              {{ vio.attribute }} - {{ vio.subAttribute }}:
+                              {{ vio.value | durationFormatPipe: "h":"auto" }}
+                            </div>
+                          </mat-list-item>
+                        </div>
+                      }
+                    </mat-list>
+                    <div style="display: flex; justify-content: flex-end">
+                      <button
+                        style="margin: 10px"
+                        mat-raised-button
+                        matTooltip="Show route details."
+                        color="primary"
+                        (click)="openRouteResultDialog(route)"
+                        >
+                        Full Details
+                      </button>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              }
+            </mat-accordion>
+            @if ((totalRows$ | async)>2) {
+              <div>
+              </div>
+            }
+            <mat-paginator
+              #paginator
+              [hidePageSize] = "(totalRows$ | async)<3"
+              [length]="totalRows$ | async"
+              [pageIndex]="0"
+              [pageSize]="10"
+              [pageSizeOptions]="[2, 5, 10]"
+            ></mat-paginator>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-      <div *ngIf="(totalRows$ | async)>2">
+        } @else {
+          <div mat-dialog-content>
+            <p></p>
+            Please start an optimization first or make sure the node did not get
+            unassigned..
+            <p></p>
+          </div>
+        }
 
 
       </div>
-      <mat-paginator
-      #paginator
-      [hidePageSize] = "(totalRows$ | async)<3"
-      [length]="totalRows$ | async"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[2, 5, 10]"
-    ></mat-paginator>
+      <mat-divider></mat-divider>
+      <div mat-dialog-actions class="inline buttongroup">
+        <button
+          mat-raised-button
+          matTooltip="Close this dialog."
+          (click)="onCloseClick()"
+          color="primary"
+          cdkFocusInitial
+          >
+          Close
+        </button>
+        <button
+          mat-raised-button
+          matTooltip="View as raw text."
+          (click)="openRawResultDialog()"
+          color="basic"
+          cdkFocusInitial
+          >
+          Raw result
+        </button>
 
-    </div>
-  </ng-template>
-
-  <ng-template #nonExistingResult>
-    <div mat-dialog-content>
-      <p></p>
-      Please start an optimization first or make sure the node did not get
-      unassigned..
-      <p></p>
-    </div>
-  </ng-template>
-</div>
-<mat-divider></mat-divider>
-<div mat-dialog-actions class="inline buttongroup">
-  <button
-    mat-raised-button
-    matTooltip="Close this dialog."
-    (click)="onCloseClick()"
-    color="primary"
-    cdkFocusInitial
-  >
-    Close
-  </button>
-  <button
-    mat-raised-button
-    matTooltip="View as raw text."
-    (click)="openRawResultDialog()"
-    color="basic"
-    cdkFocusInitial
-  >
-    Raw result
-  </button>
-
-  <a
-    href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/first_optimization/first_optimization.html#analyzing-the-result"
-    target="_blank"
-    matTooltip="Visit our documentation on Optimization Result."
-    mat-raised-button class="mat-raised-button infobutton"
-    >Result</a
-  >
-</div>
+        <a
+          href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/first_optimization/first_optimization.html#analyzing-the-result"
+          target="_blank"
+          matTooltip="Visit our documentation on Optimization Result."
+          mat-raised-button class="mat-raised-button infobutton"
+          >Result</a
+          >
+        </div>

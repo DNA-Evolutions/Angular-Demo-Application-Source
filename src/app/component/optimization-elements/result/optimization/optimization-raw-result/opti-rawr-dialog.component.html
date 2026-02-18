@@ -2,18 +2,19 @@
 <mat-divider></mat-divider>
 <div mat-dialog-content style="max-height: 50vh">
 
-  <div *ngIf="curResult; else nonExistingResult">
-    <div class="scroll-box">
-      <pre>{{ textSolution?.textSolution }}</pre>
+  @if (curResult) {
+    <div>
+      <div class="scroll-box">
+        <pre>{{ textSolution?.textSolution }}</pre>
+      </div>
     </div>
-  </div>
-
-  <ng-template #nonExistingResult>
+  } @else {
     <p></p>
     Please start an optimization first or make sure the node did not get
     unassigned..
     <p></p>
-  </ng-template>
+  }
+
 
 </div>
 <mat-divider></mat-divider>
@@ -24,7 +25,7 @@
     (click)="onCloseClick()"
     color="primary"
     cdkFocusInitial
-  >
+    >
     Close
   </button>
 
@@ -34,5 +35,5 @@
     matTooltip="Visit our documentation on Optimization Result."
     mat-raised-button class="mat-raised-button infobutton"
     >RAW Result</a
-  >
-</div>
+    >
+  </div>

@@ -1,6 +1,4 @@
-<div *ngIf="curDetail; then existingDetail; else nonExistingDetail"></div>
-
-<ng-template #existingDetail>
+@if (curDetail) {
   <mat-list dense role="list">
     <mat-list-item role="listitem">
       <div class="mat-list-node-item-cap">Status:</div>
@@ -15,7 +13,6 @@
       </div>
     </mat-list-item>
   </mat-list>
-
   <mat-list dense role="list">
     <mat-list-item role="listitem">
       <div class="mat-list-node-item-cap">Departure:</div>
@@ -41,8 +38,8 @@
         {{ curDetail.transitionDistance | distanceFormatPipe: "m":"km" }}
       </div>
     </mat-list-item>
-
-      <div *ngIf="isBigger(curDetail.earlyDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)">
+    @if (isBigger(curDetail.earlyDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)) {
+      <div>
         <mat-list-item role="listitem">
           <div class="mat-list-node-item-cap violationtext">Early:</div>
           <div class="mat-list-node-item-value violation">
@@ -50,7 +47,9 @@
           </div>
         </mat-list-item>
       </div>
-      <div *ngIf="isBigger(curDetail.lateDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)">
+    }
+    @if (isBigger(curDetail.lateDeviation | durationFormatPipe: 'PT':'no_unit_s', 0)) {
+      <div>
         <mat-list-item role="listitem">
           <div class="mat-list-node-item-cap violationtext">Late:</div>
           <div class="mat-list-node-item-value violation">
@@ -58,7 +57,9 @@
           </div>
         </mat-list-item>
       </div>
-      <div *ngFor="let vio of curDetail.nodeViolations">
+    }
+    @for (vio of curDetail.nodeViolations; track vio) {
+      <div>
         <mat-list-item role="listitem">
           <div class="mat-list-node-item-cap violationtext">Violation:</div>
           <div class="mat-list-node-item-value violation">
@@ -66,13 +67,13 @@
           </div>
         </mat-list-item>
       </div>
-    </mat-list>
-
-</ng-template>
-
-<ng-template #nonExistingDetail>
+    }
+  </mat-list>
+} @else {
   <p></p>
   Please start an optimization first or make sure the node did not get
   unassigned.
   <p></p>
-</ng-template>
+}
+
+

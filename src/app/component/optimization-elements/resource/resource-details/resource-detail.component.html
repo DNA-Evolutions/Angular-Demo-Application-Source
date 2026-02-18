@@ -1,17 +1,12 @@
-<div *ngIf="curDetail;then existingDetail else nonExistingDetail"></div>
+@if (curDetail) {
+  <h5>
+    <mat-label>Arrival:</mat-label>
+  </h5>
+} @else {
+  <p></p>
+  Please start an optimization first or make sure the node did not get unassigned..
+  <p></p>
+}
 
-<ng-template #existingDetail>
 
-	<h5>
-		<mat-label>Arrival:</mat-label>
-	</h5>
-
-
-</ng-template>
-
-<ng-template #nonExistingDetail>
-	<p></p>
-	Please start an optimization first or make sure the node did not get unassigned..
-	<p></p>
-</ng-template>
 

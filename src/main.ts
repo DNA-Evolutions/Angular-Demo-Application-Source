@@ -1,4 +1,4 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
@@ -12,7 +12,7 @@ setTimeout(() => {
   const loadingElement = document.querySelector('.demo-loading');
 
   platformBrowserDynamic()
-    .bootstrapModule(AppModule)
+    .bootstrapModule(AppModule, { applicationProviders: [provideZoneChangeDetection()], })
     .catch((err) => console.error(err))
     .then(() => loadingElement.classList.add('loaded'))
     .then(() => setTimeout(() => loadingElement.remove(), 1000));

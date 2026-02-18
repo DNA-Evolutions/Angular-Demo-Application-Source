@@ -4,79 +4,74 @@
   <p></p>
   <mat-accordion>
 
-    <div *ngFor="let prop of settingsAsArray">
-      <mat-expansion-panel [disabled]="false" class="wide">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <div class="propcontainer">
-              <div class="propsettings">
-                <strong>Setting:</strong>
+    @for (prop of settingsAsArray; track prop) {
+      <div>
+        <mat-expansion-panel [disabled]="false" class="wide">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="propcontainer">
+                <div class="propsettings">
+                  <strong>Setting:</strong>
+                </div>
+                <div class="propkey dontbreakout">
+                  {{ getPropertyAbbr(prop.key) }}
+                </div>
+                <div class="propvalue">
+                  <strong>Value: &nbsp;</strong>{{ prop.value }}
+                </div>
               </div>
-              <div class="propkey dontbreakout">
-                {{ getPropertyAbbr(prop.key) }}
-              </div>
-              <div class="propvalue">
-                <strong>Value: &nbsp;</strong>{{ prop.value }}
-              </div>
-            </div>
-          </mat-panel-title>
-          <mat-panel-description> </mat-panel-description>
-        </mat-expansion-panel-header>
-        
-        <div style="width: 60%" *ngIf="settingsAsArray && settingsAsArray.length > 0">
-
-
-          <div *ngIf="getPropertyType(prop.key).includes('slider')">
-
-          <mat-slider
-            style="width: 100%"
-            [disabled]="isDisabledSliderValue(prop.key)"
-            [max]="getMaxPropertyValue(prop.key)"
-            [min]="0"
-            [step]="getStepPropertyValue(prop.key)"
-            [(ngModel)]="prop.value"
-            [name]="'slider-' + prop.key"
-            ngDefaultControl 
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          @if (settingsAsArray && settingsAsArray.length > 0) {
+            <div style="width: 60%">
+              @if (getPropertyType(prop.key).includes('slider')) {
+                <div>
+                  <mat-slider
+                    style="width: 100%"
+                    [disabled]="isDisabledSliderValue(prop.key)"
+                    [max]="getMaxPropertyValue(prop.key)"
+                    [min]="0"
+                    [step]="getStepPropertyValue(prop.key)"
+                    [(ngModel)]="prop.value"
+                    [name]="'slider-' + prop.key"
+                    ngDefaultControl
             matTooltip="{{
               prop.key
             }}  -  Move slider to adjust the current value of {{ prop.value }}."
-            >
-            <input matSliderThumb>
-          </mat-slider>
-
-         </div>
-
-         <div *ngIf="getPropertyType(prop.key).includes('checkbox')">
-          
-          <mat-checkbox
-            [name]="'slider-' + prop.key"
-            ngDefaultControl 
-            [(ngModel)]="prop.value"
+                    >
+                    <input matSliderThumb>
+                  </mat-slider>
+                </div>
+              }
+              @if (getPropertyType(prop.key).includes('checkbox')) {
+                <div>
+                  <mat-checkbox
+                    [name]="'slider-' + prop.key"
+                    ngDefaultControl
+                    [(ngModel)]="prop.value"
             matTooltip="{{
               prop.key
             }}  -  Move slider to adjust the current value of {{ prop.value }}."
-            >Check to enable {{prop.key}}
-          </mat-checkbox>
-         </div>
-
-         <!--<div *ngIf="getPropertyType(prop.key).includes('checkbox')">
-          <mat-checkbox
-            style="width: 100%"
-            
-            [name]="'slider-' + prop.key"
-            ngDefaultControl 
+                    >Check to enable {{prop.key}}
+                  </mat-checkbox>
+                </div>
+              }
+              <!--<div *ngIf="getPropertyType(prop.key).includes('checkbox')">
+              <mat-checkbox
+                style="width: 100%"
+                [name]="'slider-' + prop.key"
+                ngDefaultControl
             matTooltip="{{
               prop.key
             }}  -  Move slider to adjust the current value of {{ prop.value }}."
-            >
-            <input matSliderThumb>
-          </mat-checkbox>
-         </div>-->
-
-        </div>
-
+                >
+                <input matSliderThumb>
+              </mat-checkbox>
+            </div>-->
+          </div>
+        }
         <mat-divider></mat-divider>
-
         <div class="boxinfo wideleft">
           <p class="boxinfotitle">Info</p>
           <p>
@@ -84,14 +79,14 @@
           </p>
         </div>
         <p></p>
-
         <p></p>
       </mat-expansion-panel>
       <p></p>
     </div>
+  }
 
 
-  </mat-accordion>
+</mat-accordion>
 </div>
 <mat-divider></mat-divider>
 <div mat-dialog-actions class="inline buttongroup">
@@ -100,7 +95,7 @@
     color="primary"
     (click)="onStartClick()"
     cdkFocusInitial
-  >
+    >
     Start
   </button>
   <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
@@ -110,6 +105,6 @@
     target="_blank"
     matTooltip="Visit our documentation on Optimization Properties."
     mat-raised-button class="mat-raised-button infobutton"
-    >Properties</a>
+  >Properties</a>
 
 </div>

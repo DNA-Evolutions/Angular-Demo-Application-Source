@@ -6,25 +6,27 @@
 
     <div class="map-interact">
       <a [routerLink]="[]" [fragment]="'map'">
-        <img
-          *ngIf="isFullScreen()"
-          style="height: 35px;"
-          src="./assets/misc/icon/icon-reduce.png"
-          (click)="toggleFullScreenMap()"
-          alt="decrease icon"
-          matTooltip="Reduce map size"
-          class="dezoomicon iconopacity"
-        />
+        @if (isFullScreen()) {
+          <img
+            style="height: 35px;"
+            src="./assets/misc/icon/icon-reduce.png"
+            (click)="toggleFullScreenMap()"
+            alt="decrease icon"
+            matTooltip="Reduce map size"
+            class="dezoomicon iconopacity"
+            />
+        }
 
-        <img
-          *ngIf="!isFullScreen()"
-          style="height: 35px;"
-          src="./assets/misc/icon/icon-enlarge.png"
-          (click)="toggleFullScreenMap()"
-          alt="decrease icon"
-          matTooltip="Enlarge map size"
-          class="zoomicon iconopacity"
-        />
+        @if (!isFullScreen()) {
+          <img
+            style="height: 35px;"
+            src="./assets/misc/icon/icon-enlarge.png"
+            (click)="toggleFullScreenMap()"
+            alt="decrease icon"
+            matTooltip="Enlarge map size"
+            class="zoomicon iconopacity"
+            />
+        }
       </a>
 
       <img
@@ -34,26 +36,27 @@
         alt="reset view icon"
         matTooltip="Reset zoom and position"
         class="zoomicon iconopacity"
-      />
-      <!--<p></p>-->
+        />
+        <!--<p></p>-->
 
-      <app-prepare-run-optimization-view
-        asIcon="true"
-      ></app-prepare-run-optimization-view>
+        <app-prepare-run-optimization-view
+          asIcon="true"
+        ></app-prepare-run-optimization-view>
 
-      <img
-      *ngIf="hasEventNodes()"
-      style="height: 35px;"
-      src="./assets/maps/marker-icon-green.png"
-      (click)="openNonGeoEventsDialog()"
-      alt="decrease icon"
-      matTooltip="Open to show events (no geo location)"
-      class="dezoomicon iconopacity"
-    />
-    </div>
+        @if (hasEventNodes()) {
+          <img
+            style="height: 35px;"
+            src="./assets/maps/marker-icon-green.png"
+            (click)="openNonGeoEventsDialog()"
+            alt="decrease icon"
+            matTooltip="Open to show events (no geo location)"
+            class="dezoomicon iconopacity"
+            />
+        }
+      </div>
 
-    <div class="map-controll">
-      <div style="margin-top: 10px"></div>
+      <div class="map-controll">
+        <div style="margin-top: 10px"></div>
+      </div>
     </div>
   </div>
-</div>

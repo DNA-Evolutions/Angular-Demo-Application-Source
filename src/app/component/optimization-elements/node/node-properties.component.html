@@ -8,7 +8,9 @@
   <li>
     <button mat-raised-button (click)="openDialog()">Get Details</button>
   </li>
-  <li *ngIf="nodeId">
-    You chose: <i>{{nodeId}}</i>
-  </li>
+  @if (nodeId) {
+    <li>
+      You chose: <i>{{nodeId}}</i>
+    </li>
+  }
 </ol>

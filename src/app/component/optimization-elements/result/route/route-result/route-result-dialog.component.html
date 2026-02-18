@@ -1,19 +1,17 @@
 <div mat-dialog-content style="max-height: 50vh">
-  <div *ngIf="curRoute; then existingRoute; else nonExistingRoute"></div>
-
-  <ng-template #existingRoute>
+  @if (curRoute) {
     <div>
       <mat-expansion-panel
         [expanded]="true"
         class="mat-elevation-z1"
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
-      >
+        >
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h5>
               {{
-                panelOpenState ? "Close Route Overview" : "Show Route Overview"
+              panelOpenState ? "Close Route Overview" : "Show Route Overview"
               }}
             </h5>
           </mat-panel-title>
@@ -26,7 +24,6 @@
             </mat-list-item>
             <mat-list-item role="listitem">
               <div class="mat-list-route-item-cap">Resource:</div>
-
               <div class="mat-list-route-item-value">
                 {{ curRoute.resourceId }}
               </div>
@@ -49,7 +46,6 @@
                 {{ curRoute.header.idleTime | durationFormatPipe: "PT":"auto" }}
               </div>
             </mat-list-item>
-
             <mat-list-item role="listitem">
               <div class="mat-list-route-item-cap">Productive:</div>
               <div class="mat-list-route-item-value">
@@ -68,17 +64,17 @@
                 {{ curRoute.header.distance | distanceFormatPipe: "m":"km" }}
               </div>
             </mat-list-item>
-
-            <div *ngFor="let vio of curRoute.header.routeViolations">
-              <mat-list-item role="listitem">
-                <div class="mat-list-route-item-cap violationtext">Violation:</div>
-                <div class="mat-list-route-item-value violation">
-                  {{ vio.attribute }} - {{ vio.subAttribute }}:
-                  {{ vio.value | durationFormatPipe: "h":"auto" }}
-                </div>
-              </mat-list-item>
-            </div>
-
+            @for (vio of curRoute.header.routeViolations; track vio) {
+              <div>
+                <mat-list-item role="listitem">
+                  <div class="mat-list-route-item-cap violationtext">Violation:</div>
+                  <div class="mat-list-route-item-value violation">
+                    {{ vio.attribute }} - {{ vio.subAttribute }}:
+                    {{ vio.value | durationFormatPipe: "h":"auto" }}
+                  </div>
+                </mat-list-item>
+              </div>
+            }
           </mat-list>
           <p></p>
         </div>
@@ -88,39 +84,37 @@
     <mat-divider></mat-divider>
     <p></p>
     <!-- -->
-
     <div class="frameborder">
       <h5 style="margin-left: 10px">Path</h5>
       <mat-vertical-stepper [linear]="false" [selectedIndex]="0" #stepper>
-        <div
-          *ngFor="let element of curRoute.elementDetails; let i = index"
-          [attr.data-index]="i"
-        >
-          <mat-step
-            completed="false"
-            style="margin: 5px; background-color: whitesmoke"
-          >
-            <ng-template matStepLabel>
-              {{ element.elementId }}
-            </ng-template>
-
-            <div style="background-color: whitesmoke">
-              <app-node-detail [detail]="element"></app-node-detail>
-            </div>
-          </mat-step>
-        </div>
+        @for (element of curRoute.elementDetails; track element; let i = $index) {
+          <div
+            [attr.data-index]="i"
+            >
+            <mat-step
+              completed="false"
+              style="margin: 5px; background-color: whitesmoke"
+              >
+              <ng-template matStepLabel>
+                {{ element.elementId }}
+              </ng-template>
+              <div style="background-color: whitesmoke">
+                <app-node-detail [detail]="element"></app-node-detail>
+              </div>
+            </mat-step>
+          </div>
+        }
       </mat-vertical-stepper>
     </div>
-
     <p></p>
-  </ng-template>
-
-  <ng-template #nonExistingRoute>
+  } @else {
     <p></p>
     Please start an optimization first or make sure the node did not get
     unassigned..
     <p></p>
-  </ng-template>
+  }
+
+
 </div>
 
 <mat-divider></mat-divider>
@@ -131,7 +125,7 @@
     (click)="onCloseClick()"
     color="primary"
     cdkFocusInitial
-  >
+    >
     Close
   </button>
   <a
@@ -140,5 +134,5 @@
     matTooltip="Visit our documentation on Optimization Result."
     mat-raised-button class="mat-raised-button infobutton right"
     >Explain this result</a
-  >
-</div>
+    >
+  </div>

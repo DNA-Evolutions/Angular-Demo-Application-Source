@@ -1,14 +1,16 @@
-<div *ngIf="latestProgress$ | async; let latestProgress">
-  <mat-card>
-    <h3>
-      <mat-label>Running algorithm:</mat-label>
-    </h3>
-    <div class="dontbreak">
-      {{ latestProgress?.callerId }} at {{ latestProgress?.curProgress + 2 }}%
-    </div>
-    <h3>
-      <mat-label>Current cost:</mat-label>
-    </h3>
-    <div>{{ latestProgress?.curCost }}</div>
-  </mat-card>
-</div>
+@if (latestProgress$ | async; as latestProgress) {
+  <div>
+    <mat-card>
+      <h3>
+        <mat-label>Running algorithm:</mat-label>
+      </h3>
+      <div class="dontbreak">
+        {{ latestProgress?.callerId }} at {{ latestProgress?.curProgress + 2 }}%
+      </div>
+      <h3>
+        <mat-label>Current cost:</mat-label>
+      </h3>
+      <div>{{ latestProgress?.curCost }}</div>
+    </mat-card>
+  </div>
+}
