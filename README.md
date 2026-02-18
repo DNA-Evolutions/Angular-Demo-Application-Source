@@ -94,7 +94,66 @@ We recommend serving the Demo Application with docker, especially when you are n
 
 ### Start the image
 
-Please visit <a href="https://hub.docker.com/repository/docker/dnaevolutions/jopt_demoapplication/general" target="_blank">https://hub.docker.com/repository/docker/dnaevolutions/jopt_demoapplication/general</a> and follow the instructions if you want to start the pre-built image without using the sources. 
+## How to start the DNA Demo Application
+
+The docker image of the demo application is available on <a href="https://hub.docker.com/r/dnaevolutions/jopt_demoapplication" target="_blank">Docker Hub</a>. There are multiple ways on how you can attach the demo application to <a href="https://hub.docker.com/repository/docker/dnaevolutions/jopt_touroptimizer" target="_blank">JOptTourOptimizer-Docker</a>.
+
+
+For example:
+
+**A)** Let the demo container directly access the localhost (<a href="https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing" target="_blank">CORS</a> eventually needs to be enabled for the browser).
+
+**B)** Using a docker-compose with both containers. Only expose the demo application if desired.
+
+**C)** Attaching the demo container to the same network.
+
+**...**
+
+### Setup the Angular DNA Demo Application
+
+In this walkthrough, we let the demo application access the localhost as in **A)**. Next, you need to launch JOptTourOptimizer-Docker in a container as described <a href="https://github.com/DNA-Evolutions/Docker-REST-TourOptimizer#how-to-start-jopttouroptimizer-docker" target="_blank">here</a>. The page <a href="http://localhost:8081" target="_blank">http://localhost:8081</a> needs to be accessible. Further, the container needs to be started with the profile **"cors"**.
+
+
+**1) Pulling the image:**
+
+``` python
+docker pull dnaevolutions/jopt_demoapplication
+```
+
+**2) Running a container:**
+
+``` python
+docker run -d --rm \
+	--name myJOptTourOptimizerDemo \
+	-p 3000:80 \
+	-v ${PWD}:/usr/src/app \
+	-e JOPT_SWAGGER_HOST="http://localhost" \
+	-e JOPT_SWAGGER_PORT="8081" \
+	dnaevolutions/jopt_demoapplication
+```
+
+Same command as a single line:
+
+``` python
+docker run -d --rm --name myJOptTourOptimizerDemo -p 3000:80 -v ${PWD}:/usr/src/app -e JOPT_SWAGGER_HOST="http://localhost" -e JOPT_SWAGGER_PORT="8081" dnaevolutions/jopt_demoapplication
+```
+
+(If desired, please adjust <a href="https://docs.docker.com/engine/reference/run/" target="_blank">docker run argument</a> to your needs)
+
+
+You can provide three environment variables:
+* ``JOPT_SWAGGER_HOST``: The address of your running TourOptimizer. If you run the docker image of the TourOptimizer locally, this is ``http://localhost``.
+* ``JOPT_SWAGGER_PORT``: The port of your running TourOptimizer. If you run the docker image of the TourOptimizer locally, this is ``8081``.
+* ``INPRODUCTION``: This value is ``false`` by default. If you are changing it to ``true``, our official TourOptimizer endpoint is used by default. However, **try to avoid this**, as we are going to block IPs with too many requests. Further, our official endpoint has a limitation of 20 elements to be optimized, regardless of your license.
+
+
+**3) Open:** <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>
+
+...and you should see the DNA-Demo-Application.
+
+You can access the latest source-code at <a href="https://github.com/DNA-Evolutions/Angular-Demo-Application-Source" target="_blank">https://github.com/DNA-Evolutions/Angular-Demo-Application-Source</a>.
+
+---
 
 ### Build the image from scratch
 
