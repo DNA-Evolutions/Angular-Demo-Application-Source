@@ -1,4 +1,4 @@
-image: node:18.19.1
+image: node:20
 
 pipelines:
     tags:
@@ -8,7 +8,7 @@ pipelines:
             caches:
               - node
             script:
-              - npm install
+              - npm ci
               - npm run get-version --silent > ./VERSION
             artifacts:
               - node_modules/**
