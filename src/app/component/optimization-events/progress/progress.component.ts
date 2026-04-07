@@ -2,12 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subject, Observable, of, throwError, iif } from 'rxjs';
 
-import { mergeMap, retryWhen, concatMap, delay } from 'rxjs/operators';
+import { mergeMap, retryWhen, concatMap, delay, switchMap, takeUntil } from 'rxjs/operators';
 
 import { JOptOptimizationProgress } from '@openapibuild/openapi';
 
 import { ChangeDetectorRef } from '@angular/core';
 import { EventSourceService } from 'src/app/_services/optimization-event/event-source.service';
+import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 /**
  * Component to extract the progress of the currently running optimization
@@ -31,7 +32,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
    * @type {Observable<JOptOptimizationProgress>}
    * @memberof ProgressComponent
    */
-  latestProgress$: Observable<JOptOptimizationProgress>;
+  latestProgress$!: Observable<JOptOptimizationProgress>;
 
   /**
    *
@@ -40,7 +41,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
    * @type {Observable<JOptOptimizationProgress>}
    * @memberof ProgressComponent
    */
-  unfilteredLatestProgress$: Observable<JOptOptimizationProgress>;
+  unfilteredLatestProgress$!: Observable<JOptOptimizationProgress>;
 
   /**
    * Creates an instance of ProgressComponent.
@@ -50,6 +51,7 @@ export class ProgressComponent implements OnInit, OnDestroy {
    */
   constructor(
     private readonly eventService: EventSourceService,
+    private readonly wrapperService: OptimizationWrapperService,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -59,9 +61,11 @@ export class ProgressComponent implements OnInit, OnDestroy {
    * @memberof ProgressComponent
    */
   ngOnInit(): void {
-    // Create an observable that waits until a porgress is reported
-
-    this.unfilteredLatestProgress$ = this.eventService.progress();
+    // Wait for the runId to become available, then subscribe to progress
+    this.unfilteredLatestProgress$ = this.wrapperService.getRunId$().pipe(
+      takeUntil(this.unsubscribe$),
+      switchMap((runId) => this.eventService.progress<JOptOptimizationProgress>(runId))
+    );
 
     this.latestProgress$ = this.unfilteredLatestProgress$.pipe(
       mergeMap((progress) => {

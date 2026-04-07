@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Service
-import { OptimizationServiceControllerService } from 'build/openapi/api/optimizationServiceController.service';
+import { OptimizationService } from 'build/openapi/api/optimization.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -183,7 +183,7 @@ import { OptimizationNonGeoElementsSelectorComponent } from './component/optimiz
         MatGridListModule,
         MatStepperModule,
         ScrollingModule], providers: [
-        OptimizationServiceControllerService,
+        OptimizationService,
         [
             {
                 provide: BASE_PATH,

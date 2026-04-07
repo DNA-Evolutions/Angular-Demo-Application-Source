@@ -51,9 +51,9 @@ import { OptimizationNonGeoElementsSelectorComponent } from '../optimization-ele
 })
 export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   private map: any;
-  private mapViewDef: MapViewDefinition;
+  private mapViewDef!: MapViewDefinition;
   private tiles: any;
-  public mcText: string;
+  public mcText = '';
 
   public isFullScreenMap = false;
 
@@ -99,7 +99,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.myOptimizationOutput$.subscribe((result: RestOptimization) => {
       // Drawing result
       this.refreshMap(result);
-      result.solution.routes.forEach((r, index) => {
+      (result.solution?.routes ?? []).forEach((r, index) => {
         this.polylineService.drawRouteResultPolyline(
           r,
           index,
@@ -130,7 +130,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
 
 
   public refreshMap(restOptimization?: RestOptimization): void {
-    this.map.eachLayer((curLayer) => {
+    this.map.eachLayer((curLayer: any) => {
       if (curLayer !== this.tiles) {
         this.map.removeLayer(curLayer);
       }
@@ -155,7 +155,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.map.setView(mapViewDef.center, mapViewDef.zoom, { animation: true });
   }
 
-  public getMap(): L.map{
+  public getMap(): L.Map{
     return this.map;
   }
 
@@ -336,7 +336,7 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
    * @param {*} event
    * @memberof LeafletMapComponent
    */
-  onResize(event) {
+  onResize(event: any) {
     //console.log('resize');
     event.target.innerWidth;
     this.map.invalidateSize();

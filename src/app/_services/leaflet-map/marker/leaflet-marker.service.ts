@@ -23,7 +23,7 @@ export class LeafletMarkerService {
   /**
    * Adding Nodes to the map
    *
-   * @param {L.map} map
+   * @param {L.Map} map
    * @param {ElementRef} ref
    * @param {*} icon
    * @memberof LeafletMarkerService
@@ -102,12 +102,12 @@ export class LeafletMarkerService {
   /**
    * Adding Resources to the map
    *
-   * @param {L.map} map
+   * @param {L.Map} map
    * @param {ElementRef} ref
    * @param {*} icon
    * @memberof LeafletMarkerService
    */
-  markResources(map: L.map, ref: ElementRef, icon: any, isDraggable: boolean): void {
+  markResources(map: L.Map, ref: ElementRef, icon: any, isDraggable: boolean): void {
     // Get nodes
     this.dataService.resources().forEach((r) => {
       const lat = r.position.latitude;

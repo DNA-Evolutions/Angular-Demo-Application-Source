@@ -19,10 +19,10 @@ import { Kv } from '../optimization-elements/result/optimization/interface/keyva
     standalone: false
 })
 export class PrepareRunOptimizationDialogComponent {
-  curSettings: OptimizationOptions;
+  curSettings?: OptimizationOptions;
 
   // Copies
-  settingsCopy: OptimizationOptions;
+  settingsCopy!: OptimizationOptions;
 
   settingsAsArray: Kv[];
 
@@ -39,16 +39,16 @@ export class PrepareRunOptimizationDialogComponent {
     this.curSettings = this.dataService.optimizerSettings();
     this.settingsAsArray = [];
 
+    if (this.curSettings === undefined) {
+      this.openSnackBar('Input is not valid', 'Invalid');
+      this.prepareDialogRef.close();
+      return;
+    }
+
     let jsonObject = this.curSettings.properties;
 
     for (var value in jsonObject) {
       this.settingsAsArray.push({ key: value, value: jsonObject[value] });
-    }
-
-
-    if (this.curSettings === undefined) {
-      this.openSnackBar('Input is not valid', 'Invalid');
-      this.prepareDialogRef.close();
     }
 
     // Create a deep copy of settings, so that user changes do not

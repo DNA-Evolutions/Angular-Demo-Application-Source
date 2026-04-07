@@ -41,6 +41,7 @@
     "@openapitools/openapi-generator-cli": "^2.29.0",
     "@types/jasmine": "^5.1.15",
     "@types/jasminewd2": "~2.0.3",
+    "@types/leaflet": "^1.9.21",
     "@types/node": "^20.19.33",
     "angular-ide": "^0.9.77",
     "codelyzer": "^6.0.2",

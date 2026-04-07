@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { Subject } from 'rxjs';
 
@@ -13,11 +14,12 @@ import {
   OptimizationOptions,
   OpeningHours,
   WorkingHours,
-  OptimizationServiceControllerService,
+  OptimizationService,
   RouteElementDetail,
   Route,
-  OptimizationHealthControllerService,
+  HealthService,
   Status,
+  RunAcceptedResponse,
 } from '@openapibuild/openapi';
 
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
@@ -35,29 +37,28 @@ import { LoadExampleDataService } from '../load-example-data/load-example-data.s
 export class OptimizationWrapperService {
   private $refresh: ReplaySubject<any>;
 
-  private myOptimizationInput: RestOptimization;
-  private curNodes: Node[];
-  private curRess: Resource[];
-  private curSettings: OptimizationOptions;
+  private myOptimizationInput!: RestOptimization;
+  private curNodes!: Node[];
+  private curRess!: Resource[];
+  private curSettings?: OptimizationOptions;
 
-  private $myInternalOptimizationOutput: Observable<RestOptimization>;
-  private $myOptimizationOutputSubject: Subject<RestOptimization>;
+  private $myInternalOptimizationOutput!: Observable<RestOptimization>;
+  private $myOptimizationOutputSubject!: Subject<RestOptimization>;
   private curOptimizationOutput?: RestOptimization;
+  private currentRunId?: string;
+  private $runIdSubject = new ReplaySubject<string>(1);
 
   // Static methods
   public static nodeResult(
     nodeId: string,
     out: RestOptimization
-  ): RouteElementDetail {
-    const detailsAspirants = out.solution.routes
+  ): RouteElementDetail | undefined {
+    const detailsAspirants = (out.solution?.routes ?? [])
       .map((r) => this.getDetailInRoute(nodeId, r))
       .filter((d) => d !== undefined);
 
     if (detailsAspirants.length !== 0) {
-
-      let choosenDetail = detailsAspirants[0];
-
-      return choosenDetail;
+      return detailsAspirants[0];
     }
     return undefined;
   }
@@ -74,8 +75,8 @@ export class OptimizationWrapperService {
   public static routeResult(
     routeId: number,
     out: RestOptimization
-  ): Route {
-    const routes = out.solution.routes.filter((r) => r.id === routeId);
+  ): Route | undefined {
+    const routes = (out.solution?.routes ?? []).filter((r) => r.id === routeId);
 
     if (routes.length !== 0) {
       return routes[0];
@@ -96,22 +97,15 @@ export class OptimizationWrapperService {
   private static getDetailInRoute(
     elementId: string,
     route: Route
-  ): RouteElementDetail {
+  ): RouteElementDetail | undefined {
     return route.elementDetails.find((d) => d.elementId === elementId);
   }
 
   //
 
-  /**
-   * Creates an instance of OptimizationWrapperService.
-   * @param {OptimizationServiceControllerService} optiService
-   * @param {OptimizationHealthControllerService} healthService
-   * @param {LoadExampleDataService} exampleLoaderService
-   * @memberof OptimizationWrapperService
-   */
   constructor(
-    private readonly optiService: OptimizationServiceControllerService,
-    private readonly healthService: OptimizationHealthControllerService,
+    private readonly optiService: OptimizationService,
+    private readonly healthService: HealthService,
     private exampleLoaderService: LoadExampleDataService
   ) {
     this.$refresh = new ReplaySubject(1);
@@ -152,7 +146,7 @@ export class OptimizationWrapperService {
    * @return {*}  {OptimizationOptions}
    * @memberof OptimizationWrapperService
    */
-  public optimizerSettings(): OptimizationOptions {
+  public optimizerSettings(): OptimizationOptions | undefined {
     return this.curSettings;
   }
 
@@ -178,7 +172,7 @@ export class OptimizationWrapperService {
    * @return {*}  {number}
    * @memberof OptimizationWrapperService
    */
-  public durationMinutesByNode(curNode: Node): number {
+  public durationMinutesByNode(curNode: Node | undefined): number {
     if (curNode !== undefined) {
       return moment.duration(curNode.visitDuration).asMinutes();
     }
@@ -265,7 +259,7 @@ export class OptimizationWrapperService {
    * @return {*}  {Node}
    * @memberof OptimizationWrapperService
    */
-  public node(nodeId: string): Node {
+  public node(nodeId: string): Node | undefined {
     return this.nodes().find((n) => n.id === nodeId);
   }
 
@@ -276,7 +270,7 @@ export class OptimizationWrapperService {
    * @return {*}  {Resource}
    * @memberof OptimizationWrapperService
    */
-  public resource(resId: string): Resource {
+  public resource(resId: string): Resource | undefined {
     return this.resources().find((r) => r.id === resId);
   }
 
@@ -296,7 +290,7 @@ export class OptimizationWrapperService {
    * @return {*}  {RestOptimization}
    * @memberof OptimizationWrapperService
    */
-  public optimizationOutput(): RestOptimization {
+  public optimizationOutput(): RestOptimization | undefined {
     return this.curOptimizationOutput;
   }
 
@@ -432,7 +426,7 @@ export class OptimizationWrapperService {
    * @memberof OptimizationWrapperService
    */
   public getEndPointStatus(): Observable<Status> {
-    return this.healthService.healthStatus();
+    return this.healthService.getHealth();
   }
 
   // Start optimization
@@ -468,15 +462,20 @@ export class OptimizationWrapperService {
 
     this.myOptimizationInput.elementConnections = connections;
 
-    this.$myInternalOptimizationOutput = this.optiService.run(
+    this.$myInternalOptimizationOutput = this.optiService.startRun(
       this.myOptimizationInput
+    ).pipe(
+      switchMap((accepted: RunAcceptedResponse) => {
+        this.currentRunId = accepted.runId;
+        this.$runIdSubject.next(accepted.runId!);
+        return this.optiService.getRunResult(accepted.runId!, 'body');
+      })
     );
 
     this.$myInternalOptimizationOutput.subscribe({
       next: (watcherEvent: RestOptimization) => {
         this.$myOptimizationOutputSubject.next(watcherEvent);
         this.curOptimizationOutput = watcherEvent;
-        //console.log('Watcherevent');
       },
       error: (error) => {
         this.$myOptimizationOutputSubject.error(error);
@@ -489,15 +488,18 @@ export class OptimizationWrapperService {
     return this.$myOptimizationOutputSubject;
   }
 
+  public getRunId(): string | undefined {
+    return this.currentRunId;
+  }
 
+  public getRunId$(): Observable<string> {
+    return this.$runIdSubject.asObservable();
+  }
 
-  /**
-   *
-   *
-   * @return {*}  {Observable<boolean>}
-   * @memberof OptimizationWrapperService
-   */
   public stopOptimization(): Observable<boolean> {
-    return this.optiService.stopOptimizationRun();
+    if (!this.currentRunId) {
+      throw new Error('No active run to stop.');
+    }
+    return this.optiService.stopRun(this.currentRunId);
   }
 }

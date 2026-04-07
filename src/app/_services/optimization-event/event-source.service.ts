@@ -14,39 +14,23 @@ import { environment } from '@env/environment';
   providedIn: 'root',
 })
 export class EventSourceService {
-  progress<JOptOptimizationProgress>(): Observable<JOptOptimizationProgress> {
+  progress<JOptOptimizationProgress>(runId: string): Observable<JOptOptimizationProgress> {
     return this.newObservable(
-      environment.host + ':' + environment.port + environment.apiProgress,
+      environment.host + ':' + environment.port + '/api/v1/runs/' + runId + '/stream/progress',
       JSON.parse
     );
   }
 
-
-  /**
-   *
-   *
-   * @template R
-   * @return {*}  {Observable<R>}
-   * @memberof EventSourceService
-   */
-  newProgressObservable<R>(): Observable<R> {
+  newProgressObservable<R>(runId: string): Observable<R> {
     return this.newObservable(
-      environment.host + ':' + environment.port + environment.apiProgress,
+      environment.host + ':' + environment.port + '/api/v1/runs/' + runId + '/stream/progress',
       JSON.parse
     );
   }
 
-
-  /**
-   *
-   *
-   * @template R
-   * @return {*}  {Observable<R>}
-   * @memberof EventSourceService
-   */
-  newWarningObservable<R>(): Observable<R> {
+  newWarningObservable<R>(runId: string): Observable<R> {
     return this.newObservable(
-      environment.host + ':' + environment.port + environment.apiWarning,
+      environment.host + ':' + environment.port + '/api/v1/runs/' + runId + '/stream/warnings',
       JSON.parse
     );
   }

@@ -164,7 +164,7 @@
   } ],
   "optimizationOptions" : {
     "properties" : {
-      "JOpt.Algorithm.PreOptimization.SA.NumIterations" : "1000",
+      "JOpt.Algorithm.PreOptimization.SA.NumIterations" : "1000000",
       "JOptWeight.RouteTime" : "1.0",
       "JOptWeight.RouteDistance" : "1.0",
       "JOptWeight.TimeWindow" : "1.0",

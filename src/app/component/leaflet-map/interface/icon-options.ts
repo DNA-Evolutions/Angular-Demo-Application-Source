@@ -6,10 +6,10 @@
  */
 export interface IconOptions
 {
-  iconAnchor: number[];
-  iconSize: number[];
+  iconAnchor: [number, number];
+  iconSize: [number, number];
   mapIcon: string;
   mapShadowIcon: string;
-  shadowSize: number[];
-  shadowAnchor: number[];
+  shadowSize: [number, number];
+  shadowAnchor: [number, number];
 }

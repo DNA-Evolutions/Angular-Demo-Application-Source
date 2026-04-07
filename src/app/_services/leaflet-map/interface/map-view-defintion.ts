@@ -6,6 +6,6 @@
  * @interface MapViewDefinition
  */
 export interface MapViewDefinition {
-  center: Array<number>;
+  center: [number, number];
   zoom: number;
 }

@@ -145,7 +145,7 @@ export class OptimizationResultDialogComponent
         this.paginator
       );
 
-      const rows$ = of(this.curResult.solution.routes);
+      const rows$ = of(this.curResult.solution?.routes ?? []);
 
       this.totalRows$ = rows$.pipe(map((rows) => rows.length));
       this.displayedRows$ = rows$.pipe(
