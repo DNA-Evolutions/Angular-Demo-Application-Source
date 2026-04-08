@@ -11,7 +11,11 @@ import { IntroVideoDialogComponent } from './intro-video-dialog/intro-video-dial
 import packageJson from '../../../../package.json';
 
 /**
- * The component for the help/introduction dialog of the demo application
+ * Introduction and help dialog component for the TourOptimizer demo application.
+ *
+ * @description Displays version information, the currently configured API endpoint,
+ * and provides buttons to open how-to and introduction YouTube video dialogs.
+ * This component is opened as a Material dialog from the main example view.
  *
  * @export
  * @class IntroductionComponent
@@ -24,9 +28,18 @@ import packageJson from '../../../../package.json';
 })
 export class IntroductionComponent {
 
+ /** The current application version, read from package.json. */
  myVersion: string;
+
+ /** The OpenAPI/TourOptimizer specification version, read from package.json. */
  myOpenApiModelVersion: string;
 
+  /**
+   * Creates an instance of IntroductionComponent.
+   *
+   * @param {MatDialog} dialog - Angular Material dialog service for opening child dialogs
+   * @param {MatDialogRef<IntroductionComponent>} dialogRef - Reference to the currently open dialog instance
+   */
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<IntroductionComponent>
@@ -91,7 +104,11 @@ export class IntroductionComponent {
   }
 
   /**
+   * Opens the introduction video dialog with an embedded YouTube player.
    *
+   * @description Calculates responsive dialog dimensions based on the viewport width
+   * (capped at 1500px) and opens the {@link IntroVideoDialogComponent} with the
+   * YouTube video ID configured in the environment.
    *
    * @memberof IntroductionComponent
    */

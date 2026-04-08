@@ -73,16 +73,22 @@ export class OptimizationResultDialogComponent
    */
   expandedElement: RouteElementDetail | null;
 
-  // For pagination
+  /** Observable of the currently displayed (paginated and sorted) route rows. */
   displayedRows$: Observable<Route[]>;
+
+  /** Observable of the total number of route rows, used by the paginator. */
   totalRows$: Observable<number>;
 
+  /** Reference to the Material paginator component for route result pagination. */
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+
+  /** Reference to the Material sort header for sortable route result columns. */
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
+  /** Tracks whether the expansion panel is open or closed. */
   public panelOpenState: boolean;
 
-  // During next and prev in nodes
+  /** Index of the currently active expansion panel step; -1 means none is open. */
   step = -1;
 
   /**
@@ -101,7 +107,10 @@ export class OptimizationResultDialogComponent
   ) {}
 
   /**
+   * Extracts the optimization result from available sources.
    *
+   * @description Checks the `@Input() result` property first, then falls back to
+   * the dialog data injection. Sets {@link curResult} with the resolved value.
    *
    * @private
    * @memberof OptimizationResultDialogComponent
@@ -171,7 +180,7 @@ export class OptimizationResultDialogComponent
   }
 
   /**
-   *
+   * Advances to the next route result expansion panel.
    *
    * @memberof OptimizationResultDialogComponent
    */
@@ -180,7 +189,7 @@ export class OptimizationResultDialogComponent
   }
 
   /**
-   *
+   * Returns to the previous route result expansion panel.
    *
    * @memberof OptimizationResultDialogComponent
    */
@@ -206,7 +215,10 @@ export class OptimizationResultDialogComponent
   }
 
   /**
+   * Opens the raw optimization result dialog showing the JSON/text representation.
    *
+   * @description Opens the {@link OptimizationRawRDialogComponent} with the current
+   * optimization result data for inspection of the raw API response.
    *
    * @memberof OptimizationResultDialogComponent
    */
@@ -222,7 +234,7 @@ export class OptimizationResultDialogComponent
   }
 
   /**
-   *
+   * Closes the optimization result dialog.
    *
    * @memberof OptimizationResultDialogComponent
    */

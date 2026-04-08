@@ -5,9 +5,15 @@ import { MapViewDefinition } from '../leaflet-map/interface/map-view-defintion';
 import { GeoNode, Position, RestOptimization } from '@openapibuild/openapi';
 
 /**
- * Service that is providing functionality to extract connection shapes
- * between elements. In case a connection is not found, a straight connection
- * shap is generated.
+ * Service responsible for extracting and generating geographic route shapes between elements.
+ *
+ * This service provides the geographic data needed to draw route polylines on the Leaflet map.
+ * It attempts to find pre-computed route shapes (encoded polylines from a routing engine such
+ * as Valhalla) for each pair of elements. When a pre-computed shape is not available, it
+ * generates a straight-line fallback between the two element positions.
+ *
+ * It also provides access to map view configuration and delegates to the example data service
+ * for determining whether the current example supports draggable markers.
  *
  * @export
  * @class GeoAndRoutingService
@@ -16,6 +22,13 @@ import { GeoNode, Position, RestOptimization } from '@openapibuild/openapi';
   providedIn: 'root',
 })
 export class GeoAndRoutingService {
+  /**
+   * Creates an instance of GeoAndRoutingService.
+   *
+   * @param {LoadExampleDataService} dataSerive - Service providing pre-loaded example data including route shapes.
+   * @param {OptimizationWrapperService} optiWrapper - Service providing access to current nodes and resources for position lookups.
+   * @memberof GeoAndRoutingService
+   */
   constructor(
     private dataSerive: LoadExampleDataService,
     private optiWrapper: OptimizationWrapperService
@@ -81,8 +94,11 @@ export class GeoAndRoutingService {
   }
 
   /**
+   * Returns the map view definition (center coordinates, zoom level) for the current example.
    *
-   * @return {*}  {MapViewDefinition}
+   * Delegates to the {@link LoadExampleDataService}.
+   *
+   * @returns {MapViewDefinition} The map view configuration for the Leaflet map.
    * @memberof GeoAndRoutingService
    */
   public mapViewDef(): MapViewDefinition {
@@ -90,8 +106,9 @@ export class GeoAndRoutingService {
   }
 
   /**
+   * Checks whether the current example supports draggable resource markers on the map.
    *
-   * @return {*}  {boolean}
+   * @returns {boolean} True if resources can be repositioned via drag-and-drop.
    * @memberof GeoAndRoutingService
    */
   public exampleHasDraggableResource() : boolean {
@@ -99,22 +116,31 @@ export class GeoAndRoutingService {
   }
 
     /**
-   *
-   * @return {*}  {boolean}
-   * @memberof GeoAndRoutingService
-   */
+     * Checks whether the current example supports draggable node markers on the map.
+     *
+     * @returns {boolean} True if nodes can be repositioned via drag-and-drop.
+     * @memberof GeoAndRoutingService
+     */
     public exampleHasDraggableNode() : boolean {
       return this.dataSerive.curExampleHasMovableNodes();;
     }
 
   /**
+   * Creates the route shape (polyline coordinates) between two elements.
    *
-   * Creates the route shape line. Either by decoding an existing (extracted) route shape, or
-   * by creating a straight line, if no route shape is provided/found.
+   * First attempts to find a pre-computed route shape from the loaded example data.
+   * If found, the encoded polyline is decoded and returned. If no pre-computed shape
+   * exists, a straight-line fallback is generated using the geographic positions of
+   * the two elements.
    *
-   * @param {string} elementIdFrom
-   * @param {string} elementIdTo
-   * @return {*}  {number[]}
+   * For Event nodes (which lack a fixed position), the method attempts to resolve
+   * the effective position from the optimization result. If no position can be
+   * determined, a fallback position of (0, 0) is used.
+   *
+   * @param {string} elementIdFrom - The ID of the starting element (node or resource).
+   * @param {string} elementIdTo - The ID of the destination element (node or resource).
+   * @param {RestOptimization} [result] - Optional optimization result used to resolve Event node positions.
+   * @returns {number[]} Array of [latitude, longitude] coordinate pairs forming the route shape.
    * @memberof GeoAndRoutingService
    */
   public getSingleRouteShape(
@@ -224,12 +250,12 @@ export class GeoAndRoutingService {
   }
 
   /**
+   * Finds a pre-computed route connection object matching the given from/to element pair.
    *
-   *
-   * @param {string} fromId
-   * @param {string} toId
-   * @param {object[]} routeConnections
-   * @return {*}  {object}
+   * @param {string} fromId - The ID of the starting element.
+   * @param {string} toId - The ID of the destination element.
+   * @param {object[]} routeConnections - The array of all pre-computed route connections to search.
+   * @returns {object} The matching route connection, or undefined if not found.
    * @memberof GeoAndRoutingService
    */
   getRouteConnection(
@@ -243,12 +269,12 @@ export class GeoAndRoutingService {
   }
 
   /**
+   * Checks whether a route connection matches the specified from/to element ID pair.
    *
-   *
-   * @param {string} fromId
-   * @param {string} toId
-   * @param {object} routeConnection
-   * @return {*}  {boolean}
+   * @param {string} fromId - The expected source element ID.
+   * @param {string} toId - The expected destination element ID.
+   * @param {object} routeConnection - The route connection object to check.
+   * @returns {boolean} True if the connection matches the from/to pair exactly.
    * @memberof GeoAndRoutingService
    */
   isDesiredConnection(
@@ -267,10 +293,10 @@ export class GeoAndRoutingService {
   }
 
   /**
+   * Extracts the source element ID from a route connection object.
    *
-   *
-   * @param {object} routeConnection
-   * @return {*}  {string}
+   * @param {object} routeConnection - The route connection object.
+   * @returns {string} The "fromId" property value.
    * @memberof GeoAndRoutingService
    */
   getFromId(routeConnection: object): string {
@@ -278,10 +304,10 @@ export class GeoAndRoutingService {
   }
 
   /**
+   * Extracts the destination element ID from a route connection object.
    *
-   *
-   * @param {object} routeConnection
-   * @return {*}  {string}
+   * @param {object} routeConnection - The route connection object.
+   * @returns {string} The "toId" property value.
    * @memberof GeoAndRoutingService
    */
   getToId(routeConnection: object): string {
@@ -289,10 +315,14 @@ export class GeoAndRoutingService {
   }
 
   /**
+   * Extracts and decodes the encoded polyline shape from a route connection object.
    *
+   * The route connection is expected to have a Valhalla-style structure:
+   * `{ trip: { legs: [{ shape: "encodedPolylineString" }] } }`.
+   * The first leg's shape is decoded using the {@link decode} method with precision 6.
    *
-   * @param {object} routeConnection
-   * @return {*}  {number[]}
+   * @param {object} routeConnection - The route connection object containing the encoded shape.
+   * @returns {number[]} Array of decoded [latitude, longitude] coordinate pairs.
    * @memberof GeoAndRoutingService
    */
   extractShape(routeConnection: object): number[] {

@@ -50,17 +50,28 @@ import { OptimizationNonGeoElementsSelectorComponent } from '../optimization-ele
     standalone: false
 })
 export class LeafletMapComponent implements AfterViewInit, OnDestroy {
+  /** The Leaflet map instance. */
   private map: any;
+
+  /** The current map view definition (center coordinates and zoom level). */
   private mapViewDef!: MapViewDefinition;
+
+  /** The tile layer instance (OpenStreetMap tiles), retained to avoid removing it during refresh. */
   private tiles: any;
+
+  /** Text displayed in the map coordinate bar showing cursor latitude, longitude, and zoom level. */
   public mcText = '';
 
+  /** Whether the map is currently displayed in full-screen mode. */
   public isFullScreenMap = false;
 
+  /** Whether the current example data contains event-type nodes. */
   public hasNodeEvents = false;
 
+  /** Bound reference to the mouse-move handler, stored for proper cleanup on destroy. */
   protected onMouseMoveHandler: EventHandler;
 
+  /** Observable stream of optimization results, updated when optimization completes. */
   myOptimizationOutput$: Observable<RestOptimization>;
 
   /**
@@ -88,7 +99,11 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * Lifecycle hook called after the component view is initialized.
    *
+   * @description Initializes the Leaflet map and registers event handlers. Subscribes to
+   * optimization output to draw route polylines on the map when results arrive. Also
+   * subscribes to refresh events to re-center the map and redraw markers when example data changes.
    *
    * @memberof LeafletMapComponent
    */
@@ -129,6 +144,15 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
 
+  /**
+   * Refreshes the map by removing all layers except the base tile layer and re-adding markers.
+   *
+   * @description Clears all overlays (markers, polylines) and re-adds node and resource
+   * markers based on the current or provided optimization result.
+   *
+   * @param {RestOptimization} [restOptimization] - Optional optimization result to use for marker placement.
+   *   If not provided, falls back to the latest result from the optimization service.
+   */
   public refreshMap(restOptimization?: RestOptimization): void {
     this.map.eachLayer((curLayer: any) => {
       if (curLayer !== this.tiles) {
@@ -155,15 +179,35 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     this.map.setView(mapViewDef.center, mapViewDef.zoom, { animation: true });
   }
 
+  /**
+   * Returns the underlying Leaflet map instance.
+   *
+   * @returns {L.Map} The Leaflet map object
+   */
   public getMap(): L.Map{
     return this.map;
   }
 
+  /**
+   * Returns the component's native element reference.
+   *
+   * @returns {ElementRef} The Angular ElementRef for this component's host element
+   */
   public getElementRef():ElementRef{
     return this.elementRef;
   }
 
 
+  /**
+   * Creates Leaflet icon definitions and adds node and resource markers to the map.
+   *
+   * @description Configures icons for nodes, events, pillars, and resources using
+   * their respective icon option classes, then delegates to the marker service to
+   * place them on the map. Draggability is determined by the current example configuration.
+   *
+   * @private
+   * @param {RestOptimization} [result] - Optional optimization result for marker context
+   */
   private addMarksers(result?: RestOptimization): void {
 
     const iconNode = L.icon({
@@ -210,7 +254,10 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * Initializes the Leaflet map with OpenStreetMap tiles and default view settings.
    *
+   * @description Creates the map instance, sets the initial center and zoom from
+   * the geo service, adds the OpenStreetMap tile layer, and places the initial markers.
    *
    * @private
    * @memberof LeafletMapComponent
@@ -237,10 +284,13 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * Handles mouse movement over the map to update the coordinate display bar.
    *
+   * @description Extracts latitude, longitude, and current zoom level from the
+   * Leaflet event and formats them into the {@link mcText} string for display.
    *
    * @protected
-   * @param {*} evt
+   * @param {*} evt - Leaflet mouse event containing latlng coordinates
    * @memberof LeafletMapComponent
    */
   protected onMapMouseMove(evt: any): void {
@@ -252,7 +302,10 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * Lifecycle hook for cleanup when the component is destroyed.
    *
+   * @description Removes the mouse-move event listener from the Leaflet map
+   * to prevent memory leaks.
    *
    * @memberof LeafletMapComponent
    */
@@ -280,6 +333,12 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
     });
   }
 
+  /**
+   * Opens a dialog displaying non-geographic event elements.
+   *
+   * @description Shows the {@link OptimizationNonGeoElementsSelectorComponent} dialog
+   * which lists optimization elements that do not have geographic coordinates.
+   */
   openNonGeoEventsDialog(): void {
     const dialogRef = this.dialog.open(OptimizationNonGeoElementsSelectorComponent, {
       minWidth: '10vw',
@@ -293,26 +352,39 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * Returns whether the map is currently in full-screen mode.
    *
-   *
-   * @return {*}  {boolean}
+   * @returns {boolean} True if the map is displayed in full-screen mode
    * @memberof LeafletMapComponent
    */
   public isFullScreen(): boolean {
     return this.isFullScreenMap;
   }
 
+  /**
+   * Returns whether the current example data contains event-type nodes.
+   *
+   * @returns {boolean} True if event nodes are present
+   */
   public hasEventNodes(): boolean {
     return this.hasNodeEvents;
   }
 
+  /**
+   * Sets the flag indicating whether event-type nodes are present and triggers change detection.
+   *
+   * @param {boolean} hasEventNodes - Whether event nodes exist in the current data
+   */
   public setHasEventNodes(hasEventNodes: boolean): void {
     this.cdRef.detectChanges();
     this.hasNodeEvents = hasEventNodes;
   }
 
   /**
+   * Toggles the map between full-screen and normal display modes.
    *
+   * @description Flips the {@link isFullScreenMap} flag and dispatches a window resize
+   * event to trigger layout recalculation.
    *
    * @memberof LeafletMapComponent
    */
@@ -331,9 +403,9 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * Handles window resize events to invalidate the map size and trigger tile redrawing.
    *
-   *
-   * @param {*} event
+   * @param {*} event - The browser resize event
    * @memberof LeafletMapComponent
    */
   onResize(event: any) {
@@ -343,6 +415,16 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
   }
 }
 
+/**
+ * Calculates the pixel offset between the map's layer origin and the visible viewport corner.
+ *
+ * @description This utility function is used to determine how much the map's internal
+ * coordinate system has shifted relative to the visible viewport, which is useful for
+ * positioning custom overlays or performing pixel-based calculations.
+ *
+ * @param {any} map - The Leaflet map instance
+ * @returns {{ x: number; y: number }} The x and y pixel offset values
+ */
 export const getCurrentOffset = (map: any): { x: number; y: number } => {
   const layerCorner: L.Point = map.getPixelOrigin();
   const mapCorner: L.Point = map.getPixelBounds().min;

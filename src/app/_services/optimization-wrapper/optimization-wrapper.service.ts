@@ -25,8 +25,18 @@ import {
 import { LoadExampleDataService } from '../load-example-data/load-example-data.service';
 
 /**
- * Service to collect settings, run the actual optimization and provide results/data
- * to other components.
+ * Core service responsible for managing the tour optimization lifecycle.
+ *
+ * This service acts as the central orchestrator for the JOpt Tour Optimizer demo application.
+ * It collects optimization input data (nodes, resources, settings), communicates with the
+ * JOpt REST API to run optimizations, and distributes results to other components via
+ * RxJS observables.
+ *
+ * Typical usage flow:
+ * 1. The service initializes with example data from {@link LoadExampleDataService}.
+ * 2. Users can modify nodes, resources, and settings through setter methods.
+ * 3. {@link startOptimization} sends the input to the backend and streams results.
+ * 4. Other components subscribe to {@link optimizationOutputObservable} for results.
  *
  * @export
  * @class OptimizationWrapperService
@@ -35,20 +45,41 @@ import { LoadExampleDataService } from '../load-example-data/load-example-data.s
   providedIn: 'root',
 })
 export class OptimizationWrapperService {
+  /** Subject that emits whenever the optimization input data is refreshed or re-initialized. */
   private $refresh: ReplaySubject<any>;
 
+  /** The current optimization input payload that will be sent to the REST API. */
   private myOptimizationInput!: RestOptimization;
+  /** Current list of nodes (customer locations / stops) for the optimization. */
   private curNodes!: Node[];
+  /** Current list of resources (vehicles / drivers) for the optimization. */
   private curRess!: Resource[];
+  /** Current optimizer configuration settings (e.g., algorithm parameters). */
   private curSettings?: OptimizationOptions;
 
+  /** Internal observable for the raw optimization HTTP response. */
   private $myInternalOptimizationOutput!: Observable<RestOptimization>;
+  /** Subject used to multicast optimization results to all subscribers. */
   private $myOptimizationOutputSubject!: Subject<RestOptimization>;
+  /** Cached copy of the most recent optimization result. */
   private curOptimizationOutput?: RestOptimization;
+  /** The unique run identifier returned by the backend for the current optimization run. */
   private currentRunId?: string;
+  /** Replay subject that emits the current run ID, replaying the last value to new subscribers. */
   private $runIdSubject = new ReplaySubject<string>(1);
 
-  // Static methods
+  /**
+   * Finds the route element detail for a given node within an optimization result.
+   *
+   * Searches across all routes in the solution to locate the detail entry that
+   * corresponds to the specified node ID.
+   *
+   * @static
+   * @param {string} nodeId - The unique identifier of the node to look up.
+   * @param {RestOptimization} out - The optimization result containing solution routes.
+   * @returns {RouteElementDetail | undefined} The detail for the node, or undefined if not found.
+   * @memberof OptimizationWrapperService
+   */
   public static nodeResult(
     nodeId: string,
     out: RestOptimization
@@ -64,12 +95,12 @@ export class OptimizationWrapperService {
   }
 
   /**
-   *
+   * Finds a specific route by its numeric ID within an optimization result.
    *
    * @static
-   * @param {number} routeId
-   * @param {RestOptimization} out
-   * @return {*}  {Route}
+   * @param {number} routeId - The numeric identifier of the route to retrieve.
+   * @param {RestOptimization} out - The optimization result containing solution routes.
+   * @returns {Route | undefined} The matching route, or undefined if no route with that ID exists.
    * @memberof OptimizationWrapperService
    */
   public static routeResult(
@@ -85,13 +116,13 @@ export class OptimizationWrapperService {
   }
 
   /**
-   *
+   * Searches for a specific element detail within a single route.
    *
    * @private
    * @static
-   * @param {string} elementId
-   * @param {Route} route
-   * @return {*}  {RouteElementDetail}
+   * @param {string} elementId - The unique identifier of the element (node or resource) to find.
+   * @param {Route} route - The route to search within.
+   * @returns {RouteElementDetail | undefined} The matching element detail, or undefined if not found.
    * @memberof OptimizationWrapperService
    */
   private static getDetailInRoute(
@@ -103,6 +134,14 @@ export class OptimizationWrapperService {
 
   //
 
+  /**
+   * Creates an instance of OptimizationWrapperService.
+   *
+   * @param {OptimizationService} optiService - The generated OpenAPI service for communicating with the JOpt REST API.
+   * @param {HealthService} healthService - Service for checking the health status of the optimization endpoint.
+   * @param {LoadExampleDataService} exampleLoaderService - Service that provides predefined example data for initialization.
+   * @memberof OptimizationWrapperService
+   */
   constructor(
     private readonly optiService: OptimizationService,
     private readonly healthService: HealthService,
@@ -114,7 +153,10 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Initializes (or re-initializes) the optimization input from the example data service.
    *
+   * Loads the default example data including nodes, resources, and optimizer settings,
+   * then signals all subscribers via the refresh observable.
    *
    * @memberof OptimizationWrapperService
    */
@@ -129,9 +171,12 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns an observable that emits whenever the optimization input data is refreshed.
    *
+   * Components can subscribe to this to know when to re-render after data changes
+   * (e.g., when a new example is loaded).
    *
-   * @return {*}  {Observable<boolean>}
+   * @returns {Observable<boolean>} An observable that emits true on each refresh event.
    * @memberof OptimizationWrapperService
    */
   public getRefreshObservable(): Observable<boolean> {
@@ -141,9 +186,9 @@ export class OptimizationWrapperService {
   // Getter
 
   /**
+   * Retrieves the current optimizer settings (algorithm parameters, constraints, etc.).
    *
-   *
-   * @return {*}  {OptimizationOptions}
+   * @returns {OptimizationOptions | undefined} The current optimization options, or undefined if not set.
    * @memberof OptimizationWrapperService
    */
   public optimizerSettings(): OptimizationOptions | undefined {
@@ -151,10 +196,13 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns the maximum working time in hours for a given resource.
    *
+   * Converts the ISO 8601 duration string stored on the resource into a numeric
+   * hour value using moment.js.
    *
-   * @param {Resource} curRes
-   * @return {*}  {number}
+   * @param {Resource} curRes - The resource whose maximum working time to retrieve.
+   * @returns {number} The maximum working time in hours, or -1 if the resource is undefined.
    * @memberof OptimizationWrapperService
    */
   public maxWorkingTimeHoursByResource(curRes: Resource): number {
@@ -166,10 +214,13 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns the visit duration in minutes for a given node.
    *
+   * Converts the ISO 8601 duration string stored on the node into a numeric
+   * minute value using moment.js.
    *
-   * @param {Node} curNode
-   * @return {*}  {number}
+   * @param {Node | undefined} curNode - The node whose visit duration to retrieve.
+   * @returns {number} The visit duration in minutes, or -1 if the node is undefined.
    * @memberof OptimizationWrapperService
    */
   public durationMinutesByNode(curNode: Node | undefined): number {
@@ -181,10 +232,13 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns the visit duration in minutes for a node identified by its ID.
    *
+   * Convenience method that looks up the node by ID and delegates to
+   * {@link durationMinutesByNode}.
    *
-   * @param {string} nodeId
-   * @return {*}  {number}
+   * @param {string} nodeId - The unique identifier of the node.
+   * @returns {number} The visit duration in minutes, or -1 if the node is not found.
    * @memberof OptimizationWrapperService
    */
   public durationMinutesById(nodeId: string): number {
@@ -194,9 +248,9 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns an array of all resource IDs in the current optimization input.
    *
-   *
-   * @return {*}  {string[]}
+   * @returns {string[]} Array of unique resource identifier strings.
    * @memberof OptimizationWrapperService
    */
   public getAllResourceIds(): string[] {
@@ -204,23 +258,34 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns an array of all node IDs in the current optimization input.
    *
-   *
-   * @return {*}  {string[]}
+   * @returns {string[]} Array of unique node identifier strings.
    * @memberof OptimizationWrapperService
    */
   public getAllNodeIds(): string[] {
     return this.nodes().map((n) => n.id);
   }
 
+  /**
+   * Returns an array of IDs for all nodes of type "Event" in the current optimization input.
+   *
+   * Event nodes are special nodes that do not have a fixed geographic position and are
+   * assigned a location by the optimizer.
+   *
+   * @returns {string[]} Array of event node identifier strings.
+   * @memberof OptimizationWrapperService
+   */
   public getAllEventNodeIds(): string[] {
     return this.nodes().filter((n) => n.type.typeName === "Event").map((n) => n.id);
   }
 
   /**
+   * Returns an array of all element IDs (nodes and resources combined).
    *
+   * Used to build the full set of element connections for the optimization request.
    *
-   * @return {*}  {string[]}
+   * @returns {string[]} Array of all element identifier strings.
    * @memberof OptimizationWrapperService
    */
   public getAllElementIds(): string[] {
@@ -233,9 +298,11 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns the current list of nodes in the optimization input.
    *
+   * Nodes represent customer locations or stops that need to be visited by resources.
    *
-   * @return {*}  {Node[]}
+   * @returns {Node[]} Array of all current nodes.
    * @memberof OptimizationWrapperService
    */
   public nodes(): Node[] {
@@ -243,9 +310,11 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns the current list of resources in the optimization input.
    *
+   * Resources represent vehicles or drivers that visit the nodes.
    *
-   * @return {*}  {Resource[]}
+   * @returns {Resource[]} Array of all current resources.
    * @memberof OptimizationWrapperService
    */
   public resources(): Resource[] {
@@ -253,10 +322,10 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Finds and returns a single node by its unique identifier.
    *
-   *
-   * @param {string} nodeId
-   * @return {*}  {Node}
+   * @param {string} nodeId - The unique identifier of the node to find.
+   * @returns {Node | undefined} The matching node, or undefined if not found.
    * @memberof OptimizationWrapperService
    */
   public node(nodeId: string): Node | undefined {
@@ -264,10 +333,10 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Finds and returns a single resource by its unique identifier.
    *
-   *
-   * @param {string} resId
-   * @return {*}  {Resource}
+   * @param {string} resId - The unique identifier of the resource to find.
+   * @returns {Resource | undefined} The matching resource, or undefined if not found.
    * @memberof OptimizationWrapperService
    */
   public resource(resId: string): Resource | undefined {
@@ -275,9 +344,12 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns an observable that emits optimization results as they become available.
    *
+   * Components should subscribe to this observable to receive the optimization output
+   * after {@link startOptimization} has been called.
    *
-   * @return {*}  {Observable<RestOptimization>}
+   * @returns {Observable<RestOptimization>} An observable stream of optimization results.
    * @memberof OptimizationWrapperService
    */
   public optimizationOutputObservable(): Observable<RestOptimization> {
@@ -285,9 +357,12 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns the most recent cached optimization result.
    *
+   * Unlike {@link optimizationOutputObservable}, this returns the last known result
+   * synchronously rather than as a stream.
    *
-   * @return {*}  {RestOptimization}
+   * @returns {RestOptimization | undefined} The last optimization result, or undefined if no optimization has completed.
    * @memberof OptimizationWrapperService
    */
   public optimizationOutput(): RestOptimization | undefined {
@@ -297,10 +372,13 @@ export class OptimizationWrapperService {
   // Setters
 
   /**
+   * Sets the visit duration for a node in minutes.
    *
+   * The provided minute value is converted to an ISO 8601 duration string
+   * and stored on the node.
    *
-   * @param {string} nodeId
-   * @param {number} minutes
+   * @param {string} nodeId - The unique identifier of the node to update.
+   * @param {number} minutes - The new visit duration in minutes.
    * @memberof OptimizationWrapperService
    */
   public setVisitDurationMinutes(nodeId: string, minutes: number): void {
@@ -314,10 +392,13 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Sets the maximum working time for a resource in hours.
    *
+   * The provided hour value is converted to an ISO 8601 duration string
+   * and stored on the resource.
    *
-   * @param {string} resId
-   * @param {number} hours
+   * @param {string} resId - The unique identifier of the resource to update.
+   * @param {number} hours - The new maximum working time in hours.
    * @memberof OptimizationWrapperService
    */
   public setMaxWokringTimeHours(resId: string, hours: number): void {
@@ -331,10 +412,42 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Returns the maximum travel distance in kilometers for a given resource.
    *
+   * Parses the string-based distance value stored on the resource into a numeric value.
    *
-   * @param {string} nodeId
-   * @param {OpeningHours[]} newHours
+   * @param {Resource} curRes - The resource whose maximum distance to retrieve.
+   * @returns {number} The maximum distance in kilometers, or -1 if not set.
+   * @memberof OptimizationWrapperService
+   */
+  public maxDistanceKmByResource(curRes: Resource): number {
+    if (curRes?.maxDistance) {
+      return parseFloat(curRes.maxDistance);
+    }
+    return -1;
+  }
+
+  /**
+   * Sets the maximum travel distance for a resource in kilometers.
+   *
+   * @param {string} resId - The unique identifier of the resource to update.
+   * @param {number} km - The new maximum distance in kilometers.
+   * @memberof OptimizationWrapperService
+   */
+  public setMaxDistanceKm(resId: string, km: number): void {
+    const curRes = this.resource(resId);
+    if (curRes !== undefined) {
+      curRes.maxDistance = km.toFixed(1) + ' km';
+    }
+  }
+
+  /**
+   * Replaces the opening hours for a specific node.
+   *
+   * Opening hours define when a node (customer) is available to be visited.
+   *
+   * @param {string} nodeId - The unique identifier of the node to update.
+   * @param {OpeningHours[]} newHours - The new set of opening hours to assign.
    * @memberof OptimizationWrapperService
    */
   public setNodeOpeningHour(
@@ -349,11 +462,14 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Updates the geographic position of a node.
    *
+   * Only applies to nodes of type "Geo". If the node is not found or is not
+   * a GeoNode, no changes are made.
    *
-   * @param {string} nodeId
-   * @param {number} latitude
-   * @param {number} longitude
+   * @param {string} nodeId - The unique identifier of the node to update.
+   * @param {number} latitude - The new latitude coordinate.
+   * @param {number} longitude - The new longitude coordinate.
    * @memberof OptimizationWrapperService
    */
   public setNodePosition(
@@ -370,13 +486,13 @@ export class OptimizationWrapperService {
   }
 
   /**
-  *
-  *
-  * @param {string} resId
-  * @param {number} latitude
-  * @param {number} longitude
-  * @memberof OptimizationWrapperService
-  */
+   * Updates the geographic position of a resource (e.g., the starting depot location).
+   *
+   * @param {string} resId - The unique identifier of the resource to update.
+   * @param {number} latitude - The new latitude coordinate.
+   * @param {number} longitude - The new longitude coordinate.
+   * @memberof OptimizationWrapperService
+   */
   public setResourcePosition(
     resId: string,
     latitude: number,
@@ -391,10 +507,13 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Replaces the working hours for a specific resource.
    *
+   * Working hours define the time windows during which a resource (vehicle/driver)
+   * is available to perform visits.
    *
-   * @param {string} resId
-   * @param {WorkingHours[]} newHours
+   * @param {string} resId - The unique identifier of the resource to update.
+   * @param {WorkingHours[]} newHours - The new set of working hours to assign.
    * @memberof OptimizationWrapperService
    */
   public setResourceWorkingHour(
@@ -409,9 +528,9 @@ export class OptimizationWrapperService {
   }
 
   /**
+   * Replaces the current optimizer settings with new configuration options.
    *
-   *
-   * @param {OptimizationOptions} newSettings
+   * @param {OptimizationOptions} newSettings - The new optimization options to apply.
    * @memberof OptimizationWrapperService
    */
   public setOptimizerSettings(newSettings: OptimizationOptions): void {
@@ -420,9 +539,11 @@ export class OptimizationWrapperService {
     }
   }
   /**
+   * Checks the health status of the JOpt optimization endpoint.
    *
+   * Should be called before starting an optimization to verify the backend is available.
    *
-   * @return {*}  {Observable<Status>}
+   * @returns {Observable<Status>} An observable that emits the current health status.
    * @memberof OptimizationWrapperService
    */
   public getEndPointStatus(): Observable<Status> {
@@ -432,10 +553,18 @@ export class OptimizationWrapperService {
   // Start optimization
 
   /**
+   * Starts the tour optimization process by sending the current input to the JOpt REST API.
    *
+   * This method first validates that the endpoint is healthy, then assembles the element
+   * connections, submits the optimization run via a two-step process (start run, then
+   * fetch result), and multicasts the result to all subscribers.
    *
-   * @param {Status} healthStatus
-   * @return {*}  {Observable<RestOptimization>}
+   * The returned observable (and {@link optimizationOutputObservable}) will emit the
+   * complete optimization result once the backend finishes processing.
+   *
+   * @param {Status} healthStatus - The current health status of the endpoint (must be "UP").
+   * @returns {Observable<RestOptimization>} An observable that emits the optimization result.
+   * @throws {Error} If the endpoint health status is not "UP".
    * @memberof OptimizationWrapperService
    */
   public startOptimization(
@@ -488,14 +617,35 @@ export class OptimizationWrapperService {
     return this.$myOptimizationOutputSubject;
   }
 
+  /**
+   * Returns the current optimization run ID, if an optimization has been started.
+   *
+   * @returns {string | undefined} The run ID, or undefined if no optimization is active.
+   * @memberof OptimizationWrapperService
+   */
   public getRunId(): string | undefined {
     return this.currentRunId;
   }
 
+  /**
+   * Returns an observable that emits the run ID when an optimization starts.
+   *
+   * Uses a ReplaySubject so late subscribers still receive the most recent run ID.
+   *
+   * @returns {Observable<string>} An observable that emits the optimization run ID.
+   * @memberof OptimizationWrapperService
+   */
   public getRunId$(): Observable<string> {
     return this.$runIdSubject.asObservable();
   }
 
+  /**
+   * Sends a stop request to the backend to cancel the currently running optimization.
+   *
+   * @returns {Observable<boolean>} An observable that emits true when the stop is acknowledged.
+   * @throws {Error} If no active run exists (no run ID is available).
+   * @memberof OptimizationWrapperService
+   */
   public stopOptimization(): Observable<boolean> {
     if (!this.currentRunId) {
       throw new Error('No active run to stop.');

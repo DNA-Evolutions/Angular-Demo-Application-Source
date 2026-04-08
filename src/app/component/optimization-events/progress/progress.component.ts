@@ -11,7 +11,13 @@ import { EventSourceService } from 'src/app/_services/optimization-event/event-s
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 /**
- * Component to extract the progress of the currently running optimization
+ * Component that displays real-time progress of a running optimization.
+ *
+ * @description Subscribes to a Server-Sent Events (SSE) progress stream via the
+ * {@link EventSourceService}. The raw progress observable may emit a special "-1" progress
+ * value when the optimization has not started yet; this component filters those out and
+ * retries with an exponential back-off (up to 30 retries with 200ms delays) before giving up.
+ * Change detection is triggered manually on each progress update to keep the UI responsive.
  *
  * @export
  * @class ProgressComponent
@@ -24,6 +30,7 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
     standalone: false
 })
 export class ProgressComponent implements OnInit, OnDestroy {
+  /** Subject used to signal unsubscription and clean up all active observables on destroy. */
   unsubscribe$: Subject<void> = new Subject<void>();
 
   /**
@@ -45,9 +52,10 @@ export class ProgressComponent implements OnInit, OnDestroy {
 
   /**
    * Creates an instance of ProgressComponent.
-   * @param {EventSourceService} eventService
-   * @param {ChangeDetectorRef} cd
-   * @memberof ProgressComponent
+   *
+   * @param {EventSourceService} eventService - Service that provides SSE-based progress streams.
+   * @param {OptimizationWrapperService} wrapperService - Wrapper service that holds the current run ID.
+   * @param {ChangeDetectorRef} cd - Angular change detector, used to manually trigger UI updates.
    */
   constructor(
     private readonly eventService: EventSourceService,
@@ -56,9 +64,12 @@ export class ProgressComponent implements OnInit, OnDestroy {
   ) {}
 
   /**
-   * Filter the progress on init
+   * Initializes the progress observables on component creation.
    *
-   * @memberof ProgressComponent
+   * @description Waits for the run ID to become available from the wrapper service, then
+   * subscribes to the SSE progress stream. The filtered `latestProgress$` observable retries
+   * when progress is negative (optimization not yet started) and triggers manual change
+   * detection on each emission to update the progress bar UI.
    */
   ngOnInit(): void {
     // Wait for the runId to become available, then subscribe to progress
@@ -100,9 +111,10 @@ export class ProgressComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Detach from progress observable
+   * Cleans up subscriptions when the component is destroyed.
    *
-   * @memberof ProgressComponent
+   * @description Emits on the unsubscribe$ subject to complete all active observable
+   * subscriptions and prevent memory leaks.
    */
   ngOnDestroy(): void {
     this.unsubscribe$.next();

@@ -88,6 +88,24 @@ import { CustomDateTimePickerComponent } from './component/custom-date-time-pick
 import { ConsentComponent } from './component/consent/consent.component';
 import { OptimizationNonGeoElementsSelectorComponent } from './component/optimization-elements-selector/optimization-non-geo-elements-selector.component';
 
+/**
+ * Root module for the JOpt TourOptimizer Angular demo application.
+ *
+ * @description Configures and bootstraps the entire application. This module:
+ * - Declares all components, directives, and pipes used in the demo.
+ * - Imports Angular Material modules for the UI, the generated OpenAPI client module,
+ *   routing, forms, charting (ngx-charts), and CDK virtual scrolling.
+ * - Provides core services including the OpenAPI {@link OptimizationService},
+ *   the {@link OptimizationWrapperService} for managing optimization state,
+ *   the {@link GeoAndRoutingService} for geocoding, and the {@link LeafletMarkerService}
+ *   for map marker management.
+ * - Uses an {@link APP_INITIALIZER} to pre-load example data via
+ *   {@link LoadExampleDataService} before the application renders.
+ * - Configures the OpenAPI client base path from environment settings.
+ *
+ * @export
+ * @class AppModule
+ */
 @NgModule({ declarations: [
         AppComponent,
         ConsentComponent,
@@ -204,6 +222,16 @@ import { OptimizationNonGeoElementsSelectorComponent } from './component/optimiz
     ] })
 export class AppModule {}
 
+/**
+ * Factory function used by {@link APP_INITIALIZER} to load default example data
+ * before the application finishes bootstrapping.
+ *
+ * @description This ensures that sample nodes, resources, and optimization configuration
+ * are available when the UI first renders, so the user sees a populated demo immediately.
+ *
+ * @param {LoadExampleDataService} provider - The service responsible for loading example data
+ * @returns {() => Promise<unknown>} A function that returns a promise resolving when the default example is loaded
+ */
 export function exampleDataProviderFactory(provider: LoadExampleDataService) {
   return () => provider.loadDefaultExample();
 }

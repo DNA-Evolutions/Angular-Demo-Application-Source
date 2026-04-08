@@ -44,11 +44,13 @@ export class RouteResultDialogComponent implements OnInit {
    */
   curRoute?: Route;
 
+  /** The currently expanded route element detail row in the expansion panel list. */
   expandedElement: RouteElementDetail | null;
 
+  /** Tracks whether the expansion panel is open or closed. */
   public panelOpenState: boolean;
 
-  // During next and prev in nodes
+  /** Index of the currently active expansion panel step; -1 means none is open. */
   step = -1;
 
   /**
@@ -65,10 +67,15 @@ export class RouteResultDialogComponent implements OnInit {
   ) {}
 
   /**
+   * Extracts the route object from all available sources.
    *
+   * @description Resolves the route to display by checking, in order:
+   * 1. The `@Input() route` property (direct binding)
+   * 2. The `@Input() routeId` or dialog data `routeId` (looked up from optimization results)
+   * 3. The dialog data `route` property (passed directly via dialog data)
    *
    * @private
-   * @return {*}  {void}
+   * @returns {void}
    * @memberof RouteResultDialogComponent
    */
   private extractRoute(): void {
@@ -115,9 +122,9 @@ export class RouteResultDialogComponent implements OnInit {
   //
 
   /**
+   * Sets the active expansion panel step to the given index.
    *
-   *
-   * @param {number} index
+   * @param {number} index - The index of the panel to expand
    * @memberof RouteResultDialogComponent
    */
   setStep(index: number): void {
@@ -125,7 +132,7 @@ export class RouteResultDialogComponent implements OnInit {
   }
 
   /**
-   *
+   * Advances to the next expansion panel step.
    *
    * @memberof RouteResultDialogComponent
    */
@@ -134,7 +141,7 @@ export class RouteResultDialogComponent implements OnInit {
   }
 
   /**
-   *
+   * Returns to the previous expansion panel step.
    *
    * @memberof RouteResultDialogComponent
    */
@@ -143,7 +150,7 @@ export class RouteResultDialogComponent implements OnInit {
   }
 
   /**
-   *
+   * Closes the route result dialog.
    *
    * @memberof RouteResultDialogComponent
    */

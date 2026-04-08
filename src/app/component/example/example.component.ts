@@ -19,12 +19,16 @@ import { MatDialog } from '@angular/material/dialog';
     standalone: false
 })
 export class ExampleComponent {
+  /** Reference to the element-selector anchor DOM element, used for scroll-into-view. */
   @ViewChild('elselectoranchor', { static: false }) elSelectorRef: ElementRef;
 
+  /** The currently selected example ID (may differ from activeExampleId before loading). */
   curExampleId = this.loadService.getDefaultExampleId();
-  
+
+  /** The example ID that is currently loaded and active in the demo. */
   activeExampleId = this.loadService.getDefaultExampleId();
 
+  /** The current calendar year, used for copyright display in the footer. */
   currentYear = new Date().getFullYear();
 
   /**
@@ -125,6 +129,12 @@ export class ExampleComponent {
     return this.loadService.getExampledDefs();
   }
 
+  /**
+   * Opens the introduction/help dialog as a Material dialog overlay.
+   *
+   * @description Displays the {@link IntroductionComponent} dialog which contains
+   * version information, API endpoint details, and links to tutorial videos.
+   */
   openIntroductionDialog(): void {
     const dialogRef = this.dialog.open(IntroductionComponent, {
       minWidth: '10vw',

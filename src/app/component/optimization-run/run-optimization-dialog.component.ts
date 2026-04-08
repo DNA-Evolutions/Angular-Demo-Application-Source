@@ -13,7 +13,12 @@ import { OptimizationResultDialogComponent } from '../optimization-elements/resu
 import { concatMap, take, timeout } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 /**
+ * Dialog component that executes the optimization and displays progress.
  *
+ * @description This dialog is opened after the user confirms settings in the prepare dialog.
+ * It first validates the health status of the optimizer endpoint, then starts the optimization.
+ * Upon completion, the result dialog is opened. If an error occurs (e.g., endpoint unreachable
+ * or timeout), the user is notified via a snack bar and the dialog closes.
  *
  * @export
  * @class RunOptimizationDialogComponent
@@ -24,6 +29,17 @@ import { HttpErrorResponse } from '@angular/common/http';
     standalone: false
 })
 export class RunOptimizationDialogComponent {
+  /**
+   * Creates an instance of RunOptimizationDialogComponent.
+   *
+   * @description Validates the data service and immediately starts the optimization process.
+   *
+   * @param {OptimizationWrapperService} dataService - Service providing optimization operations.
+   * @param {MatSnackBar} snackBar - Snack bar for user notifications.
+   * @param {MatDialogRef<RunOptimizationDialogComponent>} dialogRef - Reference to this dialog.
+   * @param {MatDialog} dialog - Dialog service for opening the result dialog.
+   * @param {RunOptimizationDialogData} data - Data injected into this dialog.
+   */
   constructor(
     private dataService: OptimizationWrapperService,
     private snackBar: MatSnackBar,
@@ -39,22 +55,20 @@ export class RunOptimizationDialogComponent {
     this.startOptimization();
   }
   /**
+   * Displays a snack bar notification with a default duration of 1 second.
    *
-   *
-   * @param {string} message
-   * @param {string} action
-   * @memberof RunOptimizationDialogComponent
+   * @param {string} message - The message text to display.
+   * @param {string} action - The label for the snack bar dismiss button.
    */
   openSnackBar(message: string, action: string): void {
     this.openSnackBarFor(message, action, 1000);
   }
   /**
+   * Displays a snack bar notification with a custom duration.
    *
-   *
-   * @param {string} message
-   * @param {string} action
-   * @param {number} durationMillis
-   * @memberof RunOptimizationDialogComponent
+   * @param {string} message - The message text to display.
+   * @param {string} action - The label for the snack bar dismiss button.
+   * @param {number} durationMillis - How long the snack bar stays visible, in milliseconds.
    */
   openSnackBarFor(
     message: string,
@@ -66,9 +80,10 @@ export class RunOptimizationDialogComponent {
     });
   }
   /**
+   * Sends a request to gracefully stop the currently running optimization.
    *
-   *
-   * @memberof RunOptimizationDialogComponent
+   * @description Calls the data service to stop the optimization. The optimizer will finish
+   * its current iteration and return the best result found so far.
    */
   stopOptimizationGracefully(): void {
     this.openSnackBar('Stoping optimization gracefully', 'ok');
@@ -92,10 +107,14 @@ export class RunOptimizationDialogComponent {
   // STARTING OPTIMIZATION
 
   /**
-   * First, the health endpoint is called. If healty, the optimization is started
+   * Validates the optimizer health endpoint and starts the optimization.
+   *
+   * @description First calls the health endpoint with a 10-second timeout. If the endpoint
+   * is healthy, the optimization is started via {@link OptimizationWrapperService.startOptimization}.
+   * On success, the result dialog is opened. On error (HTTP error, timeout, or unexpected
+   * failure), the user is notified and the dialog is closed.
    *
    * @private
-   * @memberof RunOptimizationDialogComponent
    */
   private startOptimization(): void {
     // Get the healt observable
@@ -133,10 +152,9 @@ export class RunOptimizationDialogComponent {
   }
 
   /**
+   * Opens the optimization result dialog to present the completed optimization output.
    *
-   *
-   * @param {RestOptimization} output
-   * @memberof RunOptimizationDialogComponent
+   * @param {RestOptimization} output - The optimization result to display.
    */
   openOptimizationResultDialog(output: RestOptimization): void {
     const dialogRef = this.dialog.open(OptimizationResultDialogComponent, {

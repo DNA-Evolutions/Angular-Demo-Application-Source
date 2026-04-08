@@ -24,11 +24,15 @@ import {
 import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
 
 /**
- * The Component to show/modify node properties.
+ * Dialog component for viewing and editing the properties of a single optimization node.
+ *
+ * @description Allows the user to modify a node's opening hours, visit duration, pillar status,
+ * and resource constraints (binding and excluding). All editable fields are deep-copied on open
+ * so that changes are only persisted when the user explicitly saves. On save, the modified
+ * properties are written back to the data service and a map refresh is triggered.
  *
  * @export
  * @class NodePropertiesDialogComponent
- *
  */
 @Component({
     selector: 'app-node-properties-dialog',
@@ -36,33 +40,43 @@ import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
     standalone: false
 })
 export class NodePropertiesDialogComponent {
+  /** Reactive form group for opening hours validation. */
   openingHoursForm: FormGroup;
 
-  //
+  /** Reference to the current node being edited, retrieved from the data service. */
   curNode: Node;
 
-  // Copies
+  /** Deep copy of the node's opening hours, isolating edits until save. */
   openingHoursCopy: OpeningHours[];
 
-  // Copies
+  /** Deep copy of the node's visit duration in minutes for editing. */
   visitDurationMinutes: number;
 
-  // Copies
+  /** Deep copy of the node's constraints for editing. */
   constraintsCopy: Constraint[];
 
+  /** Array holding the binding resource constraint(s) for this node. */
   binding: Constraint[] = [];
+
+  /** Array holding the excluding resource constraint(s) for this node. */
   excluding: Constraint[] = [];
 
-  // Result indicator
+  /** Indicates whether an optimization result currently exists. */
   hasResult?: boolean;
 
+  /** List of all resource IDs available in the current optimization, used for constraint dropdowns. */
   resourceIds: string[];
 
+  /** Tooltip text shown when the save button is enabled. */
   enabledSaveTooltip = "Save all modifications and close this dialog.";
+
+  /** Tooltip text shown when the save button is disabled due to validation errors. */
   disabledSaveTooltip = "Please correct the errors before saving. For example, the start lies after the end. Or different days are overlapping.";
 
+  /** Whether the current node is flagged as a pillar node (must-visit, fixed-position node). */
   isPillar: boolean = false;
 
+  /** Deep copy of the node's type definition, supporting in-dialog type modifications. */
   typeCopy: NodeType;
 
   /**
@@ -117,11 +131,14 @@ export class NodePropertiesDialogComponent {
   }
 
   /**
+   * Extracts and initializes the binding and excluding resource constraints from a node.
    *
+   * @description Deep-copies the node's constraints and separates them into binding and
+   * excluding categories. If a constraint type is not present, a default empty constraint
+   * is created as a placeholder for the user to populate.
    *
    * @private
-   * @param {Node} node
-   * @memberof NodePropertiesDialogComponent
+   * @param {Node} node - The node whose constraints should be loaded.
    */
   private setConstraint(node: Node): void {
     let myBindingResoure: Constraint;
@@ -172,20 +189,31 @@ export class NodePropertiesDialogComponent {
     this.constraintsCopy = modifiedConstraints;
   }
 
+  /**
+   * Casts a generic constraint's type to a {@link BindingResourceConstraint}.
+   *
+   * @param {Constraint} c - The constraint to cast.
+   * @returns {BindingResourceConstraint} The constraint type narrowed to BindingResourceConstraint.
+   */
   asBindingResourceType(c: Constraint): BindingResourceConstraint {
     return c.type as BindingResourceConstraint;
   }
 
+  /**
+   * Casts a generic constraint's type to an {@link ExcludingResourceConstraint}.
+   *
+   * @param {Constraint} c - The constraint to cast.
+   * @returns {ExcludingResourceConstraint} The constraint type narrowed to ExcludingResourceConstraint.
+   */
   asExcludingResourceType(c: Constraint): ExcludingResourceConstraint {
     return c.type as ExcludingResourceConstraint;
   } 
 
   /**
+   * Displays a brief snack bar notification to the user.
    *
-   *
-   * @param {string} message
-   * @param {string} action
-   * @memberof NodePropertiesDialogComponent
+   * @param {string} message - The message text to display.
+   * @param {string} action - The label for the snack bar action button.
    */
   openSnackBar(message: string, action: string): void {
     this.snackBar.open(message, action, {
@@ -194,9 +222,11 @@ export class NodePropertiesDialogComponent {
   }
 
   /**
+   * Handles the "Save" button click.
    *
-   *
-   * @memberof NodePropertiesDialogComponent
+   * @description Persists all user modifications (opening hours, visit duration, constraints,
+   * node type, and pillar status) back to the data service. Triggers a map refresh so that
+   * visual representations are updated, then closes the dialog.
    */
   onSaveClick(): void {
     this.dataService.setNodeOpeningHour(
@@ -230,11 +260,15 @@ export class NodePropertiesDialogComponent {
   }
 
   /**
+   * Filters out constraints that have placeholder/empty resource bindings.
    *
+   * @description Removes binding and excluding constraints whose first resource ID is
+   * the placeholder value '--', indicating the user did not assign a real resource.
+   * Also filters out any unknown constraint types.
    *
    * @private
-   * @param {Constraint[]} cons
-   * @memberof NodePropertiesDialogComponent
+   * @param {Constraint[]} cons - The array of constraints to filter.
+   * @returns {Constraint[]} A new array containing only valid, non-placeholder constraints.
    */
   private filterConstraints(cons: Constraint[]): Constraint[] {
     const fitlererdConstraint = cons.filter(c => {
@@ -281,7 +315,12 @@ export class NodePropertiesDialogComponent {
   /
   */
 
-   // This method should be called whenever curNode changes
+  /**
+   * Updates the isPillar flag based on the current node's type.
+   *
+   * @description Checks if the node is a GeoNode or EventNode and reads the pillarNode
+   * property to determine pillar status. Should be called whenever the current node changes.
+   */
    updateIsPillarFlag() {
 
     // Cast node.type to GeoNode or Event
@@ -298,7 +337,14 @@ export class NodePropertiesDialogComponent {
    
   }
 
-  // Responds to checkbox changes
+  /**
+   * Toggles the pillar node status in response to a checkbox change.
+   *
+   * @description When enabled, creates a minimal {@link GeoPillarNode} and assigns it to the
+   * node type's pillarNode property. When disabled, removes the pillarNode property entirely.
+   *
+   * @param {boolean} value - True to mark the node as a pillar, false to remove pillar status.
+   */
   togglePillar(value: boolean) {
 
     let type = this.typeCopy; // or this.curNode.type
@@ -400,9 +446,9 @@ export class NodePropertiesDialogComponent {
 
 
   /**
+   * Handles the "Cancel" button click.
    *
-   *
-   * @memberof NodePropertiesDialogComponent
+   * @description Discards all unsaved changes and closes the dialog.
    */
   onNoClick(): void {
     this.openSnackBar('Cancelling', 'Ok');

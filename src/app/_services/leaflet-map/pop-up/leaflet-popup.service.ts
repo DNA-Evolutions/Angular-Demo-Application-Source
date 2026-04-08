@@ -8,8 +8,15 @@ import { RouteResultDialogComponent } from 'src/app/component/optimization-eleme
 import { OptimizationWrapperService } from '../../optimization-wrapper/optimization-wrapper.service';
 
 /**
+ * Service responsible for creating and binding Leaflet popups, tooltips, and Angular Material
+ * dialogs to map markers and polylines.
  *
- * Service to create popups for markers.
+ * This service bridges the Leaflet map layer with Angular Material dialogs. When a user
+ * interacts with a marker or polyline on the map (click, drag), this service:
+ * - Binds informational popups and tooltips showing element details.
+ * - Opens Angular Material dialog components for detailed viewing and editing of
+ *   node properties, resource properties, and route results.
+ * - Handles drag-end events to update element positions in the optimization input.
  *
  * @export
  * @class PopUpService
@@ -18,18 +25,29 @@ import { OptimizationWrapperService } from '../../optimization-wrapper/optimizat
   providedIn: 'root',
 })
 export class PopUpService {
+  /**
+   * Creates an instance of PopUpService.
+   *
+   * @param {OptimizationWrapperService} dataService - Used to update element positions when markers are dragged.
+   * @param {MatDialog} dialog - Angular Material dialog service for opening property/result dialogs.
+   * @memberof PopUpService
+   */
   constructor(
     private dataService: OptimizationWrapperService,
     public dialog: MatDialog) {}
 
 
   /**
+   * Binds a popup, tooltip, click handler, and drag handler to a node marker.
    *
-   * Binds a pupop to a node marker
+   * When the marker is clicked, the node properties dialog is opened. When the marker
+   * is dragged (if draggable), the node's geographic position is updated in the
+   * optimization input. A tooltip is always displayed showing the node ID.
    *
-   * @param {*} marker
-   * @param {JOptGeoNode} node
-   * @param {ElementRef} ref
+   * @param {*} marker - The Leaflet marker instance to bind interactions to.
+   * @param {Node} node - The node data object associated with this marker.
+   * @param {ElementRef} ref - The Angular element reference of the map component.
+   * @param {boolean} isDraggable - Whether the marker supports drag-and-drop repositioning.
    * @memberof PopUpService
    */
   bindNodePopUp(marker: any, node: Node, ref: ElementRef, isDraggable: boolean): void {
@@ -57,14 +75,16 @@ export class PopUpService {
     marker.bindTooltip('Node: ' + node.id + ' - Click for details' + (isDraggable?' or hold to move':''));
   }
 
-  //
   /**
+   * Binds a popup and tooltip to a route polyline on the map.
    *
-   * Bind a popup to the polyline between two markers
+   * When the polyline is clicked (popup opens), the route result dialog is immediately
+   * opened and the popup is closed. The tooltip displays the route ID and the assigned
+   * resource (visitor) name.
    *
-   * @param {*} polyline
-   * @param {JOptRoute} route
-   * @param {ElementRef} ref
+   * @param {*} polyline - The Leaflet polyline instance to bind interactions to.
+   * @param {Route} route - The route data object associated with this polyline.
+   * @param {ElementRef} ref - The Angular element reference of the map component.
    * @memberof PopUpService
    */
   bindPolyRoutePopUp(polyline: any, route: Route, ref: ElementRef): void {
@@ -91,12 +111,17 @@ export class PopUpService {
 
 
   /**
+   * Binds a popup, tooltip, click handler, and drag handler to a resource marker.
    *
-   * Binds a pupop to a resource marker
+   * When the marker is clicked (popup opens), the resource properties dialog is immediately
+   * opened and the popup is closed. When the marker is dragged (if draggable), the resource's
+   * position is updated in the optimization input. A tooltip is always displayed showing the
+   * resource ID.
    *
-   * @param {*} marker
-   * @param {JOptGeoResource} res
-   * @param {ElementRef} ref
+   * @param {*} marker - The Leaflet marker instance to bind interactions to.
+   * @param {Resource} res - The resource data object associated with this marker.
+   * @param {ElementRef} ref - The Angular element reference of the map component.
+   * @param {boolean} isDraggable - Whether the marker supports drag-and-drop repositioning.
    * @memberof PopUpService
    */
   bindResourcePopUp(marker: any, res: Resource, ref: ElementRef, isDraggable: boolean): void {
@@ -125,10 +150,12 @@ export class PopUpService {
 
 
   /**
+   * Opens the Angular Material dialog for viewing and editing node properties.
    *
-   * Opens a node dialog from a node popup marker
+   * The dialog displays detailed information about the node (opening hours, visit duration,
+   * position, etc.) and allows the user to modify these values.
    *
-   * @param {string} cNodeId
+   * @param {string} cNodeId - The unique identifier of the node to display in the dialog.
    * @memberof PopUpService
    */
   openNodeDialog(cNodeId: string): void {
@@ -144,9 +171,12 @@ export class PopUpService {
   }
 
   /**
-   * Opens a resource dialog from a resource popup marker
+   * Opens the Angular Material dialog for viewing and editing resource properties.
    *
-   * @param {string} cResourceId
+   * The dialog displays detailed information about the resource (working hours, max travel
+   * time, position, etc.) and allows the user to modify these values.
+   *
+   * @param {string} cResourceId - The unique identifier of the resource to display in the dialog.
    * @memberof PopUpService
    */
   openResourceDialog(cResourceId: string): void {
@@ -161,10 +191,12 @@ export class PopUpService {
 
 
   /**
+   * Opens the Angular Material dialog for viewing the optimization result of a specific route.
    *
-   * Opens a route result dialog from a route-polyline between two markers
+   * The dialog displays the route's assigned resource, visited nodes in order, travel times,
+   * distances, and any constraint violations or warnings.
    *
-   * @param {number} curRouteId
+   * @param {number} curRouteId - The numeric identifier of the route whose results to display.
    * @memberof PopUpService
    */
   openRouteResultDialog(curRouteId: number): void {

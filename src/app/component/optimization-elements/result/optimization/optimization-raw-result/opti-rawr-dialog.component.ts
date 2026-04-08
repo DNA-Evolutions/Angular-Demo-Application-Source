@@ -22,11 +22,13 @@ import {
     standalone: false
 })
 export class OptimizationRawRDialogComponent implements OnInit {
-  //
+  /** Optimization result passed as an input binding (alternative to dialog data). */
   @Input() result: RestOptimization;
 
+  /** The resolved optimization result used for display. */
   curResult?: RestOptimization;
 
+  /** The text-based solution representation extracted from the result extension, if available. */
   textSolution?: TextSolution;
 
   /**
@@ -43,7 +45,11 @@ export class OptimizationRawRDialogComponent implements OnInit {
   ) {}
 
   /**
+   * Extracts the optimization result from available sources.
    *
+   * @description Checks the `@Input() result` property first, then falls back to
+   * the dialog data injection. If the result contains an extension with a
+   * {@link TextSolution}, it is extracted for display.
    *
    * @private
    * @memberof OptimizationRawRDialogComponent
@@ -69,7 +75,7 @@ export class OptimizationRawRDialogComponent implements OnInit {
   }
 
   /**
-   *
+   * Lifecycle hook that extracts the optimization result on component initialization.
    *
    * @memberof OptimizationRawRDialogComponent
    */
@@ -78,7 +84,7 @@ export class OptimizationRawRDialogComponent implements OnInit {
   }
 
   /**
-   *
+   * Closes the raw result dialog.
    *
    * @memberof OptimizationRawRDialogComponent
    */
