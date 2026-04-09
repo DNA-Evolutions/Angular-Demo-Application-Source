@@ -62,11 +62,11 @@ title="Tutorial — How to use the Demo Application" alt="Tutorial — How to us
 | nginx (Docker runtime) | 1.27.4-alpine |
 
 **App version:** 3.0.0-alpine  
-**Compatible with TourOptimizer spec:** 1.3.5 or higher
+**Compatible with TourOptimizer spec:** 1.3.5-SNAPSHOT or higher
 
 ### Changelog
 
-**April 2026:** Updated to Angular 21.2. Compatible with TourOptimizer 1.3.3+.
+**April 2026:** Updated to Angular 21.2. Compatible with TourOptimizer 1.3.5+.
 
 **February 2026:** Updated to Angular 21.1. Multiple dependency upgrades.
 
