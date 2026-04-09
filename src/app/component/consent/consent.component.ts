@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Consent/disclaimer page component displayed before the user can access the demo.
@@ -19,6 +20,7 @@ import { Router } from '@angular/router';
     standalone: false
 })
 export class ConsentComponent {
+  readonly links = EXTERNAL_LINKS;
 
   /**
    * Creates an instance of ConsentComponent.

@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { OptimizationOptions } from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { Kv } from '../optimization-elements/result/optimization/interface/keyvalue/key-value.interface';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Dialog component for preparing and configuring an optimization run.
@@ -30,6 +31,8 @@ import { Kv } from '../optimization-elements/result/optimization/interface/keyva
     standalone: false
 })
 export class PrepareRunOptimizationDialogComponent {
+  readonly links = EXTERNAL_LINKS;
+
   /** The current optimizer settings retrieved from the data service. */
   curSettings?: OptimizationOptions;
 

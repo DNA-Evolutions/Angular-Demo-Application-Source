@@ -4,6 +4,7 @@ import { RouteElementDetail, Route } from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Component to show the route results
@@ -19,6 +20,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     standalone: false
 })
 export class RouteResultDialogComponent implements OnInit {
+  readonly links = EXTERNAL_LINKS;
+
   /**
    * Use a route id as input to extract its route result from an optimizaion result
    *

@@ -36,7 +36,7 @@
         matTooltip="Preview of Intro-video. Click, to open video in a dialog window."
       />
       <p></p>
-      <strong>JOpt</strong> by DNA Evolutiuons has been designed as an
+      <strong>JOpt</strong> by DNA Evolutions has been designed as an
       <strong>integrable</strong> module for existing applications and suites in
       the context of <strong>logistics</strong>-planning purposes for
       <strong>ERP</strong> systems. If your product requires manual user input
@@ -82,20 +82,20 @@
       The integration can be done either directly via our Java library
       (available via Maven, etc.) or as dockerized Spring-Boot-Application.
       <p></p>
-      <u><strong>Further reading:</strong></u> Have a look at our documenation
+      <u><strong>Further reading:</strong></u> Have a look at our documentation
       site and at our company website.
       <p></p>
       <li>
         Special features - What makes us unique
         <a
-          href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
+          [href]="links.SPECIAL_FEATURES"
           target="_blank"
           >Overview of special features</a
         >
       </li>
       <li>
         Our company website -
-        <a href="https://www.dna-evolutions.com" target="_blank"
+        <a [href]="links.COMPANY_HOMEPAGE" target="_blank"
           >www.dna-evolutions.com</a
         >
       </li>
@@ -135,9 +135,9 @@
       <p></p>
       <li>
         <a
-          href="https://docs.dna-evolutions.com/introduction/introduction.html"
+          [href]="links.INTRODUCTION"
           target="_blank"
-          matTooltip="Visit our Intruction to the JOpt optimization engine."
+          matTooltip="Visit our Introduction to the JOpt optimization engine."
           >Full introduction</a
         >
       </li>
@@ -216,7 +216,7 @@
       <p></p>
       <li>
         <a
-          href="https://github.com/DNA-Evolutions/Angular-Demo-Application-Source"
+          [href]="links.GITHUB_DEMO_APP"
           target="_blank"
           matTooltip="JOpt-Tour-Optimizer Demo Application on GitHub."
           >JOpt-Tour-Optimizer Demo Application on GitHub</a
@@ -228,7 +228,7 @@
       <p></p>
       <li>
         <a
-          href="https://hub.docker.com/r/dnaevolutions/jopt_demoapplication"
+          [href]="links.DOCKERHUB_DEMO_APP"
           target="_blank"
           matTooltip="dnaevolutions/jopt_demoapplication on DockerHub"
           >dnaevolutions/jopt_demoapplication on DockerHub</a
@@ -276,32 +276,32 @@
       <p></p>
       <li>
         Our company website -
-        <a href="https://www.dna-evolutions.com" target="_blank"
+        <a [href]="links.COMPANY_HOMEPAGE" target="_blank"
           >www.dna-evolutions.com</a
         >
       </li>
       <li>
         Our LinkedIn channel -
-        <a href="https://www.linkedin.com/company/dna-evolutions/" target="_blank"
+        <a [href]="links.LINKEDIN" target="_blank"
           >www.linkedin.com/company/dna-evolutions/</a
         >
       </li>
       <li>
         Further documentation -
-        <a href="https://docs.dna-evolutions.com" target="_blank"
-          >docs.dna-evolutions.com</a
+        <a [href]="links.DOCS_HOME" target="_blank"
+          >https://dna-evolutions.com/docs/</a
         >
       </li>
       <li>
         Our GitHub site -
-        <a href="https://github.com/DNA-Evolutions" target="_blank"
+        <a [href]="links.GITHUB_ORG" target="_blank"
           >github.com/DNA-Evolutions</a
         >
       </li>
       <li>
         Our DockerHub Channel -
         <a
-          href="https://hub.docker.com/u/dnaevolutions"
+          [href]="links.DOCKERHUB_ORG"
           target="_blank"
           >hub.docker.com/u/dnaevolutions</a
         >
@@ -309,7 +309,7 @@
       <li>
         Special features -
         <a
-          href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
+          [href]="links.SPECIAL_FEATURES"
           target="_blank"
           >Overview of special features</a
         >
@@ -317,20 +317,20 @@
 
       <li>
         Our official repository -
-        <a href="https://public.repo.dna-evolutions.com" target="_blank"
-          >public.repo.dna-evolutions.com</a
+        <a [href]="links.ARTIFACT_REPO" target="_blank"
+          >nexus.dna-evolutions.net</a
         >
       </li>
       <li>
         Our official JavaDocs -
-        <a href="https://public.javadoc.dna-evolutions.com" target="_blank"
+        <a [href]="links.JAVADOC" target="_blank"
           >public.javadoc.dna-evolutions.com</a
         >
       </li>
       <li>
         Our Youtube Channel -
         <a
-          href="https://www.youtube.com/channel/UCzfZjJLp5Rrk7U2UKsOf8Fw"
+          [href]="links.YOUTUBE_CHANNEL"
           target="_blank"
           >DNA Tutorials and More</a
         >
@@ -361,7 +361,7 @@
       <p></p>
       Do you like what you see? Do you want to get in contact with us? Please
       visit:
-      <a href="https://dna-evolutions.com/contact/" target="_blank"> Contact</a>
+      <a [href]="links.CONTACT" target="_blank"> Contact</a>
     </div>
   </mat-expansion-panel>
   <p></p>
@@ -378,7 +378,7 @@
             src="./assets/misc/icon/icon-trophy.png"
             alt="howto icon"
           />
-          <h3>Attritbution</h3>
+          <h3>Attribution</h3>
         </div>
       </mat-panel-title>
 
@@ -387,7 +387,7 @@
     <div class="helpdesc dontbreakout">
       <p></p>
       Some icons and graphics that are used are originating from
-      <a href="https://www.flaticon.com/" target="_blank" title="Flaticon"
+      <a [href]="links.FLATICON" target="_blank" title="Flaticon"
         >www.flaticon.com</a
       >
     </div>
@@ -407,7 +407,7 @@
   >
     Close
   </button>
-  <a href="https://www.dna-evolutions.com" target="_blank">
+  <a [href]="links.COMPANY_HOMEPAGE" target="_blank">
     <img
       class="right"
       height="40px"

@@ -31,6 +31,7 @@ import {
 } from '../../../shared/datasource-utils';
 import { RouteResultDialogComponent } from '../../route/route-result/route-result-dialog.component';
 import { OptimizationRawRDialogComponent } from '../optimization-raw-result/opti-rawr-dialog.component';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Component to show the Optimization result. An overview of the solutions, as well as
@@ -49,6 +50,8 @@ import { OptimizationRawRDialogComponent } from '../optimization-raw-result/opti
 })
 export class OptimizationResultDialogComponent
   implements OnInit, AfterViewInit {
+  readonly links = EXTERNAL_LINKS;
+
   /**
    * In case the dialog needs to be opened with an existing result, the
    * existing result can be provided as input.

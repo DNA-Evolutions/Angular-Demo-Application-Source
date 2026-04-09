@@ -200,7 +200,7 @@
             <p></p>
           </mat-tab>
 
-          <mat-tab label="Advandced">
+          <mat-tab label="Advanced">
             <div class="wide boxteaser">
               <p class="boxteasertitle dontbreakout">Resources in JOpt</p>
               <p>
@@ -231,7 +231,7 @@
                 <span style="margin-top: 0px; vertical-align: auto">
                   Visit
                   <a
-                    href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
+                    [href]="links.SPECIAL_FEATURES"
                     target="_blank"
                     >Special features</a
                     >
@@ -262,7 +262,7 @@
             }
             <button
               mat-raised-button
-              matTooltip="enabledSaveTooltip"
+              [matTooltip]="enabledSaveTooltip"
               color="primary"
               (click)="onSaveClick()"
               [disabled]="!f.valid"
@@ -282,7 +282,7 @@
             </button>
 
             <a
-              href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#resources"
+              [href]="links.BASIC_ELEMENTS_RESOURCES"
               target="_blank"
               matTooltip="Visit our documentation on Resources."
               mat-raised-button class="mat-raised-button infobutton"

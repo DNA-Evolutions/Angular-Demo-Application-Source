@@ -2,7 +2,7 @@
 <mat-toolbar class="colored">
   <mat-toolbar-row>
     <div class="toolbar">
-      <a href="https://www.dna-evolutions.com" target="_blank">
+      <a [href]="links.COMPANY_HOMEPAGE" target="_blank">
         <img
           class="leftitem disappearable"
           src="./assets/misc/icon/dna-evolutions-logo-white-retina-and-angular.png"
@@ -65,7 +65,7 @@
             nodes and resources are fixed in each example (except for <strong>Free moving Example</strong>). However, opening hours,
             working hours, etc. can be modified and tested. After selecting an example
             you can read its <strong>Example Description</strong>. To activate an
-            example simpy click <strong>Load</strong>. After loading the example you
+            example simply click <strong>Load</strong>. After loading the example you
             can start
             <img
               style="padding-left: 2px; padding-right: 5px; height: 18px"
@@ -319,12 +319,12 @@
                               <p></p>
                               <div class="footer">
                                 <div>
-                                  <a href="https://www.dna-evolutions.com" target="_blank"
+                                  <a [href]="links.COMPANY_HOMEPAGE" target="_blank"
                                     >&copy; {{currentYear}} DNA Evolutions GmbH</a
                                     >
                                     <a
                                       style="padding-left: 20px"
-                                      href="https://www.dna-evolutions.com/legal-notice/"
+                                      [href]="links.LEGAL_NOTICE"
                                       target="_blank"
                                       >Legal Notice</a
                                       >

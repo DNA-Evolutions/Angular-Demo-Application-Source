@@ -8,6 +8,7 @@ import {
 } from '@openapibuild/openapi';
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { ResourcePropertiesData } from './interface/resource-properties-data.interface';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Dialog component for viewing and editing the properties of a single optimization resource.
@@ -25,6 +26,8 @@ import { ResourcePropertiesData } from './interface/resource-properties-data.int
     standalone: false
 })
 export class ResourcePropertiesDialogComponent {
+  readonly links = EXTERNAL_LINKS;
+
   /** Reference to the current resource being edited, retrieved from the data service. */
   curRes: Resource;
 

@@ -5,6 +5,7 @@ import { JOptExampleDefinition } from 'src/app/_services/load-example-data/inter
 import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapper/optimization-wrapper.service';
 import { IntroductionComponent } from '../introduction/introduction.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Start up component showing the different expansion panels to control the demo application
@@ -19,6 +20,8 @@ import { MatDialog } from '@angular/material/dialog';
     standalone: false
 })
 export class ExampleComponent {
+  readonly links = EXTERNAL_LINKS;
+
   /** Reference to the element-selector anchor DOM element, used for scroll-into-view. */
   @ViewChild('elselectoranchor', { static: false }) elSelectorRef: ElementRef;
 

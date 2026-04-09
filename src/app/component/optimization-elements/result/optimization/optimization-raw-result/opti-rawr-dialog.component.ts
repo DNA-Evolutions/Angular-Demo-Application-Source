@@ -7,6 +7,7 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Component to show the Raw result of an optimization run.
@@ -22,6 +23,8 @@ import {
     standalone: false
 })
 export class OptimizationRawRDialogComponent implements OnInit {
+  readonly links = EXTERNAL_LINKS;
+
   /** Optimization result passed as an input binding (alternative to dialog data). */
   @Input() result: RestOptimization;
 

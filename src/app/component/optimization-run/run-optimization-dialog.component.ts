@@ -86,20 +86,20 @@ export class RunOptimizationDialogComponent {
    * its current iteration and return the best result found so far.
    */
   stopOptimizationGracefully(): void {
-    this.openSnackBar('Stoping optimization gracefully', 'ok');
+    this.openSnackBar('Stopping optimization gracefully', 'ok');
     this.dataService
       .stopOptimization()
       .pipe(take(1))
       .subscribe(
         () => {
-          this.openSnackBar('Optimization stoped', 'Ok');
+          this.openSnackBar('Optimization stopped', 'Ok');
         },
         (error) => {
           console.log('error', error);
           this.openSnackBar('Error', error);
         },
         () => {
-          this.openSnackBar('Optimization stoped', 'Ok');
+          this.openSnackBar('Optimization stopped', 'Ok');
         }
       );
   }

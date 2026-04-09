@@ -22,6 +22,7 @@ import {
   EmptyExcludingResourceConstraint,
 } from './data/dummy-constraint';
 import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Dialog component for viewing and editing the properties of a single optimization node.
@@ -40,6 +41,8 @@ import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
     standalone: false
 })
 export class NodePropertiesDialogComponent {
+  readonly links = EXTERNAL_LINKS;
+
   /** Reactive form group for opening hours validation. */
   openingHoursForm: FormGroup;
 

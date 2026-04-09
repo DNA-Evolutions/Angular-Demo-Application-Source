@@ -9,6 +9,7 @@ import { HowtoDialogComponent } from './howto-dialog/howto-dialog.component';
 import { environment } from '@env/environment';
 import { IntroVideoDialogComponent } from './intro-video-dialog/intro-video-dialog.component';
 import packageJson from '../../../../package.json';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Introduction and help dialog component for the TourOptimizer demo application.
@@ -27,6 +28,8 @@ import packageJson from '../../../../package.json';
     standalone: false
 })
 export class IntroductionComponent {
+
+ readonly links = EXTERNAL_LINKS;
 
  /** The current application version, read from package.json. */
  myVersion: string;

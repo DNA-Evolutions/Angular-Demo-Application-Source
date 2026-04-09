@@ -171,7 +171,7 @@
             </span>
             <span style="margin-top: 0px; vertical-align: auto">
               Visit
-              <a href="https://docs.dna-evolutions.com/overview_docs/special_features/Special_Features.html"
+              <a [href]="links.SPECIAL_FEATURES"
               target="_blank">Special features</a>
             </span>
             <span>
@@ -185,7 +185,7 @@
           </div>
         </mat-tab>
 
-        <mat-tab label="Advandced">
+        <mat-tab label="Advanced">
           <p></p>
           <mat-accordion>
             <mat-expansion-panel style="width: 95%; margin: 0 auto">
@@ -264,7 +264,7 @@
             <mat-accordion>
               <mat-expansion-panel style="width: 95%; margin: 0 auto">
                 <mat-expansion-panel-header>
-                  <mat-panel-title> Exclduing resources </mat-panel-title>
+                  <mat-panel-title> Excluding resources </mat-panel-title>
                   <mat-panel-description> </mat-panel-description>
                 </mat-expansion-panel-header>
 
@@ -385,7 +385,7 @@
           </button>
 
           <a mat-raised-button class="mat-raised-button infobutton"
-            href="https://docs.dna-evolutions.com/java_examples/tutorials/tutorial_beginner/basic_elements/basic_elements.html#nodes"
+            [href]="links.BASIC_ELEMENTS_NODES"
           matTooltip="Visit our documentation on Nodes." target="_blank">Nodes</a>
 
         </div>

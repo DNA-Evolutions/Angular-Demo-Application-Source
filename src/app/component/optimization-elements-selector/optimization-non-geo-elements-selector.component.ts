@@ -6,6 +6,7 @@ import { OptimizationWrapperService } from 'src/app/_services/optimization-wrapp
 import { OptimizationResultDialogComponent } from '../optimization-elements/result/optimization/optimization-result/opti-result-dialog.component';
 import { NodePropertiesDialogComponent } from '../optimization-elements/node/node-properties-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EXTERNAL_LINKS } from 'src/app/_config/external-links';
 
 /**
  * Component for selecting and editing non-geographic (event) nodes.
@@ -25,6 +26,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     standalone: false
 })
 export class OptimizationNonGeoElementsSelectorComponent implements OnInit {
+
+    readonly links = EXTERNAL_LINKS;
 
     /** List of all event (non-geographic) node IDs in the current optimization input. */
     nodeIds: string[];
